@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect — Legacy Bible Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="css/styles.css?v=13">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo-dark.png" alt="Legacy Bible Church" class="nav-logo-img">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+        <li><a href="sermons.html" class="nav-link">Sermons</a></li>
+        <li><a href="resources.html" class="nav-link">Resources</a></li>
+        <li><a href="connect.html" class="nav-link">Connect</a></li>
+        <li><a href="give.html" class="nav-link nav-cta btn btn-primary">Give</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="leadership.html">Leadership</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="connect.html">Connect</a></li>
+      <li><a href="give.html" class="btn btn-primary">Give</a></li>
+    </ul>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-header__title">Connect With Us</h1>
+    </div>
+  </section>
+
+  <!-- FIRST VISIT INFO -->
+  <section class="section" id="visit">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-editable="visit-heading" data-label="Connect — Page Heading">Thinking About Visiting?</h2>
+        <p class="section-subtitle" style="max-width: 580px;" data-editable="visit-subtitle" data-label="Connect — Page Subtitle">We&rsquo;d love to know you&rsquo;re coming. Shoot us a message and Pastor Todd will personally reach out before Sunday.</p>
+      </div>
+      <div class="card-grid card-grid--3">
+
+        <div class="card">
+          <h3 class="card__title">When</h3>
+          <p class="card__body" data-editable="when-text" data-label="Connect — When (Service Time)">Sundays at 10 AM &mdash; we hang out until 10:30, then the service starts.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card__title">Where</h3>
+          <p class="card__body" data-editable="where-text" data-label="Connect — Where (Address)">225 Fremont Street<br>Redlands, CA</p>
+          <a href="https://maps.google.com/?q=225+Fremont+Street+Redlands+CA" target="_blank" rel="noopener" class="inline-link" style="margin-top: 0.75rem; display: inline-block;">Get directions &rarr;</a>
+        </div>
+
+        <div class="card">
+          <h3 class="card__title">What to Expect</h3>
+          <p class="card__body" data-editable="visit-expect" data-label="Connect — What to Expect">Casual. Bring yourself. Stay for lunch if you can.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Send Us a Message</h2>
+      </div>
+      <form class="contact-form" id="contactForm"
+            action="https://api.web3forms.com/submit"
+            method="POST">
+
+        <input type="hidden" name="access_key" value="2eddb72a-42ee-420f-a3c6-d23ad3e1e478">
+        <input type="hidden" name="subject" value="New message — Legacy Bible Church website">
+        <input type="hidden" name="from_name" value="Legacy Bible Church Website">
+        <input type="checkbox" name="botcheck" style="display:none">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contact-name">Name <span class="required">*</span></label>
+            <input type="text" id="contact-name" name="name" placeholder="Your name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email <span class="required">*</span></label>
+            <input type="email" id="contact-email" name="email" placeholder="you@example.com" required autocomplete="email">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contact-phone">Phone <span class="optional">(optional)</span></label>
+            <input type="tel" id="contact-phone" name="phone" placeholder="(909) 555-0100" autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="contact-source">How did you hear about us?</label>
+            <select id="contact-source" name="source">
+              <option value="" disabled selected>Choose one</option>
+              <option value="google">Google Search</option>
+              <option value="friend">Friend or Family</option>
+              <option value="social">Instagram / Facebook</option>
+              <option value="drove-by">Just drove by</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" rows="5" placeholder="Tell us a bit about yourself or ask us anything..."></textarea>
+        </div>
+        <div class="form-footer">
+          <button type="submit" class="btn btn-primary" id="contactSubmit">Send Message</button>
+          <p class="form-note">We&rsquo;ll get back to you within a day or two. Usually sooner.</p>
+        </div>
+        <div id="contactSuccess" style="display:none; margin-top:1.5rem; padding:16px 20px; background:rgba(100,200,100,0.08); border:1px solid rgba(100,200,100,0.2); border-radius:6px; color:#8ecf8e;">
+          Got it — we&rsquo;ll be in touch soon.
+        </div>
+        <div id="contactError" style="display:none; margin-top:1.5rem; padding:16px 20px; background:rgba(200,80,80,0.08); border:1px solid rgba(200,80,80,0.2); border-radius:6px; color:#c88e8e;">
+          Something went wrong. Email us directly at <a href="mailto:info@legacybiblechurch.com" style="color:inherit;">info@legacybiblechurch.com</a>.
+        </div>
+      </form>
+
+      <script>
+        (function () {
+          var form = document.getElementById('contactForm');
+          if (!form) return;
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var btn = document.getElementById('contactSubmit');
+            btn.disabled = true;
+            btn.textContent = 'Sending…';
+            fetch(form.action, {
+              method: 'POST',
+              body: new FormData(form),
+              headers: { 'Accept': 'application/json' }
+            }).then(function (r) {
+              if (r.ok) {
+                form.reset();
+                document.getElementById('contactSuccess').style.display = 'block';
+                document.getElementById('contactError').style.display = 'none';
+                btn.style.display = 'none';
+                setTimeout(function() {
+                  document.getElementById('contactSuccess').style.display = 'none';
+                  btn.style.display = '';
+                  btn.disabled = false;
+                  btn.textContent = 'Send Message';
+                }, 5000);
+              } else {
+                throw new Error('server');
+              }
+            }).catch(function () {
+              document.getElementById('contactError').style.display = 'block';
+              btn.disabled = false;
+              btn.textContent = 'Send Message';
+            });
+          });
+        })();
+      </script>
+    </div>
+  </section>
+
+  <!-- ALTERNATIVELY -->
+  <section class="section section--dark-cta" id="connect-cta">
+    <div class="container text-center">
+      <p class="section-subtitle" style="font-size: 1.125rem;">Prefer to just show up? That works too. We&rsquo;re at 225 Fremont Street every Sunday at 10.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Legacy Bible Church</div>
+        <p class="footer-tagline">Make Disciples of All Nations</p>
+        <p class="footer-address">Redlands, California</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="leadership.html">Leadership</a></li>
+          <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="connect.html">Connect</a></li>
+          <li><a href="give.html">Give</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sundays</h4>
+        <p>10:00 AM<br>225 Fremont Street<br>Redlands, CA</p>
+      </div>
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <p><a href="mailto:info@legacybiblechurch.com">info@legacybiblechurch.com</a></p>
+        <p style="margin-top:6px;"><a href="connect.html">Send a message</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Legacy Bible Church. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/edit-mode.js"></script>
+</body>
+</html>

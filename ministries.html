@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ministries — Legacy Bible Church</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Page header */
+    .page-header {
+      background: var(--surface);
+      padding: 80px 0 48px;
+      border-bottom: 1px solid rgba(200,200,200,0.1);
+    }
+    .page-header h1 {
+      font-size: 2.8rem;
+      color: var(--text-primary);
+      margin: 0 0 12px;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .breadcrumb a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { color: var(--accent-bright); }
+    .breadcrumb span { color: var(--text-secondary); }
+
+    /* Sections */
+    .section { padding: 64px 0; }
+    .section-title {
+      font-size: 1.8rem;
+      color: var(--text-primary);
+      margin: 0 0 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(200,200,200,0.1);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--accent-bright);
+      color: #0e0e0e;
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid rgba(200,200,200,0.3);
+    }
+    .btn-outline:hover { border-color: var(--accent-bright); }
+    .btn-sm {
+      padding: 7px 16px;
+      font-size: 0.82rem;
+    }
+
+    /* Intro text */
+    .intro-text {
+      max-width: 720px;
+    }
+    .intro-text p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* Ministry cards */
+    .ministry-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .ministry-card {
+      background: var(--surface);
+      border: 1px solid rgba(200,200,200,0.1);
+      border-radius: 12px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .ministry-card:hover {
+      border-color: rgba(200,200,200,0.3);
+      transform: translateY(-3px);
+    }
+    .ministry-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(200,200,200,0.08);
+      border: 1px solid rgba(200,200,200,0.12);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .ministry-card h3 {
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    .ministry-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin: 0;
+      flex: 1;
+    }
+
+    /* Serve / Volunteer section */
+    .serve-section {
+      background: var(--surface);
+      border-top: 1px solid rgba(200,200,200,0.08);
+      border-bottom: 1px solid rgba(200,200,200,0.08);
+      padding: 72px 0;
+    }
+    .serve-section .section-title {
+      margin-bottom: 16px;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .serve-intro {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin: 0 0 40px;
+      max-width: 640px;
+    }
+    .serve-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .serve-col {
+      background: rgba(200,200,200,0.04);
+      border: 1px solid rgba(200,200,200,0.1);
+      border-radius: 10px;
+      padding: 28px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .serve-col .serve-icon {
+      font-size: 2rem;
+      color: var(--accent);
+    }
+    .serve-col h3 {
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    .serve-col p {
+      font-size: 0.87rem;
+      color: var(--text-secondary);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Small group finder */
+    .sg-section { padding: 64px 0; }
+    .sg-intro {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin: -16px 0 32px;
+      line-height: 1.7;
+    }
+    .sg-table-wrap {
+      overflow-x: auto;
+    }
+    .sg-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(200,200,200,0.1);
+    }
+    .sg-table thead {
+      background: rgba(200,200,200,0.06);
+    }
+    .sg-table th {
+      padding: 14px 20px;
+      text-align: left;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+      border-bottom: 1px solid rgba(200,200,200,0.1);
+    }
+    .sg-table td {
+      padding: 16px 20px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid rgba(200,200,200,0.06);
+      vertical-align: middle;
+    }
+    .sg-table tr:last-child td { border-bottom: none; }
+    .sg-table td:first-child {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    .sg-table tr:hover td {
+      background: rgba(200,200,200,0.03);
+    }
+
+    @media (max-width: 900px) {
+      .ministry-grid { grid-template-columns: repeat(2, 1fr); }
+      .serve-columns { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .ministry-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Legacy Bible Church</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="sermons.html" class="nav-link">Sermons</a></li>
+      <li><a href="events.html" class="nav-link">Events</a></li>
+      <li><a href="ministries.html" class="nav-link">Ministries</a></li>
+      <li><a href="contact.html" class="nav-link">Connect</a></li>
+      <li><a href="give.html" class="nav-link nav-cta btn btn-primary">Give</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="sermons.html">Sermons</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="ministries.html">Ministries</a></li>
+    <li><a href="contact.html">Connect</a></li>
+    <li><a href="give.html" class="btn btn-primary">Give</a></li>
+  </ul>
+</div>
+
+<!-- Page Header -->
+<header class="page-header">
+  <div class="container">
+    <h1>Ministries</h1>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span>Ministries</span>
+    </nav>
+  </div>
+</header>
+
+<!-- Intro -->
+<section class="section">
+  <div class="container">
+    <div class="intro-text">
+      <p>At Legacy Bible Church, we believe every person is called to grow and serve. Our ministries are designed to meet you where you are — whether you're just beginning your faith journey or looking for deeper community and purpose.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Ministry Cards Grid -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <h2 class="section-title">Our Ministries</h2>
+    <div class="ministry-grid">
+
+      <!-- Legacy Kids -->
+      <div class="ministry-card">
+        <div class="ministry-icon">&#11088;</div>
+        <h3>Legacy Kids</h3>
+        <p>Engaging, age-appropriate environments for kids birth through 5th grade. We partner with parents to raise the next generation in faith — through Bible stories, worship, and meaningful relationships.</p>
+        <a href="contact.html" class="btn btn-outline btn-sm">Learn More</a>
+      </div>
+
+      <!-- Legacy Youth -->
+      <div class="ministry-card">
+        <div class="ministry-icon">&#9889;</div>
+        <h3>Legacy Youth</h3>
+        <p>A place for 6th–12th graders to belong, grow, and encounter God. Weekly gatherings, summer camps, retreats, and discipleship groups that go deeper than Sunday morning.</p>
+        <a href="contact.html" class="btn btn-outline btn-sm">Learn More</a>
+      </div>
+
+      <!-- Men's Ministry -->
+      <div class="ministry-card">
+        <div class="ministry-icon">&#128101;</div>
+        <h3>Men's Ministry</h3>
+        <p>Brotherhood built on God's Word. Monthly breakfasts, accountability groups, and service projects for men of all ages. Iron sharpens iron — grow alongside other men who are pursuing Christ.</p>
+        <a href="contact.html" class="btn btn-outline btn-sm">Learn More</a>
+      </div>
+
+      <!-- Women's Ministry -->
+      <div class="ministry-card">
+        <div class="ministry-icon">&#127800;</div>
+        <h3>Women's Ministry</h3>
+        <p>Community, growth, and encouragement for women. Weekly Bible studies, seasonal retreats, and connect events throughout the year — building lasting friendships rooted in faith.</p>
+        <a href="contact.html" class="btn btn-outline btn-sm">Learn More</a>
+      </div>
+
+      <!-- Small Groups -->
+      <div class="ministry-card">
+        <div class="ministry-icon">&#128142;</div>
+        <h3>Small Groups</h3>
+        <p>Life is better together. Our small groups meet weekly across Redlands for fellowship, Bible study, and prayer. Whether you're new or longtime, there's a group for you.</p>
+        <a href="#small-groups" class="btn btn-outline btn-sm">Find a Group</a>
+      </div>
+
+      <!-- Missions & Outreach -->
+      <div class="ministry-card">
+        <div class="ministry-icon">&#127758;</div>
+        <h3>Missions &amp; Outreach</h3>
+        <p>We exist to make disciples of all nations. Join us in local outreach — serving Redlands and the Inland Empire — and in global mission partnerships that plant the gospel around the world.</p>
+        <a href="contact.html" class="btn btn-outline btn-sm">Learn More</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Volunteer / Serve Section -->
+<div class="serve-section">
+  <div class="container">
+    <h2 class="section-title">Use Your Gifts to Serve</h2>
+    <p class="serve-intro">
+      Every member of the body has been given gifts to build up the church. There are countless ways to serve at Legacy Bible Church — from Sunday morning to weekday ministries. Whether you love music, hospitality, or technology, there's a place for you on our team.
+    </p>
+    <div class="serve-columns">
+      <div class="serve-col">
+        <div class="serve-icon">&#127925;</div>
+        <h3>Worship Team</h3>
+        <p>Vocalists, instrumentalists, and sound techs who lead our congregation in praise every Sunday and Wednesday.</p>
+      </div>
+      <div class="serve-col">
+        <div class="serve-icon">&#9749;</div>
+        <h3>Hospitality</h3>
+        <p>Greeters, ushers, and host team members who make every guest feel seen and welcomed from the moment they arrive.</p>
+      </div>
+      <div class="serve-col">
+        <div class="serve-icon">&#127909;</div>
+        <h3>Tech &amp; Media</h3>
+        <p>Camera operators, livestream engineers, graphic designers, and social media volunteers who extend our reach beyond Sunday.</p>
+      </div>
+    </div>
+    <a href="contact.html" class="btn btn-primary">Sign Up to Serve</a>
+  </div>
+</div>
+
+<!-- Small Group Finder -->
+<section class="sg-section" id="small-groups">
+  <div class="container">
+    <h2 class="section-title">Find a Small Group Near You</h2>
+    <p class="sg-intro">
+      Our small groups meet throughout the week across the Redlands area. Find one that fits your schedule and take the next step toward deeper community.
+    </p>
+    <div class="sg-table-wrap">
+      <table class="sg-table">
+        <thead>
+          <tr>
+            <th>Group Name</th>
+            <th>Day &amp; Time</th>
+            <th>Location</th>
+            <th>Open To</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tuesday Morning Women's Study</td>
+            <td>Tuesdays, 10:00 AM</td>
+            <td>Redlands, CA</td>
+            <td>Women</td>
+            <td><a href="contact.html" class="btn btn-outline btn-sm">Join</a></td>
+          </tr>
+          <tr>
+            <td>Thursday Evening Mixed Group</td>
+            <td>Thursdays, 7:00 PM</td>
+            <td>San Bernardino, CA</td>
+            <td>All Adults</td>
+            <td><a href="contact.html" class="btn btn-outline btn-sm">Join</a></td>
+          </tr>
+          <tr>
+            <td>Friday Youth Small Group</td>
+            <td>Fridays, 7:00 PM</td>
+            <td>Redlands, CA</td>
+            <td>6th–12th Grade</td>
+            <td><a href="contact.html" class="btn btn-outline btn-sm">Join</a></td>
+          </tr>
+          <tr>
+            <td>Sunday Afternoon Men's Group</td>
+            <td>Sundays, 4:00 PM</td>
+            <td>Redlands, CA</td>
+            <td>Men</td>
+            <td><a href="contact.html" class="btn btn-outline btn-sm">Join</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:24px;color:var(--text-secondary);font-size:0.9rem;">
+      Don't see a group that fits? <a href="contact.html" style="color:var(--accent-bright);text-decoration:none;font-weight:600;">Contact us</a> and we'll help you find your place.
+    </p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-col">
+      <div class="footer-logo">Legacy Bible Church</div>
+      <p class="footer-tagline">Make Disciples of All Nations</p>
+      <p class="footer-address">225 Fremont Street<br>Redlands, California</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="sermons.html">Sermons</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="ministries.html">Ministries</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="give.html">Give Online</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Service Times</h4>
+      <p>Sunday<br>9:00 AM &amp; 11:00 AM</p>
+      <p>Wednesday<br>7:00 PM</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; 2026 Legacy Bible Church. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>

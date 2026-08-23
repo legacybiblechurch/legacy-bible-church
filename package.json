@@ -1,0 +1,13 @@
+{
+  "name": "legacy-bible-church-website",
+  "version": "1.0.0",
+  "description": "Legacy Bible Church official website",
+  "scripts": {
+    "dev": "npx serve . -l 3000",
+    "start": "npx serve . -l 3000",
+    "dev:python": "python3 -m http.server 3000"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}

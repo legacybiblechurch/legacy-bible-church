@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    { "src": "/about", "dest": "/about.html" },
+    { "src": "/sermons", "dest": "/sermons.html" },
+    { "src": "/connect", "dest": "/connect.html" },
+    { "src": "/give", "dest": "/give.html" }
+  ]
+}

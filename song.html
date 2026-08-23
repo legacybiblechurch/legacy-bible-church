@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Song Lyrics — Legacy Bible Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="css/styles.css?v=14">
+  <style>
+    /* ── Screen layout ──────────────────────────────────── */
+    .song-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+    .song-meta {
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+    }
+    .song-title {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+    .song-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .song-actions .btn-youtube {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: #ff0000;
+      color: #fff;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: opacity 0.15s;
+    }
+    .song-actions .btn-youtube:hover { opacity: 0.85; }
+    .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: var(--surface);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background var(--transition), color var(--transition);
+    }
+    .btn-print:hover {
+      background: var(--surface-hover);
+      color: var(--text-primary);
+    }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color var(--transition);
+      margin-bottom: 2rem;
+    }
+    .btn-back:hover { color: var(--text-secondary); }
+
+    /* ── Lyrics ─────────────────────────────────────────── */
+    .lyrics-body { color: var(--text-secondary); }
+    .lyric-block {
+      margin-bottom: 1.75rem;
+    }
+    .lyric-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .lyric-lines {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-primary);
+      white-space: pre-wrap;
+    }
+    .lyrics-empty {
+      padding: 3rem 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* ── Print header (hidden on screen) ────────────────── */
+    .print-header {
+      display: none;
+    }
+
+    /* ── @media print ────────────────────────────────────── */
+    @media print {
+      /* Hide everything except song content */
+      .nav, .mobile-menu, .page-header, .song-actions,
+      .btn-back, footer, .btn-print { display: none !important; }
+
+      body {
+        background: #fff !important;
+        color: #000 !important;
+        font-size: 12pt;
+      }
+
+      .song-wrap {
+        padding: 0;
+        max-width: 100%;
+      }
+
+      .print-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-bottom: 1.5pt solid #ccc;
+        padding-bottom: 0.75rem;
+        margin-bottom: 1.5rem;
+      }
+      .print-header-logo {
+        filter: brightness(0);
+        height: 36pt;
+        width: auto;
+      }
+      .print-header-church {
+        font-family: 'Inter', sans-serif;
+        font-size: 8.5pt;
+        font-weight: 400;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #555;
+      }
+
+      .song-title {
+        font-size: 18pt;
+        color: #000;
+        margin-bottom: 1rem;
+      }
+
+      .lyric-label {
+        font-size: 7pt;
+        color: #888;
+        letter-spacing: 0.15em;
+      }
+      .lyric-lines {
+        font-size: 11pt;
+        color: #111;
+        line-height: 1.65;
+      }
+      .lyric-block {
+        margin-bottom: 1.25rem;
+        page-break-inside: avoid;
+      }
+      .lyrics-empty {
+        color: #666;
+      }
+
+      /* One column, clean page */
+      @page {
+        margin: 2cm 2cm 2cm 2cm;
+        size: letter;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo-dark.png" alt="Legacy Bible Church" class="nav-logo-img">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+        <li><a href="sermons.html" class="nav-link">Sermons</a></li>
+        <li><a href="resources.html" class="nav-link active">Resources</a></li>
+        <li><a href="connect.html" class="nav-link">Connect</a></li>
+        <li><a href="give.html" class="nav-link nav-cta btn btn-primary">Give</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="leadership.html">Leadership</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="connect.html">Connect</a></li>
+      <li><a href="give.html" class="btn btn-primary">Give</a></li>
+    </ul>
+  </div>
+
+  <!-- SONG CONTENT -->
+  <section class="section" style="padding-top: 3rem;">
+    <div class="container">
+      <div class="song-wrap">
+
+        <!-- Print-only header: Legacy logo + church name -->
+        <div class="print-header">
+          <img src="images/logo-dark.png" alt="Legacy Bible Church" class="print-header-logo">
+          <span class="print-header-church">Legacy Bible Church &nbsp;·&nbsp; Redlands, California</span>
+        </div>
+
+        <!-- Back link -->
+        <a href="hymnal.html" class="btn-back">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to Hymnal
+        </a>
+
+        <!-- Title -->
+        <div class="song-meta">
+          <h1 class="song-title" id="song-title">Loading…</h1>
+          <div class="song-actions" id="song-actions">
+            <!-- populated by JS -->
+          </div>
+        </div>
+
+        <!-- Lyrics -->
+        <div class="lyrics-body" id="lyrics-body">
+          <!-- populated by JS -->
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Legacy Bible Church</div>
+        <p class="footer-tagline">Make Disciples of All Nations</p>
+        <p class="footer-address">Redlands, California</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="leadership.html">Leadership</a></li>
+          <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="connect.html">Connect</a></li>
+          <li><a href="give.html">Give</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sundays</h4>
+        <p>10:00 AM<br>225 Fremont Street<br>Redlands, CA</p>
+      </div>
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <p><a href="mailto:info@legacybiblechurch.com">info@legacybiblechurch.com</a></p>
+        <p style="margin-top:6px;"><a href="connect.html">Send a message</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Legacy Bible Church. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/songs-data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const slug   = params.get('s') || '';
+      const song   = LEGACY_SONGS[slug];
+
+      const titleEl   = document.getElementById('song-title');
+      const actionsEl = document.getElementById('song-actions');
+      const lyricsEl  = document.getElementById('lyrics-body');
+
+      if (!song) {
+        document.title = 'Song Not Found — Legacy Bible Church';
+        titleEl.textContent = 'Song not found';
+        lyricsEl.innerHTML  = '<p class="lyrics-empty">This song isn\'t in our hymnal yet. <a href="hymnal.html" style="color:var(--accent-bright)">Return to the hymnal →</a></p>';
+        return;
+      }
+
+      // Page title & heading
+      const cleanTitle = song.title.replace(/&rsquo;/g,"'").replace(/&mdash;/g,"—").replace(/&amp;/g,"&").replace(/&lsquo;/g,"'");
+      document.title = cleanTitle + ' — Legacy Bible Church';
+      document.getElementById('page-title').textContent = cleanTitle + ' — Legacy Bible Church';
+      titleEl.textContent = cleanTitle;
+
+      // Action buttons
+      actionsEl.innerHTML =
+        (song.youtube
+          ? `<a href="${song.youtube}" class="btn-youtube" target="_blank" rel="noopener">
+               <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor"><path d="M13.7 1.56A1.76 1.76 0 0 0 12.47.32C11.37 0 7 0 7 0S2.63 0 1.53.32A1.76 1.76 0 0 0 .3 1.56C0 2.67 0 5 0 5s0 2.33.3 3.44a1.76 1.76 0 0 0 1.23 1.24C2.63 10 7 10 7 10s4.37 0 5.47-.32a1.76 1.76 0 0 0 1.23-1.24C14 7.33 14 5 14 5s0-2.33-.3-3.44ZM5.6 7.14V2.86L9.24 5 5.6 7.14Z"/></svg>
+               Watch on YouTube
+             </a>`
+          : '') +
+        `<button class="btn-print" onclick="window.print()">
+           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <path d="M3 4V1h8v3M3 10H1V5h12v5h-2M3 7h8M3 10v3h8v-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+           </svg>
+           Print / Save PDF
+         </button>`;
+
+      // Lyrics
+      if (!song.lyrics || song.lyrics.length === 0) {
+        lyricsEl.innerHTML = '<p class="lyrics-empty">Lyrics for this song haven\'t been added yet. Check back soon.</p>';
+        return;
+      }
+
+      lyricsEl.innerHTML = song.lyrics.map(block => `
+        <div class="lyric-block">
+          ${block.label ? `<p class="lyric-label">${block.label}</p>` : ''}
+          <p class="lyric-lines">${block.lines.join('\n')}</p>
+        </div>
+      `).join('');
+    })();
+  </script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sermons — Legacy Bible Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="css/styles.css?v=14">
+  <style>
+    /* Sermon page extras */
+    .subscribe-strip {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+      margin: 2rem 0 0;
+    }
+    .subscribe-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 22px; border-radius: 50px; font-size: 15px;
+      font-weight: 600; text-decoration: none; transition: opacity .2s;
+    }
+    .subscribe-btn:hover { opacity: .85; }
+    .subscribe-btn--spotify { background: #1DB954; color: #fff; }
+    .subscribe-btn--apple   { background: #9b59f5; color: #fff; }
+    .subscribe-btn--rss     { background: #f26522; color: #fff; }
+    .podcast-embed { margin: 2.5rem auto 0; max-width: 700px; border-radius: 12px; overflow:hidden; }
+    .sermon-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 20px 24px; margin-bottom: 16px;
+    }
+    .sermon-card__date { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
+    .sermon-card__title { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .sermon-card__desc { font-size: 14px; color: var(--text-muted); line-height: 1.55; }
+    .year-group { border-bottom: 1px solid var(--border); }
+    .year-toggle {
+      width: 100%; display: flex; align-items: center; gap: 12px;
+      background: none; border: none; padding: 18px 0; cursor: pointer;
+      text-align: left; font-family: inherit;
+    }
+    .year-label { font-size: 18px; font-weight: 700; color: #ffffff; }
+    .year-count { font-size: 14px; color: var(--text-muted); }
+    .year-arrow { margin-left: auto; color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+    .year-toggle[aria-expanded="true"] .year-arrow { transform: rotate(180deg); }
+    .year-sermons { list-style: none; padding: 0 0 16px 0; margin: 0; }
+    .sermon-item { padding: 10px 0; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; }
+    .sermon-date { font-size: 13px; color: var(--text-muted); min-width: 130px; }
+    .sermon-title { font-size: 15px; font-weight: 600; color: var(--text); flex: 1; }
+    .sermon-desc { font-size: 13px; color: var(--text-muted); width: 100%; padding-left: 146px; line-height: 1.5; }
+    @media(max-width:600px) { .sermon-desc { padding-left: 0; } }
+
+    .play-btn {
+      background: none; border: 1.5px solid var(--gold, #C9A84C); color: var(--gold, #C9A84C);
+      border-radius: 50%; width: 28px; height: 28px; font-size: 10px;
+      cursor: pointer; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+      transition: background .15s, color .15s; margin-left: 10px;
+    }
+    .play-btn:hover, .play-btn.playing { background: var(--gold, #C9A84C); color: #000; }
+    #sermon-player-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; background: #111; border-top: 1px solid #333;
+      padding: 12px 24px; display: none; align-items: center; gap: 16px; z-index: 9999;
+    }
+    #sermon-player-bar.active { display: flex; }
+    #player-title { font-size: 13px; color: #fff; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #player-audio { flex: 2; min-width: 0; }
+    #player-close { background: none; border: none; color: #999; font-size: 20px; cursor: pointer; padding: 0 4px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo-dark.png" alt="Legacy Bible Church" class="nav-logo-img">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+        <li><a href="sermons.html" class="nav-link">Sermons</a></li>
+        <li><a href="resources.html" class="nav-link">Resources</a></li>
+        <li><a href="connect.html" class="nav-link">Connect</a></li>
+        <li><a href="give.html" class="nav-link nav-cta btn btn-primary">Give</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="leadership.html">Leadership</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="connect.html">Connect</a></li>
+      <li><a href="give.html" class="btn btn-primary">Give</a></li>
+    </ul>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-header__title">Sermons</h1>
+      
+    </div>
+  </section>
+
+  <!-- RECENT SERMONS -->
+  <section class="section" id="sermons">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Messages</h2>
+      </div>
+      <div class="sermon-card">
+        <div class="sermon-card__date">December 25, 2022</div>
+        <h3 class="sermon-card__title">Jesus Prays for & Keeps His Disciples Forever, Pt 4, John 17.6-19</h3>
+        <p class="sermon-card__desc">In His whole-hearted, trusting prayer to His Father, Jesus shows us seven powerful, eternal truths about His disciples t...</p>
+      </div>
+<div class="sermon-card">
+        <div class="sermon-card__date">December 18, 2022</div>
+        <h3 class="sermon-card__title">Jesus Prays for & Keeps His Disciples Forever, Pt 3, John 17.6-19</h3>
+        <p class="sermon-card__desc">In His whole-hearted, trusting prayer to His Father, Jesus shows us seven powerful, eternal truths about His disciples t...</p>
+      </div>
+<div class="sermon-card">
+        <div class="sermon-card__date">December 4, 2022</div>
+        <h3 class="sermon-card__title">Jesus Prays for & Keeps His Disciples Forever, Pt 2, John 17.6-19</h3>
+        <p class="sermon-card__desc">In His whole-hearted, trusting prayer to His Father, Jesus shows us seven powerful, eternal truths about His disciples t...</p>
+      </div>
+<div class="sermon-card">
+        <div class="sermon-card__date">November 27, 2022</div>
+        <h3 class="sermon-card__title">Jesus Prays for & Keeps His Disciples Forever, Pt 1, John 17.6-19</h3>
+        <p class="sermon-card__desc">In His whole-hearted, trusting prayer to His Father, Jesus shows us seven powerful, eternal truths about His disciples t...</p>
+      </div>
+<div class="sermon-card">
+        <div class="sermon-card__date">November 20, 2022</div>
+        <h3 class="sermon-card__title">Jesus's Restored Glory, John 17.5</h3>
+        <p class="sermon-card__desc">In this message, we see Jesus’s prayer to the Father for the return of His pre-incarnate glory, so that we will pray for...</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CURRENT SERIES -->
+  <section class="section section--alt" id="series">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Current Series</h2>
+      </div>
+      <div class="series-card">
+        <div class="series-card__inner">
+          <div class="series-card__label">Currently Preaching</div>
+          <h3 class="series-card__title">The Gospel of Mark</h3>
+          <p class="series-card__desc">We&rsquo;re currently preaching through the Gospel of Mark &mdash; the fastest-moving, most action-packed account of the life of Jesus.</p>
+          <p class="series-card__scripture">&ldquo;The beginning of the gospel of Jesus Christ, the Son of God.&rdquo;<br><span class="series-card__ref">Mark 1:1</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL ARCHIVE -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">All Sermons</h2>
+        <p class="section-subtitle">Every sermon Pastor Todd has preached, available to stream anytime.</p>
+      </div>
+      <div class="archive-accordion">
+        <div class="year-group">
+  <button class="year-toggle" aria-expanded="false">
+    <span class="year-label">2022</span>
+    <span class="year-count">24 sermons</span>
+    <span class="year-arrow">▾</span>
+  </button>
+  <ul class="year-sermons" hidden>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.12.25%20Jesus%20Prays%20for%20%26%20Keeps%20His%20Disciples%20Forever%2C%20Pt%204%2C%20John%2017.6-19.mp3"><span class="sermon-date">December 25, 2022</span><span class="sermon-title">Jesus Prays for & Keeps His Disciples Forever, Pt 4, John 17.6-19</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In His whole-hearted, trusting prayer to His Father, Jesus shows us seven powerful, eternal truths about His disciples that glorify Him and result in our earthly and eternal good.</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.12.18%20Jesus%20Prays%20for%20%26%20Keeps%20His%20Disciples%20Forever%2C%20Pt%203%2C%20John%2017.6-19.mp3"><span class="sermon-date">December 18, 2022</span><span class="sermon-title">Jesus Prays for & Keeps His Disciples Forever, Pt 3, John 17.6-19</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In His whole-hearted, trusting prayer to His Father, Jesus shows us seven powerful, eternal truths about His disciples that glorify Him and result in our earthly and eternal good.</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.12.04%20Jesus%20Prays%20for%20%26%20Keeps%20His%20Disciples%20Forever%2C%20Pt%202%2C%20John%2017.6-19.mp3"><span class="sermon-date">December 4, 2022</span><span class="sermon-title">Jesus Prays for & Keeps His Disciples Forever, Pt 2, John 17.6-19</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In His whole-hearted, trusting prayer to His Father, Jesus shows us seven powerful, eternal truths about His disciples that glorify Him and result in our earthly and eternal good.</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.11.27%20Jesus%20Prays%20for%20%26%20Keeps%20His%20Disciples%20Forever%2C%20Pt%201%2C%20John%2017.6-19.mp3"><span class="sermon-date">November 27, 2022</span><span class="sermon-title">Jesus Prays for & Keeps His Disciples Forever, Pt 1, John 17.6-19</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In His whole-hearted, trusting prayer to His Father, Jesus shows us seven powerful, eternal truths about His disciples that glorify Him and result in our earthly and eternal good.</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.11.20%20Jesus%27s%20Restored%20Glory%2C%20John%2017.5.mp3"><span class="sermon-date">November 20, 2022</span><span class="sermon-title">Jesus's Restored Glory, John 17.5</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this message, we see Jesus’s prayer to the Father for the return of His pre-incarnate glory, so that we will pray for His glory in our lives.</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.11.13%20Jesus%20Prays%20for%20His%20%26%20the%20Father%27s%20Glory%2C%20John%2017.1-4.mp3"><span class="sermon-date">November 13, 2022</span><span class="sermon-title">Jesus Prays for His & the Father's Glory, John 17.1-4</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">As Jesus lifts His eyes to our Father, may the Father and the Son be glorified as we rest in Him & His works!</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.11.06%20Gently%20Restoring%20Those%20Trapped%20in%20Sin%2C%20Pt%202%2C%20Galatians%205.25-6.2.mp3"><span class="sermon-date">November 6, 2022</span><span class="sermon-title">Gently Restoring Those Trapped in Sin, Pt 2, Galatians 5.25-6.2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this passage, we examine Paul’s instructions to walk by the Spirit, so we will examine self and gently restore those trapped in their sin.</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.10.30%20Gently%20Restoring%20Those%20Trapped%20in%20Sin%2C%20Pt%201%2C%20Galatians%205.25-6.2.mp3"><span class="sermon-date">October 30, 2022</span><span class="sermon-title">Gently Restoring Those Trapped in Sin, Pt 1, Galatians 5.25-6.2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this passage, we examine Paul’s instructions to walk by the Spirit, so we will examine self and gently restore those trapped in their sin.</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.10.16%20Experiencing%20Full%20Joy%2C%20Pt%203%2C%201%20John%201.1-10.mp3"><span class="sermon-date">October 16, 2022</span><span class="sermon-title">Experiencing Full Joy, Pt 3, 1 John 1.1-10</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this passage, we see that true joy is the certain result of fellowship with God and his church so that we will enjoy that fellowship.</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.05.15%20V2.mp3"><span class="sermon-date">August 7, 2022</span><span class="sermon-title">V2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.06.05%20God%27s%20Treasure%2C%20Satan%27s%20Trap%2C%20Pt%202%2C%20Proverbs%205.1-23.mp3"><span class="sermon-date">June 5, 2022</span><span class="sermon-title">God's Treasure, Satan's Trap, Pt 2, Proverbs 5.1-23</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.05.15%20V2.mp3"><span class="sermon-date">May 15, 2022</span><span class="sermon-title">V2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.04.17%20Jesus%20Transforms%20Sadness%20into%20Joy%2C%20John%2016.16-22.mp3"><span class="sermon-date">April 17, 2022</span><span class="sermon-title">Jesus Transforms Sadness into Joy, John 16.16-22</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">Jesus explains that He turns sadness in trials into joy, so that we, in our sadness, will experience the fullness of joy that cannot be taken away, instead of just waiting, sadly, for the trial to end.</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.04.10%20Jesus%20Glorified%20by%20the%20Spirit%20of%20Truth%2C%20John%2016.12-15.mp3"><span class="sermon-date">April 10, 2022</span><span class="sermon-title">Jesus Glorified by the Spirit of Truth, John 16.12-15</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this passage we see that the Holy Spirit would glorify Jesus by revealing all truth, so that we will glorify Jesus in all truth.</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.04.03%20Jesus%20Leaves%20for%20Good%2C%20Pt%202%2C%20John%2016.5-11.mp3"><span class="sermon-date">April 3, 2022</span><span class="sermon-title">Jesus Leaves for Good, Pt 2, John 16.5-11</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this passage we see the Savior’s design in the sinner’s sorrow so that we will trust the Spirit for our comfort and the world’s conviction.</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.03.06%20Jesus%20Leaves%20for%20Good%2C%20Pt%201%2C%20John%2016.5-11.mp3"><span class="sermon-date">March 6, 2022</span><span class="sermon-title">Jesus Leaves for Good, Pt 1, John 16.5-11</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this passage we see the Savior’s design in the sinner’s sorrow so that we will trust the Spirit for our comfort and the world’s conviction</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.02.27%20Jesus%20Prepares%20His%20Disciples%20for%20Persecution%2C%20John%2016.1-4.mp3"><span class="sermon-date">February 27, 2022</span><span class="sermon-title">Jesus Prepares His Disciples for Persecution, John 16.1-4</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this passage we see that Jesus warned His disciples that they would be persecuted by false converts, so that we will persevere!</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.02.20%20Jesus%20Sends%20the%20Helper%2C%20John%2015.26-27.mp3"><span class="sermon-date">February 20, 2022</span><span class="sermon-title">Jesus Sends the Helper, John 15.26-27</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this passage we see that the role of God the Spirit is to proclaim Jesus, so that we will proclaim Jesus</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.02.06%20Jesus%27s%20Enemies%20Harass%20His%20Friends%2C%20Pt%203%20John%2015.20-25.mp3"><span class="sermon-date">February 6, 2022</span><span class="sermon-title">Jesus's Enemies Harass His Friends, Pt 3 John 15.20-25</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this passage we see that unbelievers harass Jesus and His disciples, so that we would be humble, like Jesus</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.01.30%20Jesus%27s%20Enemies%20Harass%20His%20Friends%2C%20Pt%202%2C%20John%2015.20-25.mp3"><span class="sermon-date">January 30, 2022</span><span class="sermon-title">Jesus's Enemies Harass His Friends, Pt 2, John 15.20-25</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this passage we see that unbelievers harass Jesus and His disciples, so that we would be humble, like Jesus</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.01.23%20Jesus%27s%20Enemies%20Harass%20His%20Friends%2C%20Pt%201%2C%20John%2015.20-25.mp3"><span class="sermon-date">January 23, 2022</span><span class="sermon-title">Jesus's Enemies Harass His Friends, Pt 1, John 15.20-25</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this passage we see that unbelievers harass Jesus and His disciples, so that we would be humble, like Jesus</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.01.16%201%20Corinthians%206.9-11%2C%20Cleansed.mp3"><span class="sermon-date">January 16, 2022</span><span class="sermon-title">1 Corinthians 6.9-11, Cleansed</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this passage we see that the condemning power of sin is no match for the cleansing power of the Savior so that we will be cleansed and therefore useful to the condemned</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.01.09%20Colossians%201.9-12%20Jesus%2C%20Worthy%20of%20Your%20Walk%2C%20Pt%203%2C%20.mp3"><span class="sermon-date">January 9, 2022</span><span class="sermon-title">Colossians 1.9-12 Jesus, Worthy of Your Walk, Pt 3,</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this passage we see that Jesus is of great worth, so that you will walk with Him every day, for His glory</span></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.01.02%20Colossians%201.9-12%20Jesus%2C%20Worthy%20of%20Your%20Walk%2C%20Pt%202.mp3"><span class="sermon-date">January 2, 2022</span><span class="sermon-title">Colossians 1.9-12 Jesus, Worthy of Your Walk, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button><span class="sermon-desc">In this passage morning we see that Jesus is of great worth, so that you will walk with Him every day, for His glory</span></li>
+  </ul>
+</div>
+<div class="year-group">
+  <button class="year-toggle" aria-expanded="false">
+    <span class="year-label">2019</span>
+    <span class="year-count">42 sermons</span>
+    <span class="year-arrow">▾</span>
+  </button>
+  <ul class="year-sermons" hidden>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.12.29%20A%20Plan%20for%20Growing%20in%20Godliness%20in%202020-%20Pt%202.mp3"><span class="sermon-date">December 29, 2019</span><span class="sermon-title">A Plan for Growing in Godliness in 2020- Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.12.22%20Train%20Yourself%20for%20Godliness-%20Pt%201.mp3"><span class="sermon-date">December 22, 2019</span><span class="sermon-title">Train Yourself for Godliness- Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.12.15%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%2014.mp3"><span class="sermon-date">December 15, 2019</span><span class="sermon-title">Receiving and Understanding God-ap0ss Word- Pt 14</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.12.08%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%2013.mp3"><span class="sermon-date">December 8, 2019</span><span class="sermon-title">Receiving and Understanding God-ap0ss Word- Pt 13</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.12.01%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%2012.mp3"><span class="sermon-date">December 1, 2019</span><span class="sermon-title">Receiving and Understanding God-ap0ss Word- Pt 12</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.11.24%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%2011.mp3"><span class="sermon-date">November 24, 2019</span><span class="sermon-title">Receiving and Understanding God-ap0ss Word- Pt 11</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.11.17%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%2010.mp3"><span class="sermon-date">November 17, 2019</span><span class="sermon-title">Receiving and Understanding God-ap0ss Word- Pt 10</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.11.10%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%209.mp3"><span class="sermon-date">November 10, 2019</span><span class="sermon-title">Receiving and Understanding God-ap0ss Word- Pt 9</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.11.03%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%208.mp3"><span class="sermon-date">November 3, 2019</span><span class="sermon-title">Receiving and Understanding God-ap0ss Word- Pt 8</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.10.20%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%207.mp3"><span class="sermon-date">October 20, 2019</span><span class="sermon-title">Receiving and Understanding God-ap0ss Word- Pt 7</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.10.13%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%206.mp3"><span class="sermon-date">October 13, 2019</span><span class="sermon-title">Receiving and Understanding God-ap0ss Word- Pt 6</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.10.06%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%205.mp3"><span class="sermon-date">October 6, 2019</span><span class="sermon-title">Receiving and Understanding God-ap0ss Word- Pt 5</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.09.29%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%204.mp3"><span class="sermon-date">September 29, 2019</span><span class="sermon-title">Receiving and Understanding God-ap0ss Word- Pt 4</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.09.15%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%203.mp3"><span class="sermon-date">September 15, 2019</span><span class="sermon-title">Receiving and Understanding God-ap0ss Word- Pt 3</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.09.08%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%202.mp3"><span class="sermon-date">September 8, 2019</span><span class="sermon-title">Receiving and Understanding God-ap0ss Word- Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.09.01%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%201.mp3"><span class="sermon-date">September 1, 2019</span><span class="sermon-title">Receiving and Understanding God-ap0ss Word- Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.08.25%20The%20Lord%20Restores%20the%20Redeemed%20who%20Return%20to%20Him-%20Pt%202.mp3"><span class="sermon-date">August 25, 2019</span><span class="sermon-title">The Lord Restores the Redeemed who Return to Him- Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.08.18%20Isaiah%2044_6-22%20The%20Lord%20Restores%20the%20Redeemed%20who%20Return%20to%20Him-%20Pt%201.mp3"><span class="sermon-date">August 18, 2019</span><span class="sermon-title">Isaiah 44_6-22 The Lord Restores the Redeemed who Return to Him- Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.08.04%201%20John%205_13-21%20Trusting%20God%20in%20Prayer%20and%20Practice-%20Pt%202.mp3"><span class="sermon-date">August 4, 2019</span><span class="sermon-title">1 John 5_13-21 Trusting God in Prayer and Practice- Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.07.28%201%20John%205_13-21%20Trusting%20God%20in%20Prayer%20-and-%20Practice-%20Pt%201.MP3"><span class="sermon-date">July 28, 2019</span><span class="sermon-title">1 John 5_13-21 Trusting God in Prayer -and- Practice- Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.06.30%20Proverbs%201%20Becoming%20Wise%20and%20Secure.mp3"><span class="sermon-date">June 30, 2019</span><span class="sermon-title">Proverbs 1 Becoming Wise and Secure</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.06.23%20Proverbs%201%20Becoming%20Wise%20-and-%20Secure-%20Pt%201.mp3"><span class="sermon-date">June 23, 2019</span><span class="sermon-title">Proverbs 1 Becoming Wise -and- Secure- Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.06.09%20John%2010_29-42%20Jesus%20and%20the%20Father%20Keep%20Their%20Sheep%20Forever-%20Pt%202.MP3"><span class="sermon-date">June 9, 2019</span><span class="sermon-title">John 10_29-42 Jesus and the Father Keep Their Sheep Forever- Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.06.02%20John%2010_29-42%20Jesus%20and%20the%20Father%20Keep%20Their%20Sheep%20Forever-%20Pt%201.MP3"><span class="sermon-date">June 2, 2019</span><span class="sermon-title">John 10_29-42 Jesus and the Father Keep Their Sheep Forever- Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.05.26%20John%2010_22-28%20Jesus%20Keeps%20His%20Sheep%20Forever.MP3"><span class="sermon-date">May 26, 2019</span><span class="sermon-title">John 10_22-28 Jesus Keeps His Sheep Forever</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.05.12%20Spiritual%20Motherhood.MP3"><span class="sermon-date">May 12, 2019</span><span class="sermon-title">Spiritual Motherhood</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.04.28%20John%2010_16-21%20Pt%202.MP3"><span class="sermon-date">April 28, 2019</span><span class="sermon-title">John 10_16-21 Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.04.21%20John%2010_16-21%20Pt%201.MP3"><span class="sermon-date">April 21, 2019</span><span class="sermon-title">John 10_16-21 Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.04.14%20John%2010_11-15%20Jesus-%20the%20Good%20Shepherd%20Who%20Dies.MP3"><span class="sermon-date">April 14, 2019</span><span class="sermon-title">John 10_11-15 Jesus- the Good Shepherd Who Dies</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.04.07%20John%2010_1-10%20Jesus-%20the%20Door%20to%20His%20Sheep.MP3"><span class="sermon-date">April 7, 2019</span><span class="sermon-title">John 10_1-10 Jesus- the Door to His Sheep</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.03.31%20John%209_35-41%20Jesus-%20Seeker%20of%20the%20Outcast.MP3"><span class="sermon-date">March 31, 2019</span><span class="sermon-title">John 9_35-41 Jesus- Seeker of the Outcast</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.03.24%20Proverbs%203_9-10%20Give%20Your%20Best%20First%20to%20the%20LORD.mp3"><span class="sermon-date">March 24, 2019</span><span class="sermon-title">Proverbs 3_9-10 Give Your Best First to the LORD</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.03.17%20John%209_8-34%20Jesus-%20Creator%20of%20Division.MP3"><span class="sermon-date">March 17, 2019</span><span class="sermon-title">John 9_8-34 Jesus- Creator of Division</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.03.10%20John%209_1-7%20Jesus%20Heals%20a%20Man%20Born%20Blind-%20Pt%202.MP3"><span class="sermon-date">March 10, 2019</span><span class="sermon-title">John 9_1-7 Jesus Heals a Man Born Blind- Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.03.03%20John%209_1-7%20Jesus%20Heals%20a%20Man%20Born%20Blind-%20Pt%201.MP3"><span class="sermon-date">March 3, 2019</span><span class="sermon-title">John 9_1-7 Jesus Heals a Man Born Blind- Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.02.24%20Jesus%20in%20John%201-8%20Review.MP3"><span class="sermon-date">February 24, 2019</span><span class="sermon-title">Jesus in John 1-8 Review</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.02.17%20Matthew%2018_21-35%20Pt%202.MP3"><span class="sermon-date">February 17, 2019</span><span class="sermon-title">Matthew 18_21-35 Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.02.03%20Matthew%2018_21-22%20Sin-counting-%20Restoration-ap0s-s%20Greatest%20Enemy.MP3"><span class="sermon-date">February 3, 2019</span><span class="sermon-title">Matthew 18_21-22 Sin-counting- Restoration-ap0s-s Greatest Enemy</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.01.27%20Matthew%2018_1-20%20Rescuing%20and%20Restoring%20Spiritual%20Runaways.mp3"><span class="sermon-date">January 27, 2019</span><span class="sermon-title">Matthew 18_1-20 Rescuing and Restoring Spiritual Runaways</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.01.20%20Galatians%206_6-10%20Earthly%20Restoration%20and%20Eternal%20Reward.mp3"><span class="sermon-date">January 20, 2019</span><span class="sermon-title">Galatians 6_6-10 Earthly Restoration and Eternal Reward</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.01.13%20Spiritual%20Restoration.mp3"><span class="sermon-date">January 13, 2019</span><span class="sermon-title">Spiritual Restoration</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.01.06%20Spiritual%20Time%20Management-%20Pt%202.mp3"><span class="sermon-date">January 6, 2019</span><span class="sermon-title">Spiritual Time Management- Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+  </ul>
+</div>
+<div class="year-group">
+  <button class="year-toggle" aria-expanded="false">
+    <span class="year-label">2017</span>
+    <span class="year-count">39 sermons</span>
+    <span class="year-arrow">▾</span>
+  </button>
+  <ul class="year-sermons" hidden>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.12.31%20Growing%20in%20Godliness%2C%20Methods.MP3"><span class="sermon-date">December 31, 2017</span><span class="sermon-title">Growing in Godliness, Methods</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.12.24%20Growing%20in%20Godliness%2C%20Motives.MP3"><span class="sermon-date">December 24, 2017</span><span class="sermon-title">Growing in Godliness, Motives</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.12.10%20Psalm%2032%20The%20Relief%20of%20Repentance.MP3"><span class="sermon-date">December 10, 2017</span><span class="sermon-title">Psalm 32 The Relief of Repentance</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.12.03%20John%204.43-54%20Jesus%20Heals%20a%20Sick%20Child%20and%20Saves%20His%20Family.MP3"><span class="sermon-date">December 3, 2017</span><span class="sermon-title">John 4.43-54 Jesus Heals a Sick Child and Saves His Family</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.11.26%20John%204.27-42%20Jesus%2C%20the%20Savior%20of%20the%20World.MP3"><span class="sermon-date">November 26, 2017</span><span class="sermon-title">John 4.27-42 Jesus, the Savior of the World</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.11.19%20John%204.1-26%20Jesus%2C%20the%20Messiah.MP3"><span class="sermon-date">November 19, 2017</span><span class="sermon-title">John 4.1-26 Jesus, the Messiah</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.11.12%20Proverbs%2028.14%20Fear%2C%20the%20Pathway%20to%20Happiness.MP3"><span class="sermon-date">November 12, 2017</span><span class="sermon-title">Proverbs 28.14 Fear, the Pathway to Happiness</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.11.05%20Proverbs%2028.13%20Repentance%2C%20the%20Pathway%20to%20.MP3"><span class="sermon-date">November 5, 2017</span><span class="sermon-title">Proverbs 28.13 Repentance, the Pathway to</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.10.29%20Romans%208.28-10%20Perseverance%20of%20the%20Saints%2C%20Luther.MP3"><span class="sermon-date">October 29, 2017</span><span class="sermon-title">Romans 8.28-10 Perseverance of the Saints, Luther</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.09.24%20Intro%20to%20the%20Doctrines%20of%20Grace.MP3"><span class="sermon-date">September 24, 2017</span><span class="sermon-title">Intro to the Doctrines of Grace</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.09.17%20John%203.22-36%20Jesus%2C%20the%20Bridegroom.MP3"><span class="sermon-date">September 17, 2017</span><span class="sermon-title">John 3.22-36 Jesus, the Bridegroom</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.09.10%20Jesus%2C%20the%20Bridegroom.MP3"><span class="sermon-date">September 10, 2017</span><span class="sermon-title">Jesus, the Bridegroom</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.09.03%20Proverbs%203%20Enjoying%20Favor%20with%20God%20and%20Man.MP3"><span class="sermon-date">September 3, 2017</span><span class="sermon-title">Proverbs 3 Enjoying Favor with God and Man</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.08.27%20Proverbs%202%20Sound%20Counsel%20for%20Wisdom%20and%20Protection%20from%20Evil.MP3"><span class="sermon-date">August 27, 2017</span><span class="sermon-title">Proverbs 2 Sound Counsel for Wisdom and Protection from Evil</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.08.20%20Proverbs%201%20Fear%20of%20God%20Destroys%20Fear%20of%20Evil.MP3"><span class="sermon-date">August 20, 2017</span><span class="sermon-title">Proverbs 1 Fear of God Destroys Fear of Evil</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.07.30%20John%203.16-21.MP3"><span class="sermon-date">July 30, 2017</span><span class="sermon-title">John 3.16-21</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.07.16%20John%203.1-15%20Jesus%20Unmasks%20a%20Well-polished%20Hypocrite%2C%20Pt%203.MP3"><span class="sermon-date">July 16, 2017</span><span class="sermon-title">John 3.1-15 Jesus Unmasks a Well-polished Hypocrite, Pt 3</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.07.09%20John%203.1-15%20Jesus%20Unmasks%20a%20Well-polished%20Hypocrite%2C%20Pt%202.MP3"><span class="sermon-date">July 9, 2017</span><span class="sermon-title">John 3.1-15 Jesus Unmasks a Well-polished Hypocrite, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.07.02%20John%203.1-15%20Jesus%20Unmasks%20a%20Well-polished%20Hypocrite%2C%20Pt%201.MP3"><span class="sermon-date">July 2, 2017</span><span class="sermon-title">John 3.1-15 Jesus Unmasks a Well-polished Hypocrite, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.06.25%20Matthew%206.1-7.6%20Hypocrisy%2C%20the%20Mother%20of%20Anxiety.MP3"><span class="sermon-date">June 25, 2017</span><span class="sermon-title">Matthew 6.1-7.6 Hypocrisy, the Mother of Anxiety</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.06.11%20John%202.12-25%20Jesus%2C%20Cleanser%20of%20His%20Father%27s%20House.MP3"><span class="sermon-date">June 11, 2017</span><span class="sermon-title">John 2.12-25 Jesus, Cleanser of His Father's House</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.06.04%20John%202.1-11%20Jesus%2C%20the%20Miracle%20Worker.MP3"><span class="sermon-date">June 4, 2017</span><span class="sermon-title">John 2.1-11 Jesus, the Miracle Worker</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.05.28%20John%201.35-51%20Jesus%2C%20the%20Disciple%20Maker.MP3"><span class="sermon-date">May 28, 2017</span><span class="sermon-title">John 1.35-51 Jesus, the Disciple Maker</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.05.21%20Titus%203.1-11%20Holy%20Spirit%20Regeneration.MP3"><span class="sermon-date">May 21, 2017</span><span class="sermon-title">Titus 3.1-11 Holy Spirit Regeneration</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.05.14%20John%201.19-34%20Jesus%2C%20the%20Lamb%20of%20God.MP3"><span class="sermon-date">May 14, 2017</span><span class="sermon-title">John 1.19-34 Jesus, the Lamb of God</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.05.07%20John%201.14-18%20Jesus%20is%20the%20God-man.mp3"><span class="sermon-date">May 7, 2017</span><span class="sermon-title">John 1.14-18 Jesus is the God-man</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.04.30%20John%201.6-13%20Jesus%20is%20the%20Light%20of%20the%20World.MP3"><span class="sermon-date">April 30, 2017</span><span class="sermon-title">John 1.6-13 Jesus is the Light of the World</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.04.23%20John%201.1-5%20Jesus%20is%20God.MP3"><span class="sermon-date">April 23, 2017</span><span class="sermon-title">John 1.1-5 Jesus is God</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.04.16%20John%20Intro.MP3"><span class="sermon-date">April 16, 2017</span><span class="sermon-title">John Intro</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.04.09%202%20Corinthians%209%20Giving%20that%20Glorifies%20God.MP3"><span class="sermon-date">April 9, 2017</span><span class="sermon-title">2 Corinthians 9 Giving that Glorifies God</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.04.02%202%20Corinthians%208.16-24%20Trustworthy%20Management%20of%20God%27s%20Money.MP3"><span class="sermon-date">April 2, 2017</span><span class="sermon-title">2 Corinthians 8.16-24 Trustworthy Management of God's Money</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.03.19%202%20Corinthians%208.8-15%20The%20Poor%20who%20are%20Rich.mp3"><span class="sermon-date">March 19, 2017</span><span class="sermon-title">2 Corinthians 8.8-15 The Poor who are Rich</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.03.12%202%20Corinthians%208.1-7%20Giving%20by%20the%20Grace%20of%20God.MP3"><span class="sermon-date">March 12, 2017</span><span class="sermon-title">2 Corinthians 8.1-7 Giving by the Grace of God</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.02.19%20Philippians%204.10-20%20Satisfied%20in%20God-ap0ss%20Glory.MP3"><span class="sermon-date">February 19, 2017</span><span class="sermon-title">Philippians 4.10-20 Satisfied in God-ap0ss Glory</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.02.12%20Matthew%2016.24-28%20Dying%20to%20Live%2C%20Pt%202.MP3"><span class="sermon-date">February 12, 2017</span><span class="sermon-title">Matthew 16.24-28 Dying to Live, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.01.22%20Matthew%206.9-24%20Eternal%20Treasure.MP3"><span class="sermon-date">January 22, 2017</span><span class="sermon-title">Matthew 6.9-24 Eternal Treasure</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.01.15%20Becoming%20a%20Mature%20Teaching%20Christian%2C%20Pt%202.MP3"><span class="sermon-date">January 15, 2017</span><span class="sermon-title">Becoming a Mature Teaching Christian, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.01.08%20Hebrews%205.11-14%20Becoming%20a%20Teaching%20Christian%2C%20Pt%201.MP3"><span class="sermon-date">January 8, 2017</span><span class="sermon-title">Hebrews 5.11-14 Becoming a Teaching Christian, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.01.01%20Ephesians%202.8-10%20Do%20Good%20Works%20by%20Grace%20through%20Faith.MP3"><span class="sermon-date">January 1, 2017</span><span class="sermon-title">Ephesians 2.8-10 Do Good Works by Grace through Faith</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+  </ul>
+</div>
+<div class="year-group">
+  <button class="year-toggle" aria-expanded="false">
+    <span class="year-label">2016</span>
+    <span class="year-count">32 sermons</span>
+    <span class="year-arrow">▾</span>
+  </button>
+  <ul class="year-sermons" hidden>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.12.25%202%20Corinthians%209.15%20God%27s%20Inexpressible%20Gift.mp3"><span class="sermon-date">December 25, 2016</span><span class="sermon-title">2 Corinthians 9.15 God's Inexpressible Gift</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.12.18%202%20Timothy%203.16-17%20The%20Pastor%20who%20is%20Equipped.MP3"><span class="sermon-date">December 18, 2016</span><span class="sermon-title">2 Timothy 3.16-17 The Pastor who is Equipped</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.12.11%20Romans%2015.1-7%20Humility%2C%20Hope%2C%20and%20Harmony.mp3"><span class="sermon-date">December 11, 2016</span><span class="sermon-title">Romans 15.1-7 Humility, Hope, and Harmony</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.12.04%202%20Timothy%201.13-2.2%20Faithful%20Men%20Training%20Faithful%20Men.mp3"><span class="sermon-date">December 4, 2016</span><span class="sermon-title">2 Timothy 1.13-2.2 Faithful Men Training Faithful Men</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.11.20%20Philippians%204.1-9%20Overcoming%20Anxiety.mp3"><span class="sermon-date">November 20, 2016</span><span class="sermon-title">Philippians 4.1-9 Overcoming Anxiety</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.11.06%20Living%20with%20Honor%20in%20the%20Election%20Season.mp3"><span class="sermon-date">November 6, 2016</span><span class="sermon-title">Living with Honor in the Election Season</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.10.09%20Romans%2013.1-7%20Submit%20to%20the%20Servant%20Authority.mp3"><span class="sermon-date">October 9, 2016</span><span class="sermon-title">Romans 13.1-7 Submit to the Servant Authority</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.10.02%201%20Thessalonians%204.1-8%20God%27s%20Will%2C%20Your%20Sanctification.mp3"><span class="sermon-date">October 2, 2016</span><span class="sermon-title">1 Thessalonians 4.1-8 God's Will, Your Sanctification</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.09.25%20Hebrews%204.14-16%20Grace%20in%20Time%20of%20Need.mp3"><span class="sermon-date">September 25, 2016</span><span class="sermon-title">Hebrews 4.14-16 Grace in Time of Need</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.09.18%20Hebrews%2012.14-17%20Preserving%20Team%20Unity.mp3"><span class="sermon-date">September 18, 2016</span><span class="sermon-title">Hebrews 12.14-17 Preserving Team Unity</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.09.11%20Hebrews%2012.12-13%20Overcoming%20Fatigue%20and%20Weakness.mp3"><span class="sermon-date">September 11, 2016</span><span class="sermon-title">Hebrews 12.12-13 Overcoming Fatigue and Weakness</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.09.04%20Hebrews%2012.10b-11%20Training%20for%20Holiness.mp3"><span class="sermon-date">September 4, 2016</span><span class="sermon-title">Hebrews 12.10b-11 Training for Holiness</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.08.28%20Hebrews%2012.5-11%20Your%20Father%27s%20Role%20in%20Your%20Training.mp3"><span class="sermon-date">August 28, 2016</span><span class="sermon-title">Hebrews 12.5-11 Your Father's Role in Your Training</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.08.21%20Hebrews%2012.1-6%20%20Run%20to%20Jesus%20for%20Endurance%20and%20Joy%2C%20Pt%202.mp3"><span class="sermon-date">August 21, 2016</span><span class="sermon-title">Hebrews 12.1-6  Run to Jesus for Endurance and Joy, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.08.14%20Hebrews%2012.1-3%20Run%20to%20Jesus%20for%20Endurance%20and%20Joy%2C%20Pt%201.mp3"><span class="sermon-date">August 14, 2016</span><span class="sermon-title">Hebrews 12.1-3 Run to Jesus for Endurance and Joy, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.07.31%202%20Peter%203.18%20Enjoying%20the%20Grace%20and%20Glory%20of%20Jesus%20Christ.mp3"><span class="sermon-date">July 31, 2016</span><span class="sermon-title">2 Peter 3.18 Enjoying the Grace and Glory of Jesus Christ</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.07.17%20Proverbs%204.20-27%20Words%20of%20Life.mp3"><span class="sermon-date">July 17, 2016</span><span class="sermon-title">Proverbs 4.20-27 Words of Life</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.07.10%202%20Peter%203.17%20Preventing%20Spiritual%20Destruction.mp3"><span class="sermon-date">July 10, 2016</span><span class="sermon-title">2 Peter 3.17 Preventing Spiritual Destruction</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.07.03%20Christ%27s%20Return%20and%20God%27s%20Purifying%20Patience%2C%20Pt%202.mp3"><span class="sermon-date">July 3, 2016</span><span class="sermon-title">Christ's Return and God's Purifying Patience, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.06.26%202%20Peter%203.14-16%20Christ%27s%20Return%20and%20God%27s%20Cleansing%20Patience%2C%20Pt%201.mp3"><span class="sermon-date">June 26, 2016</span><span class="sermon-title">2 Peter 3.14-16 Christ's Return and God's Cleansing Patience, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.06.12%202%20Peter%203.11-13%20Christ%27s%20Return%20and%20Godly%20Living.MP3"><span class="sermon-date">June 12, 2016</span><span class="sermon-title">2 Peter 3.11-13 Christ's Return and Godly Living</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.06.05%20Christ%27s%20Return%20and%20the%20Inceration%20of%20the%20World%2C%20Pt%203.mp3"><span class="sermon-date">June 5, 2016</span><span class="sermon-title">Christ's Return and the Inceration of the World, Pt 3</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.05.08%20Proverbs%2031%20The%20Praise-worthy%20Woman.mp3"><span class="sermon-date">May 8, 2016</span><span class="sermon-title">Proverbs 31 The Praise-worthy Woman</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.04.24%20Discipleship%2C%20Pt%203.MP3"><span class="sermon-date">April 24, 2016</span><span class="sermon-title">Discipleship, Pt 3</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.02.28%20Discipleship%2C%20Pt%202.MP3"><span class="sermon-date">February 28, 2016</span><span class="sermon-title">Discipleship, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.02.21%20Discipleship%2C%20Pt%201.MP3"><span class="sermon-date">February 21, 2016</span><span class="sermon-title">Discipleship, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.02.14%20Ephesians%205.22-33%20Christian%20Marriage.MP3"><span class="sermon-date">February 14, 2016</span><span class="sermon-title">Ephesians 5.22-33 Christian Marriage</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.01.31%202%20Peter%203.1-7%20Christ-ap0ss%20Return%20and%20the%20Incineration%20of%20the%20World-%20Pt%201.mp3"><span class="sermon-date">January 31, 2016</span><span class="sermon-title">2 Peter 3.1-7 Christ-ap0ss Return and the Incineration of the World- Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.01.24%202%20Peter%202.17-22%20Destruction%20of%20False%20Teachers%2C%20Pt%202.mp3"><span class="sermon-date">January 24, 2016</span><span class="sermon-title">2 Peter 2.17-22 Destruction of False Teachers, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.01.17%202%20Peter%202.17-22%20Destruction%20of%20False%20Teachers%2C%20Pt%201.mp3"><span class="sermon-date">January 17, 2016</span><span class="sermon-title">2 Peter 2.17-22 Destruction of False Teachers, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.01.10%202%20Peter%202.10-16%20Debauchery%20of%20False%20Teachers%2C%20Pt%202.mp3"><span class="sermon-date">January 10, 2016</span><span class="sermon-title">2 Peter 2.10-16 Debauchery of False Teachers, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.01.03%202%20Peter%202.10-16%20Debauchery%20of%20False%20Teachers%2C%20Pt%201.mp3"><span class="sermon-date">January 3, 2016</span><span class="sermon-title">2 Peter 2.10-16 Debauchery of False Teachers, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+  </ul>
+</div>
+<div class="year-group">
+  <button class="year-toggle" aria-expanded="false">
+    <span class="year-label">2015</span>
+    <span class="year-count">38 sermons</span>
+    <span class="year-arrow">▾</span>
+  </button>
+  <ul class="year-sermons" hidden>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.12.27%20Colossians%203.17%20Enjoying%20God%20in%20Prayer.mp3"><span class="sermon-date">December 27, 2015</span><span class="sermon-title">Colossians 3.17 Enjoying God in Prayer</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.12.20%20Colossians%203.16%20Loving%20God%20in%20His%20Word.mp3"><span class="sermon-date">December 20, 2015</span><span class="sermon-title">Colossians 3.16 Loving God in His Word</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.12.13%202%20Peter%202.3b-10a%20The%20Deliverance%20from%20False%20Teachers%2C%20Pt%202.mp3"><span class="sermon-date">December 13, 2015</span><span class="sermon-title">2 Peter 2.3b-10a The Deliverance from False Teachers, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.12.06%202%20Peter%202.3b-10a%20Deliverance%20from%20False%20Teachers%2C%20Pt%201.mp3"><span class="sermon-date">December 6, 2015</span><span class="sermon-title">2 Peter 2.3b-10a Deliverance from False Teachers, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.11.29%202%20Peter%202.1-3a%20The%20Deception%20of%20False%20Teachers%2C%20Pt%202.MP3"><span class="sermon-date">November 29, 2015</span><span class="sermon-title">2 Peter 2.1-3a The Deception of False Teachers, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.11.15%202%20peter%202.1-3a%20the%20deception%20of%20false%20teachers%2C%20pt%201.mp3"><span class="sermon-date">November 15, 2015</span><span class="sermon-title">2 peter 2.1-3a the deception of false teachers, pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.11.08%202%20Peter%201.16-21%20Does%20God%20Still%20Speak%20Today%2C%20Pt%203.MP3"><span class="sermon-date">November 8, 2015</span><span class="sermon-title">2 Peter 1.16-21 Does God Still Speak Today, Pt 3</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.10.25%202%20Peter%201.16-21%20Does%20God%20Still%20Speak%20Today%2C%20Pt%202.MP3"><span class="sermon-date">October 25, 2015</span><span class="sermon-title">2 Peter 1.16-21 Does God Still Speak Today, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.10.11%20Psalm%20148%20Praise%20the%20LORD.MP3"><span class="sermon-date">October 11, 2015</span><span class="sermon-title">Psalm 148 Praise the LORD</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.09.27%202%20Peter%201.16-21%20Does%20God%20Still%20Speak%20Today%2C%20Pt%201.MP3"><span class="sermon-date">September 27, 2015</span><span class="sermon-title">2 Peter 1.16-21 Does God Still Speak Today, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.09.20%202%20Peter%201.12-15.MP3"><span class="sermon-date">September 20, 2015</span><span class="sermon-title">2 Peter 1.12-15</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.09.06%202%20Peter%201.3-4%20Knowing%20God-%20Growing%20in%20Godliness.MP3"><span class="sermon-date">September 6, 2015</span><span class="sermon-title">2 Peter 1.3-4 Knowing God- Growing in Godliness</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.08.30%202%20Peter%201.1-2%20Knowing%20God%2C%20Growing%20in%20Grace%20and%20Peace.MP3"><span class="sermon-date">August 30, 2015</span><span class="sermon-title">2 Peter 1.1-2 Knowing God, Growing in Grace and Peace</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.08.23%202%20Peter%20Intro%20Knowing%20God-%20Growing%20in%20Grace.mp3"><span class="sermon-date">August 23, 2015</span><span class="sermon-title">2 Peter Intro Knowing God- Growing in Grace</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.08.16%20Psalm%20139%20God-ap0ss%20Affection%20for%20the%20Unborn.MP3"><span class="sermon-date">August 16, 2015</span><span class="sermon-title">Psalm 139 God-ap0ss Affection for the Unborn</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.08.09%20Romans%201-16%20Compassion%20for%20the%20Condemned%2C%20Pt%203.MP3"><span class="sermon-date">August 9, 2015</span><span class="sermon-title">Romans 1-16 Compassion for the Condemned, Pt 3</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.07.26%20Romans%201-3%20Compassion%20for%20the%20Condemned%2C%20Pt%202.MP3"><span class="sermon-date">July 26, 2015</span><span class="sermon-title">Romans 1-3 Compassion for the Condemned, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.07.19%20Romans%201-3%20Compassion%20for%20the%20Condemned%2C%20Pt%201.MP3"><span class="sermon-date">July 19, 2015</span><span class="sermon-title">Romans 1-3 Compassion for the Condemned, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.07.12%20Ephesians%206.4%20Christian%20Parenting%2C%20Pt%202.MP3"><span class="sermon-date">July 12, 2015</span><span class="sermon-title">Ephesians 6.4 Christian Parenting, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.07.05%20Ephesians%206.4%20Christian%20Parenting%2C%20Pt%201.MP3"><span class="sermon-date">July 5, 2015</span><span class="sermon-title">Ephesians 6.4 Christian Parenting, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.06.28%20Proverbs%2023.24%20The%20Joyful%20Father%2C%20Pt%202.MP3"><span class="sermon-date">June 28, 2015</span><span class="sermon-title">Proverbs 23.24 The Joyful Father, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.06.21%20Proverbs%2023.24%20The%20Joyful%20Father%2C%20Pt%201.MP3"><span class="sermon-date">June 21, 2015</span><span class="sermon-title">Proverbs 23.24 The Joyful Father, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.06.14%20Romans%206%20Freed%20from%20Sin-ap0ss%20Prison%2C%20Pt%202.MP3"><span class="sermon-date">June 14, 2015</span><span class="sermon-title">Romans 6 Freed from Sin-ap0ss Prison, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.05.31%20Romans%206%20Freed%20from%20Sin-ap0ss%20Prison%2C%20Pt%201.MP3"><span class="sermon-date">May 31, 2015</span><span class="sermon-title">Romans 6 Freed from Sin-ap0ss Prison, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.05.24%201%20Peter%20Summary.Stand%20Firm%20in%20Grace.MP3"><span class="sermon-date">May 24, 2015</span><span class="sermon-title">1 Peter Summary.Stand Firm in Grace</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.05.10%20The%20Woman%20who%20Smiles%20at%20the%20Future.MP3"><span class="sermon-date">May 10, 2015</span><span class="sermon-title">The Woman who Smiles at the Future</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.05.03%20The%20Usefulness%20of%20a%20Faithful%20Brother.MP3"><span class="sermon-date">May 3, 2015</span><span class="sermon-title">The Usefulness of a Faithful Brother</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.01.18%20edited.mp3"><span class="sermon-date">April 26, 2015</span><span class="sermon-title">edited</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.04.19%20Making%20Disciples%20who%20Obey%20Jesus%20Christ.MP3"><span class="sermon-date">April 19, 2015</span><span class="sermon-title">Making Disciples who Obey Jesus Christ</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.01.18%20edited.mp3"><span class="sermon-date">April 12, 2015</span><span class="sermon-title">edited</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.01.18%20edited.mp3"><span class="sermon-date">April 5, 2015</span><span class="sermon-title">edited</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.01.18%20edited.mp3"><span class="sermon-date">March 29, 2015</span><span class="sermon-title">edited</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.01.18%20edited.mp3"><span class="sermon-date">March 22, 2015</span><span class="sermon-title">edited</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.01.18%20edited.mp3"><span class="sermon-date">March 15, 2015</span><span class="sermon-title">edited</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.01.18%20edited.mp3"><span class="sermon-date">February 22, 2015</span><span class="sermon-title">edited</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.01.18%20edited.mp3"><span class="sermon-date">February 1, 2015</span><span class="sermon-title">edited</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.01.18%20edited.mp3"><span class="sermon-date">January 25, 2015</span><span class="sermon-title">edited</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.01.18%20edited.mp3"><span class="sermon-date">January 18, 2015</span><span class="sermon-title">edited</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+  </ul>
+</div>
+<div class="year-group">
+  <button class="year-toggle" aria-expanded="false">
+    <span class="year-label">2014</span>
+    <span class="year-count">33 sermons</span>
+    <span class="year-arrow">▾</span>
+  </button>
+  <ul class="year-sermons" hidden>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.12.14%201%20Peter%204.14-16%20Blessed%20When%20Cursed%2C%20Pt%202.mp3"><span class="sermon-date">December 14, 2014</span><span class="sermon-title">1 Peter 4.14-16 Blessed When Cursed, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.12.07%201%20Peter%204.14-16%20Blessed%20When%20Cursed%2C%20Pt%201.mp3"><span class="sermon-date">December 7, 2014</span><span class="sermon-title">1 Peter 4.14-16 Blessed When Cursed, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.11.30%201%20Peter%204.12-13%20Joy%20in%20Suffering.mp3"><span class="sermon-date">November 30, 2014</span><span class="sermon-title">1 Peter 4.12-13 Joy in Suffering</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.11.23%201%20Peter%204.7-11%20The%20Glory%20of%20God%20in%20You%2C%20Pt%204.mp3"><span class="sermon-date">November 23, 2014</span><span class="sermon-title">1 Peter 4.7-11 The Glory of God in You, Pt 4</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.11.16%201%20Peter%204.7-11%20The%20Glory%20of%20God%20in%20You%2C%20Pt%203.mp3"><span class="sermon-date">November 16, 2014</span><span class="sermon-title">1 Peter 4.7-11 The Glory of God in You, Pt 3</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.11.09%201%20Peter%204.7-11%20The%20Glory%20of%20God%20in%20You%2C%20Pt%202.MP3"><span class="sermon-date">November 9, 2014</span><span class="sermon-title">1 Peter 4.7-11 The Glory of God in You, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.10.19%201%20Peter%204.7-11%20The%20Glory%20of%20God%20in%20You%2C%20Pt%201.mp3"><span class="sermon-date">October 19, 2014</span><span class="sermon-title">1 Peter 4.7-11 The Glory of God in You, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.08.17%201%20Peter%203.8-12%20Whom%20Does%20God%20Bless%2C%20Pt%203.MP3"><span class="sermon-date">August 17, 2014</span><span class="sermon-title">1 Peter 3.8-12 Whom Does God Bless, Pt 3</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.08.10%201%20Peter%203.8-12%20Whom%20Does%20God%20Bless%2C%20Pt%202.MP3"><span class="sermon-date">August 10, 2014</span><span class="sermon-title">1 Peter 3.8-12 Whom Does God Bless, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.08.03%201%20Peter%203.8-12%20Whom%20Does%20God%20Bless%2C%20Pt%201.MP3"><span class="sermon-date">August 3, 2014</span><span class="sermon-title">1 Peter 3.8-12 Whom Does God Bless, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.06.29%20The%20Biblical%20Church%2C%20Her%20Service%2C%20Pt%202.MP3"><span class="sermon-date">June 29, 2014</span><span class="sermon-title">The Biblical Church, Her Service, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.06.22%20The%20Biblical%20Church%2C%20Her%20Service%2C%20Pt%201.MP3"><span class="sermon-date">June 22, 2014</span><span class="sermon-title">The Biblical Church, Her Service, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.06.15%201%20Peter%203.7%20Husbands%20who%20Honor%20Their%20Wives.MP3"><span class="sermon-date">June 15, 2014</span><span class="sermon-title">1 Peter 3.7 Husbands who Honor Their Wives</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.06.01%20The%20Biblical%20Church%2C%20Her%20Structure.MP3"><span class="sermon-date">June 1, 2014</span><span class="sermon-title">The Biblical Church, Her Structure</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.05.25%20The%20Biblical%20Church%2C%20Her%20Submission.MP3"><span class="sermon-date">May 25, 2014</span><span class="sermon-title">The Biblical Church, Her Submission</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.05.18%20Matthew%2028.18%20The%20Biblical%20Church%2C%20Her%20Sovereign.MP3"><span class="sermon-date">May 18, 2014</span><span class="sermon-title">Matthew 28.18 The Biblical Church, Her Sovereign</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.05.11%201%20Peter%203.1-6%20Wives%20who%20Win%20Their%20Husbands.MP3"><span class="sermon-date">May 11, 2014</span><span class="sermon-title">1 Peter 3.1-6 Wives who Win Their Husbands</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.04.20%201%20Peter%202.24-25%20Our%20Sin-bearer%2C%20Shepherd%2C%20and%20Soul-keeper.MP3"><span class="sermon-date">April 20, 2014</span><span class="sermon-title">1 Peter 2.24-25 Our Sin-bearer, Shepherd, and Soul-keeper</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.04.13%201%20Peter%202.21-23%20Christ%20Our%20Suffering%20Example%2C%20Pt%202.MP3"><span class="sermon-date">April 13, 2014</span><span class="sermon-title">1 Peter 2.21-23 Christ Our Suffering Example, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.04.06%201%20Peter%202.21-23%20Christ%20Our%20Suffering%20Example%2C%20Pt%201.MP3"><span class="sermon-date">April 6, 2014</span><span class="sermon-title">1 Peter 2.21-23 Christ Our Suffering Example, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.03.30%201%20Peter%202.18-20%20God%27s%20Favor%20in%20Submitting%20to%20Your%20Employer.MP3"><span class="sermon-date">March 30, 2014</span><span class="sermon-title">1 Peter 2.18-20 God's Favor in Submitting to Your Employer</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.03.23%201%20Peter%202.13-17%20Freedom%20to%20Serve%2C%20Pt%202.MP3"><span class="sermon-date">March 23, 2014</span><span class="sermon-title">1 Peter 2.13-17 Freedom to Serve, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.03.16%201%20Peter%202.13-17%20Freedom%20to%20Serve%2C%20Pt%201.MP3"><span class="sermon-date">March 16, 2014</span><span class="sermon-title">1 Peter 2.13-17 Freedom to Serve, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.03.09%201%20Peter%202.11-12%20The%20Eternal%20Influence%20of%20Your%20Attitude%20and%20Conduct%2C%20Pt%202.MP3"><span class="sermon-date">March 9, 2014</span><span class="sermon-title">1 Peter 2.11-12 The Eternal Influence of Your Attitude and Conduct, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.03.02%201%20Peter%202.11-12%20The%20Eternal%20Influence%20of%20Your%20Attitude%20and%20Conduct%2C%20Pt%201.MP3"><span class="sermon-date">March 2, 2014</span><span class="sermon-title">1 Peter 2.11-12 The Eternal Influence of Your Attitude and Conduct, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.02.23%201%20Peter%202.9-10%20Chosen%20to%20Praise.MP3"><span class="sermon-date">February 23, 2014</span><span class="sermon-title">1 Peter 2.9-10 Chosen to Praise</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.02.16%201%20Peter%202.4-8%20A%20House%20Pleasing%20to%20its%20Builder.MP3"><span class="sermon-date">February 16, 2014</span><span class="sermon-title">1 Peter 2.4-8 A House Pleasing to its Builder</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.02.09%201%20Peter%202.1-3%20Thirsting%20After%20God%27s%20Word.MP3"><span class="sermon-date">February 9, 2014</span><span class="sermon-title">1 Peter 2.1-3 Thirsting After God's Word</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.02.02%201%20Peter%201.22-25%20Love%20One%20Another%20Fervently.MP3"><span class="sermon-date">February 2, 2014</span><span class="sermon-title">1 Peter 1.22-25 Love One Another Fervently</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.01.26%201%20Peter%201.20-21%20For%20Your%20Sake.mp3"><span class="sermon-date">January 26, 2014</span><span class="sermon-title">1 Peter 1.20-21 For Your Sake</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.01.19%201%20Peter%201.17-19%20Redemption%20and%20Reverence%2C%20Pt%202.mp3"><span class="sermon-date">January 19, 2014</span><span class="sermon-title">1 Peter 1.17-19 Redemption and Reverence, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.01.12%201%20Peter%201.17-19%20Redemption%20and%20Reverence%2C%20Pt%201.mp3"><span class="sermon-date">January 12, 2014</span><span class="sermon-title">1 Peter 1.17-19 Redemption and Reverence, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2014.01.05%20Hope%20and%20Holiness%2C%20Pt%202.MP3"><span class="sermon-date">January 5, 2014</span><span class="sermon-title">Hope and Holiness, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+  </ul>
+</div>
+<div class="year-group">
+  <button class="year-toggle" aria-expanded="false">
+    <span class="year-label">2013</span>
+    <span class="year-count">25 sermons</span>
+    <span class="year-arrow">▾</span>
+  </button>
+  <ul class="year-sermons" hidden>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.12.29%20Hope%20and%20Holines%2C%20Pt%201.MP3"><span class="sermon-date">December 29, 2013</span><span class="sermon-title">Hope and Holines, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.12.22%20A%20Salvation%20to%20be%20Treasured.MP3"><span class="sermon-date">December 22, 2013</span><span class="sermon-title">A Salvation to be Treasured</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.12.15%20Great%20Joy%2C%20Great%20Sadness%2C%20Great%20Glory.MP3"><span class="sermon-date">December 15, 2013</span><span class="sermon-title">Great Joy, Great Sadness, Great Glory</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.12.08%20Bless%20the%20Giver%20of%20Eternal%20Life.MP3"><span class="sermon-date">December 8, 2013</span><span class="sermon-title">Bless the Giver of Eternal Life</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.12.01%20Sanctified%2C%20Submissive%2C%20and%20Sin-pardoned.MP3"><span class="sermon-date">December 1, 2013</span><span class="sermon-title">Sanctified, Submissive, and Sin-pardoned</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.11.24%20Scattered%2C%20Secured%2C%20and%20Sanctified.MP3"><span class="sermon-date">November 24, 2013</span><span class="sermon-title">Scattered, Secured, and Sanctified</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.11.03%20What%20is%20the%20Will%20of%20God%2C%20Pt%201.mp3"><span class="sermon-date">November 3, 2013</span><span class="sermon-title">What is the Will of God, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.10.27%20Evangelism%2C%20Pt%2010%20Man%27s%20Practice.MP3"><span class="sermon-date">October 27, 2013</span><span class="sermon-title">Evangelism, Pt 10 Man's Practice</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.10.20%20Evangelism%2C%20Pt%209%2C%20Man%27s%20Preparation.MP3"><span class="sermon-date">October 20, 2013</span><span class="sermon-title">Evangelism, Pt 9, Man's Preparation</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.09.22%20Evangelism%2C%20Pt%208%2C%20Man%27s%20Prayer.MP3"><span class="sermon-date">September 22, 2013</span><span class="sermon-title">Evangelism, Pt 8, Man's Prayer</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.09.08%20Evangelism%2C%20Pt%206%2C%20God%27s%20Power.MP3"><span class="sermon-date">September 8, 2013</span><span class="sermon-title">Evangelism, Pt 6, God's Power</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.09.01%20Evangelism%2C%20Pt%205%2C%20God%27s%20Pleasure.MP3"><span class="sermon-date">September 1, 2013</span><span class="sermon-title">Evangelism, Pt 5, God's Pleasure</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.08.25%20Evangelism%2C%20Pt%204%2C%20God%27s%20Person.MP3"><span class="sermon-date">August 25, 2013</span><span class="sermon-title">Evangelism, Pt 4, God's Person</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.08.18%20Evangelism%2C%20Pt%203%2C%20God%27s%20Plan.MP3"><span class="sermon-date">August 18, 2013</span><span class="sermon-title">Evangelism, Pt 3, God's Plan</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.08.11%20Evangelism%2C%20Pt%202%2C%20God%27s%20Purpose.MP3"><span class="sermon-date">August 11, 2013</span><span class="sermon-title">Evangelism, Pt 2, God's Purpose</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.08.04%20Evangelism%2C%20Pt%201%2C%20What%27s%20It%27s%20Not.MP3"><span class="sermon-date">August 4, 2013</span><span class="sermon-title">Evangelism, Pt 1, What's It's Not</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.07.28%20Revelation%20and%20Reward%20%20Psalm%2019.MP3"><span class="sermon-date">July 28, 2013</span><span class="sermon-title">Revelation and Reward  Psalm 19</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.07.21.13%20Acts%208.9-25%20Magic%20Baptism%20and%20False%20Conversion.MP3"><span class="sermon-date">July 21, 2013</span><span class="sermon-title">.13 Acts 8.9-25 Magic Baptism and False Conversion</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.07.07%20Psalm%20101%20Praising%20God%2C%20Purifying%20Self%2C%20and%20Protecting%20Others.MP3"><span class="sermon-date">July 7, 2013</span><span class="sermon-title">Psalm 101 Praising God, Purifying Self, and Protecting Others</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.06.30%20Ephesians%204.11-16%20Training%20the%20Body%20for%20Growth%2C%20Pt%202.MP3"><span class="sermon-date">June 30, 2013</span><span class="sermon-title">Ephesians 4.11-16 Training the Body for Growth, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.06.23%20Ephesians%204.11-16%20Training%20the%20Body%20for%20Growth%2C%20Pt%201.mp3"><span class="sermon-date">June 23, 2013</span><span class="sermon-title">Ephesians 4.11-16 Training the Body for Growth, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.06.16%201%20Corinthians%2012.12-27%2C%20The%20Body%20Needs%20You%3B%20You%20Need%20the%20Body%2C%20Pt%202.MP3"><span class="sermon-date">June 16, 2013</span><span class="sermon-title">1 Corinthians 12.12-27, The Body Needs You; You Need the Body, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.06.09%201%20Corinthinans%2012.12-27%20The%20Body%20Needs%20You%3B%20You%20Need%20the%20Body%2C%20Pt%201.mp3"><span class="sermon-date">June 9, 2013</span><span class="sermon-title">1 Corinthinans 12.12-27 The Body Needs You; You Need the Body, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.06.02%20Proverbs%2028.12-14%20Conquering%20Sin%20with%20Confession.MP3"><span class="sermon-date">June 2, 2013</span><span class="sermon-title">Proverbs 28.12-14 Conquering Sin with Confession</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.01.13%20Galatians%205.1-6%20Jesus%20Doesn%27t%20Help%20the%20Legalist.mp3"><span class="sermon-date">January 13, 2013</span><span class="sermon-title">Galatians 5.1-6 Jesus Doesn't Help the Legalist</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+  </ul>
+</div>
+<div class="year-group">
+  <button class="year-toggle" aria-expanded="false">
+    <span class="year-label">2012</span>
+    <span class="year-count">29 sermons</span>
+    <span class="year-arrow">▾</span>
+  </button>
+  <ul class="year-sermons" hidden>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.12.16%20REST%20in%20the%20Lord%2C%20Pt%201.mp3"><span class="sermon-date">December 16, 2012</span><span class="sermon-title">REST in the Lord, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.12.09%20Galatians%204.21-5.1%20Will%20a%20Freed%20Man%20Return%20to%20Slavery.mp3"><span class="sermon-date">December 9, 2012</span><span class="sermon-title">Galatians 4.21-5.1 Will a Freed Man Return to Slavery</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.12.02%20Galatians%204.12-20%20Has%20Truth%20Divided%20Us.MP3"><span class="sermon-date">December 2, 2012</span><span class="sermon-title">Galatians 4.12-20 Has Truth Divided Us</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.10.14%20Idolatry%2C%20Worse%20than%20You%20Know.MP3"><span class="sermon-date">October 14, 2012</span><span class="sermon-title">Idolatry, Worse than You Know</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.10.07%20Galatians%204.8-11%20Whose%20Slave%20are%20You.mp3"><span class="sermon-date">October 7, 2012</span><span class="sermon-title">Galatians 4.8-11 Whose Slave are You</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.09.30%20Galatians%204.1-7%20Purchased%20and%20Adopted.mp3"><span class="sermon-date">September 30, 2012</span><span class="sermon-title">Galatians 4.1-7 Purchased and Adopted</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.09.23%20Galatians%203.23-29%20From%20Prison%20to%20Prosperity.mp3"><span class="sermon-date">September 23, 2012</span><span class="sermon-title">Galatians 3.23-29 From Prison to Prosperity</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.09.09%20Galatians%203.15-22%20Why%20Then%20the%20Law.mp3"><span class="sermon-date">September 9, 2012</span><span class="sermon-title">Galatians 3.15-22 Why Then the Law</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.09.02%20Galatians%203.10-14%20Cursed%20by%20the%20Law%20or%20Blessed%20by%20Faith.mp3"><span class="sermon-date">September 2, 2012</span><span class="sermon-title">Galatians 3.10-14 Cursed by the Law or Blessed by Faith</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.08.26%20Galatians%203.1-9%20Sanctified%20by%20Hearing%20with%20Faith%2C%20Pt%202.mp3"><span class="sermon-date">August 26, 2012</span><span class="sermon-title">Galatians 3.1-9 Sanctified by Hearing with Faith, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.08.19%20Galatians%203.1-9%20Sanctified%20by%20Hearing%20with%20Faith%2C%20Pt%201.mp3"><span class="sermon-date">August 19, 2012</span><span class="sermon-title">Galatians 3.1-9 Sanctified by Hearing with Faith, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.08.12%20Galatians%202.17-21%20We%20Live%20Because%20He%20Died.mp3"><span class="sermon-date">August 12, 2012</span><span class="sermon-title">Galatians 2.17-21 We Live Because He Died</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.08.05%20Galatians%202.11-16%20Paul%20Confronts%20Peter%20over%20the%20Gospel.mp3"><span class="sermon-date">August 5, 2012</span><span class="sermon-title">Galatians 2.11-16 Paul Confronts Peter over the Gospel</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.07.29%20Galatians%202.6-10%20Approved%20Men%20Approving%20Men%20for%20Ministry.mp3"><span class="sermon-date">July 29, 2012</span><span class="sermon-title">Galatians 2.6-10 Approved Men Approving Men for Ministry</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.07.08-sermon2.MP3"><span class="sermon-date">July 8, 2012</span><span class="sermon-title">-sermon2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.07.01%20Luke%2010.38-42%20Help%20for%20a%20Troubled%20Heart.mp3"><span class="sermon-date">July 1, 2012</span><span class="sermon-title">Luke 10.38-42 Help for a Troubled Heart</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.06.03%20Galatians%202.1-5%20The%20Gospel%20Unifies%20and%20Divides.mp3"><span class="sermon-date">June 3, 2012</span><span class="sermon-title">Galatians 2.1-5 The Gospel Unifies and Divides</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.05.27%20Galatians%201.13-24%20When%20God%20Converts%20a%20Persecutor.mp3"><span class="sermon-date">May 27, 2012</span><span class="sermon-title">Galatians 1.13-24 When God Converts a Persecutor</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.05.20%20Galatians%201.6-12.mp3"><span class="sermon-date">May 20, 2012</span><span class="sermon-title">Galatians 1.6-12</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.05.13%20Titus%202.3-5%20Women%20Teaching%20What%20is%20Good.mp3"><span class="sermon-date">May 13, 2012</span><span class="sermon-title">Titus 2.3-5 Women Teaching What is Good</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.04.29%20Galatians%201.1-5.mp3"><span class="sermon-date">April 29, 2012</span><span class="sermon-title">Galatians 1.1-5</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.04.22%20Galatians%20Intro%2C%20Pt%202.mp3"><span class="sermon-date">April 22, 2012</span><span class="sermon-title">Galatians Intro, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.04.15%20Intro%20to%20Galatians%2C%20Pt%201.mp3"><span class="sermon-date">April 15, 2012</span><span class="sermon-title">Intro to Galatians, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.04.01%20Overcoming%20Anxiety.mp3"><span class="sermon-date">April 1, 2012</span><span class="sermon-title">Overcoming Anxiety</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.03.25%20Wisdom%20that%20Prevents%20a%20Ruined%20Life.mp3"><span class="sermon-date">March 25, 2012</span><span class="sermon-title">Wisdom that Prevents a Ruined Life</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.02.12%20Love%20as%20Defined%20by%20its%20Author.mp3"><span class="sermon-date">February 12, 2012</span><span class="sermon-title">Love as Defined by its Author</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.01.29%20What%20Jesus%20Expects%20from%20the%20Members%20of%20His%20Church%2C%20Pt%203.mp3"><span class="sermon-date">January 29, 2012</span><span class="sermon-title">What Jesus Expects from the Members of His Church, Pt 3</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.01.22%20What%20Jesus%20Expects%20from%20the%20Members%20of%20His%20Church%2C%20Pt%202.mp3"><span class="sermon-date">January 22, 2012</span><span class="sermon-title">What Jesus Expects from the Members of His Church, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.01.01%20Spiritually%20Well%20in%202012%2C%20Pt%202.mp3"><span class="sermon-date">January 1, 2012</span><span class="sermon-title">Spiritually Well in 2012, Pt 2</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+  </ul>
+</div>
+<div class="year-group">
+  <button class="year-toggle" aria-expanded="false">
+    <span class="year-label">2011</span>
+    <span class="year-count">2 sermons</span>
+    <span class="year-arrow">▾</span>
+  </button>
+  <ul class="year-sermons" hidden>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2011.12.18%20Spiritually%20Well%20in%202012%2C%20Pt%201.MP3"><span class="sermon-date">December 18, 2011</span><span class="sermon-title">Spiritually Well in 2012, Pt 1</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+<li class="sermon-item" data-url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2011.09.11%20Ephesians%204.1-6%20The%20Unity%20of%20the%20Body%20Demands%20the%20Right%20Walk%20from%20its%20Members.mp3"><span class="sermon-date">September 11, 2011</span><span class="sermon-title">Ephesians 4.1-6 The Unity of the Body Demands the Right Walk from its Members</span><button class="play-btn" onclick="playSermon(this)" title="Play">&#9654;</button></li>
+  </ul>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSCRIBE / PODCAST -->
+  <section class="section">
+    <div class="container text-center">
+      <h2 class="section-title">Listen &amp; Subscribe</h2>
+      <p class="section-subtitle" style="max-width:580px; text-align:center; margin-left:auto; margin-right:auto;">Subscribe to receive new sermons from Legacy Bible Church directly in your podcast app.</p>
+      <div class="subscribe-strip">
+        <a href="https://open.spotify.com/show/033K5dfU6CrJm3UD" class="subscribe-btn subscribe-btn--spotify" target="_blank" rel="noopener">
+          &#9654;&nbsp; Listen on Spotify
+        </a>
+        <a href="REPLACE_APPLE_PODCASTS_URL" class="subscribe-btn subscribe-btn--apple" target="_blank" rel="noopener">
+          &#9654;&nbsp; Apple Podcasts
+        </a>
+      </div>
+</div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Legacy Bible Church</div>
+        <p class="footer-tagline">Make Disciples of All Nations</p>
+        <p class="footer-address">Redlands, California</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="leadership.html">Leadership</a></li>
+          <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="connect.html">Connect</a></li>
+          <li><a href="give.html">Give</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sundays</h4>
+        <p>10:00 AM<br>225 Fremont Street<br>Redlands, CA</p>
+      </div>
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <p><a href="mailto:info@legacybiblechurch.com">info@legacybiblechurch.com</a></p>
+        <p style="margin-top:6px;"><a href="connect.html">Send a message</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Legacy Bible Church. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Year accordion
+    document.querySelectorAll('.year-toggle').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        var list = btn.nextElementSibling;
+        btn.setAttribute('aria-expanded', !expanded);
+        if (expanded) { list.hidden = true; } else { list.hidden = false; }
+      });
+    });
+  </script>
+
+  <!-- AUDIO PLAYER BAR -->
+  <div id="sermon-player-bar">
+    <div id="player-title">—</div>
+    <audio id="player-audio" controls preload="none" style="height:36px;"></audio>
+    <button id="player-close" onclick="closePlayer()" title="Close">&#x2715;</button>
+  </div>
+  <script>
+    var currentBtn = null;
+    function playSermon(btn) {
+      var li = btn.closest('li');
+      var url = li.dataset.url;
+      var title = li.querySelector('.sermon-title').textContent;
+      var audio = document.getElementById('player-audio');
+      var bar = document.getElementById('sermon-player-bar');
+      if (currentBtn && currentBtn !== btn) {
+        currentBtn.classList.remove('playing');
+        currentBtn.innerHTML = '&#9654;';
+      }
+      if (currentBtn === btn && !audio.paused) {
+        audio.pause();
+        btn.classList.remove('playing');
+        btn.innerHTML = '&#9654;';
+        currentBtn = null;
+        return;
+      }
+      document.getElementById('player-title').textContent = title;
+      audio.src = url;
+      audio.play();
+      bar.classList.add('active');
+      btn.classList.add('playing');
+      btn.innerHTML = '&#9646;&#9646;';
+      currentBtn = btn;
+      audio.onended = function() {
+        btn.classList.remove('playing');
+        btn.innerHTML = '&#9654;';
+        currentBtn = null;
+      };
+    }
+    function closePlayer() {
+      var audio = document.getElementById('player-audio');
+      audio.pause();
+      audio.src = '';
+      document.getElementById('sermon-player-bar').classList.remove('active');
+      if (currentBtn) { currentBtn.classList.remove('playing'); currentBtn.innerHTML = '&#9654;'; currentBtn = null; }
+    }
+  </script>
+
+  <script src="js/chatbot.js"></script>
+  <script src="js/edit-mode.js"></script>
+</body>
+</html>

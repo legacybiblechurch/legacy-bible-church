@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Give — Legacy Bible Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="css/styles.css?v=13">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo-dark.png" alt="Legacy Bible Church" class="nav-logo-img">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+        <li><a href="sermons.html" class="nav-link">Sermons</a></li>
+        <li><a href="resources.html" class="nav-link">Resources</a></li>
+        <li><a href="connect.html" class="nav-link">Connect</a></li>
+        <li><a href="give.html" class="nav-link nav-cta btn btn-primary">Give</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="leadership.html">Leadership</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="connect.html">Connect</a></li>
+      <li><a href="give.html" class="btn btn-primary">Give</a></li>
+    </ul>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-header__title">Give</h1>
+    </div>
+  </section>
+
+  <!-- SCRIPTURE -->
+  <section class="section section--alt">
+    <div class="container">
+      <blockquote class="scripture-block">
+        <p>&ldquo;Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.&rdquo;</p>
+        <cite>&mdash; 2 Corinthians 9:7</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- TWO WAYS TO GIVE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Support the Work of Legacy Bible Church</h2>
+        <p class="section-subtitle" style="max-width: 600px;">Your giving supports our weekly gatherings, ministry costs, and outreach as Legacy grows. Every gift makes a difference at our size.</p>
+      </div>
+
+      <div class="card-grid card-grid--2">
+
+        <!-- ZELLE -->
+        <div class="card card--featured">
+          <h3 class="card__title">Give via Zelle</h3>
+          <p class="card__body">Send directly through your bank&rsquo;s app with <strong>zero fees</strong> &mdash; 100% of your gift goes straight to Legacy Bible Church.</p>
+          <p class="card__body" style="margin-top: 0.75rem;">Open your banking app, tap <strong>Zelle</strong>, and send to:</p>
+          <div class="zelle-email-block">
+            <span class="zelle-email" id="zelleEmail">giving@legacybiblechurch.com</span>
+          </div>
+          <button onclick="copyZelle()" id="zelleCopyBtn" class="btn-copy" style="margin-top:0.75rem; width:100%;">Copy Email</button>
+          <p id="zelleCopied" style="font-size:0.8rem; color: var(--color-accent); margin-top: 0.5rem; display:none;">Copied!</p>
+        </div>
+
+        <!-- CHECK -->
+        <div class="card">
+          <h3 class="card__title">Give by Check</h3>
+          <p class="card__body">Make checks payable to <strong>Legacy Bible Church</strong> and bring them on Sunday or mail to:</p>
+          <address class="card__address">
+            Legacy Bible Church<br>
+            225 Fremont Street<br>
+            Redlands, CA 92373
+          </address>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Common Questions</h2>
+      </div>
+      <div class="faq-list">
+
+        <details class="faq-item">
+          <summary class="faq-item__question">Are there any fees with Zelle?</summary>
+          <div class="faq-item__answer">
+            <p>No. Zelle transfers are free through your bank&rsquo;s app. 100% of what you send goes directly to Legacy Bible Church with no processing fees.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">How do I give via Zelle?</summary>
+          <div class="faq-item__answer">
+            <p>Open your bank&rsquo;s mobile app, find the Zelle option, and send to <strong>giving@legacybiblechurch.com</strong>. Most major banks support Zelle natively — no separate app needed.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">Can I give recurring?</summary>
+          <div class="faq-item__answer">
+            <p>Many banks allow you to schedule recurring Zelle payments. Check your bank&rsquo;s app for a &ldquo;schedule&rdquo; or &ldquo;repeat&rdquo; option when sending.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">Is my donation tax-deductible?</summary>
+          <div class="faq-item__answer">
+            <p>Yes. Churches are recognized as tax-exempt under federal law and do not need to formally apply for 501(c)(3) status to qualify. Donations to Legacy Bible Church are tax-deductible as contributions to a religious organization. Consult your tax advisor for personal guidance.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Legacy Bible Church</div>
+        <p class="footer-tagline">Make Disciples of All Nations</p>
+        <p class="footer-address">Redlands, California</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="leadership.html">Leadership</a></li>
+          <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="connect.html">Connect</a></li>
+          <li><a href="give.html">Give</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sundays</h4>
+        <p>10:00 AM<br>225 Fremont Street<br>Redlands, CA</p>
+      </div>
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <p><a href="mailto:info@legacybiblechurch.com">info@legacybiblechurch.com</a></p>
+        <p style="margin-top:6px;"><a href="connect.html">Send a message</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Legacy Bible Church. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    function copyZelle() {
+      navigator.clipboard.writeText('giving@legacybiblechurch.com').then(function() {
+        var btn = document.getElementById('zelleCopyBtn');
+        btn.textContent = 'Copied!';
+        setTimeout(function() { btn.textContent = 'Copy Email'; }, 2000);
+      });
+    }
+  </script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/edit-mode.js"></script>
+</body>
+</html>

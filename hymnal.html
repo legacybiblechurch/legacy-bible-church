@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hymnal — Legacy Bible Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="css/styles.css?v=14">
+  <style>
+    .hymnal-intro {
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+    .az-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+      position: sticky;
+      top: var(--nav-height);
+      background: var(--bg-primary);
+      padding: 1rem 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--border);
+    }
+    .az-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background var(--transition), color var(--transition);
+    }
+    .az-nav a:hover {
+      background: var(--surface-hover);
+      color: var(--text-primary);
+    }
+    .az-nav a.inactive {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .hymnal-section {
+      margin-bottom: 2.5rem;
+    }
+    .hymnal-letter {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      scroll-margin-top: calc(var(--nav-height) + 80px);
+    }
+    .hymnal-songs {
+      columns: 3;
+      column-gap: 2rem;
+      list-style: none;
+    }
+    .hymnal-songs li {
+      break-inside: avoid;
+      padding: 0.3rem 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.3rem;
+    }
+    .hymnal-songs li:last-child {
+      border-bottom: none;
+    }
+    .hymnal-songs a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .hymnal-songs a:hover {
+      color: var(--accent-bright);
+    }
+    @media (max-width: 900px) {
+      .hymnal-songs { columns: 2; }
+    }
+    @media (max-width: 600px) {
+      .hymnal-songs { columns: 1; }
+      .az-nav a { width: 30px; height: 30px; font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo-dark.png" alt="Legacy Bible Church" class="nav-logo-img">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+        <li><a href="sermons.html" class="nav-link">Sermons</a></li>
+        <li><a href="resources.html" class="nav-link active">Resources</a></li>
+        <li><a href="connect.html" class="nav-link">Connect</a></li>
+        <li><a href="give.html" class="nav-link nav-cta btn btn-primary">Give</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="leadership.html">Leadership</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="connect.html">Connect</a></li>
+      <li><a href="give.html" class="btn btn-primary">Give</a></li>
+    </ul>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-header__title">Hymnal</h1>
+    </div>
+  </section>
+
+  <!-- HYMNAL CONTENT -->
+  <section class="section">
+    <div class="container">
+
+      <p class="hymnal-intro">
+        One of the great joys of the gathered church is singing together to the glory of God. We choose our music carefully &mdash; drawing from both classic hymns and faithful contemporary worship &mdash; for its sound theology, beauty, and fitness for corporate worship. Click any title to hear a recording.
+      </p>
+
+      <!-- A–Z NAVIGATION -->
+      <nav class="az-nav" aria-label="Jump to letter">
+        <a href="#A">A</a>
+        <a href="#B">B</a>
+        <a href="#C">C</a>
+        <a href="#D" class="inactive">D</a>
+        <a href="#E" class="inactive">E</a>
+        <a href="#F">F</a>
+        <a href="#G">G</a>
+        <a href="#H">H</a>
+        <a href="#I">I</a>
+        <a href="#J">J</a>
+        <a href="#K">K</a>
+        <a href="#L">L</a>
+        <a href="#M">M</a>
+        <a href="#N">N</a>
+        <a href="#O">O</a>
+        <a href="#P">P</a>
+        <a href="#Q" class="inactive">Q</a>
+        <a href="#R">R</a>
+        <a href="#S">S</a>
+        <a href="#T">T</a>
+        <a href="#U" class="inactive">U</a>
+        <a href="#V" class="inactive">V</a>
+        <a href="#W">W</a>
+        <a href="#X" class="inactive">X</a>
+        <a href="#Y">Y</a>
+        <a href="#Z" class="inactive">Z</a>
+      </nav>
+
+      <!-- A -->
+      <div class="hymnal-section" id="A">
+        <h2 class="hymnal-letter">A</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/watch?v=YBXOiWqTQsU" target="_blank" rel="noopener">Agnus Dei</a><a href="song.html?s=agnus-dei" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=lF4p9fgAnvQ" target="_blank" rel="noopener">All Creatures of Our God and King</a><a href="song.html?s=all-creatures-of-our-god-and-king" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=2Tcx81LsmoA" target="_blank" rel="noopener">All Glory Be to Christ</a><a href="song.html?s=all-glory-be-to-christ" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=All+Hail+the+Power+of+Jesus+Name+worship+official" target="_blank" rel="noopener">All Hail the Power of Jesus&rsquo; Name</a><a href="song.html?s=all-hail-the-power-of-jesus-name" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=idRlhFTqlW4" target="_blank" rel="noopener">All I Have Is Christ</a><a href="song.html?s=all-i-have-is-christ" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Almost+Home+MercyMe+official" target="_blank" rel="noopener">Almost Home</a><a href="song.html?s=almost-home" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=aDmcdZTEU5E" target="_blank" rel="noopener">Amazing Grace</a><a href="song.html?s=amazing-grace" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Amazing+Love+Chris+Tomlin+official" target="_blank" rel="noopener">Amazing Love</a><a href="song.html?s=amazing-love" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Amen+Go+Tell+It+on+the+Mountain+worship+official" target="_blank" rel="noopener">Amen &mdash; Go Tell It on the Mountain</a><a href="song.html?s=amen-go-tell-it-on-the-mountain" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=V4dR_zuB3qk" target="_blank" rel="noopener">Ancient of Days</a><a href="song.html?s=ancient-of-days" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Angels+from+the+Realms+of+Glory+hymn+official" target="_blank" rel="noopener">Angels from the Realms of Glory</a><a href="song.html?s=angels-from-the-realms-of-glory" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Angels+We+Have+Heard+On+High+hymn+worship" target="_blank" rel="noopener">Angels We Have Heard On High</a><a href="song.html?s=angels-we-have-heard-on-high" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Arise+My+Soul+Arise+worship+official" target="_blank" rel="noopener">Arise, My Soul, Arise</a><a href="song.html?s=arise-my-soul-arise" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Arise+My+Soul+Arise+choral+official" target="_blank" rel="noopener">Arise, My Soul, Arise (choral)</a><a href="song.html?s=arise-my-soul-arise-choral" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- B -->
+      <div class="hymnal-section" id="B">
+        <h2 class="hymnal-letter">B</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/results?search_query=Be+Still+My+Soul+hymn+official+worship" target="_blank" rel="noopener">Be Still My Soul</a><a href="song.html?s=be-still-my-soul" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Be+Thou+My+Vision+hymn+official+worship" target="_blank" rel="noopener">Be Thou My Vision</a><a href="song.html?s=be-thou-my-vision" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Be+Unto+Your+Name+Robin+Mark+official" target="_blank" rel="noopener">Be Unto Your Name</a><a href="song.html?s=be-unto-your-name" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=LULK2nZ6sCc" target="_blank" rel="noopener">Before the Throne of God Above</a><a href="song.html?s=before-the-throne-of-god-above" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=67TvJwTTdxA" target="_blank" rel="noopener">Behold Our God</a><a href="song.html?s=behold-our-god" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=ZFEK68ncZ7o" target="_blank" rel="noopener">Behold the Lamb</a><a href="song.html?s=behold-the-lamb" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Beneath+the+Cross+of+Jesus+hymn+official+worship" target="_blank" rel="noopener">Beneath the Cross of Jesus</a><a href="song.html?s=beneath-the-cross-of-jesus" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=fXB8ihepUpE" target="_blank" rel="noopener">By Faith</a><a href="song.html?s=by-faith" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=By+Grace+Alone+worship+official" target="_blank" rel="noopener">By Grace Alone</a><a href="song.html?s=by-grace-alone" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- C -->
+      <div class="hymnal-section" id="C">
+        <h2 class="hymnal-letter">C</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/watch?v=OX-Xt-vBYPc" target="_blank" rel="noopener">Christ Is Risen, He Is Risen Indeed</a><a href="song.html?s=christ-is-risen-he-is-risen-indeed" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Christ+the+Lord+Is+Risen+Today+hymn+official" target="_blank" rel="noopener">Christ the Lord Is Risen Today</a><a href="song.html?s=christ-the-lord-is-risen-today" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Christus+Victor+worship+official" target="_blank" rel="noopener">Christus Victor</a><a href="song.html?s=christus-victor" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Christ+Will+Be+My+Hideaway+worship+official" target="_blank" rel="noopener">Christ Will Be My Hideaway</a><a href="song.html?s=christ-will-be-my-hideaway" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=OibIi1rz7mw" target="_blank" rel="noopener">Christ, Our Hope in Life and Death</a><a href="song.html?s=christ-our-hope-in-life-and-death" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=kllNj-cLOW8" target="_blank" rel="noopener">Christ, the Sure and Steady Anchor</a><a href="song.html?s=christ-the-sure-and-steady-anchor" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=The+Church%27s+One+Foundation+hymn+official" target="_blank" rel="noopener">The Church&rsquo;s One Foundation</a><a href="song.html?s=the-churchs-one-foundation" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=h-xQDm-KZw8" target="_blank" rel="noopener">Come Behold the Wondrous Mystery</a><a href="song.html?s=come-behold-the-wondrous-mystery" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Come+Christians+Join+to+Sing+hymn+official" target="_blank" rel="noopener">Come, Christians, Join to Sing</a><a href="song.html?s=come-christians-join-to-sing" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=MJsizuCKq9k" target="_blank" rel="noopener">Come People of the Risen King</a><a href="song.html?s=come-people-of-the-risen-king" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=Bkt1Ky0tkEw" target="_blank" rel="noopener">Come Praise and Glorify</a><a href="song.html?s=come-praise-and-glorify" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Come+to+Jesus+Rest+in+Him+worship+official" target="_blank" rel="noopener">Come to Jesus (Rest in Him)</a><a href="song.html?s=come-to-jesus-rest-in-him" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Come+Unto+Jesus+worship+official" target="_blank" rel="noopener">Come Unto Jesus</a><a href="song.html?s=come-unto-jesus" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Come+Let+Us+Sing+Psalm+95+worship+official" target="_blank" rel="noopener">Come, Let Us Sing (Psalm 95)</a><a href="song.html?s=come-let-us-sing-psalm-95" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=eQDOwb3yURk" target="_blank" rel="noopener">Come, Thou Fount of Ev&rsquo;ry Blessing</a><a href="song.html?s=come-thou-fount-of-evry-blessing" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=YuMh_ept-Js" target="_blank" rel="noopener">Crown Him with Many Crowns</a><a href="song.html?s=crown-him-with-many-crowns" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=The+Cup+Was+Not+Removed+worship+official" target="_blank" rel="noopener">The Cup Was Not Removed</a><a href="song.html?s=the-cup-was-not-removed" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- F -->
+      <div class="hymnal-section" id="F">
+        <h2 class="hymnal-letter">F</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/results?search_query=Fairest+Lord+Jesus+hymn+official+worship" target="_blank" rel="noopener">Fairest Lord Jesus</a><a href="song.html?s=fairest-lord-jesus" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=The+First+Noel+hymn+official+worship" target="_blank" rel="noopener">The First Noel</a><a href="song.html?s=the-first-noel" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- G -->
+      <div class="hymnal-section" id="G">
+        <h2 class="hymnal-letter">G</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/results?search_query=Give+Us+Clean+Hands+Charlie+Hall+official" target="_blank" rel="noopener">Give Us Clean Hands</a><a href="song.html?s=give-us-clean-hands" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Gladly+Would+I+Leave+Behind+Me+worship+official" target="_blank" rel="noopener">Gladly Would I Leave Behind Me</a><a href="song.html?s=gladly-would-i-leave-behind-me" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=God+Rest+Ye+Merry+Gentlemen+hymn+worship" target="_blank" rel="noopener">God Rest Ye Merry Gentlemen</a><a href="song.html?s=god-rest-ye-merry-gentlemen" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=The+Gospel+Song+worship+official" target="_blank" rel="noopener">The Gospel Song</a><a href="song.html?s=the-gospel-song" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=lbDNkwcuBus" target="_blank" rel="noopener">Great Is Thy Faithfulness</a><a href="song.html?s=great-is-thy-faithfulness" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- H -->
+      <div class="hymnal-section" id="H">
+        <h2 class="hymnal-letter">H</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/results?search_query=Hark+The+Herald+Angels+Sing+hymn+official" target="_blank" rel="noopener">Hark! The Herald Angels Sing</a><a href="song.html?s=hark-the-herald-angels-sing" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=He+Knows+My+Name+worship+official" target="_blank" rel="noopener">He Knows My Name</a><a href="song.html?s=he-knows-my-name" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=3OOphIgGkjM" target="_blank" rel="noopener">He Will Hold Me Fast</a><a href="song.html?s=he-will-hold-me-fast" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=CU1RcZZnXOg" target="_blank" rel="noopener">Hear the Call of the Kingdom</a><a href="song.html?s=hear-the-call-of-the-kingdom" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Help+Us+See+Christ+worship+official" target="_blank" rel="noopener">Help Us See Christ</a><a href="song.html?s=help-us-see-christ" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=His+Forever+worship+official" target="_blank" rel="noopener">His Forever</a><a href="song.html?s=his-forever" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=His+Glory+and+My+Good+Matt+Boswell+official" target="_blank" rel="noopener">His Glory and My Good</a><a href="song.html?s=his-glory-and-my-good" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=I1GiZL60c80" target="_blank" rel="noopener">His Mercy Is More</a><a href="song.html?s=his-mercy-is-more" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=His+Robes+for+Mine+Chris+Anderson+choral+official" target="_blank" rel="noopener">His Robes for Mine (choral)</a><a href="song.html?s=his-robes-for-mine-choral" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=AgHrNNM23p8" target="_blank" rel="noopener">Holy, Holy, Holy</a><a href="song.html?s=holy-holy-holy" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=How+Beautiful+Twila+Paris+official" target="_blank" rel="noopener">How Beautiful</a><a href="song.html?s=how-beautiful" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=gxKlxK3OWes" target="_blank" rel="noopener">How Deep the Father&rsquo;s Love for Us</a><a href="song.html?s=how-deep-the-fathers-love-for-us" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=SNSoydKOXQo" target="_blank" rel="noopener">How Great</a><a href="song.html?s=how-great" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=Yf6C0L_7-CA" target="_blank" rel="noopener">How Great Thou Art</a><a href="song.html?s=how-great-thou-art" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=How+Long+O+Lord+How+Long+Psalm+13+worship+official" target="_blank" rel="noopener">How Long, O Lord, How Long? (Psalm 13)</a><a href="song.html?s=how-long-o-lord-how-long-psalm-13" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=How+Sweet+and+Awful+Is+the+Place+worship+official" target="_blank" rel="noopener">How Sweet and Awful Is the Place</a><a href="song.html?s=how-sweet-and-awful-is-the-place" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- I -->
+      <div class="hymnal-section" id="I">
+        <h2 class="hymnal-letter">I</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/results?search_query=I+Asked+the+Lord+That+I+Might+Grow+worship+official" target="_blank" rel="noopener">I Asked the Lord That I Might Grow</a><a href="song.html?s=i-asked-the-lord-that-i-might-grow" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=I+See+the+Lord+worship+official" target="_blank" rel="noopener">I See the Lord</a><a href="song.html?s=i-see-the-lord" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=6FrdBz3H6jw" target="_blank" rel="noopener">I Will Glory in My Redeemer</a><a href="song.html?s=i-will-glory-in-my-redeemer" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=_eJUqY_6tqo" target="_blank" rel="noopener">I Will Wait for You (Psalm 130)</a><a href="song.html?s=i-will-wait-for-you-psalm-130" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Immortal+Invisible+hymn+official+worship" target="_blank" rel="noopener">Immortal, Invisible</a><a href="song.html?s=immortal-invisible" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=16KYvfIc2bE" target="_blank" rel="noopener">In Christ Alone</a><a href="song.html?s=in-christ-alone" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=In+Christ+Alone+The+Solid+Rock+mashup+official" target="_blank" rel="noopener">In Christ Alone, The Solid Rock</a><a href="song.html?s=in-christ-alone-the-solid-rock" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=In+Remembrance+of+Me+worship+official" target="_blank" rel="noopener">In Remembrance of Me</a><a href="song.html?s=in-remembrance-of-me" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=In+the+Cross+Alone+I+Glory+worship+official" target="_blank" rel="noopener">In the Cross Alone, I Glory</a><a href="song.html?s=in-the-cross-alone-i-glory" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=OIahc83Kvp4" target="_blank" rel="noopener">Is He Worthy?</a><a href="song.html?s=is-he-worthy" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=K-I-1bphWdI" target="_blank" rel="noopener">It Is Well with My Soul</a><a href="song.html?s=it-is-well-with-my-soul" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- J -->
+      <div class="hymnal-section" id="J">
+        <h2 class="hymnal-letter">J</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/watch?v=0rWXUqF_BFo" target="_blank" rel="noopener">Jesus Paid It All</a><a href="song.html?s=jesus-paid-it-all" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Jesus+Shall+Reign+hymn+official+worship" target="_blank" rel="noopener">Jesus Shall Reign</a><a href="song.html?s=jesus-shall-reign" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Jesus+I+Come+worship+official" target="_blank" rel="noopener">Jesus, I Come</a><a href="song.html?s=jesus-i-come" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Jesus+I+My+Cross+Have+Taken+worship+official" target="_blank" rel="noopener">Jesus, I My Cross Have Taken</a><a href="song.html?s=jesus-i-my-cross-have-taken" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=tHp8eThI2qk" target="_blank" rel="noopener">Jesus, Thank You</a><a href="song.html?s=jesus-thank-you" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Jesus+What+a+Wonderful+Child+worship+official" target="_blank" rel="noopener">Jesus, What a Wonderful Child</a><a href="song.html?s=jesus-what-a-wonderful-child" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=1zqAxtZvOEU" target="_blank" rel="noopener">Joy Has Dawned</a><a href="song.html?s=joy-has-dawned" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Joy+to+the+World+hymn+official+worship" target="_blank" rel="noopener">Joy to the World</a><a href="song.html?s=joy-to-the-world" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- K -->
+      <div class="hymnal-section" id="K">
+        <h2 class="hymnal-letter">K</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/results?search_query=The+King+of+Glory+Psalm+24+worship+official" target="_blank" rel="noopener">The King of Glory (Psalm 24)</a><a href="song.html?s=the-king-of-glory-psalm-24" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- L -->
+      <div class="hymnal-section" id="L">
+        <h2 class="hymnal-letter">L</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/results?search_query=Lead+On+O+King+Eternal+hymn+official" target="_blank" rel="noopener">Lead On, O King Eternal</a><a href="song.html?s=lead-on-o-king-eternal" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Let+Me+Be+worship+official" target="_blank" rel="noopener">Let Me Be</a><a href="song.html?s=let-me-be" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=3Rh8I0r9glA" target="_blank" rel="noopener">Let Your Kingdom Come</a><a href="song.html?s=let-your-kingdom-come" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Lift+High+the+Cross+hymn+official+worship" target="_blank" rel="noopener">Lift High the Cross</a><a href="song.html?s=lift-high-the-cross" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=koGRlLZI6RM" target="_blank" rel="noopener">Lord, From Sorrows Deep I Call (Psalm 42)</a><a href="song.html?s=lord-from-sorrows-deep-i-call-psalm-42" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- M -->
+      <div class="hymnal-section" id="M">
+        <h2 class="hymnal-letter">M</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/watch?v=qgEn6ftrT-4" target="_blank" rel="noopener">Magnificent Marvelous Matchless Love</a><a href="song.html?s=magnificent-marvelous-matchless-love" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Mary+Did+You+Know+official+worship" target="_blank" rel="noopener">Mary, Did You Know?</a><a href="song.html?s=mary-did-you-know" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=May+the+Peace+of+God+Benediction+worship+official" target="_blank" rel="noopener">May the Peace of God (Benediction)</a><a href="song.html?s=may-the-peace-of-god-benediction" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=My+Soul+Longs+for+the+Lord+worship+official" target="_blank" rel="noopener">My Soul Longs for the Lord</a><a href="song.html?s=my-soul-longs-for-the-lord" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=e4brmgdJvBc" target="_blank" rel="noopener">My Soul Will Wait (Psalm 62)</a><a href="song.html?s=my-soul-will-wait-psalm-62" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=05jKxv8ApuI" target="_blank" rel="noopener">My Worth Is Not in What I Own</a><a href="song.html?s=my-worth-is-not-in-what-i-own" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- N -->
+      <div class="hymnal-section" id="N">
+        <h2 class="hymnal-letter">N</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/watch?v=q2m0aBmpSkM" target="_blank" rel="noopener">Not In Me</a><a href="song.html?s=not-in-me" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Nothing+That+My+Hands+Can+Do+worship+official" target="_blank" rel="noopener">Nothing That My Hands Can Do</a><a href="song.html?s=nothing-that-my-hands-can-do" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Now+Why+This+Fear+worship+official" target="_blank" rel="noopener">Now Why This Fear?</a><a href="song.html?s=now-why-this-fear" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- O -->
+      <div class="hymnal-section" id="O">
+        <h2 class="hymnal-letter">O</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/watch?v=x63cVewXAeg" target="_blank" rel="noopener">O Church, Arise</a><a href="song.html?s=o-church-arise" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=O+Come+All+Ye+Faithful+hymn+official+worship" target="_blank" rel="noopener">O Come, All Ye Faithful</a><a href="song.html?s=o-come-all-ye-faithful" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=eKQHqUo6qOw" target="_blank" rel="noopener">O Great God</a><a href="song.html?s=o-great-god" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=O+Holy+Night+hymn+official+worship" target="_blank" rel="noopener">O Holy Night</a><a href="song.html?s=o-holy-night" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=O+Lord+My+Rock+and+My+Redeemer+worship+official" target="_blank" rel="noopener">O Lord, My Rock and My Redeemer</a><a href="song.html?s=o-lord-my-rock-and-my-redeemer" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=O+the+Deep+Deep+Love+of+Jesus+hymn+official" target="_blank" rel="noopener">O, the Deep, Deep Love of Jesus</a><a href="song.html?s=o-the-deep-deep-love-of-jesus" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=O+Worship+the+King+hymn+official+worship" target="_blank" rel="noopener">O Worship the King</a><a href="song.html?s=o-worship-the-king" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Olive+Plants+Psalm+128+worship+official" target="_blank" rel="noopener">Olive Plants (Psalm 128)</a><a href="song.html?s=olive-plants-psalm-128" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Our+Great+God+Fernando+Ortega+official" target="_blank" rel="noopener">Our Great God</a><a href="song.html?s=our-great-god" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- P -->
+      <div class="hymnal-section" id="P">
+        <h2 class="hymnal-letter">P</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/watch?v=amD2nudZPJI" target="_blank" rel="noopener">Praise the Lord (Psalm 150)</a><a href="song.html?s=praise-the-lord-psalm-150" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=6wcULqyoINg" target="_blank" rel="noopener">The Power of the Cross</a><a href="song.html?s=the-power-of-the-cross" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- R -->
+      <div class="hymnal-section" id="R">
+        <h2 class="hymnal-letter">R</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/results?search_query=Rejoice+Dustin+Kensrue+worship+official" target="_blank" rel="noopener">Rejoice</a><a href="song.html?s=rejoice" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Rescue+Me+worship+official" target="_blank" rel="noopener">Rescue Me</a><a href="song.html?s=rescue-me" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Rock+of+Ages+hymn+official+worship" target="_blank" rel="noopener">Rock of Ages</a><a href="song.html?s=rock-of-ages" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- S -->
+      <div class="hymnal-section" id="S">
+        <h2 class="hymnal-letter">S</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/results?search_query=Salvation+Is+Born+worship+official" target="_blank" rel="noopener">Salvation Is Born</a><a href="song.html?s=salvation-is-born" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Savior+Like+a+Shepherd+Lead+Us+hymn+official" target="_blank" rel="noopener">Savior, Like a Shepherd Lead Us</a><a href="song.html?s=savior-like-a-shepherd-lead-us" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=6xM-fpXayUg" target="_blank" rel="noopener">See, What a Morning (Resurrection Hymn)</a><a href="song.html?s=see-what-a-morning-resurrection-hymn" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=ivb6Ao93ZNo" target="_blank" rel="noopener">Show Us Christ</a><a href="song.html?s=show-us-christ" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Sing+worship+song+official" target="_blank" rel="noopener">Sing</a><a href="song.html?s=sing" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=c3YXBf4F6Mg" target="_blank" rel="noopener">Sing We the Song of Emmanuel</a><a href="song.html?s=sing-we-the-song-of-emmanuel" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=B66DHRY1ITs" target="_blank" rel="noopener">Sovereign Over Us</a><a href="song.html?s=sovereign-over-us" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=jKtJVv5ffdw" target="_blank" rel="noopener">Speak, O Lord</a><a href="song.html?s=speak-o-lord" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=tGhQARQwKYE" target="_blank" rel="noopener">Sun, Moon and Stars (Psalm 148)</a><a href="song.html?s=sun-moon-and-stars-psalm-148" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- T -->
+      <div class="hymnal-section" id="T">
+        <h2 class="hymnal-letter">T</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/watch?v=XtwIT8JjddM" target="_blank" rel="noopener">Ten-Thousand Reasons (Bless the Lord)</a><a href="song.html?s=ten-thousand-reasons-bless-the-lord" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=There+Is+a+Fountain+hymn+official+worship" target="_blank" rel="noopener">There Is a Fountain</a><a href="song.html?s=there-is-a-fountain" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=nmBcTrDu4O4" target="_blank" rel="noopener">There Is One Gospel</a><a href="song.html?s=there-is-one-gospel" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Thou+Lovely+Source+of+True+Delight+hymn+official" target="_blank" rel="noopener">Thou Lovely Source of True Delight</a><a href="song.html?s=thou-lovely-source-of-true-delight" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/watch?v=C9DutZ3QeV4" target="_blank" rel="noopener">Turn Your Eyes</a><a href="song.html?s=turn-your-eyes" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- W -->
+      <div class="hymnal-section" id="W">
+        <h2 class="hymnal-letter">W</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/results?search_query=We+Receive+worship+official" target="_blank" rel="noopener">We Receive</a><a href="song.html?s=we-receive" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+          <li><a href="https://www.youtube.com/results?search_query=Wonderful+Merciful+Savior+Selah+official" target="_blank" rel="noopener">Wonderful, Merciful Savior</a><a href="song.html?s=wonderful-merciful-savior" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+      <!-- Y -->
+      <div class="hymnal-section" id="Y">
+        <h2 class="hymnal-letter">Y</h2>
+        <ul class="hymnal-songs">
+          <li><a href="https://www.youtube.com/watch?v=hwc2d1Xt8gM" target="_blank" rel="noopener">Yet Not I, but Through Christ in Me</a><a href="song.html?s=yet-not-i-but-through-christ-in-me" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Legacy Bible Church</div>
+        <p class="footer-tagline">Make Disciples of All Nations</p>
+        <p class="footer-address">Redlands, California</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="leadership.html">Leadership</a></li>
+          <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="connect.html">Connect</a></li>
+          <li><a href="give.html">Give</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sundays</h4>
+        <p>10:00 AM<br>225 Fremont Street<br>Redlands, CA</p>
+      </div>
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <p><a href="mailto:info@legacybiblechurch.com">info@legacybiblechurch.com</a></p>
+        <p style="margin-top:6px;"><a href="connect.html">Send a message</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Legacy Bible Church. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>

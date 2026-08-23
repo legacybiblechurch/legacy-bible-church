@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legacy Bible Church — Redlands, CA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Blocking font load on index.html: the curtain covers the page during load,
+       so a brief render block is fine and it guarantees Great Vibes is ready
+       before the handwriting animation begins. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css?v=13">
+</head>
+<body>
+
+  <!-- PAGE REVEAL CURTAIN -->
+  <script>
+    (function () {
+      // Skip curtain when navigating from within the site
+      var fromWithinSite = document.referrer &&
+                           document.referrer.indexOf(window.location.hostname) !== -1;
+
+      if (fromWithinSite) {
+        document.addEventListener('DOMContentLoaded', function () {
+          var c = document.getElementById('pageCurtain');
+          if (c) c.style.display = 'none';
+        });
+        return;
+      }
+
+      var _opened = false;
+      function openCurtain() {
+        if (_opened) return;
+        _opened = true;
+        var c = document.getElementById('pageCurtain');
+        if (!c) return;
+        c.classList.add('is-open');
+        setTimeout(function () { c.style.display = 'none'; }, 1200);
+      }
+
+      // Start animation on DOMContentLoaded — no font-load Promise dependency
+      // (font-load Promise can hang if font-face not yet declared, blocking curtain forever)
+      document.addEventListener('DOMContentLoaded', function () {
+        var center = document.querySelector('.page-curtain__center');
+        if (center) center.classList.add('curtain-go');
+
+        // Fill "Legacy" solid after stroke animation finishes (~2.8s from go)
+        setTimeout(function () {
+          var t = document.querySelector('.curtain-legacy-text');
+          if (t) { t.style.transition = 'fill 0.5s ease'; t.style.fill = '#e8e8e8'; }
+        }, 2800);
+      });
+
+      // Always open curtain after fixed time — unconditional, never blocked
+      setTimeout(openCurtain, 4200);
+
+      // Click anywhere to skip
+      document.addEventListener('click', openCurtain, { once: true });
+    })();
+  </script>
+  <div class="page-curtain" id="pageCurtain" aria-hidden="true">
+    <div class="page-curtain__panel page-curtain__panel--top"></div>
+    <div class="page-curtain__panel page-curtain__panel--bottom"></div>
+    <div class="page-curtain__center">
+      <div class="curtain-content">
+        <!-- "Legacy" written by hand via SVG stroke animation -->
+        <svg class="curtain-legacy-svg" viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <text class="curtain-legacy-text"
+                x="320" y="148"
+                font-family="'Priestacy', cursive"
+                font-size="138"
+                text-anchor="middle"
+                fill="none"
+                stroke="#d8d8d8"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round">Legacy</text>
+        </svg>
+        <!-- "Bible Church" and location reveal underneath -->
+        <div class="curtain-church-name">Bible Church</div>
+        <div class="curtain-location">Redlands, California</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo-dark.png" alt="Legacy Bible Church" class="nav-logo-img">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+        <li><a href="sermons.html" class="nav-link">Sermons</a></li>
+        <li><a href="resources.html" class="nav-link">Resources</a></li>
+        <li><a href="connect.html" class="nav-link">Connect</a></li>
+        <li><a href="give.html" class="nav-link nav-cta btn btn-primary">Give</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="leadership.html">Leadership</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="connect.html">Connect</a></li>
+      <li><a href="give.html" class="btn btn-primary">Give</a></li>
+    </ul>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('images/church-photo.jpg'); background-size: cover; background-position: center top;">
+    <div class="container hero-inner">
+      <h1 class="hero-title">
+        <img src="images/logo-dark.png" alt="Legacy Bible Church" class="hero-logo-img">
+      </h1>
+      <p class="hero-sub" data-editable="hero-tagline" data-label="Hero — Tagline">Sunday Mornings, 10:00 &mdash; Redlands, California</p>
+      <div class="hero-actions">
+        <a href="connect.html" class="btn btn-primary" data-editable="hero-btn-1" data-label="Home — Hero Button: Primary">Come This Sunday</a>
+        <a href="about.html" class="btn btn-outline" data-editable="hero-btn-2" data-label="Home — Hero Button: Secondary">Learn About Us</a>
+      </div>
+      <p class="hero-scripture">&ldquo;make disciples of all the nations &hellip; teaching them to observe all that I commanded you &hellip; I am with you always&rdquo; &mdash; Jesus</p>
+    </div>
+  </section>
+
+  <!-- WHAT TO EXPECT -->
+  <section class="section" id="expect">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-editable="expect-title" data-label="Home — 'What to Expect' Heading">What to Expect</h2>
+      </div>
+      <div class="prose" style="max-width: 600px; margin: 0 auto;" data-editable="expect-text" data-label="Home — What to Expect">
+        <p>We meet Sundays at 10 AM. The service includes worship, Scripture reading, prayer, and teaching from the Word. Afterward, we share lunch and fellowship.</p>
+        <p>225 Fremont Street, Redlands. Come as you are.</p>
+      </div>
+      <div class="text-center" style="margin-top: 2rem;">
+        <a href="connect.html" class="btn btn-primary" data-editable="expect-btn" data-label="Home — 'Plan Your First Visit' Button">Plan Your First Visit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE ARE -->
+  <section class="section section--alt" id="who">
+    <div class="container">
+      <div class="two-col">
+        <div class="two-col__text">
+          <h2>Who We Are</h2>
+          <div data-editable="who-text" data-label="Home — Who We Are">
+          <p>We&rsquo;re a small church that started a few months ago in Redlands. About fifteen of us get together every Sunday morning &mdash; we do a service, share communion, and then eat lunch together.</p>
+          <p>Pastor Todd Barnett teaches through books of the Bible each week. We use the NASB 1995. We take the Word seriously and try to apply it to real life.</p>
+          <p>If you&rsquo;re looking for a place where people actually know each other, this might be it.</p>
+          </div>
+        </div>
+        <div class="two-col__media">
+          <img src="images/church-photo.jpg" alt="Legacy Bible Church congregation" style="width:100%; border-radius: 8px; display: block;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMPLE INVITATION -->
+  <section class="section section--dark-cta" id="home-cta">
+    <div class="container text-center">
+      <h2 data-editable="cta-heading" data-label="Home — Bottom Banner Heading">You&rsquo;re Welcome to Come.</h2>
+      <p class="section-subtitle" style="max-width: 560px; margin: 1rem auto 0;" data-editable="home-cta-text" data-label="Home — Bottom Banner Text">No need to reach out first if you don&rsquo;t want to. Just show up. 225 Fremont Street, Sundays at 10 AM. We&rsquo;d love to meet you.</p>
+      <a href="connect.html" class="btn btn-primary" style="margin-top: 2rem; display: inline-block;" data-editable="cta-btn" data-label="Home — 'Get in Touch First' Button">Get in Touch First</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Legacy Bible Church</div>
+        <p class="footer-tagline">Make Disciples of All Nations</p>
+        <p class="footer-address">Redlands, California</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="leadership.html">Leadership</a></li>
+          <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="connect.html">Connect</a></li>
+          <li><a href="give.html">Give</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sundays</h4>
+        <p>10:00 AM<br>225 Fremont Street<br>Redlands, CA</p>
+      </div>
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <p><a href="mailto:info@legacybiblechurch.com">info@legacybiblechurch.com</a></p>
+        <p style="margin-top:6px;"><a href="connect.html">Send a message</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Legacy Bible Church. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/edit-mode.js"></script>
+</body>
+</html>
