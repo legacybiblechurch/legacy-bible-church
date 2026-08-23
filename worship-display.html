@@ -179,6 +179,8 @@
 
     var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSBczlDX3xoDhPZdmURMEmduM_s1lYvPZiRovZ-ObHroIEsnJ9u1D813GaRlLK6Q9NsDpOTtL4UaRnu/pub?gid=0&single=true&output=csv';
     var SONGS_BUILT = [];
+    var songsReady  = false;
+    var pendingState = null;
 
     function buildSongsFromSlugs(slugs) {
       return slugs.map(function(slug) {
@@ -191,16 +193,26 @@
       });
     }
 
+    function onSongsReady(slugs) {
+      SONGS_BUILT = buildSongsFromSlugs(slugs);
+      songsReady = true;
+      // Render any state that arrived before songs were ready
+      if (pendingState) {
+        renderState(pendingState);
+        pendingState = null;
+      }
+    }
+
     fetch(SHEET_CSV)
       .then(function(r) { return r.text(); })
       .then(function(csv) {
         var slugs = csv.split('\n')
           .map(function(l) { return l.trim().replace(/\r/g, ''); })
           .filter(Boolean);
-        SONGS_BUILT = buildSongsFromSlugs(slugs);
+        onSongsReady(slugs);
       })
       .catch(function() {
-        SONGS_BUILT = buildSongsFromSlugs(window.WORSHIP_SETLIST || []);
+        onSongsReady(window.WORSHIP_SETLIST || []);
       });
 
     var channel    = new BroadcastChannel('lbc-worship');
@@ -289,20 +301,18 @@
       if (dvdRaf) { cancelAnimationFrame(dvdRaf); dvdRaf = null; }
     }
 
-    // Restore last known state (so if display page is refreshed mid-service it picks up)
-    try {
-      var saved = JSON.parse(localStorage.getItem('lbc-worship-state') || 'null');
-      if (saved) renderState(saved);
-    } catch(e) {}
+    // Restore last known state only after songs are ready
+    // (handled in onSongsReady via pendingState)
 
-    // Live updates from control page (same browser, same device)
+    // Live updates from control page
     channel.onmessage = function(e) {
-      if (e.data && e.data.type === 'ping') {
-        // Control page is checking if display is open — no action needed
-        return;
-      }
+      if (e.data && e.data.type === 'ping') return;
       localStorage.setItem('lbc-worship-state', JSON.stringify(e.data));
-      renderState(e.data);
+      if (songsReady) {
+        renderState(e.data);
+      } else {
+        pendingState = e.data;
+      }
     };
   </script>
 </body>
