@@ -619,9 +619,13 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "Verse 1", lines: ["Gladly would I leave behind me", "All the pleasure I have known", "To pursue surpassing treasures", "At the throne of God the Son", "Worthy of unending worship", "Love and loveliness is He", "By His precious death were millions", "From the jaws of death set free"] },
     { label: "Verse 2", lines: ["Gladly would I give to Jesus", "All affection, everything", "For the washing of His mercy", "Makes my ransomed heart to sing", "\"Holy, holy!\" is the chorus", "Rising up from those who see", "Christ exalted, bright and burning", "Full of pow\'r and purity"] },
-    { label: "Bridge", lines: ["Where else can I go?", "Jesus, You\'re the One", "That I was made to know", "What else can I do?", "Jesus, You\'re my all", "I gladly run to You"] },
+    { label: "Bridge", lines: ["Where else can I go?", "Jesus, You\'re the One", "That I was made to know"] },
+    { label: "Bridge", lines: ["What else can I do?", "Jesus, You\'re my all", "I gladly run to You"] },
     { label: "Verse 3", lines: ["Gladly would I flee temptations", "For their troubles fill my life", "Turn and seek my God and Savior", "For His goodness satisfies", "Earthly treasures, all are passing", "Thieves break in and rust destroys", "But in God are awesome splendor", "Love, and everlasting joys"] },
-    { label: "Bridge", lines: ["Where else can I go?", "Jesus, You\'re the One", "That I was made to know", "What else can I do?", "Jesus, You\'re my all", "I gladly run to You"] },
+    { label: "Bridge", lines: ["Where else can I go?", "Jesus, You\'re the One", "That I was made to know"] },
+    { label: "Bridge", lines: ["What else can I do?", "Jesus, You\'re my all", "I gladly run to You"] },
+    { label: "Bridge", lines: ["Where else can I go?", "Jesus, You\'re the One", "That I was made to know"] },
+    { label: "Bridge", lines: ["What else can I do?", "Jesus, You\'re my all", "I gladly run to You"] },
     { label: "Verse 2", lines: ["Gladly would I give to Jesus", "All affection, everything", "For the washing of His mercy", "Makes my ransomed heart to sing"] }
   ]
   },
