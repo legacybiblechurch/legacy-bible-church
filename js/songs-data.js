@@ -615,21 +615,14 @@ const LEGACY_SONGS = {
   },
   "gladly-would-i-leave-behind-me": {
     title: "Gladly Would I Leave Behind Me",
-    youtube: "https://www.youtube.com/results?search_query=Gladly+Would+I+Leave+Behind+Me+worship+official",
+    youtube: "https://www.youtube.com/watch?v=C3PMRnRyfVM",
     lyrics: [
-    { label: "", lines: ["Gladly would I leave behind me", "All the pleasures I have known", "To pursue surpassing treasures", "At the throne of God, the Son"] },
-    { label: "", lines: ["Worthy of unending worship", "Love and loveliness is He", "By His precious death, atoning", "From the chains of sin, set free"] },
-    { label: "", lines: ["Gladly would I give to Jesus", "All affection, everything", "For the washing of His mercy", "Makes my ransomed heart to sing"] },
-    { label: "", lines: ["\"Holy, holy!\" is the chorus", "Rising up from those who see", "Christ exalted, bright and burning", "Full of pow\'r and purity"] },
-    { label: "", lines: ["Where else can we go?", "Jesus, You\'re the One", "That we were made to know"] },
-    { label: "", lines: ["What else can I do?", "Jesus, You\'re my all", "I only trust in You"] },
-    { label: "", lines: ["Gladly would I flee temptations", "For their troubles fill my life", "Turn and seek my God and Savior", "For His goodness satisfies"] },
-    { label: "", lines: ["Earthly treasures all are passing", "Thieves break in and rust destroys", "But in God are awesome splendor", "Love and everlasting joys"] },
-    { label: "", lines: ["Where else can we go?", "Jesus, You\'re the One", "That we were made to know"] },
-    { label: "", lines: ["What else can I do?", "Jesus, You\'re my all", "I only trust in You"] },
-    { label: "", lines: ["Who else could we love?", "Jesus, You are God", "From Whom all blessings flow"] },
-    { label: "", lines: ["How could I desire,", "Jesus, more than You,", "Your righteousness alone?"] },
-    { label: "", lines: ["Gladly would I give to Jesus", "All affection, everything", "For the washing of His mercy", "Makes my ransomed heart to sing"] }
+    { label: "Verse 1", lines: ["Gladly would I leave behind me", "All the pleasure I have known", "To pursue surpassing treasures", "At the throne of God the Son", "Worthy of unending worship", "Love and loveliness is He", "By His precious death were millions", "From the jaws of death set free"] },
+    { label: "Verse 2", lines: ["Gladly would I give to Jesus", "All affection, everything", "For the washing of His mercy", "Makes my ransomed heart to sing", "\"Holy, holy!\" is the chorus", "Rising up from those who see", "Christ exalted, bright and burning", "Full of pow\'r and purity"] },
+    { label: "Bridge", lines: ["Where else can I go?", "Jesus, You\'re the One", "That I was made to know", "What else can I do?", "Jesus, You\'re my all", "I gladly run to You"] },
+    { label: "Verse 3", lines: ["Gladly would I flee temptations", "For their troubles fill my life", "Turn and seek my God and Savior", "For His goodness satisfies", "Earthly treasures, all are passing", "Thieves break in and rust destroys", "But in God are awesome splendor", "Love, and everlasting joys"] },
+    { label: "Bridge", lines: ["Where else can I go?", "Jesus, You\'re the One", "That I was made to know", "What else can I do?", "Jesus, You\'re my all", "I gladly run to You"] },
+    { label: "Verse 2", lines: ["Gladly would I give to Jesus", "All affection, everything", "For the washing of His mercy", "Makes my ransomed heart to sing"] }
   ]
   },
   "god-rest-ye-merry-gentlemen": {
@@ -835,11 +828,12 @@ const LEGACY_SONGS = {
   },
   "how-deep-the-fathers-love-for-us": {
     title: "How Deep the Father's Love for Us",
-    youtube: "https://www.youtube.com/watch?v=gxKlxK3OWes",
+    youtube: "https://www.youtube.com/watch?v=A0CDqG5STPM",
     lyrics: [
     { label: "Verse 1", lines: ["How deep the Father's love for us", "How vast beyond all measure", "That He should give His only Son", "To make a wretch His treasure", "How great the pain of searing loss", "The Father turns His face away", "As wounds which mar the Chosen One", "Bring many sons to glory"] },
     { label: "Verse 2", lines: ["Behold the Man upon a cross", "My sin upon His shoulders", "Ashamed, I hear my mocking voice", "Call out among the scoffers", "It was my sin that held Him there", "Until it was accomplished", "His dying breath has brought me life", "I know that it is finished"] },
-    { label: "Verse 3", lines: ["I will not boast in anything", "No gifts, no power, no wisdom", "But I will boast in Jesus Christ", "His death and resurrection", "Why should I gain from His reward", "I cannot give an answer", "But this I know with all my heart", "His wounds have paid my ransom"] }
+    { label: "Verse 3", lines: ["I will not boast in anything", "No gifts, no power, no wisdom", "But I will boast in Jesus Christ", "His death and resurrection", "Why should I gain from His reward", "I cannot give an answer", "But this I know with all my heart", "His wounds have paid my ransom"] },
+    { label: "Verse 3", lines: ["Your wounds have paid my ransom"] }
   ]
   },
   "how-great": {
