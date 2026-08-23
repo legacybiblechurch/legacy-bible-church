@@ -832,7 +832,7 @@ const LEGACY_SONGS = {
   ]
   },
   "how-deep-the-fathers-love-for-us": {
-    title: "How Deep the Father&rsquo;s Love for Us",
+    title: "How Deep the Father's Love for Us",
     youtube: "https://www.youtube.com/watch?v=gxKlxK3OWes",
     lyrics: [
     { label: "Verse 1", lines: ["How deep the Father's love for us", "How vast beyond all measure", "That He should give His only Son", "To make a wretch His treasure", "How great the pain of searing loss", "The Father turns His face away", "As wounds which mar the Chosen One", "Bring many sons to glory"] },
