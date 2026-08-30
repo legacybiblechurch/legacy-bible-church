@@ -1,33 +1,33 @@
 {
-  "updatedAt": "2026-08-30T16:23:25+00:00",
+  "updatedAt": "2026-08-30T16:45:07+00:00",
   "sunday": "2026-08-30",
   "songs": [
     {
-      "input": "his-forever",
-      "review": "",
-      "chosenVideo": "https://www.youtube.com/watch?v=N2tAWI3uFWw",
-      "status": "draft",
-      "confidence": 92,
-      "message": "8 candidate(s)",
-      "slug": "his-forever"
-    },
-    {
-      "input": "i-will-glory-in-my-redeemer",
-      "review": "",
-      "chosenVideo": "https://www.youtube.com/watch?v=6FrdBz3H6jw",
-      "status": "draft",
-      "confidence": 78,
-      "message": "9 candidate(s)",
-      "slug": "i-will-glory-in-my-redeemer"
-    },
-    {
-      "input": "i-asked-the-lord-that-i-might-grow",
+      "input": "Speak O Lord",
       "review": "",
       "chosenVideo": "",
       "status": "draft",
       "confidence": 100,
       "message": "1 candidate(s)",
+      "slug": "speak-o-lord"
+    },
+    {
+      "input": "I Asked the Lord that I Might Grow",
+      "review": "Approve",
+      "chosenVideo": "https://www.youtube.com/watch?v=YCxrROZPCKw",
+      "status": "approved",
+      "confidence": null,
+      "message": "approved — https://www.youtube.com/watch?v=YCxrROZPCKw",
       "slug": "i-asked-the-lord-that-i-might-grow"
+    },
+    {
+      "input": "Savior Like a Shepherd Lead us",
+      "review": "",
+      "chosenVideo": "",
+      "status": "draft",
+      "confidence": 92,
+      "message": "8 candidate(s)",
+      "slug": "savior-like-a-shepherd-lead-us"
     }
   ]
 }

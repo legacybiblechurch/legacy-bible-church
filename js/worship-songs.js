@@ -7,4 +7,5 @@
  */
 
 window.WORSHIP_SETLIST = [
+  'i-asked-the-lord-that-i-might-grow',
 ];
