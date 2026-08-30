@@ -7,7 +7,4 @@
  */
 
 window.WORSHIP_SETLIST = [
-  'his-forever',
-  'i-will-glory-in-my-redeemer',
-  'i-asked-the-lord-that-i-might-grow',
 ];
