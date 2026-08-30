@@ -127,6 +127,14 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
         except Exception as e:  # noqa: BLE001 — one bad video shouldn't kill the run
             c["notes"] = f"Draft failed: {e}"
 
+    # float the candidates we actually drafted lyrics for (best confidence) to the top,
+    # keeping a forced pick first of all
+    candidates.sort(key=lambda c: (
+        c["videoId"] == forced,
+        bool(c.get("lyrics")),
+        c.get("confidence", 0),
+    ), reverse=True)
+
     draft = {
         "slug": slug,
         "title": title,
