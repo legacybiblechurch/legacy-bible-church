@@ -175,11 +175,15 @@
       #sidebar {
         width: auto; height: auto; flex-shrink: 0;
         border-right: 0; border-bottom: 1px solid var(--line);
-        flex-direction: row; overflow-x: auto; overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
+        flex-direction: row; overflow: hidden;
       }
       .sidebar-head { display: none; }
-      #song-list { display: flex; flex-direction: row; padding: 8px 10px; gap: 8px; overflow: visible; }
+      #song-list {
+        display: flex; flex-direction: row; padding: 8px 10px; gap: 8px;
+        overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      #song-list::-webkit-scrollbar { display: none; }
       .song-item {
         flex-direction: column; align-items: flex-start; gap: 2px;
         border: 1px solid var(--line); border-left: 1px solid var(--line);
@@ -194,10 +198,11 @@
       .slide-thumb { min-height: 0; padding: 12px 14px; }
       .thumb-lines { font-size: 13px; }
 
-      #footer { padding: 0 12px; gap: 8px; }
-      .nav-btn { flex: 1; padding: 13px 10px; font-size: 14px; text-align: center; justify-content: center; }
+      #footer { padding: 0 10px; gap: 7px; }
+      .nav-btn { flex: 1; padding: 13px 8px; font-size: 14px; text-align: center; justify-content: center; }
       #position-info { display: none; }
-      .blank-btn { padding: 13px 12px; font-size: 12px; }
+      .blank-btn { padding: 13px 12px; font-size: 12px; margin: 0; flex-shrink: 0; }
+      .blank-btn .full { display: none; }
     }
   </style>
 </head>
@@ -224,7 +229,7 @@
     <button class="nav-btn" id="btn-prev">&larr; Prev</button>
     <div id="position-info"><span id="position-song"></span><span id="position-slide"></span></div>
     <button class="nav-btn primary" id="btn-next">Next &rarr;</button>
-    <button class="blank-btn" id="btn-blank">Blank screen</button>
+    <button class="blank-btn" id="btn-blank">Blank</button>
   </div>
 
   <script src="js/songs-data.js"></script>
@@ -278,7 +283,7 @@
       isBlank = !isBlank;
       var b = document.getElementById('btn-blank');
       b.classList.toggle('blanked', isBlank);
-      b.textContent = isBlank ? 'Show screen' : 'Blank screen';
+      b.textContent = isBlank ? 'Show' : 'Blank';
       broadcast();
     }
 
@@ -334,7 +339,7 @@
           isBlank = !!saved.blank;
           if (isBlank) {
             document.getElementById('btn-blank').classList.add('blanked');
-            document.getElementById('btn-blank').textContent = 'Show screen';
+            document.getElementById('btn-blank').textContent = 'Show';
           }
         }
       } catch (e) {}

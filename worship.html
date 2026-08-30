@@ -243,7 +243,8 @@
     // status panel: approved list (worship-songs.js) + draft status (status.json)
     var approved = Array.isArray(window.WORSHIP_SETLIST) ? window.WORSHIP_SETLIST : [];
     function nameFor(slug) {
-      return (window.LEGACY_SONGS && LEGACY_SONGS[slug] && LEGACY_SONGS[slug].title) || slug;
+      var L = (typeof LEGACY_SONGS !== 'undefined') ? LEGACY_SONGS : {};
+      return (L[slug] && L[slug].title) || slug;
     }
     function esc(t) { return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
 
