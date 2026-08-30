@@ -4,83 +4,9 @@
   "input": "how-deep-the-fathers-love-for-us",
   "isNew": false,
   "forced": null,
-  "signature": "193eb3d3f6f269a5",
-  "generatedAt": "2026-08-30T05:26:39+00:00",
+  "signature": "4228b6abc2262b23",
+  "generatedAt": "2026-08-30T05:34:39+00:00",
   "candidates": [
-    {
-      "videoId": "UfhRs5g5t8M",
-      "url": "https://www.youtube.com/watch?v=UfhRs5g5t8M",
-      "title": "How Deep The Father&#39;s Love (Official Music Video) | Celtic Worship",
-      "channel": "Celtic Worship",
-      "publishedAt": "2021-10-07T08:00:10Z",
-      "durationSec": 377,
-      "duration": "6:17",
-      "views": 3665632,
-      "hasCaptions": true,
-      "lyrics": [
-        {
-          "label": "Verse 1",
-          "lines": [
-            "How deep the Father's love for us",
-            "How vast beyond all measure",
-            "That He should give His only Son",
-            "To make a wretch His treasure",
-            "How great the pain of searing loss",
-            "The Father turns His face away",
-            "As wounds which mar the Chosen One",
-            "Bring many sons to glory"
-          ]
-        },
-        {
-          "label": "Verse 2",
-          "lines": [
-            "Behold the Man upon a cross",
-            "My sin upon His shoulders",
-            "Ashamed, I hear my mocking voice",
-            "Call out among the scoffers",
-            "It was my sin that held Him there",
-            "Until it was accomplished",
-            "His dying breath has brought me life",
-            "I know that it is finished"
-          ]
-        },
-        {
-          "label": "Verse 3",
-          "lines": [
-            "I will not boast in anything",
-            "No gifts, no power, no wisdom",
-            "But I will boast in Jesus Christ",
-            "His death and resurrection",
-            "Why should I gain from His reward",
-            "I cannot give an answer",
-            "But this I know with all my heart",
-            "His wounds have paid my ransom"
-          ]
-        },
-        {
-          "label": "Tag",
-          "lines": [
-            "Why should I gain from His reward",
-            "I cannot give an answer",
-            "But this I know with all my heart",
-            "His wounds have paid my ransom"
-          ]
-        },
-        {
-          "label": "Tag",
-          "lines": [
-            "How deep the Father's love for us",
-            "How vast beyond all measure",
-            "That He should give His only Son",
-            "To make a wretch His treasure"
-          ]
-        }
-      ],
-      "transcriptSource": "asr",
-      "confidence": 78,
-      "notes": "Structure derived from auto‑generated captions: full Verse 1, Verse 2, Verse 3, then a repeat of the last four lines of Verse 3 (treated as a Tag), followed by a repeat of the first four lines of Verse 1 (also a Tag). No additional repeats observed.",
-      "order": "Verse 1 · Verse 2 · Verse 3 · Tag · Tag"
-    },
     {
       "videoId": "z65YxhqY0_E",
       "url": "https://www.youtube.com/watch?v=z65YxhqY0_E",
@@ -150,12 +76,8 @@
           ]
         },
         {
-          "label": "Verse 3",
+          "label": "Tag",
           "lines": [
-            "I will not boast in anything",
-            "No gifts, no power, no wisdom",
-            "But I will boast in Jesus Christ",
-            "His death and resurrection",
             "Why should I gain from His reward",
             "I cannot give an answer",
             "But this I know with all my heart",
@@ -165,20 +87,15 @@
         {
           "label": "Tag",
           "lines": [
-            "Yes, this I know with all my heart"
-          ]
-        },
-        {
-          "label": "Tag",
-          "lines": [
+            "Yes this I know with all my heart",
             "His wounds have paid my ransom"
           ]
         }
       ],
       "transcriptSource": "subs",
-      "confidence": 85,
-      "notes": "Transcript adds 'YES' before 'THIS I KNOW...' line; captured as 'Yes, this I know with all my heart'. Repeated Verse 3 appears twice in the recording and is included accordingly.",
-      "order": "Verse 1 · Verse 2 · Tag · Tag · Tag · Verse 3 · Verse 3 · Tag · Tag"
+      "confidence": 92,
+      "notes": "Repeated 'It is finished' treated as three single-line Tag blocks. The final four-line and two-line repeats after Verse 3 are captured as separate Tag blocks since they are partial repeats, not full verses.",
+      "order": "Verse 1 · Verse 2 · Tag · Tag · Tag · Verse 3 · Tag · Tag"
     },
     {
       "videoId": "SKDujmtyAVk",
@@ -193,7 +110,7 @@
       "lyrics": null,
       "transcriptSource": "none",
       "confidence": 0,
-      "notes": "",
+      "notes": "No transcript (ERROR: [youtube] SKDujmtyAVk: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-).",
       "order": ""
     },
     {
@@ -213,14 +130,30 @@
       "order": ""
     },
     {
-      "videoId": "C-12f0GO4II",
-      "url": "https://www.youtube.com/watch?v=C-12f0GO4II",
-      "title": "How deep The Father&#39;s Love",
-      "channel": "P. Thomas",
-      "publishedAt": "2022-06-07T01:15:30Z",
-      "durationSec": 154,
-      "duration": "2:34",
-      "views": 267316,
+      "videoId": "TlyMxBj17LE",
+      "url": "https://www.youtube.com/watch?v=TlyMxBj17LE",
+      "title": "How Deep the Father&#39;s Love for Us - Phillips, Craig, &amp; Dean - Lyrics",
+      "channel": "Ginny G (Organizing Homelife)",
+      "publishedAt": "2020-04-13T22:48:49Z",
+      "durationSec": 197,
+      "duration": "3:17",
+      "views": 144056,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "",
+      "order": ""
+    },
+    {
+      "videoId": "dzKsLbM9UcY",
+      "url": "https://www.youtube.com/watch?v=dzKsLbM9UcY",
+      "title": "How Deep The Father&#39;s Love For Us - Phillips, Craig &amp; Dean (lyrics)",
+      "channel": "CHICAGO UBF - University Bible Fellowship",
+      "publishedAt": "2024-03-27T19:13:10Z",
+      "durationSec": 202,
+      "duration": "3:22",
+      "views": 12518,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",

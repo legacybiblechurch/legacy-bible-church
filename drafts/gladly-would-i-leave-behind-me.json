@@ -4,8 +4,8 @@
   "input": "gladly-would-i-leave-behind-me",
   "isNew": false,
   "forced": null,
-  "signature": "d4c090e059a4c466",
-  "generatedAt": "2026-08-30T05:27:31+00:00",
+  "signature": "39d7859df7ae6cb9",
+  "generatedAt": "2026-08-30T05:34:57+00:00",
   "candidates": [
     {
       "videoId": "EFpexotDL5A",
@@ -15,13 +15,116 @@
       "publishedAt": "2012-06-05T23:48:42Z",
       "durationSec": 404,
       "duration": "6:44",
-      "views": 540235,
+      "views": 540233,
       "hasCaptions": false,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "No transcript (ERROR: [youtube] EFpexotDL5A: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-).",
-      "order": ""
+      "lyrics": [
+        {
+          "label": "Verse 1",
+          "lines": [
+            "Gladly would I leave behind me",
+            "All the pleasure I have known",
+            "To pursue surpassing treasures",
+            "At the throne of God the Son",
+            "Worthy of unending worship",
+            "Love and loveliness is He",
+            "By His precious death were millions",
+            "From the jaws of death set free"
+          ]
+        },
+        {
+          "label": "Verse 2",
+          "lines": [
+            "Gladly would I give to Jesus",
+            "All affection, everything",
+            "For the washing of His mercy",
+            "Makes my ransomed heart to sing"
+          ]
+        },
+        {
+          "label": "Chorus",
+          "lines": [
+            "Holy, holy!",
+            "Rising up from those who see Christ exalted, bright and burning",
+            "Full of power and Purity"
+          ]
+        },
+        {
+          "label": "Bridge",
+          "lines": [
+            "Where else can I go?",
+            "Jesus, You're the One",
+            "That I was made to know",
+            "What else can I do?",
+            "Jesus, You're my all",
+            "I gladly run to You"
+          ]
+        },
+        {
+          "label": "Verse 3",
+          "lines": [
+            "Gladly would I flee temptations",
+            "For their troubles fill my life",
+            "Turn and seek my God and Savior",
+            "For His goodness satisfies",
+            "Earthly treasures, all are passing",
+            "Thieves break in and rust destroys",
+            "But in God are awesome splendor",
+            "Love, and everlasting joys"
+          ]
+        },
+        {
+          "label": "Bridge",
+          "lines": [
+            "Where else can I go?",
+            "Jesus, You're the One",
+            "That I was made to know",
+            "What else can I do?",
+            "Jesus, You're my all",
+            "I gladly run to You"
+          ]
+        },
+        {
+          "label": "Bridge",
+          "lines": [
+            "Where else can I go?",
+            "Jesus, You're the One",
+            "That I was made to know",
+            "What else can I do?",
+            "Jesus, You're my all",
+            "I gladly run to You"
+          ]
+        },
+        {
+          "label": "Bridge",
+          "lines": [
+            "Where else can I go?",
+            "Jesus, You're the One",
+            "That I was made to know",
+            "What else can I do?",
+            "Jesus, You're my all",
+            "I gladly run to You"
+          ]
+        },
+        {
+          "label": "Verse 2",
+          "lines": [
+            "Gladly would I give to Jesus",
+            "All affection, everything",
+            "For the washing of His mercy",
+            "Makes my ransomed heart to sing"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "oh"
+          ]
+        }
+      ],
+      "transcriptSource": "asr",
+      "confidence": 78,
+      "notes": "Auto‑generated captions were garbled but clearly showed the sequence: Verse 1 → Verse 2 → Chorus (with added lines about Christ exalted) → Bridge → Verse 3 → three Bridge repetitions → Verse 2 repeat. Where captions were unclear, reference lyrics were used. The final \"oh\" appears as a tag/vamp. Confidence moderate due to caption errors.",
+      "order": "Verse 1 · Verse 2 · Chorus · Bridge · Verse 3 · Bridge · Bridge · Bridge · Verse 2 · Tag"
     },
     {
       "videoId": "qm4KGWvz4KU",
@@ -61,7 +164,7 @@
           ]
         },
         {
-          "label": "Bridge 1",
+          "label": "Bridge",
           "lines": [
             "Where else can I go?",
             "Jesus, You're the One",
@@ -69,7 +172,7 @@
           ]
         },
         {
-          "label": "Bridge 2",
+          "label": "Bridge",
           "lines": [
             "What else can I do?",
             "Jesus, You're my all",
@@ -90,7 +193,7 @@
           ]
         },
         {
-          "label": "Bridge 1",
+          "label": "Bridge",
           "lines": [
             "Where else can I go?",
             "Jesus, You're the One",
@@ -98,7 +201,7 @@
           ]
         },
         {
-          "label": "Bridge 2",
+          "label": "Bridge",
           "lines": [
             "What else can I do?",
             "Jesus, You're my all",
@@ -106,35 +209,39 @@
           ]
         },
         {
-          "label": "Bridge 1",
-          "lines": [
-            "Where else can I go?",
-            "Jesus, You're the One",
-            "That I was made to know"
-          ]
-        },
-        {
-          "label": "Bridge 2",
-          "lines": [
-            "What else can I do?",
-            "Jesus, You're my all",
-            "I gladly run to You"
-          ]
-        },
-        {
-          "label": "Verse 2 (repeat)",
+          "label": "Verse 2",
           "lines": [
             "Gladly would I give to Jesus",
             "All affection, everything",
             "For the washing of His mercy",
-            "Makes my ransomed heart to sing"
+            "Makes my ransomed heart to sing",
+            "Holy, holy! is the chorus",
+            "Rising up from those who see",
+            "Christ exalted, bright and burning",
+            "Full of pow'r and purity"
           ]
         }
       ],
       "transcriptSource": "asr",
-      "confidence": 75,
-      "notes": "Auto‑generated captions are garbled but clearly show the sequence: Verse 1, Verse 2, Bridge 1, Bridge 2, Verse 3, then three repetitions of Bridge 1/Bridge 2, followed by a short repeat of the first four lines of Verse 2. Wording follows the provided reference; minor caption errors were ignored.",
-      "order": "Verse 1 · Verse 2 · Bridge 1 · Bridge 2 · Verse 3 · Bridge 1 · Bridge 2 · Bridge 1 · Bridge 2 · Verse 2 (repeat)"
+      "confidence": 78,
+      "notes": "Auto‑generated captions were garbled but clearly showed the sequence: Verse 1 → Verse 2 → two bridge parts → Verse 3 → two bridge repeats → Verse 2 again. Reference lyrics were used for exact wording; minor caption errors (e.g., \"chars\" instead of \"jaws\") were corrected. The final stray timestamps (\"y\", \"h\") were ignored.",
+      "order": "Verse 1 · Verse 2 · Bridge · Bridge · Verse 3 · Bridge · Bridge · Verse 2"
+    },
+    {
+      "videoId": "DmwiKZltvOc",
+      "url": "https://www.youtube.com/watch?v=DmwiKZltvOc",
+      "title": "Gladly would I leave behind me (cover) -  Male Aguirre",
+      "channel": "Male Aguirre",
+      "publishedAt": "2019-10-07T00:00:02Z",
+      "durationSec": 285,
+      "duration": "4:45",
+      "views": 5866,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "",
+      "order": ""
     },
     {
       "videoId": "C3PMRnRyfVM",
@@ -161,22 +268,6 @@
       "durationSec": 404,
       "duration": "6:44",
       "views": 591,
-      "hasCaptions": false,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "",
-      "order": ""
-    },
-    {
-      "videoId": "sl9JKYINqN4",
-      "url": "https://www.youtube.com/watch?v=sl9JKYINqN4",
-      "title": "Gladly Would I Leave Behind Me",
-      "channel": "George Ting / GT videos",
-      "publishedAt": "2023-08-11T23:39:44Z",
-      "durationSec": 286,
-      "duration": "4:46",
-      "views": 215,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
