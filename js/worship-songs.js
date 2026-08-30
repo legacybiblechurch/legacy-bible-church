@@ -7,5 +7,7 @@
  */
 
 window.WORSHIP_SETLIST = [
+  'speak-o-lord',
   'i-asked-the-lord-that-i-might-grow',
+  'savior-like-a-shepherd-lead-us',
 ];

@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-08-30T16:45:07+00:00",
+  "updatedAt": "2026-08-30T17:22:06+00:00",
   "sunday": "2026-08-30",
   "songs": [
     {
       "input": "Speak O Lord",
-      "review": "",
-      "chosenVideo": "",
-      "status": "draft",
-      "confidence": 100,
-      "message": "1 candidate(s)",
+      "review": "Approve",
+      "chosenVideo": "https://www.youtube.com/watch?v=jKtJVv5ffdw",
+      "status": "approved",
+      "confidence": null,
+      "message": "approved — https://www.youtube.com/watch?v=jKtJVv5ffdw",
       "slug": "speak-o-lord"
     },
     {
@@ -22,11 +22,11 @@
     },
     {
       "input": "Savior Like a Shepherd Lead us",
-      "review": "",
-      "chosenVideo": "",
-      "status": "draft",
-      "confidence": 92,
-      "message": "8 candidate(s)",
+      "review": "Approve",
+      "chosenVideo": "https://www.youtube.com/watch?v=Pco0Y7nIHSQ",
+      "status": "approved",
+      "confidence": null,
+      "message": "approved — https://www.youtube.com/watch?v=Pco0Y7nIHSQ",
       "slug": "savior-like-a-shepherd-lead-us"
     }
   ]

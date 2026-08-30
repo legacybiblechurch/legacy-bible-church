@@ -1598,15 +1598,15 @@ const LEGACY_SONGS = {
   },
   "savior-like-a-shepherd-lead-us": {
     title: "Savior, Like a Shepherd Lead Us",
-    youtube: "https://www.youtube.com/results?search_query=Savior+Like+a+Shepherd+Lead+Us+hymn+official",
+    youtube: "https://www.youtube.com/watch?v=Pco0Y7nIHSQ",
     lyrics: [
-    { label: "", lines: ["Savior, like a shepherd lead us", "Much we need thy tender care", "In thy pleasant pastures feed us", "For our use thy folds prepare"] },
-    { label: "", lines: ["Blessed Jesus, blessed Jesus", "Thou hast bought us, thine we are", "Blessed Jesus, blessed Jesus", "Thou hast bought us, thine we are"] },
-    { label: "", lines: ["We are thine, do thou befriend us", "Be the guardian of our way", "Keep thy flock from sin, defend us", "Seek us when we go astray"] },
-    { label: "", lines: ["Blessed Jesus, blessed Jesus", "Hear, O hear us when we pray", "Blessed Jesus, blessed Jesus", "Hear, O hear us when we pray", "Thou hast promised to receive us", "Poor and sinful though we be", "Thou hast mercy to relieve us", "Grace to cleanse and pow'r to free"] },
-    { label: "", lines: ["Blessed Jesus, blessed Jesus", "Early let us turn to thee", "Blessed Jesus, blessed Jesus", "Early let us turn to thee"] },
-    { label: "", lines: ["Early let us seek thy favor", "Early let us do thy will", "Blessed Lord and only Savior", "With thy love our beings fill"] },
-    { label: "", lines: ["Blessed Jesus, blessed Jesus", "Thou hast loved us, love us still", "Blessed Jesus, blessed Jesus", "Thou hast loved us, love us still"] }
+    { label: "Verse 1", lines: ["Savior, like a shepherd lead us", "Much we need thy tender care", "In thy pleasant pastures feed us", "For our use thy folds prepare"] },
+    { label: "Chorus", lines: ["Blessed Jesus, Blessed Jesus", "Thou hast bought us, Thine we are", "Blessed Jesus, Blessed Jesus", "Thou hast bought us, Thine we are"] },
+    { label: "Verse 2", lines: ["We are thine, do thou befriend us", "Be the guardian of our way", "Keep thy flock from sin, defend us", "Seek us when we go astray"] },
+    { label: "Chorus", lines: ["Blessed Jesus, Blessed Jesus", "Thou hast bought us, Thine we are", "Blessed Jesus, Blessed Jesus", "Thou hast bought us, Thine we are"] },
+    { label: "Verse 3", lines: ["Early let us seek thy favor", "Early let us do thy will", "Blessed Lord and only Savior", "With thy love our bosoms fill"] },
+    { label: "Chorus", lines: ["Blessed Jesus, Blessed Jesus", "Thou hast bought us, Thine we are", "Blessed Jesus, Blessed Jesus", "Thou hast bought us, Thine we are"] },
+    { label: "Tag", lines: ["Blessed Jesus, Blessed Jesus", "Thou hast bought us", "Thine we are"] }
   ]
   },
   "see-what-a-morning-resurrection-hymn": {
