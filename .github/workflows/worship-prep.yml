@@ -56,4 +56,11 @@ jobs:
             exit 0
           fi
           git commit -m "worship-prep: refresh drafts / apply approvals [skip ci]"
+          # another run or a manual push may have moved main since checkout
+          for i in 1 2 3 4 5; do
+            git push && exit 0
+            echo "push rejected, rebasing (attempt $i)"
+            git pull --rebase --autostash origin main || true
+            sleep $((RANDOM % 5 + 2))
+          done
           git push
