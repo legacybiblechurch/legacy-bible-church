@@ -2,9 +2,11 @@
 Get the words that are actually sung in a YouTube video, in performance order.
 
 Strategy, best to worst:
-  1. Human-written caption track  (yt-dlp --write-subs)      -> source="subs"
-  2. YouTube auto-caption track   (yt-dlp --write-auto-subs)  -> source="asr"
-  3. Whisper on the downloaded audio via Groq                 -> source="whisper"
+  1. Supadata transcript API  (SUPADATA_API_KEY)  -> source="subs"/"asr"
+     Needed because YouTube hard-blocks yt-dlp from datacenter IPs (GitHub Actions)
+     with "Sign in to confirm you're not a bot". Supadata runs its own infra.
+  2. yt-dlp captions           -> source="subs"/"asr"   (works from residential IPs)
+  3. Whisper on downloaded audio via Groq  -> source="whisper"
      (only when allow_audio=True and GROQ_API_KEY is set)
 
 Returns: { "source", "is_asr", "cues": [{"t": float_seconds, "text": str}], "text": str }
@@ -88,6 +90,44 @@ def _parse_vtt(raw: str) -> list[dict]:
 
 def _cues_to_text(cues: list[dict]) -> str:
     return "\n".join(c["text"] for c in cues)
+
+
+# ---------------------------------------------------------------- Supadata API
+
+
+def _looks_manual(text: str) -> bool:
+    """Heuristic: real caption tracks have sentence case + punctuation;
+    auto-captions are lowercase runs with none."""
+    sample = text[:600]
+    return bool(re.search(r"[.,!?]", sample)) and sample != sample.lower()
+
+
+def _supadata_captions(url: str) -> dict | None:
+    key = os.environ.get("SUPADATA_API_KEY")
+    if not key:
+        return None
+    try:
+        from http_util import request_json
+        res = request_json(
+            "GET",
+            "https://api.supadata.ai/v1/transcript?lang=en&url=" + url,
+            headers={"x-api-key": key},
+            timeout=60,
+        )
+    except Exception as e:  # noqa: BLE001
+        global LAST_ERROR
+        LAST_ERROR = f"supadata: {e}"
+        return None
+
+    segs = res.get("content") or []
+    cues = [{"t": round((s.get("offset", 0) or 0) / 1000, 2), "text": s.get("text", "").strip()}
+            for s in segs if s.get("text", "").strip()]
+    if len(cues) < 3:
+        return None
+    full = _cues_to_text(cues)
+    manual = _looks_manual(full)
+    return {"source": "subs" if manual else "asr", "is_asr": not manual,
+            "cues": cues, "text": full}
 
 
 # ---------------------------------------------------------------- yt-dlp captions
@@ -290,10 +330,16 @@ def fetch_transcript(url: str, *, allow_audio: bool = False,
         got = _whisper_from_url(url)
         if got:
             return got
-    for _ in range(3):
+
+    got = _supadata_captions(url)          # works from any IP
+    if got:
+        return got
+
+    for _ in range(2):                     # residential-IP path / local dev
         got = _ytdlp_captions(url)
         if got:
             return got
+
     if allow_audio:
         return _whisper_from_url(url)
     return None
