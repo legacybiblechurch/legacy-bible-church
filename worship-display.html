@@ -203,17 +203,23 @@
       }
     }
 
-    fetch(SHEET_CSV)
-      .then(function(r) { return r.text(); })
-      .then(function(csv) {
-        var slugs = csv.split('\n')
-          .map(function(l) { return l.trim().replace(/\r/g, ''); })
-          .filter(Boolean);
-        onSongsReady(slugs);
-      })
-      .catch(function() {
-        onSongsReady(window.WORSHIP_SETLIST || []);
-      });
+    // Prefer the committed setlist (js/worship-songs.js) so the display stays in
+    // lock-step with the control panel; fall back to the live sheet CSV.
+    if (Array.isArray(window.WORSHIP_SETLIST) && window.WORSHIP_SETLIST.length) {
+      onSongsReady(window.WORSHIP_SETLIST);
+    } else {
+      fetch(SHEET_CSV)
+        .then(function(r) { return r.text(); })
+        .then(function(csv) {
+          var lines = csv.split('\n').map(function(l) { return l.trim().replace(/\r/g, ''); }).filter(Boolean);
+          var header = lines[0] ? lines[0].toLowerCase().split(',') : [];
+          var hasHeader = header.indexOf('song') !== -1;
+          var slugs = (hasHeader ? lines.slice(1) : lines)
+            .map(function(l) { return l.split(',')[0].trim(); }).filter(Boolean);
+          onSongsReady(slugs);
+        })
+        .catch(function() { onSongsReady([]); });
+    }
 
     var channel    = new BroadcastChannel('lbc-worship');
     var standby    = document.getElementById('standby');
