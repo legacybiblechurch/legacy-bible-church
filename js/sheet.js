@@ -1,5 +1,5 @@
 /**
- * Shared setlist loading for worship-control / worship-display / worship-prep.
+ * Shared setlist / planner loading for worship-control / worship-display / worship-prep.
  *
  * The committed setlist (js/worship-songs.js -> window.WORSHIP_SETLIST) is the
  * source of truth. The published Google Sheet CSV is only a fallback for when the
@@ -11,9 +11,9 @@
   var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSBczlDX3xoDhPZdmURMEmduM_s1lYvPZiRovZ-ObHroIEsnJ9u1D813GaRlLK6Q9NsDpOTtL4UaRnu/pub?gid=0&single=true&output=csv';
 
   // ── EDIT ME ────────────────────────────────────────────────────────────────
-  // Paste the setlist Google Sheet's normal edit link here (the URL in the
+  // Paste the planner (Google Sheet) edit link here (the URL in the
   // address bar when you have the sheet open, ending in /edit). Until it's set,
-  // the "Open the setlist" buttons open a read-only view of the sheet.
+  // the "Open the planner" buttons open a read-only view of the sheet.
   var SHEET_EDIT = '';
   // ───────────────────────────────────────────────────────────────────────────
   var SHEET_VIEW = SHEET_CSV.replace('/pub?', '/pubhtml?').replace('&single=true&output=csv', '');

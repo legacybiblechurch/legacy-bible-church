@@ -197,14 +197,14 @@
     <span class="header-links">
       <a href="worship.html">Home</a>
       <a href="worship-control.html">Control &rarr;</a>
-      <a href="setlist.html">Setlist &rarr;</a>
+      <a href="setlist.html">Song Videos &rarr;</a>
     </span>
   </header>
 
   <main>
     <div class="hint">
       Pick the video that <b>sounds right</b> and whose lyrics below match it.
-      To lock it in: open the setlist sheet, put that video's URL in the <b>Video</b>
+      To lock it in: open the planner, put that video's URL in the <b>Video</b>
       column, set <b>Review</b> to <code>Approve</code>. Nothing reaches the screen until you do.
       Type any wording fixes in the <b>Fixes</b> column.
     </div>
@@ -343,7 +343,7 @@
       ]).then(function (res) {
         var status = res[0], live = res[1];
         if (!status || !status.songs || !status.songs.length) {
-          document.getElementById('songs').innerHTML = '<div class="empty">No drafts yet. Add songs to the setlist sheet &mdash; drafts appear here within ~10 minutes.</div>';
+          document.getElementById('songs').innerHTML = '<div class="empty">No drafts yet. Add songs to the planner &mdash; drafts appear here within ~10 minutes.</div>';
           return;
         }
         if (status.sunday) document.getElementById('sunday-line').textContent = 'for Sunday ' + status.sunday;

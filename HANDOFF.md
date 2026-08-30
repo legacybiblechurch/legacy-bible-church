@@ -16,11 +16,11 @@ Live site: https://legacybiblechurch.github.io/legacy-bible-church/
 | `worship-prep.html` | Review the auto-drafted songs, see candidate videos, check lyrics. |
 | `worship-control.html` | The presenter panel — drives slides during the service. |
 | `worship-display.html` | The TV screen. Opened in a second window, dragged to the TV. Follows Control via `BroadcastChannel`. |
-| `setlist.html` | Public list of this Sunday's songs with a Play button per song (opens the approved YouTube video). |
+| `setlist.html` | **Song Videos** — public list of this Sunday's songs, one Play button per song (opens the approved YouTube video). |
 
 ## The weekly workflow (what the operator does)
 
-1. Open the **setlist Google Sheet**. In column **A**, replace last week's songs with
+1. Open the **planner** (the Google Sheet). In column **A**, replace last week's songs with
    this week's — one per row. Clear columns B, C, D.
 2. Wait ~20 minutes. The GitHub Action runs, finds candidate videos, and drafts lyrics.
 3. Open **worship-prep.html**. For each song:
@@ -31,7 +31,7 @@ Live site: https://legacybiblechurch.github.io/legacy-bible-church/
    box on `worship.html`.
 
 Sunday morning: open Control on the laptop, Display in a second window on the TV,
-Setlist for the play buttons. `←` `→` move slides, `B` blanks the screen.
+Song Videos for the play buttons. `←` `→` move slides, `B` blanks the screen.
 
 ## How the automation works
 
@@ -76,8 +76,8 @@ Also needed once: **Settings → Actions → General → Workflow permissions �
 
 ## Common changes
 
-- **The setlist sheet's edit link** — paste it into `js/sheet.js` at the line marked
-  `EDIT ME`, so the "Open the setlist" buttons open the editable sheet.
+- **The planner's edit link** — paste it into `js/sheet.js` at the line marked
+  `EDIT ME`, so the "Open the planner" buttons open the editable sheet.
 - **A song's lyrics are wrong after approval** — put the song back in the sheet, type
   `redo` in Review, or fix the lyric text directly in `js/songs-data.js` (find the slug).
 - **The schedule** — the `cron` line in `.github/workflows/worship-prep.yml` (UTC).
