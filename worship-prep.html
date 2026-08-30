@@ -107,6 +107,7 @@
     .badge.cap-asr { color: var(--warn); border-color: rgba(216,166,87,0.3); }
     .badge.cap-whisper { color: var(--good); border-color: rgba(123,179,126,0.35); }
     .badge.cap-library { color: var(--gold); border-color: rgba(201,168,76,0.35); }
+    .badge.cap-description { color: var(--warn); border-color: rgba(216,166,87,0.3); }
     .badge.cap-none { color: var(--ink-faint); }
     .conf { font-variant-numeric: tabular-nums; }
     .conf.hi { color: var(--good); }
@@ -205,7 +206,7 @@
     function decode(t) { var d = document.createElement('textarea'); d.innerHTML = t || ''; return d.value; }
     function fmtViews(n) { n = n || 0; return n >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : n >= 1e3 ? Math.round(n / 1e3) + 'K' : String(n); }
 
-    var CAP_LABEL = { subs: 'Human captions', asr: 'Auto captions', whisper: 'Transcribed audio', none: 'No captions', library: 'From library' };
+    var CAP_LABEL = { subs: 'Human captions', asr: 'Auto captions', whisper: 'Transcribed audio', description: 'Description lyrics', none: 'No captions', library: 'From library' };
 
     function confClass(c) { return c >= 85 ? 'hi' : c >= 65 ? 'mid' : 'lo'; }
 

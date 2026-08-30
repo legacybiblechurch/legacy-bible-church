@@ -93,16 +93,30 @@ def _reference_block(reference: list[dict] | None) -> str:
     return "\n".join(out)
 
 
+_IS_DESCRIPTION = "description"
+
+
 def build_prompt(title, reference, transcript, fixes=""):
     src = {"subs": "human-written captions",
            "whisper": "Whisper transcription of the audio",
-           "asr": "YouTube auto-generated captions"}.get(transcript.get("source"), "captions")
+           "asr": "YouTube auto-generated captions",
+           "description": "the lyrics pasted in the video's DESCRIPTION box "
+                          "(words only - NO timing, NO repeats, NOT the performance order)"
+           }.get(transcript.get("source"), "captions")
     parts = [
         f"SONG: {title}",
         f"\nTRANSCRIPT SOURCE: {src}",
         f"\nREFERENCE LYRICS:\n{_reference_block(reference)}",
         f"\nTRANSCRIPT (this recording, in order):\n{_cue_block(transcript)}",
     ]
+    if transcript.get("source") == _IS_DESCRIPTION:
+        parts.append(
+            "\nIMPORTANT: the text above is the song's lyrics from the description, not a "
+            "transcript of this performance. You do NOT know which sections this recording "
+            "sings or how often they repeat. Output the song in its standard/common structure, "
+            "set confidence no higher than 50, and in notes say clearly that every section and "
+            "repeat must be checked against the video."
+        )
     if fixes.strip():
         parts.append(f"\nHUMAN CORRECTIONS (these override everything above):\n{fixes.strip()}")
     parts.append("\nReturn the minified JSON now.")
@@ -229,8 +243,9 @@ def reconcile(title: str, reference: list[dict] | None, transcript: dict,
     order = out.get("order", "")
     if isinstance(order, list):
         order = " · ".join(str(x) for x in order)
+    cap = 50 if transcript.get("source") == _IS_DESCRIPTION else 100
     return {"lyrics": lyrics, "order": str(order),
-            "confidence": max(0, min(100, conf)), "notes": str(out.get("notes", ""))}
+            "confidence": max(0, min(cap, conf)), "notes": str(out.get("notes", ""))}
 
 
 if __name__ == "__main__":

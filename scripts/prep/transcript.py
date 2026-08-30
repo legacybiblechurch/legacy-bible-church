@@ -8,6 +8,9 @@ Strategy, best to worst:
   2. yt-dlp captions           -> source="subs"/"asr"   (works from residential IPs)
   3. Whisper on downloaded audio via Groq  -> source="whisper"
      (only when allow_audio=True and GROQ_API_KEY is set)
+  4. Lyrics pasted in the video description  -> source="description"
+     Last resort: words only, NO timing and NO performance structure. The reconcile
+     step treats this as a reference and caps confidence low.
 
 Returns: { "source", "is_asr", "cues": [{"t": float_seconds, "text": str}], "text": str }
 or None if nothing could be obtained.
@@ -308,6 +311,87 @@ def _groq_whisper(audio: Path) -> dict | None:
 # ---------------------------------------------------------------- public
 
 
+# ---------------------------------------------------------------- description lyrics
+
+_NOISE_RE = re.compile(
+    r"^\s*(?:$|#|https?://|www\.|lyrics?\s*[:\-]|verse\s*\d|chorus|bridge|"
+    r"\*?music\s+(?:is\s+)?licen|ccli|writer[s]?\s*[:\-]|composer|performer|"
+    r"artist[s]?\s*[:\-]|©|\(c\)|copyright|all rights|follow us|subscribe|"
+    r"instagram|facebook|spotify|apple music|from the album|out now)",
+    re.I,
+)
+
+
+def _description_lyrics(url: str) -> dict | None:
+    vid = re.search(r"[A-Za-z0-9_-]{11}", url)
+    if not vid:
+        return None
+    try:
+        import urllib.request as _u
+        html = _u.urlopen(
+            _u.Request(f"https://www.youtube.com/watch?v={vid.group(0)}",
+                       headers={"User-Agent": "Mozilla/5.0"}), timeout=20
+        ).read().decode("utf-8", "replace")
+    except Exception:
+        return None
+    m = re.search(r'"shortDescription":"(.*?)","', html, re.S)
+    if not m:
+        return None
+    try:                       # the captured text is a JSON string body
+        desc = json.loads('"' + m.group(1) + '"')
+    except Exception:
+        desc = m.group(1).replace("\\n", "\n").replace('\\"', '"')
+
+    raw = [ln.strip() for ln in desc.split("\n")]
+
+    _END_RE = re.compile(r"^\s*(writer|composer|performer|artist|album|©|\(c\)|"
+                         r"copyright|all rights|ccli|follow|subscribe)\b", re.I)
+    _LYRIC_MARK = re.compile(r"^\s*lyrics?\s*[:\-]?\s*$", re.I)
+
+    # if there's a "Lyrics:" heading, take from there until an end marker
+    region = None
+    for i, ln in enumerate(raw):
+        if _LYRIC_MARK.match(ln):
+            region = raw[i + 1:]
+            break
+    if region is not None:
+        out = []
+        blanks = 0
+        for ln in region:
+            if _END_RE.match(ln):
+                break
+            if not ln:
+                blanks += 1
+                if blanks >= 2 and out:
+                    break
+                continue
+            blanks = 0
+            if not _NOISE_RE.match(ln) and len(ln) <= 90:
+                out.append(ln)
+        lyric = out
+    else:
+        # no heading: keep the longest run, tolerating single blank lines
+        best, cur, gap = [], [], 0
+        for ln in raw + ["", ""]:
+            keep = ln and not _NOISE_RE.match(ln) and len(ln) <= 90 and len(ln.split()) <= 14
+            if keep:
+                cur.append(ln)
+                gap = 0
+            elif not ln and gap == 0 and cur:
+                gap = 1  # allow one blank between verses
+            else:
+                if len(cur) > len(best):
+                    best = cur
+                cur, gap = [], 0
+        lyric = best
+
+    if len(lyric) < 6:
+        return None
+    cues = [{"t": 0.0, "text": ln} for ln in lyric]
+    return {"source": "description", "is_asr": True, "cues": cues,
+            "text": "\n".join(lyric)}
+
+
 def _whisper_from_url(url: str) -> dict | None:
     with tempfile.TemporaryDirectory() as tmp:
         audio = _download_audio(url, tmp)
@@ -341,8 +425,11 @@ def fetch_transcript(url: str, *, allow_audio: bool = False,
             return got
 
     if allow_audio:
-        return _whisper_from_url(url)
-    return None
+        got = _whisper_from_url(url)
+        if got:
+            return got
+
+    return _description_lyrics(url)         # words only, no structure
 
 
 if __name__ == "__main__":
