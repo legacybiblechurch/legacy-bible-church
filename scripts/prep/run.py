@@ -49,8 +49,10 @@ def next_sunday(today: dt.date | None = None) -> str:
 
 
 def _sig(candidate_ids: list[str], reference: list | None) -> str:
+    # sorted + deduped so day-to-day YouTube search-order / view-count jitter on the
+    # same set of videos does not trigger a needless (quota-burning) re-draft
     h = hashlib.sha256()
-    h.update("|".join(candidate_ids).encode())
+    h.update("|".join(sorted(set(candidate_ids))).encode())
     h.update(json.dumps(reference or [], sort_keys=True).encode())
     return h.hexdigest()[:16]
 
@@ -196,6 +198,15 @@ def apply_row(row: sheet_mod.Row, songs: dict) -> tuple[str, str]:
 
 def write_status(entries: list[dict], sunday: str) -> None:
     DRAFTS.mkdir(exist_ok=True)
+    # skip the write entirely if nothing substantive changed, so idle scheduled
+    # runs produce no commit
+    if STATUS.exists():
+        try:
+            old = json.loads(STATUS.read_text())
+            if old.get("sunday") == sunday and old.get("songs") == entries:
+                return
+        except Exception:
+            pass
     STATUS.write_text(json.dumps({
         "updatedAt": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "sunday": sunday,
