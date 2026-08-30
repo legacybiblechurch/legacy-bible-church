@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watch Live — Legacy Bible Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="css/styles.css?v=15">
+  <style>
+    .stream-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .stream-frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .stream-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .stream-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      gap: 10px;
+    }
+    .stream-placeholder h3 {
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    .stream-placeholder p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      max-width: 420px;
+      margin: 0;
+    }
+    .stream-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .stream-meta__time {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .stream-note {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      max-width: 640px;
+    }
+    .stream-note a { color: var(--accent-bright); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo-dark.png" alt="Legacy Bible Church" class="nav-logo-img">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+        <li><a href="sermons.html" class="nav-link">Sermons</a></li>
+        <li><a href="watch.html" class="nav-link">Watch Live</a></li>
+        <li><a href="resources.html" class="nav-link">Resources</a></li>
+        <li><a href="connect.html" class="nav-link">Connect</a></li>
+        <li><a href="give.html" class="nav-link nav-cta btn btn-primary">Give</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="leadership.html">Leadership</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
+      <li><a href="watch.html">Watch Live</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="connect.html">Connect</a></li>
+      <li><a href="give.html" class="btn btn-primary">Give</a></li>
+    </ul>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-header__title">Watch Live</h1>
+    </div>
+  </section>
+
+  <!-- STREAM -->
+  <section class="section">
+    <div class="container">
+      <div class="stream-wrap">
+
+        <div class="stream-frame" id="streamFrame">
+          <div class="stream-placeholder" id="streamPlaceholder">
+            <h3>Nothing streaming right now</h3>
+            <p id="streamPlaceholderText">Our services stream <span id="serviceTimeInline">Sundays at 10:00 AM Pacific</span>. When we&rsquo;re live, this is where you&rsquo;ll watch &mdash; refresh the page, or use the <strong>Watch on YouTube</strong> button below.</p>
+          </div>
+        </div>
+
+        <div class="stream-meta">
+          <span class="stream-meta__time" id="serviceTime">Sundays at 10:00 AM Pacific</span>
+          <a href="#" id="youtubeLink" class="btn btn-outline" target="_blank" rel="noopener" style="display:none;">Watch on YouTube &rarr;</a>
+        </div>
+
+        <p class="stream-note">
+          <strong>Not playing?</strong> The stream only shows while we&rsquo;re live. Try refreshing once the
+          service has started. Missed it, or want to catch up on a past week? Every service is saved &mdash;
+          <a href="sermons.html">browse past sermons</a>.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- IN PERSON -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Better Yet, Join Us in Person</h2>
+        <p class="section-subtitle" style="max-width: 600px;">The livestream is here so no one has to miss the Word when they&rsquo;re sick or away. But church is people &mdash; when you&rsquo;re able, come sit with us.</p>
+      </div>
+      <div class="card-grid card-grid--2">
+        <div class="card">
+          <h3 class="card__title">Sundays at 10:00 AM</h3>
+          <p class="card__body">Worship, Scripture reading, prayer, and teaching from the Word &mdash; then lunch together afterward.</p>
+        </div>
+        <div class="card">
+          <h3 class="card__title">225 Fremont Street</h3>
+          <p class="card__body">Redlands, CA 92373. Come as you are. <a href="connect.html">Let us know you&rsquo;re coming</a> if you&rsquo;d like.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Common Questions</h2>
+      </div>
+      <div class="faq-list">
+
+        <details class="faq-item">
+          <summary class="faq-item__question">The video says the stream is offline.</summary>
+          <div class="faq-item__answer">
+            <p>That&rsquo;s normal outside of service times. We go live <span class="serviceTimeText">Sundays at 10:00 AM Pacific</span>. If it&rsquo;s Sunday morning and still offline, give it a few minutes and refresh &mdash; we usually start the stream right at 10.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">Do I need a YouTube account to watch?</summary>
+          <div class="faq-item__answer">
+            <p>No. Anyone with this link can watch, no account or sign-in needed. To type in the live chat you&rsquo;d need to be signed in to YouTube, but watching is open to all.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">Can I watch a service I missed?</summary>
+          <div class="faq-item__answer">
+            <p>Yes. Each livestream stays up afterward as a recording. The teaching is also posted to our <a href="sermons.html">Sermons</a> page and podcast feed.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">The picture or sound is rough.</summary>
+          <div class="faq-item__answer">
+            <p>We&rsquo;re a small church running a simple setup, so quality varies week to week. Tap the gear icon on the video to lower the resolution if it keeps buffering. If something&rsquo;s badly wrong, <a href="connect.html">let us know</a> &mdash; it helps us fix it.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Legacy Bible Church</div>
+        <p class="footer-tagline">Make Disciples of All Nations</p>
+        <p class="footer-address">Redlands, California</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="leadership.html">Leadership</a></li>
+          <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="watch.html">Watch Live</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="connect.html">Connect</a></li>
+          <li><a href="give.html">Give</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sundays</h4>
+        <p>10:00 AM<br>225 Fremont Street<br>Redlands, CA</p>
+      </div>
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <p><a href="mailto:info@legacybiblechurch.com">info@legacybiblechurch.com</a></p>
+        <p style="margin-top:6px;"><a href="connect.html">Send a message</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Legacy Bible Church. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/live.js"></script>
+  <script>
+    (function () {
+      var cfg = window.LBCLive || {};
+      var frame = document.getElementById('streamFrame');
+      var placeholder = document.getElementById('streamPlaceholder');
+
+      // Service time text everywhere it appears
+      if (cfg.SERVICE_TIME) {
+        document.getElementById('serviceTime').textContent = cfg.SERVICE_TIME;
+        document.getElementById('serviceTimeInline').textContent = cfg.SERVICE_TIME;
+        Array.prototype.forEach.call(document.querySelectorAll('.serviceTimeText'), function (el) {
+          el.textContent = cfg.SERVICE_TIME;
+        });
+      }
+
+      // Pull an 11-char YouTube video id out of a URL or bare id
+      function videoId(v) {
+        if (!v) return '';
+        var m = String(v).match(/(?:v=|\/live\/|youtu\.be\/|\/embed\/)([A-Za-z0-9_-]{11})/);
+        if (m) return m[1];
+        if (/^[A-Za-z0-9_-]{11}$/.test(v)) return v;
+        return '';
+      }
+
+      // "Watch on YouTube" button — always available when we know the channel
+      if (cfg.CHANNEL_ID) {
+        var a = document.getElementById('youtubeLink');
+        a.href = 'https://www.youtube.com/channel/' + encodeURIComponent(cfg.CHANNEL_ID) + '/live';
+        a.style.display = '';
+      }
+
+      // What to embed, if anything
+      var src = '';
+      var vid = videoId(cfg.VIDEO);
+      if (vid) {
+        src = 'https://www.youtube.com/embed/' + vid + '?rel=0&autoplay=1';
+      } else if (cfg.AUTO_EMBED && cfg.CHANNEL_ID) {
+        src = 'https://www.youtube.com/embed/live_stream?channel=' + encodeURIComponent(cfg.CHANNEL_ID) + '&rel=0';
+      }
+
+      if (src) {
+        var iframe = document.createElement('iframe');
+        iframe.src = src;
+        iframe.title = 'Legacy Bible Church livestream';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        frame.appendChild(iframe);
+        if (placeholder) placeholder.style.display = 'none';
+      } else if (!cfg.CHANNEL_ID) {
+        // Not configured yet — add a setup hint for whoever's building this
+        var text = document.getElementById('streamPlaceholderText');
+        if (text) {
+          text.innerHTML += '<br><br><em style="color:var(--text-muted);font-size:0.82rem;">' +
+            'Setup: add the church YouTube channel ID in <code>js/live.js</code>.</em>';
+        }
+      }
+    })();
+  </script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/edit-mode.js"></script>
+</body>
+</html>

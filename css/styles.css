@@ -3264,70 +3264,70 @@ blockquote {
   opacity: 0;
 }
 
-/* --- Curtain handwriting animation --- */
+/* --- Curtain logo draw-on animation --- */
 .curtain-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
+  gap: 22px;
 }
 
-/* SVG "Legacy" drawn stroke-by-stroke.
-   Height is capped so the empty space below the descenders
-   doesn't push "Bible Church" too far down. */
-.curtain-legacy-svg {
-  width: clamp(220px, 44vw, 500px);
-  height: clamp(110px, 22vw, 200px);
-  overflow: visible;
-}
-
-.curtain-legacy-text {
-  stroke-dasharray: 5000;
-  stroke-dashoffset: 5000;
-  /* Animation starts when .curtain-go class is added by JS (after font loads) */
-}
-
-.curtain-go .curtain-legacy-text {
-  animation: legacy-write 2.3s ease-in-out forwards;
-}
-
-@keyframes legacy-write {
-  to { stroke-dashoffset: 0; }
-}
-
-/* "Bible Church" — subtle fade after stroke is mostly done */
-.curtain-church-name {
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: clamp(0.6rem, 1.3vw, 0.78rem);
-  font-weight: 500;
-  letter-spacing: 0.5em;
-  text-transform: uppercase;
-  color: #606060;
+/* The official logo, revealed left-to-right by sweeping a soft-edged
+   mask across it so it appears to be drawn. */
+.curtain-logo {
+  width: clamp(240px, 46vw, 520px);
+  height: auto;
+  display: block;
   opacity: 0;
+  -webkit-mask-image: linear-gradient(to right, #000 0 44%, rgba(0, 0, 0, 0) 49%);
+          mask-image: linear-gradient(to right, #000 0 44%, rgba(0, 0, 0, 0) 49%);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: 235% 100%;
+          mask-size: 235% 100%;
+  -webkit-mask-position: 100% 0;
+          mask-position: 100% 0;
 }
 
-.curtain-go .curtain-church-name {
-  animation: curtain-fade-in 1s ease 1.6s forwards;
+.curtain-go .curtain-logo {
+  animation: logo-draw 2.6s cubic-bezier(0.62, 0.03, 0.24, 1) forwards;
 }
 
-/* "Redlands, California" — even subtler, after Bible Church */
+@keyframes logo-draw {
+  0%   { opacity: 0; -webkit-mask-position: 100% 0; mask-position: 100% 0; }
+  6%   { opacity: 1; }
+  100% { opacity: 1; -webkit-mask-position: 0% 0; mask-position: 0% 0;
+         filter: drop-shadow(0 2px 20px rgba(0, 0, 0, 0.55)); }
+}
+
+/* "Redlands, California" — subtle, fades in as the draw finishes */
 .curtain-location {
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: clamp(0.48rem, 1vw, 0.6rem);
+  font-size: clamp(0.5rem, 1vw, 0.62rem);
   font-weight: 300;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: #404040;
+  color: #4a4a4a;
   opacity: 0;
 }
 
 .curtain-go .curtain-location {
-  animation: curtain-fade-in 0.8s ease 2.2s forwards;
+  animation: curtain-fade-in 0.9s ease 2.3s forwards;
 }
 
 @keyframes curtain-fade-in {
   from { opacity: 0; transform: translateY(5px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curtain-logo {
+    opacity: 1;
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+  .curtain-go .curtain-logo { animation: none; opacity: 1; }
+  .curtain-go .curtain-location { animation-delay: 0.2s; }
 }
 
 /* --- Hero logo image --- */
@@ -3434,3 +3434,17 @@ body.page-exit {
 section[id] {
   scroll-margin-top: var(--nav-height, 72px);
 }
+
+/* Hamburger icon bars — markup uses bare <span>; give them shape
+   (the earlier rules only targeted .hamburger-line). */
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }

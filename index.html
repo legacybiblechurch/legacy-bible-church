@@ -10,7 +10,101 @@
        so a brief render block is fine and it guarantees Great Vibes is ready
        before the handwriting animation begins. -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="css/styles.css?v=13">
+  <link rel="stylesheet" href="css/styles.css?v=15">
+  <style>
+    /* ---- Transparent nav over the hero photo (home only) ---- */
+    .nav,
+    .nav.scrolled {
+      background: transparent;
+      background-image: linear-gradient(to bottom, rgba(0,0,0,0.42), rgba(0,0,0,0));
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-bottom: 0;
+    }
+    .nav .nav-link {
+      color: #ece9e1;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.55);
+    }
+    .nav .nav-link:hover,
+    .nav .nav-link.active {
+      color: #fff;
+      background: transparent;
+    }
+    .nav .nav-logo-img { filter: drop-shadow(0 1px 10px rgba(0,0,0,0.55)); }
+    .nav .hamburger span { background: #f2f1ec; }
+
+    /* ---- Homepage photo hero (home only) ---- */
+    .hero--photo {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 24px;
+      background-image:
+        linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.42) 40%, rgba(10,10,10,0.82) 100%),
+        url('images/church-photo.jpg');
+      background-size: cover;
+      background-position: center 22%;
+      background-repeat: no-repeat;
+    }
+    .hero--photo .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: block;
+      max-width: 820px;
+      padding-top: 0;
+    }
+    .hero--photo .hero-logo-img {
+      width: clamp(280px, 46vw, 500px);
+      margin: 0 auto 26px;
+      filter: drop-shadow(0 2px 24px rgba(0,0,0,0.5));
+    }
+    .hero--photo .hero-sub {
+      font-size: clamp(1.02rem, 1.7vw, 1.2rem);
+      font-weight: 300;
+      color: #f3f1ec;
+      letter-spacing: 0.01em;
+      line-height: 1.6;
+      max-width: 34ch;
+      margin: 0 auto;
+      text-shadow: 0 1px 20px rgba(0,0,0,0.55);
+    }
+    .hero--photo .hero-actions {
+      margin-top: 34px;
+    }
+    .hero--photo .hero-cta {
+      display: inline-block;
+      padding: 15px 34px;
+      border: 1px solid rgba(243,241,236,0.55);
+      color: #f6f4f0;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    }
+    .hero--photo .hero-cta:hover {
+      background: #f3f1ec;
+      border-color: #f3f1ec;
+      color: #0e0e0e;
+    }
+    .hero--photo .hero-scroll {
+      position: absolute;
+      left: 50%;
+      bottom: 26px;
+      transform: translateX(-50%);
+      z-index: 2;
+      font-size: 10px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: rgba(243,241,236,0.5);
+    }
+  </style>
 </head>
 <body>
 
@@ -39,21 +133,14 @@
         setTimeout(function () { c.style.display = 'none'; }, 1200);
       }
 
-      // Start animation on DOMContentLoaded — no font-load Promise dependency
-      // (font-load Promise can hang if font-face not yet declared, blocking curtain forever)
+      // Start the logo-draw animation once the DOM is ready
       document.addEventListener('DOMContentLoaded', function () {
         var center = document.querySelector('.page-curtain__center');
         if (center) center.classList.add('curtain-go');
-
-        // Fill "Legacy" solid after stroke animation finishes (~2.8s from go)
-        setTimeout(function () {
-          var t = document.querySelector('.curtain-legacy-text');
-          if (t) { t.style.transition = 'fill 0.5s ease'; t.style.fill = '#e8e8e8'; }
-        }, 2800);
       });
 
       // Always open curtain after fixed time — unconditional, never blocked
-      setTimeout(openCurtain, 4200);
+      setTimeout(openCurtain, 3900);
 
       // Click anywhere to skip
       document.addEventListener('click', openCurtain, { once: true });
@@ -64,21 +151,8 @@
     <div class="page-curtain__panel page-curtain__panel--bottom"></div>
     <div class="page-curtain__center">
       <div class="curtain-content">
-        <!-- "Legacy" written by hand via SVG stroke animation -->
-        <svg class="curtain-legacy-svg" viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <text class="curtain-legacy-text"
-                x="320" y="148"
-                font-family="'Priestacy', cursive"
-                font-size="138"
-                text-anchor="middle"
-                fill="none"
-                stroke="#d8d8d8"
-                stroke-width="1.2"
-                stroke-linecap="round"
-                stroke-linejoin="round">Legacy</text>
-        </svg>
-        <!-- "Bible Church" and location reveal underneath -->
-        <div class="curtain-church-name">Bible Church</div>
+        <!-- The official logo, revealed left-to-right like it's being drawn -->
+        <img class="curtain-logo" src="images/logo-dark.png" alt="Legacy Bible Church" width="1501" height="651">
         <div class="curtain-location">Redlands, California</div>
       </div>
     </div>
@@ -95,6 +169,7 @@
         <li><a href="about.html" class="nav-link">About</a></li>
         <li><a href="leadership.html" class="nav-link">Leadership</a></li>
         <li><a href="sermons.html" class="nav-link">Sermons</a></li>
+        <li><a href="watch.html" class="nav-link">Watch Live</a></li>
         <li><a href="resources.html" class="nav-link">Resources</a></li>
         <li><a href="connect.html" class="nav-link">Connect</a></li>
         <li><a href="give.html" class="nav-link nav-cta btn btn-primary">Give</a></li>
@@ -110,6 +185,7 @@
       <li><a href="about.html">About</a></li>
       <li><a href="leadership.html">Leadership</a></li>
       <li><a href="sermons.html">Sermons</a></li>
+      <li><a href="watch.html">Watch Live</a></li>
       <li><a href="resources.html">Resources</a></li>
       <li><a href="connect.html">Connect</a></li>
       <li><a href="give.html" class="btn btn-primary">Give</a></li>
@@ -117,18 +193,17 @@
   </div>
 
   <!-- HERO -->
-  <section class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('images/church-photo.jpg'); background-size: cover; background-position: center top;">
+  <section class="hero hero--photo">
     <div class="container hero-inner">
       <h1 class="hero-title">
         <img src="images/logo-dark.png" alt="Legacy Bible Church" class="hero-logo-img">
       </h1>
-      <p class="hero-sub" data-editable="hero-tagline" data-label="Hero — Tagline">Sunday Mornings, 10:00 &mdash; Redlands, California</p>
+      <p class="hero-sub" data-editable="hero-tagline" data-label="Hero — Tagline">A small church in Redlands, gathered around the Word every Sunday at ten.</p>
       <div class="hero-actions">
-        <a href="connect.html" class="btn btn-primary" data-editable="hero-btn-1" data-label="Home — Hero Button: Primary">Come This Sunday</a>
-        <a href="about.html" class="btn btn-outline" data-editable="hero-btn-2" data-label="Home — Hero Button: Secondary">Learn About Us</a>
+        <a href="connect.html" class="hero-cta" data-editable="hero-btn-1" data-label="Home — Hero Button">Come this Sunday</a>
       </div>
-      <p class="hero-scripture">&ldquo;make disciples of all the nations &hellip; teaching them to observe all that I commanded you &hellip; I am with you always&rdquo; &mdash; Jesus</p>
     </div>
+    <div class="hero-scroll">Scroll</div>
   </section>
 
   <!-- WHAT TO EXPECT -->
@@ -189,6 +264,7 @@
           <li><a href="about.html">About</a></li>
           <li><a href="leadership.html">Leadership</a></li>
           <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="watch.html">Watch Live</a></li>
           <li><a href="resources.html">Resources</a></li>
           <li><a href="connect.html">Connect</a></li>
           <li><a href="give.html">Give</a></li>
