@@ -739,14 +739,16 @@ const LEGACY_SONGS = {
   },
   "his-forever": {
     title: "His Forever",
-    youtube: "https://www.youtube.com/results?search_query=His+Forever+worship+official",
+    youtube: "https://www.youtube.com/watch?v=N2tAWI3uFWw",
     lyrics: [
-    { label: "", lines: ["Jesus, friend of sinners", "Loved me 'ere I knew Him", "Drew me with His cords of love", "Tightly bound me to Him"] },
-    { label: "", lines: ["'Round my heart still closely twined", "The ties that none can sever", "For I am His and He is mine", "Forever and forever"] },
-    { label: "", lines: ["Jesus, friend of sinners", "A crown of thorns You wore for me", "Bruised for my transgressions", "Pierced for my iniquities"] },
-    { label: "", lines: ["The wrath of God that I deserved", "Was poured out on the Innocent", "He took my place, my soul to save", "Now I am His forever", "Jesus, friend of sinners", "I love to tell the story", "Redeeming love has been my theme", "And will be when in glory"] },
-    { label: "", lines: ["Not death, nor life, nor anything", "Can ever separate me", "O, love that will not let me go", "Yes, I am His forever"] },
-    { label: "", lines: ["Not death, nor life, nor anything", "Can ever separate me", "O, love that will not let me go", "Yes, I am His forever"] }
+    { label: "Verse 1", lines: ["Jesus, friend of sinners", "Loved me 'ere I knew Him", "Drew me with His cords of love", "Tightly bound me to Him"] },
+    { label: "Verse 2", lines: ["'Round my heart still closely twined", "The ties that none can sever", "For I am His and He is mine", "Forever and forever"] },
+    { label: "Verse 3", lines: ["Jesus, friend of sinners", "A crown of thorns You wore for me", "Bruised for my transgressions", "Pierced for my iniquities"] },
+    { label: "Verse 4", lines: ["The wrath of God that I deserved", "Was poured out on the Innocent", "He took my place, my soul to save", "Now I am His forever", "Jesus, friend of sinners", "I love to tell the story", "Redeeming love has been my theme", "And will be when in glory"] },
+    { label: "Verse 5", lines: ["Not death, nor life, nor anything", "Can ever separate me", "O, love that will not let me go", "Yes, I am His forever"] },
+    { label: "Verse 6", lines: ["Not death, nor life, nor anything", "Can ever separate me", "O, love that will not let me go", "Yes, I am His forever"] },
+    { label: "Tag", lines: ["Yes, I am His forever"] },
+    { label: "Tag", lines: ["Yes, I am His forever"] }
   ]
   },
   "his-glory-and-my-good": {
@@ -900,14 +902,14 @@ const LEGACY_SONGS = {
   },
   "i-asked-the-lord-that-i-might-grow": {
     title: "I Asked the Lord That I Might Grow",
-    youtube: "https://www.youtube.com/results?search_query=I+Asked+the+Lord+That+I+Might+Grow+worship+official",
+    youtube: "https://www.youtube.com/watch?v=YCxrROZPCKw",
     lyrics: [
-    { label: "", lines: ["I asked the Lord that I might grow", "In faith, and love, and ev'ry grace", "Might more of His salvation know", "And seek more earnestly His face"] },
-    { label: "", lines: ["'Twas He who taught me thus to pray", "And He, I trust, has answered prayer", "But it has been in such a way", "As almost drove me to despair"] },
-    { label: "", lines: ["I hoped that in some favored hour", "At once He'd answer my request", "And, by His love's constraining pow'r", "Subdue my sins, and give me rest"] },
-    { label: "", lines: ["Instead of this, He made me feel", "The hidden evils of my heart", "And let the angry pow'rs of hell", "Assault my soul in ev'ry part", "Yea, more, with His own hand He seemed", "Intent to aggravate my woe", "Crossed all the fair designs I schemed", "Humbled my heart, and laid me low"] },
-    { label: "", lines: ["\"Lord, why is this?\" I, trembling, cried", "\"Wilt thou pursue Thy worm to death?\"", "\"'Tis in this way,\" the Lord replied,", "\"I answer prayer for grace and faith\""] },
-    { label: "", lines: ["\"These inward trials I employ\"", "\"From self and pride to set you free\"", "\"And break thy schemes of earthly joy\"", "\"That thou may'st find your all in Me\""] }
+    { label: "Verse 1", lines: ["I asked the Lord that I might grow", "In faith, and love, and ev'ry grace", "Might more of His salvation know", "And seek more earnestly His face"] },
+    { label: "Verse 2", lines: ["'Twas He who taught me thus to pray", "And He, I trust, has answered prayer", "But it has been in such a way", "As almost drove me to despair"] },
+    { label: "Verse 3", lines: ["I hoped that in some favored hour", "At once He'd answer my request", "And by His love's constraining pow'r", "Subdue my sins, and give me rest"] },
+    { label: "Verse 4", lines: ["Instead of this, He made me feel", "The hidden evils of my heart", "And let the angry pow'rs of hell", "Assault my soul in ev'ry part", "Yea, more, with His own hand He seemed", "Intent to aggravate my woe", "Crossed all the fair designs I schemed", "Blasted my gourds, and laid me low"] },
+    { label: "Verse 5", lines: ["Lord, why is this? I, trembling, cried", "Wilt thou pursue Thy worm to death?", "'Tis in this way, the Lord replied", "I answer prayer for grace and faith"] },
+    { label: "Verse 6", lines: ["These inward trials I employ", "From self and pride to set thee free", "And break thy schemes of earthly joy", "That thou mayst find thy all in me"] }
   ]
   },
   "i-see-the-lord": {

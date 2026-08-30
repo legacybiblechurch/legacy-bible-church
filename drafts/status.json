@@ -1,32 +1,32 @@
 {
-  "updatedAt": "2026-08-30T07:03:23+00:00",
+  "updatedAt": "2026-08-30T07:17:09+00:00",
   "sunday": "2026-08-30",
   "songs": [
     {
       "input": "his-forever",
-      "review": "",
+      "review": "Approve",
       "chosenVideo": "https://www.youtube.com/watch?v=N2tAWI3uFWw",
-      "status": "draft",
-      "confidence": 85,
-      "message": "8 candidate(s)",
+      "status": "approved",
+      "confidence": null,
+      "message": "approved — https://www.youtube.com/watch?v=N2tAWI3uFWw",
       "slug": "his-forever"
     },
     {
       "input": "i-will-glory-in-my-redeemer",
-      "review": "",
-      "chosenVideo": "",
-      "status": "draft",
-      "confidence": 100,
-      "message": "1 candidate(s)",
+      "review": "Approve",
+      "chosenVideo": "https://www.youtube.com/watch?v=6FrdBz3H6jw",
+      "status": "approved",
+      "confidence": null,
+      "message": "approved — https://www.youtube.com/watch?v=6FrdBz3H6jw",
       "slug": "i-will-glory-in-my-redeemer"
     },
     {
       "input": "i-asked-the-lord-that-i-might-grow",
-      "review": "",
-      "chosenVideo": "",
-      "status": "draft",
-      "confidence": 93,
-      "message": "8 candidate(s)",
+      "review": "Approve",
+      "chosenVideo": "https://www.youtube.com/watch?v=YCxrROZPCKw",
+      "status": "approved",
+      "confidence": null,
+      "message": "approved — https://www.youtube.com/watch?v=YCxrROZPCKw",
       "slug": "i-asked-the-lord-that-i-might-grow"
     }
   ]
