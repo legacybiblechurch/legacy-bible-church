@@ -30,7 +30,7 @@
       --live:      #d9534f;
       --header-h:  52px;
       --footer-h:  62px;
-      --sidebar-w: 224px;
+      --sidebar-w: 250px;
       --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
@@ -86,18 +86,22 @@
       font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
       text-transform: uppercase; color: var(--ink-faint);
     }
-    #song-list { flex: 1; overflow-y: auto; padding-bottom: 8px; }
+    #song-list { flex: 1; overflow-y: auto; padding: 4px 0 8px; }
     .song-item {
-      display: flex; align-items: baseline; gap: 10px;
-      padding: 9px 16px; cursor: pointer;
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 14px 10px 16px; cursor: pointer;
       border-left: 2px solid transparent;
     }
     .song-item:hover { background: var(--panel-2); }
     .song-item.active { border-left-color: var(--gold); background: var(--panel-2); }
-    .song-num { font-size: 11px; color: var(--ink-faint); width: 14px; flex-shrink: 0; font-variant-numeric: tabular-nums; }
-    .song-name { font-size: 13px; font-weight: 500; line-height: 1.35; color: var(--ink-dim); }
+    .song-num { font-size: 11px; color: var(--ink-faint); flex-shrink: 0; font-variant-numeric: tabular-nums; padding-top: 1px; min-width: 12px; }
+    .song-name {
+      flex: 1; min-width: 0;
+      font-size: 13px; font-weight: 500; line-height: 1.4; color: var(--ink-dim);
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
     .song-item.active .song-name { color: var(--ink); }
-    .song-count { margin-left: auto; font-size: 11px; color: var(--ink-faint); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+    .song-count { font-size: 11px; color: var(--ink-faint); flex-shrink: 0; font-variant-numeric: tabular-nums; padding-top: 1px; }
 
     /* ── main / slide grid ──────────────────── */
     #main { flex: 1; overflow-y: auto; padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; }
@@ -188,6 +192,7 @@
 
   <script src="js/songs-data.js"></script>
   <script src="js/worship-songs.js"></script>
+  <script src="js/sheet.js"></script>
   <script>
     var MAX_LINES = 4;
 
@@ -200,8 +205,6 @@
       });
       return slides;
     }
-
-    var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSBczlDX3xoDhPZdmURMEmduM_s1lYvPZiRovZ-ObHroIEsnJ9u1D813GaRlLK6Q9NsDpOTtL4UaRnu/pub?gid=0&single=true&output=csv';
 
     var songs = [], songIdx = 0, slideIdx = 0, isBlank = false;
     var channel = new BroadcastChannel('lbc-worship');
@@ -303,21 +306,7 @@
       render(); broadcast();
     }
 
-    // Prefer the committed setlist (js/worship-songs.js); fall back to the live sheet CSV.
-    if (Array.isArray(window.WORSHIP_SETLIST) && window.WORSHIP_SETLIST.length) {
-      init(window.WORSHIP_SETLIST);
-    } else {
-      fetch(SHEET_CSV)
-        .then(function (r) { return r.text(); })
-        .then(function (csv) {
-          var lines = csv.split('\n').map(function (l) { return l.trim().replace(/\r/g, ''); }).filter(Boolean);
-          var header = lines[0] ? lines[0].toLowerCase().split(',') : [];
-          var hasHeader = header.indexOf('song') !== -1;
-          var slugs = (hasHeader ? lines.slice(1) : lines).map(function (l) { return l.split(',')[0].trim(); }).filter(Boolean);
-          init(slugs);
-        })
-        .catch(function () { init([]); });
-    }
+    LBCSheet.loadSetlist(init);
   </script>
 </body>
 </html>

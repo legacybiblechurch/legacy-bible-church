@@ -158,6 +158,7 @@
 
   <script src="js/songs-data.js"></script>
   <script src="js/worship-songs.js"></script>
+  <script src="js/sheet.js"></script>
   <script>
     /* Build songs from setlist — same source as the website hymnal */
     var MAX_LINES = 4;
@@ -177,7 +178,6 @@
       return slides;
     }
 
-    var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSBczlDX3xoDhPZdmURMEmduM_s1lYvPZiRovZ-ObHroIEsnJ9u1D813GaRlLK6Q9NsDpOTtL4UaRnu/pub?gid=0&single=true&output=csv';
     var SONGS_BUILT = [];
     var songsReady  = false;
     var pendingState = null;
@@ -203,23 +203,8 @@
       }
     }
 
-    // Prefer the committed setlist (js/worship-songs.js) so the display stays in
-    // lock-step with the control panel; fall back to the live sheet CSV.
-    if (Array.isArray(window.WORSHIP_SETLIST) && window.WORSHIP_SETLIST.length) {
-      onSongsReady(window.WORSHIP_SETLIST);
-    } else {
-      fetch(SHEET_CSV)
-        .then(function(r) { return r.text(); })
-        .then(function(csv) {
-          var lines = csv.split('\n').map(function(l) { return l.trim().replace(/\r/g, ''); }).filter(Boolean);
-          var header = lines[0] ? lines[0].toLowerCase().split(',') : [];
-          var hasHeader = header.indexOf('song') !== -1;
-          var slugs = (hasHeader ? lines.slice(1) : lines)
-            .map(function(l) { return l.split(',')[0].trim(); }).filter(Boolean);
-          onSongsReady(slugs);
-        })
-        .catch(function() { onSongsReady([]); });
-    }
+    // committed setlist first (keeps display in lock-step with control), sheet CSV fallback
+    LBCSheet.loadSetlist(onSongsReady);
 
     var channel    = new BroadcastChannel('lbc-worship');
     var standby    = document.getElementById('standby');

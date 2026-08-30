@@ -192,6 +192,7 @@
   </main>
 
   <script src="js/songs-data.js"></script>
+  <script src="js/sheet.js"></script>
   <script>
     var MAX_LINES = 4;
     function buildSlides(lyrics) {
@@ -297,34 +298,28 @@
       '</div>';
     }
 
-    function parseCsv(text) {
-      var rows = text.split(/\r?\n/).filter(function (l) { return l.trim(); }).map(function (l) {
-        // simple CSV: no quoted commas expected in this sheet
-        return l.split(',').map(function (c) { return c.trim(); });
-      });
+    function reviewStateFromCsv(text) {
+      var rows = LBCSheet.parseCsv(text);
       if (!rows.length) return {};
-      var head = rows[0].map(function (h) { return h.toLowerCase(); });
-      var hasHeader = head.indexOf('song') !== -1;
+      var head = rows[0].map(function (h) { return h.trim().toLowerCase(); });
+      if (head.indexOf('song') === -1) return {};
+      var iS = head.indexOf('song'), iV = head.indexOf('video'), iR = head.indexOf('review');
       var out = {};
-      var body = hasHeader ? rows.slice(1) : rows;
-      body.forEach(function (r) {
-        var song = hasHeader ? r[head.indexOf('song')] : r[0];
-        if (!song) return;
-        out[song.toLowerCase()] = {
-          video: hasHeader && head.indexOf('video') !== -1 ? r[head.indexOf('video')] : '',
-          review: hasHeader && head.indexOf('review') !== -1 ? r[head.indexOf('review')] : ''
+      rows.slice(1).forEach(function (r) {
+        var song = (r[iS] || '').trim();
+        if (song) out[song.toLowerCase()] = {
+          video: iV > -1 ? (r[iV] || '').trim() : '',
+          review: iR > -1 ? (r[iR] || '').trim() : ''
         };
       });
       return out;
     }
 
-    var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSBczlDX3xoDhPZdmURMEmduM_s1lYvPZiRovZ-ObHroIEsnJ9u1D813GaRlLK6Q9NsDpOTtL4UaRnu/pub?gid=0&single=true&output=csv';
-
     function load() {
       var bust = '?t=' + Date.now();
       Promise.all([
         fetch('drafts/status.json' + bust).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }),
-        fetch(SHEET_CSV + bust).then(function (r) { return r.text(); }).then(parseCsv).catch(function () { return {}; })
+        fetch(LBCSheet.SHEET_CSV + bust).then(function (r) { return r.text(); }).then(reviewStateFromCsv).catch(function () { return {}; })
       ]).then(function (res) {
         var status = res[0], live = res[1];
         if (!status || !status.songs || !status.songs.length) {
