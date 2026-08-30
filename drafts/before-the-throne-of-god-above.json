@@ -4,8 +4,8 @@
   "input": "before-the-throne-of-god-above",
   "isNew": false,
   "forced": null,
-  "signature": "9ebac98f887bd088",
-  "generatedAt": "2026-08-30T05:26:24+00:00",
+  "signature": "ca4b90f9a33113ab",
+  "generatedAt": "2026-08-30T06:06:45+00:00",
   "candidates": [
     {
       "videoId": "4MUNywhsZPU",
@@ -17,11 +17,56 @@
       "duration": "3:23",
       "views": 3328197,
       "hasCaptions": false,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "No transcript (ERROR: [youtube] 4MUNywhsZPU: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-).",
-      "order": ""
+      "lyrics": [
+        {
+          "label": "Verse 1",
+          "lines": [
+            "Before the throne of God above I have a strong and perfect plea",
+            "A great High Priest whose name is Love",
+            "Whoever lives and pleads for me",
+            "My name is graven on His hands",
+            "My name is written on His heart",
+            "I know that while in heaven He stands",
+            "No tongue can bid me thence depart"
+          ]
+        },
+        {
+          "label": "Verse 2",
+          "lines": [
+            "When Satan tempts me to despair",
+            "And tells me of the guilt within",
+            "Upward I look and see Him there",
+            "Who made an end to all my sin",
+            "Because the sinless Savior died",
+            "My sinful soul is counted free",
+            "For God the Just is satisfied",
+            "To look on Him and pardon me"
+          ]
+        },
+        {
+          "label": "Verse 3",
+          "lines": [
+            "Behold Him there in the risen Lamb",
+            "My perfect spotless righteousness",
+            "The great unchangeable I AM",
+            "The King of glory and of grace",
+            "One with Himself I cannot die",
+            "My soul is purchased by His blood",
+            "My life is hid with Christ on high",
+            "With Christ my Savior and my God"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "One with Himself I cannot die"
+          ]
+        }
+      ],
+      "transcriptSource": "asr",
+      "confidence": 78,
+      "notes": "Auto‑generated captions were clear enough to determine verse order. The final line repeats as a tag rather than a full verse repeat, so it is output as a separate one‑line block.",
+      "order": "Verse 1 · Verse 2 · Verse 3 · Tag"
     },
     {
       "videoId": "LULK2nZ6sCc",
@@ -31,65 +76,68 @@
       "publishedAt": "2014-04-23T18:10:26Z",
       "durationSec": 215,
       "duration": "3:35",
-      "views": 2396124,
+      "views": 2396177,
       "hasCaptions": false,
       "lyrics": [
         {
           "label": "Verse 1",
           "lines": [
-            "Before the throne of God above I have a strong and perfect plea",
-            "Great high priest whose name is Love, whoever lives and pleads for me",
-            "Graven on his hands, my name is written on his heart",
-            "I know that while in heaven He stands, no tongue can bid me thence"
+            "Before the throne of God above",
+            "I have a strong and perfect plea",
+            "A great High Priest whose name is Love",
+            "Who ever lives and pleads for me",
+            "My name is graven on His hands",
+            "My name is written on His heart",
+            "I know that while in heaven He stands",
+            "No tongue can bid me thence depart"
           ]
         },
         {
           "label": "Tag",
           "lines": [
-            "No tongue can bid me thence"
+            "No tongue can bid me thence depart"
           ]
         },
         {
           "label": "Verse 2",
           "lines": [
-            "When Satan tempts me to despair and tells me of the guilt within, upward I look and see Him there",
-            "Who made an end to all my sin because the sinless Savior died",
-            "My sinful soul is counted free, for God the Just is satisfied",
-            "To look on Him and pardon me",
-            "To look on Him and pardon"
+            "When Satan tempts me to despair",
+            "And tells me of the guilt within",
+            "Upward I look and see Him there",
+            "Who made an end to all my sin",
+            "Because the sinless Savior died",
+            "My sinful soul is counted free",
+            "For God the Just is satisfied",
+            "To look on Him and pardon me"
           ]
         },
         {
           "label": "Verse 3",
           "lines": [
-            "Behold Him there the risen Lamb, my perfect spotless righteousness",
-            "The great unchangeable I AM, the King of glory and of grace",
-            "One with Himself; I cannot die",
-            "My soul is purchased by His blood, my life is hid with Christ on high",
+            "Behold Him there the risen Lamb",
+            "My perfect spotless righteousness",
+            "The great unchangeable I AM",
+            "The King of glory and of grace",
+            "One with Himself I cannot die",
+            "My soul is purchased by His blood",
+            "My life is hid with Christ on high",
             "With Christ my Savior and my God"
           ]
         },
         {
-          "label": "Verse 3",
+          "label": "Verse 3 (repeat)",
           "lines": [
-            "Behold Him there the risen Lamb, my perfect spotless righteousness",
-            "The great unchangeable I AM, the King of glory and of grace",
-            "One with Himself; I cannot die",
-            "My soul is purchased by His blood, my life is hid with Christ on high",
-            "With Christ my Savior and my God"
-          ]
-        },
-        {
-          "label": "Tag",
-          "lines": [
+            "One with Himself I cannot die",
+            "My soul is purchased by His blood",
+            "My life is hid with Christ on high",
             "With Christ my Savior and my God"
           ]
         }
       ],
       "transcriptSource": "asr",
       "confidence": 78,
-      "notes": "Auto‑generated captions were garbled in places (e.g., \"deepart\", \"SA your Die\"). Used reference wording where clear, otherwise followed the transcript. The repeated \"Verse 3\" block reflects the clear duplication of those lines in the recording. Tags capture single‑line repeats that appear at the end of sections.",
-      "order": "Verse 1 · Tag · Verse 2 · Verse 3 · Verse 3 · Tag"
+      "notes": "Auto‑generated captions are garbled in places, but the overall verse/chorus order is clear. The tag line is inferred from a brief repeat of \"no tongue can bid me thence\". The final block repeats the last four lines of Verse 3, which appears twice in the transcript; other repeated lines in the reference were not shown in the recording, so they were omitted.",
+      "order": "Verse 1 · Tag · Verse 2 · Verse 3 · Verse 3 (repeat)"
     },
     {
       "videoId": "EQ6QaZcPphM",
@@ -99,7 +147,7 @@
       "publishedAt": "2010-07-21T13:19:07Z",
       "durationSec": 397,
       "duration": "6:37",
-      "views": 2036015,
+      "views": 2036013,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
@@ -115,7 +163,7 @@
       "publishedAt": "2023-04-28T17:49:06Z",
       "durationSec": 187,
       "duration": "3:07",
-      "views": 655391,
+      "views": 655423,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
@@ -131,7 +179,7 @@
       "publishedAt": "2021-11-21T18:48:33Z",
       "durationSec": 281,
       "duration": "4:41",
-      "views": 73816,
+      "views": 73813,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",

@@ -4,111 +4,9 @@
   "input": "gladly-would-i-leave-behind-me",
   "isNew": false,
   "forced": null,
-  "signature": "d4c090e059a4c466",
-  "generatedAt": "2026-08-30T05:43:14+00:00",
+  "signature": "7d889b39dfa02106",
+  "generatedAt": "2026-08-30T06:07:12+00:00",
   "candidates": [
-    {
-      "videoId": "qm4KGWvz4KU",
-      "url": "https://www.youtube.com/watch?v=qm4KGWvz4KU",
-      "title": "Gladly Would I Leave Behind Me [Official Lyric Video]",
-      "channel": "SovereignGraceMusic",
-      "publishedAt": "2013-11-26T22:12:20Z",
-      "durationSec": 401,
-      "duration": "6:41",
-      "views": 117482,
-      "hasCaptions": false,
-      "lyrics": [
-        {
-          "label": "Verse 1",
-          "lines": [
-            "Gladly would I leave behind me",
-            "All the pleasure I have known",
-            "To pursue surpassing treasures",
-            "At the throne of God the Son",
-            "Worthy of unending worship",
-            "Love and loveliness is He",
-            "By His precious death were millions",
-            "From the jaws of death set free"
-          ]
-        },
-        {
-          "label": "Verse 2",
-          "lines": [
-            "Gladly would I give to Jesus",
-            "All affection, everything",
-            "For the washing of His mercy",
-            "Makes my ransomed heart to sing"
-          ]
-        },
-        {
-          "label": "Chorus",
-          "lines": [
-            "Holy, holy! is the chorus",
-            "Rising up from those who see",
-            "Christ exalted, bright and burning",
-            "Full of power and purity"
-          ]
-        },
-        {
-          "label": "Bridge",
-          "lines": [
-            "Where else can I go?",
-            "Jesus, You're the One",
-            "That I was made to know"
-          ]
-        },
-        {
-          "label": "Bridge",
-          "lines": [
-            "What else can I do?",
-            "Jesus, You're my all",
-            "I gladly run to You"
-          ]
-        },
-        {
-          "label": "Verse 3",
-          "lines": [
-            "Gladly would I flee temptations",
-            "For their troubles fill my life",
-            "Turn and seek my God and Savior",
-            "For His goodness satisfies",
-            "Earthly treasures, all are passing",
-            "Thieves break in and rust destroys",
-            "But in God are awesome splendor",
-            "Love, and everlasting joys"
-          ]
-        },
-        {
-          "label": "Bridge",
-          "lines": [
-            "Where else can I go?",
-            "Jesus, You're the One",
-            "That I was made to know"
-          ]
-        },
-        {
-          "label": "Bridge",
-          "lines": [
-            "What else can I do?",
-            "Jesus, You're my all",
-            "I gladly run to You"
-          ]
-        },
-        {
-          "label": "Verse 2",
-          "lines": [
-            "Gladly would I give to Jesus",
-            "All affection, everything",
-            "For the washing of His mercy",
-            "Makes my ransomed heart to sing"
-          ]
-        }
-      ],
-      "transcriptSource": "asr",
-      "confidence": 78,
-      "notes": "Auto‑generated captions were noisy but clearly showed the sequence: Verse 1, Verse 2, Chorus, Bridge (two‑part), Verse 3, two Bridge repeats, then Verse 2 again. Garbled text after 330 s was ignored. Reference wording was used; minor caption errors were corrected using the reference.",
-      "order": "Verse 1 · Verse 2 · Chorus · Bridge · Bridge · Verse 3 · Bridge · Bridge · Verse 2"
-    },
     {
       "videoId": "EFpexotDL5A",
       "url": "https://www.youtube.com/watch?v=EFpexotDL5A",
@@ -192,6 +90,22 @@
           ]
         },
         {
+          "label": "Bridge",
+          "lines": [
+            "Where else can I go?",
+            "Jesus, You're the One",
+            "That I was made to know"
+          ]
+        },
+        {
+          "label": "Bridge",
+          "lines": [
+            "What else can I do?",
+            "Jesus, You're my all",
+            "I gladly run to You"
+          ]
+        },
+        {
           "label": "Verse 2",
           "lines": [
             "Gladly would I give to Jesus",
@@ -206,9 +120,126 @@
         }
       ],
       "transcriptSource": "asr",
-      "confidence": 65,
-      "notes": "Auto‑generated captions were highly garbled; structure was inferred from the reference lyrics. The transcript confirms the presence of Verse 1, Verse 2, a bridge, Verse 3, multiple bridge repeats, and a final repeat of Verse 2, but exact line ordering and repeats could not be reliably extracted, so the reference order was used.",
-      "order": "Verse 1 · Verse 2 · Bridge · Bridge · Verse 3 · Bridge · Bridge · Verse 2"
+      "confidence": 78,
+      "notes": "Auto‑generated captions are garbled but clearly show the sequence: Verse 1, Verse 2, Bridge 1, Bridge 2, Verse 3, then Bridge 1/2 repeated twice, and a final repeat of Verse 2. Used reference wording for all lines; repeated bridge sections are included only where the transcript repeats them. Confidence moderate due to caption quality.",
+      "order": "Verse 1 · Verse 2 · Bridge · Bridge · Verse 3 · Bridge · Bridge · Bridge · Bridge · Verse 2"
+    },
+    {
+      "videoId": "qm4KGWvz4KU",
+      "url": "https://www.youtube.com/watch?v=qm4KGWvz4KU",
+      "title": "Gladly Would I Leave Behind Me [Official Lyric Video]",
+      "channel": "SovereignGraceMusic",
+      "publishedAt": "2013-11-26T22:12:20Z",
+      "durationSec": 401,
+      "duration": "6:41",
+      "views": 117480,
+      "hasCaptions": false,
+      "lyrics": [
+        {
+          "label": "Verse 1",
+          "lines": [
+            "Gladly would I leave behind me",
+            "All the pleasure I have known",
+            "To pursue surpassing treasures",
+            "At the throne of God the Son",
+            "Worthy of unending worship",
+            "Love and loveliness is He",
+            "By His precious death were millions",
+            "From the jaws of death set free"
+          ]
+        },
+        {
+          "label": "Verse 2",
+          "lines": [
+            "Gladly would I give to Jesus",
+            "All affection, everything",
+            "For the washing of His mercy",
+            "Makes my ransomed heart to sing",
+            "\"Holy, holy!\" is the chorus",
+            "Rising up from those who see",
+            "Christ exalted, bright and burning",
+            "Full of pow'r and purity"
+          ]
+        },
+        {
+          "label": "Bridge 1",
+          "lines": [
+            "Where else can I go?",
+            "Jesus, You're the One",
+            "That I was made to know"
+          ]
+        },
+        {
+          "label": "Bridge 2",
+          "lines": [
+            "What else can I do?",
+            "Jesus, You're my all",
+            "I gladly run to You"
+          ]
+        },
+        {
+          "label": "Verse 3",
+          "lines": [
+            "Gladly would I flee temptations",
+            "For their troubles fill my life",
+            "Turn and seek my God and Savior",
+            "For His goodness satisfies",
+            "Earthly treasures, all are passing",
+            "Thieves break in and rust destroys",
+            "But in God are awesome splendor",
+            "Love, and everlasting joys"
+          ]
+        },
+        {
+          "label": "Bridge 1",
+          "lines": [
+            "Where else can I go?",
+            "Jesus, You're the One",
+            "That I was made to know"
+          ]
+        },
+        {
+          "label": "Bridge 2",
+          "lines": [
+            "What else can I do?",
+            "Jesus, You're my all",
+            "I gladly run to You"
+          ]
+        },
+        {
+          "label": "Bridge 1",
+          "lines": [
+            "Where else can I go?",
+            "Jesus, You're the One",
+            "That I was made to know"
+          ]
+        },
+        {
+          "label": "Bridge 2",
+          "lines": [
+            "What else can I do?",
+            "Jesus, You're my all",
+            "I gladly run to You"
+          ]
+        },
+        {
+          "label": "Verse 2",
+          "lines": [
+            "Gladly would I give to Jesus",
+            "All affection, everything",
+            "For the washing of His mercy",
+            "Makes my ransomed heart to sing",
+            "\"Holy, holy!\" is the chorus",
+            "Rising up from those who see",
+            "Christ exalted, bright and burning",
+            "Full of pow'r and purity"
+          ]
+        }
+      ],
+      "transcriptSource": "asr",
+      "confidence": 78,
+      "notes": "Auto‑generated captions were garbled but clearly showed the sequence: Verse 1 → Verse 2 → Bridge 1 → Bridge 2 → Verse 3 → Bridge 1 → Bridge 2 → Bridge 1 → Bridge 2 → Verse 2. Used reference wording for all lines; repeated bridge sections exactly as in the reference. Confidence moderate due to caption errors.",
+      "order": "Verse 1 · Verse 2 · Bridge 1 · Bridge 2 · Verse 3 · Bridge 1 · Bridge 2 · Bridge 1 · Bridge 2 · Verse 2"
     },
     {
       "videoId": "C3PMRnRyfVM",
