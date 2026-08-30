@@ -1,0 +1,143 @@
+{
+  "slug": "before-the-throne-of-god-above",
+  "title": "Before the Throne of God Above",
+  "input": "before-the-throne-of-god-above",
+  "isNew": false,
+  "forced": null,
+  "signature": "9ebac98f887bd088",
+  "generatedAt": "2026-08-30T05:26:24+00:00",
+  "candidates": [
+    {
+      "videoId": "4MUNywhsZPU",
+      "url": "https://www.youtube.com/watch?v=4MUNywhsZPU",
+      "title": "Before the Throne of God Above - Selah [with lyrics]",
+      "channel": "Worship Videos (Louange et Adoration)",
+      "publishedAt": "2016-09-26T15:00:08Z",
+      "durationSec": 203,
+      "duration": "3:23",
+      "views": 3328197,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (ERROR: [youtube] 4MUNywhsZPU: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-).",
+      "order": ""
+    },
+    {
+      "videoId": "LULK2nZ6sCc",
+      "url": "https://www.youtube.com/watch?v=LULK2nZ6sCc",
+      "title": "Before the Throne of God Above (feat. Kristyn Getty) - Official Lyric Video",
+      "channel": "SovereignGraceMusic",
+      "publishedAt": "2014-04-23T18:10:26Z",
+      "durationSec": 215,
+      "duration": "3:35",
+      "views": 2396124,
+      "hasCaptions": false,
+      "lyrics": [
+        {
+          "label": "Verse 1",
+          "lines": [
+            "Before the throne of God above I have a strong and perfect plea",
+            "Great high priest whose name is Love, whoever lives and pleads for me",
+            "Graven on his hands, my name is written on his heart",
+            "I know that while in heaven He stands, no tongue can bid me thence"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "No tongue can bid me thence"
+          ]
+        },
+        {
+          "label": "Verse 2",
+          "lines": [
+            "When Satan tempts me to despair and tells me of the guilt within, upward I look and see Him there",
+            "Who made an end to all my sin because the sinless Savior died",
+            "My sinful soul is counted free, for God the Just is satisfied",
+            "To look on Him and pardon me",
+            "To look on Him and pardon"
+          ]
+        },
+        {
+          "label": "Verse 3",
+          "lines": [
+            "Behold Him there the risen Lamb, my perfect spotless righteousness",
+            "The great unchangeable I AM, the King of glory and of grace",
+            "One with Himself; I cannot die",
+            "My soul is purchased by His blood, my life is hid with Christ on high",
+            "With Christ my Savior and my God"
+          ]
+        },
+        {
+          "label": "Verse 3",
+          "lines": [
+            "Behold Him there the risen Lamb, my perfect spotless righteousness",
+            "The great unchangeable I AM, the King of glory and of grace",
+            "One with Himself; I cannot die",
+            "My soul is purchased by His blood, my life is hid with Christ on high",
+            "With Christ my Savior and my God"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "With Christ my Savior and my God"
+          ]
+        }
+      ],
+      "transcriptSource": "asr",
+      "confidence": 78,
+      "notes": "Auto‑generated captions were garbled in places (e.g., \"deepart\", \"SA your Die\"). Used reference wording where clear, otherwise followed the transcript. The repeated \"Verse 3\" block reflects the clear duplication of those lines in the recording. Tags capture single‑line repeats that appear at the end of sections.",
+      "order": "Verse 1 · Tag · Verse 2 · Verse 3 · Verse 3 · Tag"
+    },
+    {
+      "videoId": "EQ6QaZcPphM",
+      "url": "https://www.youtube.com/watch?v=EQ6QaZcPphM",
+      "title": "Before The Throne of God Above (with intro and lyrics)",
+      "channel": "WTU208",
+      "publishedAt": "2010-07-21T13:19:07Z",
+      "durationSec": 397,
+      "duration": "6:37",
+      "views": 2036015,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "",
+      "order": ""
+    },
+    {
+      "videoId": "yV6mQxlZ78g",
+      "url": "https://www.youtube.com/watch?v=yV6mQxlZ78g",
+      "title": "Before the Throne of God Above  (Hymn 187) - Hymnology (Official Video)",
+      "channel": "Hymns of Grace",
+      "publishedAt": "2023-04-28T17:49:06Z",
+      "durationSec": 187,
+      "duration": "3:07",
+      "views": 655391,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "",
+      "order": ""
+    },
+    {
+      "videoId": "7qkd28xUBi0",
+      "url": "https://www.youtube.com/watch?v=7qkd28xUBi0",
+      "title": "Shane and Shane - Before the Throne of God Above Lyrics",
+      "channel": "Worship Lyric Initiative",
+      "publishedAt": "2021-11-21T18:48:33Z",
+      "durationSec": 281,
+      "duration": "4:41",
+      "views": 73816,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "",
+      "order": ""
+    }
+  ]
+}
