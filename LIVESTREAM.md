@@ -88,6 +88,48 @@ between camera and slides.
   - `SERVICE_TIME` — the text shown on the page.
 - The "Watch Live" menu link is in every page's nav, mobile menu, and footer.
 
+## Streaming over Google Meet (fallback — no YouTube needed)
+
+Use this when YouTube Live isn't available (e.g. the 24-hour activation hasn't
+passed yet) or it's just a couple of people at home. It carries the pastor on a
+phone and the song lyrics + audio from the laptop.
+
+**The setup:**
+
+- **Phone** — in the Meet, camera on the pastor, mic = his lav / a feed from
+  the sound board. This is the voice.
+- **Laptop** — in the Meet with **its mic muted and camera off**. It runs
+  Control (window 1), Display (window 2, dragged onto the TV and full-screen),
+  and Song Videos (a tab). It screen-shares to the Meet **and** drives the TV
+  over HDMI — both at once, no conflict.
+- Plug **earbuds into the laptop** (nobody wears them). That keeps the Meet's
+  incoming audio from playing out the speakers and echoing into your share.
+
+**The catch on a Mac:** Google Meet on macOS **cannot share system audio**, only
+one tab's audio at a time. So you switch what you're sharing as the service
+moves:
+
+| Moment | Share this | Tab audio |
+|---|---|---|
+| Preaching, prayer, announcements | the **Display** tab | off — voice comes from the phone |
+| A song | the **Song Videos** video tab | **on** ("Also share tab audio") |
+
+When a song starts: hit Play on Song Videos, go to the video's tab, click
+Chrome's **"Share this tab instead"**, tick **Also share tab audio**. When it
+ends, switch the share back to the Display tab. The people at home never lose the
+words — Display slides during the sermon, YouTube lyrics during songs.
+
+**Notes:**
+
+- The pastor's mic picks up a little room music during songs → a faint echo
+  behind the clean feed. Mute the phone during songs if it bothers anyone.
+- To avoid the tab-switching entirely you'd need a virtual audio device
+  (**BlackHole**, free) so Meet can grab system audio — but it's fiddly to set
+  up and one more thing to break on a Sunday morning. Tab-switching is safer.
+- On a **Windows** laptop this is easier: share **"Entire screen"** with
+  **"Share system audio"** ticked, Display full-screen, and everything the
+  laptop plays goes into the Meet with no switching.
+
 ## Troubleshooting
 
 - **Page says "Nothing streaming right now" during the service** — you haven't
