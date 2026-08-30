@@ -318,7 +318,7 @@
     function load() {
       var bust = '?t=' + Date.now();
       Promise.all([
-        fetch('drafts/_status.json' + bust).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }),
+        fetch('drafts/status.json' + bust).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }),
         fetch(SHEET_CSV + bust).then(function (r) { return r.text(); }).then(parseCsv).catch(function () { return {}; })
       ]).then(function (res) {
         var status = res[0], live = res[1];

@@ -2,7 +2,7 @@
 Worship prep pipeline.  Run with no args on a schedule; it does both passes:
 
   Pass A (draft)  - for every Sheet row not yet approved: find candidate videos and
-                    draft lyrics for each. Writes drafts/<slug>.json + drafts/_status.json.
+                    draft lyrics for each. Writes drafts/<slug>.json + drafts/status.json.
                     Never touches js/songs-data.js.
 
   Pass B (apply)  - for every row with Review = "Approve": take the chosen video
@@ -36,7 +36,7 @@ from transcript import fetch_transcript
 
 REPO = Path(__file__).resolve().parents[2]
 DRAFTS = REPO / "drafts"
-STATUS = DRAFTS / "_status.json"
+STATUS = DRAFTS / "status.json"
 
 MAX_CANDIDATES = 5
 RECONCILE_TOP = 2          # only draft lyrics for the N best candidates (API cost / rate limits)
