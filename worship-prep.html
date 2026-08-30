@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worship Prep — LBC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:        #0d0d0f;
+      --panel:     #161618;
+      --panel-2:   #1c1c1f;
+      --line:      #2a2a2e;
+      --line-soft: #202024;
+      --ink:       #ececed;
+      --ink-dim:   #9a9a9e;
+      --ink-faint: #6a6a6e;
+      --gold:      #c9a84c;
+      --good:      #7bb37e;
+      --warn:      #d8a657;
+      --bad:       #d98a7a;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    @font-face {
+      font-family: 'Priestacy';
+      src: url('fonts/Priestacy.woff') format('woff'),
+           url('fonts/Priestacy.otf') format('opentype');
+      font-display: swap;
+    }
+
+    html, body { background: var(--bg); color: var(--ink); font-family: var(--font); }
+    body { line-height: 1.5; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
+
+    a { color: inherit; }
+
+    /* ── header ─────────────────────────────── */
+    header {
+      border-bottom: 1px solid var(--line);
+      padding: 22px 28px 20px;
+      display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap;
+    }
+    .brand {
+      font-family: 'Priestacy', var(--font);
+      font-size: 30px; letter-spacing: 0.01em; color: var(--ink);
+    }
+    .sub { font-size: 13px; color: var(--ink-dim); }
+    .header-links { margin-left: auto; display: flex; gap: 18px; font-size: 13px; }
+    .header-links a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 2px; }
+    .header-links a:hover { color: var(--ink); border-color: var(--line); }
+
+    main { max-width: 1080px; margin: 0 auto; padding: 24px 28px; }
+
+    .hint {
+      background: var(--panel); border: 1px solid var(--line-soft);
+      border-radius: 8px; padding: 14px 16px; font-size: 13px; color: var(--ink-dim);
+      margin-bottom: 28px;
+    }
+    .hint b { color: var(--ink); font-weight: 600; }
+    .hint code {
+      background: var(--panel-2); border: 1px solid var(--line);
+      padding: 1px 6px; border-radius: 4px; font-size: 12px; color: var(--ink);
+    }
+
+    /* ── song block ─────────────────────────── */
+    .song { margin-bottom: 40px; }
+    .song-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px; }
+    .song-num { font-size: 13px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+    .song-title { font-size: 20px; font-weight: 600; }
+    .song-meta { font-size: 12.5px; color: var(--ink-dim); margin-bottom: 16px; }
+
+    .pill {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 100px; border: 1px solid var(--line);
+      color: var(--ink-dim);
+    }
+    .pill.approved { color: var(--gold); border-color: rgba(201,168,76,0.4); }
+    .pill.draft { color: var(--ink-dim); }
+    .pill.error { color: var(--bad); border-color: rgba(217,138,122,0.4); }
+
+    /* ── candidates ─────────────────────────── */
+    .cands { display: flex; flex-direction: column; gap: 8px; }
+    .cand {
+      border: 1px solid var(--line-soft); border-radius: 8px;
+      background: var(--panel); overflow: hidden;
+    }
+    .cand.chosen { border-color: rgba(201,168,76,0.5); }
+    .cand-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 12px 14px; cursor: pointer; user-select: none;
+    }
+    .cand-row:hover { background: var(--panel-2); }
+    .cand-rank { font-size: 12px; color: var(--ink-faint); width: 14px; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+    .cand-main { flex: 1; min-width: 0; }
+    .cand-title { display: block; font-size: 13.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cand-facts { display: block; font-size: 12px; color: var(--ink-dim); margin-top: 2px; }
+    .badge {
+      font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 4px;
+      border: 1px solid var(--line); color: var(--ink-dim); white-space: nowrap; flex-shrink: 0;
+    }
+    .badge.cap-subs { color: var(--good); border-color: rgba(123,179,126,0.35); }
+    .badge.cap-asr { color: var(--warn); border-color: rgba(216,166,87,0.3); }
+    .badge.cap-whisper { color: var(--good); border-color: rgba(123,179,126,0.35); }
+    .badge.cap-none { color: var(--ink-faint); }
+    .conf { font-variant-numeric: tabular-nums; }
+    .conf.hi { color: var(--good); }
+    .conf.mid { color: var(--warn); }
+    .conf.lo { color: var(--bad); }
+    .chev { color: var(--ink-faint); font-size: 12px; flex-shrink: 0; transition: transform 0.15s; }
+    .cand.open .chev { transform: rotate(90deg); }
+
+    /* ── expanded panel ─────────────────────── */
+    .cand-body { display: none; border-top: 1px solid var(--line-soft); }
+    .cand.open .cand-body { display: grid; grid-template-columns: minmax(0, 380px) 1fr; align-items: start; }
+    @media (max-width: 820px) { .cand.open .cand-body { grid-template-columns: 1fr; } }
+
+    .player { padding: 14px; }
+    .lyrics { border-left: 1px solid var(--line-soft); }
+    @media (max-width: 820px) {
+      .player { border-bottom: 1px solid var(--line-soft); }
+      .lyrics { border-left: none; }
+    }
+    .player iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 6px; background: #000; display: block; }
+    .thumb {
+      position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 6px;
+      overflow: hidden; cursor: pointer; background: #000;
+    }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .thumb::after {
+      content: '▶'; position: absolute; inset: 0; margin: auto;
+      width: 54px; height: 54px; line-height: 54px; text-align: center;
+      font-size: 18px; color: #fff; background: rgba(0,0,0,0.55);
+      border-radius: 50%; padding-left: 4px;
+    }
+    .thumb:hover::after { background: rgba(0,0,0,0.75); }
+    .player-actions { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn {
+      font: inherit; font-size: 12px; font-weight: 500;
+      background: var(--panel-2); color: var(--ink); border: 1px solid var(--line);
+      padding: 6px 11px; border-radius: 6px; cursor: pointer;
+    }
+    .btn:hover { border-color: var(--ink-faint); }
+    .btn.copied { color: var(--good); border-color: rgba(123,179,126,0.4); }
+
+    .lyrics { padding: 14px 16px; }
+    .notes {
+      font-size: 12.5px; color: var(--ink-dim); margin-bottom: 12px;
+      padding-bottom: 12px; border-bottom: 1px solid var(--line-soft);
+    }
+    .notes .order { color: var(--ink); font-weight: 500; }
+    .slide {
+      border: 1px solid var(--line-soft); border-radius: 6px;
+      padding: 10px 12px; margin-bottom: 6px; background: var(--bg);
+    }
+    .slide-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 4px;
+    }
+    .slide-line { font-size: 13.5px; color: var(--ink); }
+    .no-lyrics { font-size: 13px; color: var(--ink-faint); font-style: italic; padding: 8px 0; }
+
+    .loading, .empty { color: var(--ink-dim); font-size: 14px; padding: 40px 0; text-align: center; }
+    .stale { font-size: 12px; color: var(--warn); margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="brand">Worship Prep</span>
+    <span class="sub" id="sunday-line"></span>
+    <span class="header-links">
+      <a href="worship-control.html">Control &rarr;</a>
+      <a href="setlist.html">Setlist &rarr;</a>
+    </span>
+  </header>
+
+  <main>
+    <div class="hint">
+      Pick the video that <b>sounds right</b> and whose lyrics below match it.
+      To lock it in: open the setlist sheet, put that video's URL in the <b>Video</b>
+      column, set <b>Review</b> to <code>Approve</code>. Nothing reaches the screen until you do.
+      Type any wording fixes in the <b>Fixes</b> column.
+    </div>
+    <div id="songs"><div class="loading">Loading this week's drafts&hellip;</div></div>
+  </main>
+
+  <script src="js/songs-data.js"></script>
+  <script>
+    var MAX_LINES = 4;
+    function buildSlides(lyrics) {
+      var slides = [];
+      (lyrics || []).forEach(function (block) {
+        var lines = block.lines || [], lbl = block.label || '';
+        if (lines.length <= MAX_LINES) { slides.push({ label: lbl, lines: lines }); }
+        else { for (var i = 0; i < lines.length; i += MAX_LINES) slides.push({ label: lbl, lines: lines.slice(i, i + MAX_LINES) }); }
+      });
+      return slides;
+    }
+    function esc(t) { return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    function decode(t) { var d = document.createElement('textarea'); d.innerHTML = t || ''; return d.value; }
+    function fmtViews(n) { n = n || 0; return n >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : n >= 1e3 ? Math.round(n / 1e3) + 'K' : String(n); }
+
+    var CAP_LABEL = { subs: 'Human captions', asr: 'Auto captions', whisper: 'Transcribed audio', none: 'No captions' };
+
+    function confClass(c) { return c >= 85 ? 'hi' : c >= 65 ? 'mid' : 'lo'; }
+
+    function candidateHTML(c, rank, chosenId) {
+      var cap = c.transcriptSource || 'none';
+      var hasLy = c.lyrics && c.lyrics.length;
+      var slides = hasLy ? buildSlides(c.lyrics) : [];
+      var isChosen = chosenId && c.videoId === chosenId;
+      return '' +
+      '<div class="cand' + (isChosen ? ' chosen' : '') + '" data-vid="' + c.videoId + '">' +
+        '<div class="cand-row" onclick="toggleCand(this)">' +
+          '<span class="cand-rank">' + (rank + 1) + '</span>' +
+          '<span class="cand-main">' +
+            '<span class="cand-title">' + esc(decode(c.title)) + (isChosen ? ' &nbsp;&middot; chosen' : '') + '</span>' +
+            '<span class="cand-facts">' + esc(decode(c.channel)) + ' &nbsp;&middot;&nbsp; ' + (c.duration || '?') +
+              ' &nbsp;&middot;&nbsp; ' + fmtViews(c.views) + ' views</span>' +
+          '</span>' +
+          '<span class="badge cap-' + cap + '">' + CAP_LABEL[cap] + '</span>' +
+          (hasLy ? '<span class="badge conf ' + confClass(c.confidence) + '">' + c.confidence + '% match</span>' : '') +
+          '<span class="chev">&#9656;</span>' +
+        '</div>' +
+        '<div class="cand-body">' +
+          '<div class="player">' +
+            '<div class="thumb" data-vid="' + c.videoId + '" onclick="playThumb(this)">' +
+              '<img loading="lazy" alt="" src="https://i.ytimg.com/vi/' + c.videoId + '/hqdefault.jpg">' +
+            '</div>' +
+            '<div class="player-actions">' +
+              '<button class="btn" onclick="copyUrl(this,\'' + c.url + '\')">Copy video URL</button>' +
+              '<a class="btn" href="' + c.url + '" target="_blank" rel="noopener">Open on YouTube</a>' +
+            '</div>' +
+          '</div>' +
+          '<div class="lyrics">' +
+            (hasLy
+              ? '<div class="notes">' + (c.order ? '<span class="order">' + esc(c.order) + '</span><br>' : '') + esc(c.notes || '') + '</div>' +
+                slides.map(function (s) {
+                  return '<div class="slide">' + (s.label ? '<div class="slide-label">' + esc(s.label) + '</div>' : '') +
+                    s.lines.map(function (l) { return '<div class="slide-line">' + esc(l) + '</div>'; }).join('') + '</div>';
+                }).join('')
+              : '<div class="no-lyrics">' + esc(c.notes || 'No lyrics drafted for this video.') + '</div>') +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }
+
+    function toggleCand(row) {
+      row.parentNode.classList.toggle('open');
+    }
+    function playThumb(el) {
+      var f = document.createElement('iframe');
+      f.allow = 'autoplay; encrypted-media';
+      f.src = 'https://www.youtube.com/embed/' + el.dataset.vid + '?autoplay=1';
+      el.replaceWith(f);
+    }
+    function copyUrl(btn, url) {
+      navigator.clipboard && navigator.clipboard.writeText(url);
+      btn.textContent = 'Copied ✓'; btn.classList.add('copied');
+      setTimeout(function () { btn.textContent = 'Copy video URL'; btn.classList.remove('copied'); }, 1800);
+    }
+
+    function songHTML(entry, draft, idx, live) {
+      var approved = entry.status === 'approved';
+      var pill = approved ? 'approved' : entry.status === 'error' ? 'error' : 'draft';
+      var pillText = approved ? 'Approved' : entry.status === 'error' ? 'Error' : 'Draft ready';
+      var cands = (draft && draft.candidates) || [];
+      var chosenId = '';
+      if (live && live.video) { var m = live.video.match(/[A-Za-z0-9_-]{11}/); chosenId = m ? m[0] : ''; }
+
+      var meta = [];
+      if (draft && draft.generatedAt) meta.push('drafted ' + draft.generatedAt.replace('T', ' ').replace('+00:00', ' UTC'));
+      if (live && live.review) meta.push('sheet: Review = ' + live.review);
+
+      return '' +
+      '<div class="song">' +
+        '<div class="song-head">' +
+          '<span class="song-num">' + (idx + 1) + '</span>' +
+          '<span class="song-title">' + esc((draft && draft.title) || entry.input) + '</span>' +
+          '<span class="pill ' + pill + '">' + pillText + '</span>' +
+        '</div>' +
+        '<div class="song-meta">' + esc(meta.join('  ·  ')) + '</div>' +
+        (entry.status === 'error'
+          ? '<div class="no-lyrics">' + esc(entry.message || 'Something went wrong drafting this song.') + '</div>'
+          : cands.length
+            ? '<div class="cands">' + cands.map(function (c, i) { return candidateHTML(c, i, chosenId); }).join('') + '</div>'
+            : '<div class="no-lyrics">No candidate videos yet &mdash; check back after the next run.</div>') +
+      '</div>';
+    }
+
+    function parseCsv(text) {
+      var rows = text.split(/\r?\n/).filter(function (l) { return l.trim(); }).map(function (l) {
+        // simple CSV: no quoted commas expected in this sheet
+        return l.split(',').map(function (c) { return c.trim(); });
+      });
+      if (!rows.length) return {};
+      var head = rows[0].map(function (h) { return h.toLowerCase(); });
+      var hasHeader = head.indexOf('song') !== -1;
+      var out = {};
+      var body = hasHeader ? rows.slice(1) : rows;
+      body.forEach(function (r) {
+        var song = hasHeader ? r[head.indexOf('song')] : r[0];
+        if (!song) return;
+        out[song.toLowerCase()] = {
+          video: hasHeader && head.indexOf('video') !== -1 ? r[head.indexOf('video')] : '',
+          review: hasHeader && head.indexOf('review') !== -1 ? r[head.indexOf('review')] : ''
+        };
+      });
+      return out;
+    }
+
+    var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSBczlDX3xoDhPZdmURMEmduM_s1lYvPZiRovZ-ObHroIEsnJ9u1D813GaRlLK6Q9NsDpOTtL4UaRnu/pub?gid=0&single=true&output=csv';
+
+    function load() {
+      var bust = '?t=' + Date.now();
+      Promise.all([
+        fetch('drafts/_status.json' + bust).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }),
+        fetch(SHEET_CSV + bust).then(function (r) { return r.text(); }).then(parseCsv).catch(function () { return {}; })
+      ]).then(function (res) {
+        var status = res[0], live = res[1];
+        if (!status || !status.songs || !status.songs.length) {
+          document.getElementById('songs').innerHTML = '<div class="empty">No drafts yet. Add songs to the setlist sheet &mdash; drafts appear here within ~10 minutes.</div>';
+          return;
+        }
+        if (status.sunday) document.getElementById('sunday-line').textContent = 'for Sunday ' + status.sunday;
+
+        Promise.all(status.songs.map(function (s) {
+          return fetch('drafts/' + s.slug + '.json' + bust).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+        })).then(function (drafts) {
+          document.getElementById('songs').innerHTML = status.songs.map(function (s, i) {
+            return songHTML(s, drafts[i], i, live[(s.slug || s.input || '').toLowerCase()] || live[(s.input || '').toLowerCase()]);
+          }).join('');
+        });
+      });
+    }
+    load();
+  </script>
+</body>
+</html>

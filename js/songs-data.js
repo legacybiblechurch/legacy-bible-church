@@ -19,7 +19,7 @@ const LEGACY_SONGS = {
     { label: "", lines: ["All creatures of our God and King", "Lift up your voice and with us sing", "Alleluia! Alleluia!"] },
     { label: "", lines: ["O sisters, brothers, saved by grace", "Rejoice together, holy race", "O praise Him, O praise Him", "Alleluia! Alleluia! Alleluia!"] },
     { label: "", lines: ["All you, who are of tender heart", "Forgiving others, take your part", "Alleluia! Alleluia!"] },
-    { label: "", lines: ["He bears your burdens and your fears", "Yet even in the midst of tears", "O praise Him, O praise Him", "Alleluia! Alleluia! Alleluia!", "O Church, the Lord\'s beloved bride", "In Him made pure, for which He died", "O praise Him, O praise Him"] },
+    { label: "", lines: ["He bears your burdens and your fears", "Yet even in the midst of tears", "O praise Him, O praise Him", "Alleluia! Alleluia! Alleluia!", "O Church, the Lord's beloved bride", "In Him made pure, for which He died", "O praise Him, O praise Him"] },
     { label: "", lines: ["Creations new, by His good hand", "Raised unto life at His command", "O praise Him, O praise Him", "Alleluia! Alleluia! Alleluia!"] },
     { label: "", lines: ["Let all things their Creator bless", "And worship Him in humbleness", "Alleluia! Alleluia!"] },
     { label: "", lines: ["Praise, praise the Father, praise the Son", "And praise the Spirit, Three in One", "Sing praises! Sing praises!", "Alleluia! Alleluia! Alleluia!"] }
@@ -30,23 +30,23 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/watch?v=2Tcx81LsmoA",
     lyrics: [
     { label: "", lines: ["Should nothing of our efforts stand", "No legacy survive", "Unless the Lord does raise the house", "In vain its builders strive"] },
-    { label: "", lines: ["To you who boast tomorrow\'s gain", "Tell me what is your life", "A mist that vanishes at dawn", "All glory be to Christ!"] },
-    { label: "", lines: ["All glory be to Christ our king!", "All glory be to Christ!", "His rule and reign we\'ll ever sing,", "All glory be to Christ!"] },
+    { label: "", lines: ["To you who boast tomorrow's gain", "Tell me what is your life", "A mist that vanishes at dawn", "All glory be to Christ!"] },
+    { label: "", lines: ["All glory be to Christ our king!", "All glory be to Christ!", "His rule and reign we'll ever sing,", "All glory be to Christ!"] },
     { label: "", lines: ["His will be done, His kingdom come", "On earth as is above", "Who is, Himself, our daily bread", "Praise Him, the Lord of love"] },
-    { label: "", lines: ["Let living water satisfy", "The thirsty without price", "We\'ll take a cup of kindness, yet", "All glory be to Christ!", "All glory be to Christ our king!", "All glory be to Christ!", "His rule and reign we\'ll ever sing,", "All glory be to Christ!"] },
+    { label: "", lines: ["Let living water satisfy", "The thirsty without price", "We'll take a cup of kindness, yet", "All glory be to Christ!", "All glory be to Christ our king!", "All glory be to Christ!", "His rule and reign we'll ever sing,", "All glory be to Christ!"] },
     { label: "", lines: ["When on the day the great I Am,", "The faithful and the true", "The Lamb who was for sinners slain", "Is making all things new"] },
-    { label: "", lines: ["Behold our God shall live with us", "And be our steadfast light", "And we shall e\'er His people be", "All glory be to Christ!"] },
-    { label: "", lines: ["All glory be to Christ our king!", "All glory be to Christ!", "His rule and reign we\'ll ever sing,", "All glory be to Christ!"] },
-    { label: "", lines: ["All glory be to Christ our king!", "All glory be to Christ!", "His rule and reign we\'ll ever sing,", "All glory be to Christ!"] }
+    { label: "", lines: ["Behold our God shall live with us", "And be our steadfast light", "And we shall e'er His people be", "All glory be to Christ!"] },
+    { label: "", lines: ["All glory be to Christ our king!", "All glory be to Christ!", "His rule and reign we'll ever sing,", "All glory be to Christ!"] },
+    { label: "", lines: ["All glory be to Christ our king!", "All glory be to Christ!", "His rule and reign we'll ever sing,", "All glory be to Christ!"] }
   ]
   },
   "all-hail-the-power-of-jesus-name": {
     title: "All Hail the Power of Jesus&rsquo; Name",
     youtube: "https://www.youtube.com/results?search_query=All+Hail+the+Power+of+Jesus+Name+worship+official",
     lyrics: [
-    { label: "", lines: ["All hail the pow\'r of Jesus\' name", "Let angels prostrate fall", "Bring forth the royal diadem", "And crown Him Lord of all", "Bring forth the royal diadem", "And crown Him Lord of all"] },
-    { label: "", lines: ["Ye chosen seed of Israel\'s race", "Ye ransomed from the fall", "Hail Him who saves you by His grace", "And crown Him Lord of all", "Hail Him who saves you by His grace", "And crown Him Lord of all", "O that with yonder sacred throng", "We at His feet may fall", "We\'ll join the everlasting song", "And crown Him Lord of all", "We\'ll join the everlasting song", "And crown Him Lord of all"] },
-    { label: "", lines: ["Let ev\'ry kindred ev\'ry tribe", "On this terrestrial ball", "To Him all majesty ascribe", "And crown Him Lord of all", "To Him all majesty ascribe", "And crown Him Lord of all"] },
+    { label: "", lines: ["All hail the pow'r of Jesus' name", "Let angels prostrate fall", "Bring forth the royal diadem", "And crown Him Lord of all", "Bring forth the royal diadem", "And crown Him Lord of all"] },
+    { label: "", lines: ["Ye chosen seed of Israel's race", "Ye ransomed from the fall", "Hail Him who saves you by His grace", "And crown Him Lord of all", "Hail Him who saves you by His grace", "And crown Him Lord of all", "O that with yonder sacred throng", "We at His feet may fall", "We'll join the everlasting song", "And crown Him Lord of all", "We'll join the everlasting song", "And crown Him Lord of all"] },
+    { label: "", lines: ["Let ev'ry kindred ev'ry tribe", "On this terrestrial ball", "To Him all majesty ascribe", "And crown Him Lord of all", "To Him all majesty ascribe", "And crown Him Lord of all"] },
     { label: "", lines: ["To Him all majesty ascribe", "And crown Him Lord of all"] }
   ]
   },
@@ -68,17 +68,17 @@ const LEGACY_SONGS = {
     title: "Almost Home",
     youtube: "https://www.youtube.com/results?search_query=Almost+Home+MercyMe+official",
     lyrics: [
-    { label: "", lines: ["Don\'t drop a single anchor", "We\'re almost home", "Through every toil and danger", "We\'re almost home"] },
-    { label: "", lines: ["How many pilgrim saints", "Have before us gone?", "No stopping now", "We\'re almost home"] },
-    { label: "", lines: ["Almost home", "We\'re almost home", "So, press on t\'ward that blessed shore", "Oh, praise the Lord!", "We\'re almost home"] },
-    { label: "", lines: ["That promised land is calling", "We\'re almost home", "And not a tear shall fall then", "We\'re almost home"] },
-    { label: "", lines: ["Make ready now your souls", "For that kingdom come", "No turning back", "We\'re almost home"] },
-    { label: "", lines: ["Almost home", "We\'re almost home", "So, press on t\'ward that blessed shore", "Oh, praise the Lord!", "We\'re almost home", "This journey, ours together", "We\'re almost home", "Unto that great Forever", "We\'re almost home"] },
-    { label: "", lines: ["What song anew we\'ll sing", "\'Round that happy throne!", "Come, faint of heart", "We\'re almost home"] },
-    { label: "", lines: ["Almost home", "We\'re almost home", "So, press on t\'ward that blessed shore", "Oh, praise the Lord!", "We\'re almost home"] },
-    { label: "", lines: ["This life is just a vapor", "We\'re almost home", "That sun is settin\' yonder", "We\'re almost home"] },
-    { label: "", lines: ["Take courage for this darkness", "Shall break to dawn", "Oh, lift your eyes", "We\'re almost home"] },
-    { label: "", lines: ["Almost home", "We\'re almost home", "So, press on t\'ward that blessed shore", "Oh, praise the Lord!", "We\'re almost home"] }
+    { label: "", lines: ["Don't drop a single anchor", "We're almost home", "Through every toil and danger", "We're almost home"] },
+    { label: "", lines: ["How many pilgrim saints", "Have before us gone?", "No stopping now", "We're almost home"] },
+    { label: "", lines: ["Almost home", "We're almost home", "So, press on t'ward that blessed shore", "Oh, praise the Lord!", "We're almost home"] },
+    { label: "", lines: ["That promised land is calling", "We're almost home", "And not a tear shall fall then", "We're almost home"] },
+    { label: "", lines: ["Make ready now your souls", "For that kingdom come", "No turning back", "We're almost home"] },
+    { label: "", lines: ["Almost home", "We're almost home", "So, press on t'ward that blessed shore", "Oh, praise the Lord!", "We're almost home", "This journey, ours together", "We're almost home", "Unto that great Forever", "We're almost home"] },
+    { label: "", lines: ["What song anew we'll sing", "'Round that happy throne!", "Come, faint of heart", "We're almost home"] },
+    { label: "", lines: ["Almost home", "We're almost home", "So, press on t'ward that blessed shore", "Oh, praise the Lord!", "We're almost home"] },
+    { label: "", lines: ["This life is just a vapor", "We're almost home", "That sun is settin' yonder", "We're almost home"] },
+    { label: "", lines: ["Take courage for this darkness", "Shall break to dawn", "Oh, lift your eyes", "We're almost home"] },
+    { label: "", lines: ["Almost home", "We're almost home", "So, press on t'ward that blessed shore", "Oh, praise the Lord!", "We're almost home"] }
   ]
   },
   "amazing-grace": {
@@ -96,13 +96,13 @@ const LEGACY_SONGS = {
     title: "Amazing Love",
     youtube: "https://www.youtube.com/results?search_query=Amazing+Love+Chris+Tomlin+official",
     lyrics: [
-    { label: "", lines: ["I\'m forgiven", "Because You were forsaken", "I\'m accepted", "You were condemned"] },
-    { label: "", lines: ["I\'m alive and well", "Your Spirit dwells within me", "Because You died", "And rose again"] },
-    { label: "", lines: ["Amazing love, how can it be", "That You, my King, would die for me", "Amazing love, I know it\'s true", "It\'s my joy to honor You", "In all I do, I honor You"] },
-    { label: "", lines: ["I\'m adopted", "Because You were abandoned", "I am healed", "You took the pain"] },
-    { label: "", lines: ["Freed from sin\'s embrace", "Enslaved to all that\'s holy", "Because You died", "And rose again", "Amazing love, how can it be", "That You, my King, would die for me", "Amazing love, I know it\'s true", "It\'s my joy to honor You", "In all I do, I honor You"] },
+    { label: "", lines: ["I'm forgiven", "Because You were forsaken", "I'm accepted", "You were condemned"] },
+    { label: "", lines: ["I'm alive and well", "Your Spirit dwells within me", "Because You died", "And rose again"] },
+    { label: "", lines: ["Amazing love, how can it be", "That You, my King, would die for me", "Amazing love, I know it's true", "It's my joy to honor You", "In all I do, I honor You"] },
+    { label: "", lines: ["I'm adopted", "Because You were abandoned", "I am healed", "You took the pain"] },
+    { label: "", lines: ["Freed from sin's embrace", "Enslaved to all that's holy", "Because You died", "And rose again", "Amazing love, how can it be", "That You, my King, would die for me", "Amazing love, I know it's true", "It's my joy to honor You", "In all I do, I honor You"] },
     { label: "", lines: ["You are my King", "You are my King, Jesus,", "You are my King, Jesus,", "You are my King"] },
-    { label: "", lines: ["Amazing love, how can it be", "That You, my King, would die for me", "Amazing love, I know it\'s true", "It\'s my joy to honor You"] },
+    { label: "", lines: ["Amazing love, how can it be", "That You, my King, would die for me", "Amazing love, I know it's true", "It's my joy to honor You"] },
     { label: "", lines: ["In all I do, I honor You", "In all I do, I honor You"] }
   ]
   },
@@ -111,10 +111,10 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/results?search_query=Amen+Go+Tell+It+on+the+Mountain+worship+official",
     lyrics: [
     { label: "", lines: ["Amen, amen, amen, amen, amen", "Sing it over!", "Amen, amen, amen, amen, amen"] },
-    { label: "", lines: ["Go, tell it on the mountain", "Over the hills and ev\'rywhere", "Go, tell it on the mountain", "That Jesus Christ is born!"] },
-    { label: "", lines: ["While shepherds kept their watching", "O\'er silent flocks by night", "Behold! throughout the heavens", "There shown a holy light"] },
+    { label: "", lines: ["Go, tell it on the mountain", "Over the hills and ev'rywhere", "Go, tell it on the mountain", "That Jesus Christ is born!"] },
+    { label: "", lines: ["While shepherds kept their watching", "O'er silent flocks by night", "Behold! throughout the heavens", "There shown a holy light"] },
     { label: "", lines: ["Amen, amen, amen, amen, amen"] },
-    { label: "", lines: ["The shepherds feared and trembled", "When lo! above the earth", "Rang out the angel chorus", "That hailed our Savior\'s birth", "Go, tell it on the mountain", "Over the hills and ev\'rywhere", "Go, tell it on the mountain", "That Jesus Christ is born!"] },
+    { label: "", lines: ["The shepherds feared and trembled", "When lo! above the earth", "Rang out the angel chorus", "That hailed our Savior's birth", "Go, tell it on the mountain", "Over the hills and ev'rywhere", "Go, tell it on the mountain", "That Jesus Christ is born!"] },
     { label: "", lines: ["Go, tell it on the mountain", "Go, tell it on the mountain", "Go, tell it on the mountain", "Go, tell it on the mountain"] },
     { label: "", lines: ["Amen, amen, amen, amen, amen"] },
     { label: "", lines: ["Down in a lowly manger", "The humble Christ was born", "And God sent to us salvation", "That blessed Christmas morn"] },
@@ -142,11 +142,11 @@ const LEGACY_SONGS = {
     title: "Angels from the Realms of Glory",
     youtube: "https://www.youtube.com/results?search_query=Angels+from+the+Realms+of+Glory+hymn+official",
     lyrics: [
-    { label: "", lines: ["Angels from the realms of glory", "Wing your flight over all the earth", "Ye who sang creation\'s story", "Now proclaim Messiah\'s birth"] },
-    { label: "", lines: ["Shepherds in the fields, abiding", "Watching o\'er your flock by night", "God with us is now residing", "Yonder shines the infant light"] },
+    { label: "", lines: ["Angels from the realms of glory", "Wing your flight over all the earth", "Ye who sang creation's story", "Now proclaim Messiah's birth"] },
+    { label: "", lines: ["Shepherds in the fields, abiding", "Watching o'er your flock by night", "God with us is now residing", "Yonder shines the infant light"] },
     { label: "", lines: ["Come and worship, Come and worship", "Come and worship Christ, the newborn King", "Come and worship, Come and worship", "Come and worship Christ, the newborn King"] },
     { label: "", lines: ["Sinners wrung with true repentance", "Doomed for guilt to endless pains", "Justice now revokes the sentence", "Mercy calls you, break your chains", "Come and worship, Come and worship", "Come and worship Christ, the newborn King", "Come and worship, Come and worship", "Come and worship Christ, the newborn King"] },
-    { label: "", lines: ["Though an infant now we view Him", "He shall fill His Father\'s throne", "Gather all the nations to Him", "Ev\'ry knee shall then bow down"] },
+    { label: "", lines: ["Though an infant now we view Him", "He shall fill His Father's throne", "Gather all the nations to Him", "Ev'ry knee shall then bow down"] },
     { label: "", lines: ["All creation, join in praising", "God the Father, Spirit, Son", "Evermore your voices raising", "To the Eternal Three in One"] },
     { label: "", lines: ["Come and worship, Come and worship", "Come and worship Christ, the newborn King", "Come and worship, Come and worship", "Come and worship Christ, the newborn King"] },
     { label: "", lines: ["Come and worship Christ, the newborn King"] }
@@ -156,9 +156,9 @@ const LEGACY_SONGS = {
     title: "Angels We Have Heard On High",
     youtube: "https://www.youtube.com/results?search_query=Angels+We+Have+Heard+On+High+hymn+worship",
     lyrics: [
-    { label: "", lines: ["Angels we have heard on high", "Sweetly singing o\'er the plains", "And the mountains in reply", "Echoing their joyous strains"] },
+    { label: "", lines: ["Angels we have heard on high", "Sweetly singing o'er the plains", "And the mountains in reply", "Echoing their joyous strains"] },
     { label: "", lines: ["Gloria", "In excelsis Deo!", "Gloria", "In excelsis Deo!"] },
-    { label: "", lines: ["Shepherds, why this jubilee?", "Why your joyous strains prolong?", "What these gladsome tidings be", "Which inspire your heav\'nly song?", "Gloria", "In excelsis Deo!", "Gloria", "In excelsis Deo!"] },
+    { label: "", lines: ["Shepherds, why this jubilee?", "Why your joyous strains prolong?", "What these gladsome tidings be", "Which inspire your heav'nly song?", "Gloria", "In excelsis Deo!", "Gloria", "In excelsis Deo!"] },
     { label: "", lines: ["Come to Bethlehem and see", "Christ, whose birth the angels sing", "Come, adore on bended knee", "Christ, the Lord, the newborn King"] },
     { label: "", lines: ["Gloria", "In excelsis Deo!", "Gloria", "In excelsis Deo!"] }
   ]
@@ -173,7 +173,7 @@ const LEGACY_SONGS = {
     { label: "", lines: ["His blood atoned for every race", "His blood atoned for every race", "And sprinkles now the throne of grace"] },
     { label: "", lines: ["Arise, arise, arise", "Arise, my soul, arise", "Arise, arise, arise", "Arise, my soul, arise", "Shake off your guilty fears and rise"] },
     { label: "", lines: ["Five bleeding wounds He bears", "Received on Calvary", "They pour effectual prayers", "They strongly plead for me", "\"Forgive them, O forgive\", they cry", "\"Forgive them, O forgive\", they cry", "\"Nor let that ransomed sinner die\""] },
-    { label: "", lines: ["To God I\'m reconciled", "His pard\'ning voice I hear", "He owns me for His child", "I can no longer fear"] },
+    { label: "", lines: ["To God I'm reconciled", "His pard'ning voice I hear", "He owns me for His child", "I can no longer fear"] },
     { label: "", lines: ["With confidence I now draw nigh", "With confidence I now draw nigh", "And \"Father, Abba Father\" cry"] },
     { label: "", lines: ["Arise, arise, arise", "Arise, my soul, arise", "Arise, arise, arise", "Arise, my soul, arise", "Shake off your guilty fears and rise"] },
     { label: "", lines: ["Arise, arise, arise", "Arise, my soul, arise", "Arise, arise, arise", "Arise, my soul, arise", "Shake off your guilty fears and rise", "Shake off your guilty fears and rise"] }
@@ -187,7 +187,7 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Before the throne my Surety stands", "Before the throne my Surety stands", "My name is written on His hands", "My name is written on His hands"] },
     { label: "", lines: ["Five bleeding wounds He bears", "Received on Calvary", "They pour effectual prayers", "They strongly plead for me"] },
     { label: "", lines: ["\"Forgive them, O forgive\", they cry", "\"Forgive them, O forgive\", they cry", "\"Nor let that ransomed sinner die\"", "\"Nor let that ransomed sinner die\""] },
-    { label: "", lines: ["My God is reconciled", "His pard\'ning voice I hear", "He owns me for His child", "I can no longer fear"] },
+    { label: "", lines: ["My God is reconciled", "His pard'ning voice I hear", "He owns me for His child", "I can no longer fear"] },
     { label: "", lines: ["With confidence I now draw nigh", "With confidence I now draw nigh", "And \"Father, Abba Father\" cry", "Arise, my soul, arise!"] },
     { label: "", lines: ["And \"Father, Abba Father\" cry", "Arise, my soul, arise"] }
   ]
@@ -197,14 +197,14 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/results?search_query=Be+Still+My+Soul+hymn+official+worship",
     lyrics: [
     { label: "", lines: ["Be still my soul", "The Lord is on thy side", "Bear patiently", "The cross of grief or pain"] },
-    { label: "", lines: ["Leave to thy God", "To order and provide", "In ev\'ry change", "He faithful will remain"] },
-    { label: "", lines: ["Be still my soul", "Thy best, thy heav\'nly Friend", "Through thorny ways", "Leads to a joyful end"] },
-    { label: "", lines: ["Be still my soul", "The hour is hast\' ning on", "When we shall be", "Forever with the Lord"] },
-    { label: "", lines: ["When disappointment,", "Grief, and fear are gone", "Sorrow forgot", "Love\'s purest joys restored", "Be still my soul", "When change and tears are past", "All safe and blessed", "We shall meet at last"] },
+    { label: "", lines: ["Leave to thy God", "To order and provide", "In ev'ry change", "He faithful will remain"] },
+    { label: "", lines: ["Be still my soul", "Thy best, thy heav'nly Friend", "Through thorny ways", "Leads to a joyful end"] },
+    { label: "", lines: ["Be still my soul", "The hour is hast' ning on", "When we shall be", "Forever with the Lord"] },
+    { label: "", lines: ["When disappointment,", "Grief, and fear are gone", "Sorrow forgot", "Love's purest joys restored", "Be still my soul", "When change and tears are past", "All safe and blessed", "We shall meet at last"] },
     { label: "", lines: ["Be still my soul", "Begin the song of praise", "On earth, believing", "To thy Lord on high"] },
     { label: "", lines: ["Acknowledge Him", "In all thy words and ways", "So shall He view", "Thee with a well-pleased eye"] },
     { label: "", lines: ["Be still my soul", "The Sun of life, divine,", "Through passing clouds", "Shall but more brightly shine"] },
-    { label: "", lines: ["Be still my soul", "Thy best, thy heav\'nly Friend", "Through thorny ways", "Leads to a joyful end"] }
+    { label: "", lines: ["Be still my soul", "Thy best, thy heav'nly Friend", "Through thorny ways", "Leads to a joyful end"] }
   ]
   },
   "be-thou-my-vision": {
@@ -223,7 +223,7 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "", lines: ["We are a moment, You are forever", "Lord of the Ages, God before time", "We are a vapor, You are eternal", "Love everlasting, reigning on high"] },
     { label: "", lines: ["Holy, holy, Lord God Almighty", "Worthy is the Lamb who was slain", "Highest praises, honor and glory", "Be unto Your Name", "Be unto Your Name"] },
-    { label: "", lines: ["We are the broken, You are the Healer", "Jesus, Redeemer, mighty to save", "You are the sweet song we\'ll sing forever", "Bowing before You, blessing Your name", "Holy, holy, Lord God Almighty", "Worthy is the Lamb who was slain", "Highest praises, honor and glory", "Be unto Your Name", "Be unto Your Name"] },
+    { label: "", lines: ["We are the broken, You are the Healer", "Jesus, Redeemer, mighty to save", "You are the sweet song we'll sing forever", "Bowing before You, blessing Your name", "Holy, holy, Lord God Almighty", "Worthy is the Lamb who was slain", "Highest praises, honor and glory", "Be unto Your Name", "Be unto Your Name"] },
     { label: "", lines: ["Holy, holy, Lord God Almighty", "Worthy is the Lamb who was slain", "Highest praises, honor and glory", "Be unto Your Name", "Be unto Your Name"] }
   ]
   },
@@ -260,10 +260,10 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Behold the Lamb who bears our", "Sins away, slain for us", "And we remember", "The promise made that all who", "Come in faith find forgiveness", "At the cross"] },
     { label: "", lines: ["So we share in this Bread of Life", "And we drink of His sacrifice", "As a sign of our bonds of peace", "Around the table of the King"] },
     { label: "", lines: ["The body of our Saviour", "Jesus Christ, torn for you", "Eat and remember", "The wounds that heal the death that", "Brings us life paid the price", "To make us one"] },
-    { label: "", lines: ["So we share in this Bread of Life", "And we drink of His sacrifice", "As a sign of our bonds of love", "Around the table of the King", "The blood that cleanses every", "Stain of sin, shed for you", "Drink and remember", "He drained death\'s cup that all may", "Enter in to receive", "The life of God"] },
+    { label: "", lines: ["So we share in this Bread of Life", "And we drink of His sacrifice", "As a sign of our bonds of love", "Around the table of the King", "The blood that cleanses every", "Stain of sin, shed for you", "Drink and remember", "He drained death's cup that all may", "Enter in to receive", "The life of God"] },
     { label: "", lines: ["So we share in this Bread of Life", "And we drink of His sacrifice", "As a sign of our bonds of grace", "Around the table of the King"] },
     { label: "", lines: ["And so with thankfulness and", "Faith, we rise to respond", "And to remember", "Our call to follow in the", "Steps of Christ, as His body", "Here on earth"] },
-    { label: "", lines: ["As we share in His suffering", "We proclaim Christ will come again", "And we\'ll join in the feast of heav\'n", "Around the table of the King"] }
+    { label: "", lines: ["As we share in His suffering", "We proclaim Christ will come again", "And we'll join in the feast of heav'n", "Around the table of the King"] }
   ]
   },
   "beneath-the-cross-of-jesus": {
@@ -272,7 +272,7 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "", lines: ["Beneath the cross of Jesus", "I find a place to stand", "And wonder at such mercy", "That calls me as I am"] },
     { label: "", lines: ["For hands that should discard me", "Hold wounds which tell me, \"Come!\"", "Beneath the cross of Jesus", "My unworthy soul is won"] },
-    { label: "", lines: ["Beneath the cross of Jesus", "His fam\'ly is my own", "Once strangers chasing selfish dreams", "Now one through grace alone"] },
+    { label: "", lines: ["Beneath the cross of Jesus", "His fam'ly is my own", "Once strangers chasing selfish dreams", "Now one through grace alone"] },
     { label: "", lines: ["How could I now dishonor", "The ones that You have loved?", "Beneath the cross of Jesus", "See the children called by God", "Beneath the cross of Jesus", "The path before the crown", "We follow in His footsteps", "Where promised hope is found"] },
     { label: "", lines: ["How great the joy before us", "To be His perfect bride", "Beneath the cross of Jesus", "We will gladly live our lives"] }
   ]
@@ -281,14 +281,14 @@ const LEGACY_SONGS = {
     title: "By Faith",
     youtube: "https://www.youtube.com/watch?v=fXB8ihepUpE",
     lyrics: [
-    { label: "", lines: ["By faith we", "See the hand of God", "In the light of", "Creation\'s grand design"] },
+    { label: "", lines: ["By faith we", "See the hand of God", "In the light of", "Creation's grand design"] },
     { label: "", lines: ["In the lives of those who prove", "His faithfulness", "Who walk by faith and not by sight"] },
-    { label: "", lines: ["By faith our", "Fathers roamed the earth", "With the pow\'r of", "His promise in their hearts"] },
-    { label: "", lines: ["Of a holy city built by", "God\'s own hand", "A place where peace and justice reign"] },
-    { label: "", lines: ["We will stand as children of the promise", "We will fix our eyes on Him, our soul\'s reward", "Till the race is finished", "And the work is done", "We\'ll walk by faith and not by sight", "By faith the", "Prophets saw a day", "When the longed-for", "Messiah would appear"] },
-    { label: "", lines: ["With the pow\'r to Break the chains of", "Sin and death", "And rise triumphant from the grave"] },
-    { label: "", lines: ["We will stand as children of the promise", "We will fix our eyes on Him our soul\'s reward", "Till the race is finished", "And the work is done", "We\'ll walk by faith and not by sight"] },
-    { label: "", lines: ["We will stand as children of the promise", "We will fix our eyes on Him our soul\'s reward", "Till the race is finished", "And the work is done", "We\'ll walk by faith and not by sight", "We\'ll walk by faith and not by sight"] }
+    { label: "", lines: ["By faith our", "Fathers roamed the earth", "With the pow'r of", "His promise in their hearts"] },
+    { label: "", lines: ["Of a holy city built by", "God's own hand", "A place where peace and justice reign"] },
+    { label: "", lines: ["We will stand as children of the promise", "We will fix our eyes on Him, our soul's reward", "Till the race is finished", "And the work is done", "We'll walk by faith and not by sight", "By faith the", "Prophets saw a day", "When the longed-for", "Messiah would appear"] },
+    { label: "", lines: ["With the pow'r to Break the chains of", "Sin and death", "And rise triumphant from the grave"] },
+    { label: "", lines: ["We will stand as children of the promise", "We will fix our eyes on Him our soul's reward", "Till the race is finished", "And the work is done", "We'll walk by faith and not by sight"] },
+    { label: "", lines: ["We will stand as children of the promise", "We will fix our eyes on Him our soul's reward", "Till the race is finished", "And the work is done", "We'll walk by faith and not by sight", "We'll walk by faith and not by sight"] }
   ]
   },
   "by-grace-alone": {
@@ -309,16 +309,16 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/watch?v=OX-Xt-vBYPc",
     lyrics: [
     { label: "", lines: ["How can it be, the One who died", "Has borne our sin through sacrifice", "To conquer every sting of death?", "Sing, sing \"Hallelujah!\""] },
-    { label: "", lines: ["For joy awakes as dawning light", "When Christ\'s disciples lift their eyes", "Alive He stands, their Friend and King", "Christ, Christ, He is risen"] },
+    { label: "", lines: ["For joy awakes as dawning light", "When Christ's disciples lift their eyes", "Alive He stands, their Friend and King", "Christ, Christ, He is risen"] },
     { label: "", lines: ["Christ is risen, He is risen indeed", "Oh, sing \"Hallelujah!\"", "Join the chorus, sing with the redeemed", "Christ is risen, He is risen indeed"] },
-    { label: "", lines: ["Where doubt and darkness once had been", "They saw Him and their hearts believed", "But bless\'d are those who have not seen", "Yet, sing \"Hallelujah!\""] },
+    { label: "", lines: ["Where doubt and darkness once had been", "They saw Him and their hearts believed", "But bless'd are those who have not seen", "Yet, sing \"Hallelujah!\""] },
     { label: "", lines: ["Once bound by fear, now bold in faith", "They preached the truth and power of grace", "And pouring out their lives they gained", "Life, life everlasting"] },
-    { label: "", lines: ["Christ is risen, He is risen indeed", "Oh, sing \"Hallelujah!\"", "Join the chorus, sing with the redeemed", "Christ is risen, He is risen indeed", "The power that raised Him from the grave", "Now works in us to pow\'rfully save", "He frees our hearts to live His grace", "Go tell of His goodness"] },
+    { label: "", lines: ["Christ is risen, He is risen indeed", "Oh, sing \"Hallelujah!\"", "Join the chorus, sing with the redeemed", "Christ is risen, He is risen indeed", "The power that raised Him from the grave", "Now works in us to pow'rfully save", "He frees our hearts to live His grace", "Go tell of His goodness"] },
     { label: "", lines: ["Christ is risen, He is risen indeed", "Oh, sing \"Hallelujah!\"", "Join the chorus, sing with the redeemed", "Christ is risen, He is risen indeed"] },
     { label: "", lines: ["Christ is risen, He is risen indeed", "Oh, sing \"Hallelujah!\"", "Join the chorus, sing with the redeemed", "Christ is risen, He is risen indeed"] },
     { label: "", lines: ["He is Risen!"] },
-    { label: "", lines: ["He\'s alive, He\'s alive!", "Heaven\'s gates are opened wide", "He\'s alive, He\'s alive!", "Now in heaven glorified"] },
-    { label: "", lines: ["He\'s alive, He\'s alive!", "Heaven\'s gates are opened wide", "He\'s alive, He\'s alive!", "Now in heaven glorified"] }
+    { label: "", lines: ["He's alive, He's alive!", "Heaven's gates are opened wide", "He's alive, He's alive!", "Now in heaven glorified"] },
+    { label: "", lines: ["He's alive, He's alive!", "Heaven's gates are opened wide", "He's alive, He's alive!", "Now in heaven glorified"] }
   ]
   },
   "christ-the-lord-is-risen-today": {
@@ -329,9 +329,9 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Raise your joys and triumphs high", "Alleluia!", "Sing, ye heavens and earth, reply", "Alleluia!"] },
     { label: "", lines: ["Lives again our glorious King", "Alleluia!", "Where, O death, is now thy sting?", "Alleluia!"] },
     { label: "", lines: ["Dying once He all doth save", "Alleluia!", "Where thy victory, O grave?", "Alleluia!"] },
-    { label: "", lines: ["Love\'s redeeming work is done", "Alleluia!", "Fought the fight, the battle won", "Alleluia!"] },
+    { label: "", lines: ["Love's redeeming work is done", "Alleluia!", "Fought the fight, the battle won", "Alleluia!"] },
     { label: "", lines: ["Death in vain forbids Him rise", "Alleluia!", "Christ hath opened Paradise", "Alleluia!"] },
-    { label: "", lines: ["Soar we now where Christ has led", "Alleluia!", "Foll\'wing our exalted Head", "Alleluia!"] },
+    { label: "", lines: ["Soar we now where Christ has led", "Alleluia!", "Foll'wing our exalted Head", "Alleluia!"] },
     { label: "", lines: ["Made like Him, like Him we rise", "Alleluia!", "Ours the cross, the grave, the skies", "Alleluia!"] }
   ]
   },
@@ -343,16 +343,16 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Our strength, our song", "Our sure salvation"] },
     { label: "", lines: ["Now to the Lamb upon the throne", "Be blessing, honor, glory, power", "For the battle You have won", "Hallelujah! Amen"] },
     { label: "", lines: ["O most High, dwelling among us", "Son of man, sent for sinners", "By Your blood You have redeemed us", "Spotless Lamb, mighty Savior"] },
-    { label: "", lines: ["Who lived, who died", "Who rose victor\'ous"] },
+    { label: "", lines: ["Who lived, who died", "Who rose victor'ous"] },
     { label: "", lines: ["Now to the Lamb upon the throne", "Be blessing, honor, glory, power", "For the battle You have won", "Hallelujah!"] },
-    { label: "", lines: ["With ev\'ry tribe and ev\'ry tongue", "We join the anthem of the angels", "In the triumph of the Son", "Hallelujah! Amen", "O most High, King of the nations", "Robed in praise, crowned in splendor", "On that day, who will not tremble?", "When You stand, Christ the Victor"] },
+    { label: "", lines: ["With ev'ry tribe and ev'ry tongue", "We join the anthem of the angels", "In the triumph of the Son", "Hallelujah! Amen", "O most High, King of the nations", "Robed in praise, crowned in splendor", "On that day, who will not tremble?", "When You stand, Christ the Victor"] },
     { label: "", lines: ["Who was, and is", "And is forever"] },
     { label: "", lines: ["Now to the Lamb upon the throne", "Be blessing, honor, glory, power", "For the battle You have won", "Hallelujah!"] },
-    { label: "", lines: ["With ev\'ry tribe and ev\'ry tongue", "We join the anthem of the angels", "In the triumph of the Son", "Hallelujah! Amen"] },
+    { label: "", lines: ["With ev'ry tribe and ev'ry tongue", "We join the anthem of the angels", "In the triumph of the Son", "Hallelujah! Amen"] },
     { label: "", lines: ["Amen, amen, amen", "Amen, amen, amen", "Amen, amen, amen"] },
     { label: "", lines: ["Now to the Lamb upon the throne", "Be blessing, honor, glory, power", "For the battle You have won", "Hallelujah!"] },
-    { label: "", lines: ["With ev\'ry tribe and ev\'ry tongue", "We join the anthem of the angels", "In the triumph of the Son", "Hallelujah! Amen"] },
-    { label: "", lines: ["Sing the vict\'ry of the Lamb", "Hallelujah! Amen"] },
+    { label: "", lines: ["With ev'ry tribe and ev'ry tongue", "We join the anthem of the angels", "In the triumph of the Son", "Hallelujah! Amen"] },
+    { label: "", lines: ["Sing the vict'ry of the Lamb", "Hallelujah! Amen"] },
     { label: "", lines: ["Amen"] }
   ]
   },
@@ -365,7 +365,7 @@ const LEGACY_SONGS = {
     { label: "", lines: ["In You, my God, I trust,", "You are strong and here with us", "In You my hope remains", "Christ will be my hideaway"] },
     { label: "", lines: ["Angels gather to protect me", "When they hear my Savior call", "Sovereign hands are ever ready", "To uphold me should I fall"] },
     { label: "", lines: ["Safe beneath His wings of refuge", "All my fears are kept at bay", "I am shielded by His faithfulness", "Christ will be my hideaway"] },
-    { label: "", lines: ["In You, my God, I trust,", "You are strong and here with us", "In You my hope remains", "Christ will be my hideaway", "Though a thousand fall around me", "Though death looks me in the eye", "Evil shall not have the vict\'ry", "While the Lord is at my side"] },
+    { label: "", lines: ["In You, my God, I trust,", "You are strong and here with us", "In You my hope remains", "Christ will be my hideaway", "Though a thousand fall around me", "Though death looks me in the eye", "Evil shall not have the vict'ry", "While the Lord is at my side"] },
     { label: "", lines: ["God in power raised my Savior", "I no longer fear the grave", "God in power raised my Savior", "I no longer fear the grave"] },
     { label: "", lines: ["Through this fragile life and evermore", "Christ will be my hideaway"] },
     { label: "", lines: ["In You, my God, I trust,", "You are strong and here with us", "In You my hope remains", "Christ will be my hideaway"] },
@@ -402,14 +402,14 @@ const LEGACY_SONGS = {
     title: "The Church&rsquo;s One Foundation",
     youtube: "https://www.youtube.com/results?search_query=The+Church%27s+One+Foundation+hymn+official",
     lyrics: [
-    { label: "", lines: ["The church\'s one foundation", "Is Jesus Christ her Lord", "She is His new creation", "By water and the Word"] },
-    { label: "", lines: ["From heav\'n He came and sought her", "To be His holy bride", "With His own blood He bought her", "And for her life He died"] },
+    { label: "", lines: ["The church's one foundation", "Is Jesus Christ her Lord", "She is His new creation", "By water and the Word"] },
+    { label: "", lines: ["From heav'n He came and sought her", "To be His holy bride", "With His own blood He bought her", "And for her life He died"] },
     { label: "", lines: ["Hallelujah! The cornerstone", "Against all hell, is unshakable", "Almighty God, our refuge strong"] },
     { label: "", lines: ["Hallelujah! On Christ alone", "The church remains unassailable", "Almighty God, our refuge strong", "Our one foundation"] },
-    { label: "", lines: ["Elect from ev\'ry nation", "Yet one o\'er all the earth", "Her charter of salvation", "One Lord, one faith, one birth"] },
-    { label: "", lines: ["One holy Name she blesses", "Partakes one holy food", "And to one hope she presses", "With ev\'ry grace endued"] },
+    { label: "", lines: ["Elect from ev'ry nation", "Yet one o'er all the earth", "Her charter of salvation", "One Lord, one faith, one birth"] },
+    { label: "", lines: ["One holy Name she blesses", "Partakes one holy food", "And to one hope she presses", "With ev'ry grace endued"] },
     { label: "", lines: ["Hallelujah! The cornerstone", "Against all hell, is unshakable", "Almighty God, our refuge strong"] },
-    { label: "", lines: ["Hallelujah! On Christ alone", "The church remains unassailable", "Almighty God, our refuge strong", "Our one foundation", "\'Mid toil and tribulation", "And tumult of her war", "She waits the consummation", "Of peace forevermore"] },
+    { label: "", lines: ["Hallelujah! On Christ alone", "The church remains unassailable", "Almighty God, our refuge strong", "Our one foundation", "'Mid toil and tribulation", "And tumult of her war", "She waits the consummation", "Of peace forevermore"] },
     { label: "", lines: ["Till with the vision glorious", "Her longing eyes are blest", "And the great church victorious", "Shall be the church at rest"] },
     { label: "", lines: ["Hallelujah! The cornerstone", "Against all hell, is unshakable", "Almighty God, our refuge strong"] },
     { label: "", lines: ["Hallelujah! On Christ alone", "The church remains unassailable", "Almighty God, our refuge strong"] },
@@ -421,12 +421,12 @@ const LEGACY_SONGS = {
     title: "Come Behold the Wondrous Mystery",
     youtube: "https://www.youtube.com/watch?v=h-xQDm-KZw8",
     lyrics: [
-    { label: "", lines: ["Come behold the wondrous myst\'ry", "In the dawning of the King", "He, the theme of heaven\'s praises", "Robed in frail humanity"] },
+    { label: "", lines: ["Come behold the wondrous myst'ry", "In the dawning of the King", "He, the theme of heaven's praises", "Robed in frail humanity"] },
     { label: "", lines: ["In our longing, in our darkness", "Now the light of life has come", "Look to Christ, who condescended", "Took on flesh to ransom us"] },
-    { label: "", lines: ["Come behold the wondrous myst\'ry", "He, the perfect Son of Man", "In His living, in His suffering", "Never trace, nor stain, of sin"] },
-    { label: "", lines: ["See the true and better Adam", "Come to save the hell-bound man", "Christ the great and sure fulfillment", "Of the law; in Him we stand", "Come behold the wondrous myst\'ry", "Christ the Lord upon the tree", "In the stead of ruined sinners", "Hangs the Lamb in victory"] },
-    { label: "", lines: ["See the price of our redemption", "See the Father\'s plan unfold", "Bringing many sons to glory", "Grace unmeasured, love untold"] },
-    { label: "", lines: ["Come behold the wondrous myst\'ry", "Slain by death, the God of life", "But no grave could e\'er restrain Him", "Praise the Lord; He is alive!"] },
+    { label: "", lines: ["Come behold the wondrous myst'ry", "He, the perfect Son of Man", "In His living, in His suffering", "Never trace, nor stain, of sin"] },
+    { label: "", lines: ["See the true and better Adam", "Come to save the hell-bound man", "Christ the great and sure fulfillment", "Of the law; in Him we stand", "Come behold the wondrous myst'ry", "Christ the Lord upon the tree", "In the stead of ruined sinners", "Hangs the Lamb in victory"] },
+    { label: "", lines: ["See the price of our redemption", "See the Father's plan unfold", "Bringing many sons to glory", "Grace unmeasured, love untold"] },
+    { label: "", lines: ["Come behold the wondrous myst'ry", "Slain by death, the God of life", "But no grave could e'er restrain Him", "Praise the Lord; He is alive!"] },
     { label: "", lines: ["What a foretaste of deliverance", "How unwavering our hope", "Christ, in power, resurrected", "As we will be when He comes"] },
     { label: "", lines: ["What a foretaste of deliverance", "How unwavering our hope", "Christ, in power, resurrected", "As we will be when He comes"] }
   ]
@@ -438,10 +438,10 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Come, Christians, join to sing", "\"Alleluia, amen!\"", "Loud praise to Christ we bring", "\"Alleluia, amen!\""] },
     { label: "", lines: ["Let all, with heart and voice", "Before His throne rejoice", "Praise is His gracious choice", "\"Alleluia, amen!\""] },
     { label: "", lines: ["Come, sing of wondrous grace", "\"Alleluia, amen!\"", "What love that took our place!", "\"Alleluia, amen!\""] },
-    { label: "", lines: ["Christ, He the Lamb, was slain", "Bearing our sin, our shame", "Yet triumphed o\'er the grave", "\"Alleluia, amen!\"", "Come, lift your hearts on high", "\"Alleluia, amen!\"", "Let praises fill the sky", "\"Alleluia, amen!\""] },
+    { label: "", lines: ["Christ, He the Lamb, was slain", "Bearing our sin, our shame", "Yet triumphed o'er the grave", "\"Alleluia, amen!\"", "Come, lift your hearts on high", "\"Alleluia, amen!\"", "Let praises fill the sky", "\"Alleluia, amen!\""] },
     { label: "", lines: ["Christ is our guide and friend", "He shall return again", "His love shall never end", "\"Alleluia, amen!\""] },
     { label: "", lines: ["Praise, yet, to Christ our King", "\"Alleluia, amen!\"", "With all our voices ring", "\"Alleluia, amen!\""] },
-    { label: "", lines: ["On heaven\'s blissful shore", "His goodness we\'ll adore", "Singing forevermore", "\"Alleluia, amen!\""] },
+    { label: "", lines: ["On heaven's blissful shore", "His goodness we'll adore", "Singing forevermore", "\"Alleluia, amen!\""] },
     { label: "", lines: ["\"Alleluia, Amen!", "\"Alleluia, Amen!"] }
   ]
   },
@@ -451,26 +451,26 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "", lines: ["Come people of the Risen King", "Who delight to bring Him praise", "Come all and tune your hearts to sing", "To the Morning Star of grace"] },
     { label: "", lines: ["From the shifting shadows of the earth", "We will lift our eyes to Him", "Where steady arms of mercy reach", "To gather children in"] },
-    { label: "", lines: ["Rejoice, rejoice", "Let ev\'ry tongue rejoice", "One heart one voice", "O Church of Christ, rejoice"] },
+    { label: "", lines: ["Rejoice, rejoice", "Let ev'ry tongue rejoice", "One heart one voice", "O Church of Christ, rejoice"] },
     { label: "", lines: ["Come those whose joy is morning sun", "And those weeping through the night", "Come those who tell of battles won", "And those struggling in the fight"] },
-    { label: "", lines: ["For His perfect love will never change", "And His mercies never cease", "But follow us through all our days", "With the certain hope of peace", "Rejoice, rejoice", "Let ev\'ry tongue rejoice", "One heart one voice", "O Church of Christ, rejoice"] },
-    { label: "", lines: ["Come young and old from ev\'ry land", "Men and women of the faith", "Come those with full or empty hands", "Find the riches of His grace"] },
-    { label: "", lines: ["Over all the world His people sing", "Shore to shore we hear them call", "The truth that cries through ev\'ry age", "Our God is all in all"] },
-    { label: "", lines: ["Rejoice, rejoice", "Let ev\'ry tongue rejoice", "One heart one voice", "O Church of Christ, rejoice"] },
-    { label: "", lines: ["Rejoice, rejoice", "Let ev\'ry tongue rejoice", "One heart one voice", "O Church of Christ, rejoice"] }
+    { label: "", lines: ["For His perfect love will never change", "And His mercies never cease", "But follow us through all our days", "With the certain hope of peace", "Rejoice, rejoice", "Let ev'ry tongue rejoice", "One heart one voice", "O Church of Christ, rejoice"] },
+    { label: "", lines: ["Come young and old from ev'ry land", "Men and women of the faith", "Come those with full or empty hands", "Find the riches of His grace"] },
+    { label: "", lines: ["Over all the world His people sing", "Shore to shore we hear them call", "The truth that cries through ev'ry age", "Our God is all in all"] },
+    { label: "", lines: ["Rejoice, rejoice", "Let ev'ry tongue rejoice", "One heart one voice", "O Church of Christ, rejoice"] },
+    { label: "", lines: ["Rejoice, rejoice", "Let ev'ry tongue rejoice", "One heart one voice", "O Church of Christ, rejoice"] }
   ]
   },
   "come-praise-and-glorify": {
     title: "Come Praise and Glorify",
     youtube: "https://www.youtube.com/watch?v=Bkt1Ky0tkEw",
     lyrics: [
-    { label: "", lines: ["Come praise and glorify our God", "The Father of our Lord", "In Christ, He has in heav\'nly realms", "His blessings on us poured"] },
-    { label: "", lines: ["For pure and blameless in His sight", "He destined us to be", "And now we\'ve been adopted through", "His Son, eternally"] },
+    { label: "", lines: ["Come praise and glorify our God", "The Father of our Lord", "In Christ, He has in heav'nly realms", "His blessings on us poured"] },
+    { label: "", lines: ["For pure and blameless in His sight", "He destined us to be", "And now we've been adopted through", "His Son, eternally"] },
     { label: "", lines: ["To the praise of Your glory", "To the praise of Your mercy and grace", "To the praise of Your glory", "You are the God who saves"] },
     { label: "", lines: ["Come praise and glorify our God", "Who gives His grace in Christ", "In Him, our sins are washed away", "Redeemed through sacrifice"] },
-    { label: "", lines: ["In Him, God has made known to us", "The myst\'ry of His will", "That Christ should be the head of all", "His purpose to fulfill", "To the praise of Your glory", "To the praise of Your mercy and grace", "To the praise of Your glory", "You are the God who saves"] },
-    { label: "", lines: ["Come praise and glorify our God", "For we\'ve believed the Word", "And through our faith we have a seal", "The Spirit of the Lord"] },
-    { label: "", lines: ["The Spirit guarantees our hope", "Until redemption\'s done", "Until we join in endless praise", "To God, the Three in One"] },
+    { label: "", lines: ["In Him, God has made known to us", "The myst'ry of His will", "That Christ should be the head of all", "His purpose to fulfill", "To the praise of Your glory", "To the praise of Your mercy and grace", "To the praise of Your glory", "You are the God who saves"] },
+    { label: "", lines: ["Come praise and glorify our God", "For we've believed the Word", "And through our faith we have a seal", "The Spirit of the Lord"] },
+    { label: "", lines: ["The Spirit guarantees our hope", "Until redemption's done", "Until we join in endless praise", "To God, the Three in One"] },
     { label: "", lines: ["To the praise of Your glory", "To the praise of Your mercy and grace", "To the praise of Your glory", "You are the God who saves"] },
     { label: "", lines: ["To the praise of Your glory", "To the praise of Your mercy and grace", "To the praise of Your glory", "You are the God who saves", "You are the God who saves", "You are the God who saves"] }
   ]
@@ -521,7 +521,7 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Come before Him", "With thanksgiving", "And extol Him with", "Music and song"] },
     { label: "", lines: ["(Come let us, come let us)", "Hey", "(Come let us, come let us)", "Bow down in worship"] },
     { label: "", lines: ["(Come let us, come let us)", "Kneel before God our Creator", "(Come let us, come let us)", "Before God our Creator"] },
-    { label: "", lines: ["For the Lord is a great God", "And great King, \'bove all gods", "In His hands are the", "Depths of the earth", "(Come let us, come let us)"] },
+    { label: "", lines: ["For the Lord is a great God", "And great King, 'bove all gods", "In His hands are the", "Depths of the earth", "(Come let us, come let us)"] },
     { label: "", lines: ["And the mountains belong to Him", "And the sea for He made it", "And the hands of the Lord,", "They formed the dry land"] },
     { label: "", lines: ["(Come let us, come let us)", "Hey", "(Come let us, come let us)", "Bow down in worship"] },
     { label: "", lines: ["(Come let us, come let us)", "Kneel before God our Creator", "(Come let us, come let us)", "For He is our God"] },
@@ -563,9 +563,9 @@ const LEGACY_SONGS = {
     { label: "", lines: ["His tears were as scarlet", "But there in the garden", "The cup was not removed"] },
     { label: "", lines: ["O Praise the Lamb", "Who takes away my sin", "He tore the veil", "Now I can enter in", "For all my days", "My soul will praise Him"] },
     { label: "", lines: ["The law was not removed,", "It was fulfilled", "The prayers of all the", "Prophets now revealed"] },
-    { label: "", lines: ["In the image of the Father", "The \'yes\' of ev\'ry promise", "The law was not removed"] },
+    { label: "", lines: ["In the image of the Father", "The 'yes' of ev'ry promise", "The law was not removed"] },
     { label: "", lines: ["O Praise the Lamb", "Who takes away my sin", "He tore the veil", "Now I can enter in", "For all my days", "My soul will praise Him"] },
-    { label: "", lines: ["O Praise the One", "With scars in His hands", "O Praise the Son", "Who died and rose again", "For all my days", "My soul will praise Him", "My sins are now removed,", "Yes, ev\'ry one", "Taken by my Jesus", "On the cross"] },
+    { label: "", lines: ["O Praise the One", "With scars in His hands", "O Praise the Son", "Who died and rose again", "For all my days", "My soul will praise Him", "My sins are now removed,", "Yes, ev'ry one", "Taken by my Jesus", "On the cross"] },
     { label: "", lines: ["As far as East from West", "I see His righteousness", "My sins are now removed", "Oh, my sins are now removed", "O Praise Him, O Praise Him"] },
     { label: "", lines: ["O Praise the Lamb", "Who takes away my sin", "He tore the veil", "Now I can enter in", "For all my days", "My soul will praise Him"] },
     { label: "", lines: ["O Praise the One", "With scars in His hands", "O Praise the Son", "Who died and rose again", "For all my days", "My soul will praise Him"] },
@@ -578,10 +578,10 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/results?search_query=Fairest+Lord+Jesus+hymn+official+worship",
     lyrics: [
     { label: "", lines: ["Fairest Lord Jesus", "Ruler of all nature", "O Thou of God and", "Man the Son"] },
-    { label: "", lines: ["Thee will I cherish", "Thee will I honor", "Thou my soul\'s glory", "Joy and crown"] },
+    { label: "", lines: ["Thee will I cherish", "Thee will I honor", "Thou my soul's glory", "Joy and crown"] },
     { label: "", lines: ["Fair are the meadows", "Fairer still the woodlands", "Robed in the blooming", "Garb of spring"] },
     { label: "", lines: ["Jesus is fairer", "Jesus is purer", "Who makes the woeful", "Heart to sing", "Fair is the sunshine", "Fairer still the moonlight", "And all the twinkling", "Starry host"] },
-    { label: "", lines: ["Jesus shines brighter", "Jesus shines purer", "Than all the angels", "Heav\'n can boast"] },
+    { label: "", lines: ["Jesus shines brighter", "Jesus shines purer", "Than all the angels", "Heav'n can boast"] },
     { label: "", lines: ["Beautiful Savior", "Lord of the nations", "Son of God and", "Son of Man"] },
     { label: "", lines: ["Glory and honor", "Praise, adoration", "Now and forevermore", "Be Thine", "Now and forevermore", "Be Thine"] }
   ]
@@ -591,13 +591,13 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/results?search_query=The+First+Noel+hymn+official+worship",
     lyrics: [
     { label: "", lines: ["The first Noel", "The angels did say", "Was to certain poor shepherds", "In fields where they lay"] },
-    { label: "", lines: ["In fields where they", "Lay keeping their sheep", "On a cold winter\'s night", "That was so deep"] },
+    { label: "", lines: ["In fields where they", "Lay keeping their sheep", "On a cold winter's night", "That was so deep"] },
     { label: "", lines: ["Noel, Noel, Noel, Noel", "Born is the King of Israel"] },
     { label: "", lines: ["They looked up", "And saw a star", "Shining in the East", "Beyond them, far"] },
     { label: "", lines: ["And to the earth", "It gave great light", "And so it continued", "Both day and night"] },
     { label: "", lines: ["Noel, Noel, Noel, Noel", "Born is the King of Israel"] },
-    { label: "", lines: ["Then let us all", "With one accord", "Sing praises to", "Our heav\'nly Lord"] },
-    { label: "", lines: ["That hath made heav\'n", "And earth of naught", "And with His blood", "Mankind has bought"] },
+    { label: "", lines: ["Then let us all", "With one accord", "Sing praises to", "Our heav'nly Lord"] },
+    { label: "", lines: ["That hath made heav'n", "And earth of naught", "And with His blood", "Mankind has bought"] },
     { label: "", lines: ["Noel, Noel, Noel, Noel", "Born is the King of Israel"] },
     { label: "", lines: ["Noel, Noel, Noel, Noel", "Born is the King of Israel", "Born is the King of Israel"] }
   ]
@@ -618,14 +618,14 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/watch?v=C3PMRnRyfVM",
     lyrics: [
     { label: "Verse 1", lines: ["Gladly would I leave behind me", "All the pleasure I have known", "To pursue surpassing treasures", "At the throne of God the Son", "Worthy of unending worship", "Love and loveliness is He", "By His precious death were millions", "From the jaws of death set free"] },
-    { label: "Verse 2", lines: ["Gladly would I give to Jesus", "All affection, everything", "For the washing of His mercy", "Makes my ransomed heart to sing", "\"Holy, holy!\" is the chorus", "Rising up from those who see", "Christ exalted, bright and burning", "Full of pow\'r and purity"] },
-    { label: "Bridge", lines: ["Where else can I go?", "Jesus, You\'re the One", "That I was made to know"] },
-    { label: "Bridge", lines: ["What else can I do?", "Jesus, You\'re my all", "I gladly run to You"] },
+    { label: "Verse 2", lines: ["Gladly would I give to Jesus", "All affection, everything", "For the washing of His mercy", "Makes my ransomed heart to sing", "\"Holy, holy!\" is the chorus", "Rising up from those who see", "Christ exalted, bright and burning", "Full of pow'r and purity"] },
+    { label: "Bridge", lines: ["Where else can I go?", "Jesus, You're the One", "That I was made to know"] },
+    { label: "Bridge", lines: ["What else can I do?", "Jesus, You're my all", "I gladly run to You"] },
     { label: "Verse 3", lines: ["Gladly would I flee temptations", "For their troubles fill my life", "Turn and seek my God and Savior", "For His goodness satisfies", "Earthly treasures, all are passing", "Thieves break in and rust destroys", "But in God are awesome splendor", "Love, and everlasting joys"] },
-    { label: "Bridge", lines: ["Where else can I go?", "Jesus, You\'re the One", "That I was made to know"] },
-    { label: "Bridge", lines: ["What else can I do?", "Jesus, You\'re my all", "I gladly run to You"] },
-    { label: "Bridge", lines: ["Where else can I go?", "Jesus, You\'re the One", "That I was made to know"] },
-    { label: "Bridge", lines: ["What else can I do?", "Jesus, You\'re my all", "I gladly run to You"] },
+    { label: "Bridge", lines: ["Where else can I go?", "Jesus, You're the One", "That I was made to know"] },
+    { label: "Bridge", lines: ["What else can I do?", "Jesus, You're my all", "I gladly run to You"] },
+    { label: "Bridge", lines: ["Where else can I go?", "Jesus, You're the One", "That I was made to know"] },
+    { label: "Bridge", lines: ["What else can I do?", "Jesus, You're my all", "I gladly run to You"] },
     { label: "Verse 2", lines: ["Gladly would I give to Jesus", "All affection, everything", "For the washing of His mercy", "Makes my ransomed heart to sing"] }
   ]
   },
@@ -634,9 +634,9 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/results?search_query=God+Rest+Ye+Merry+Gentlemen+hymn+worship",
     lyrics: [
     { label: "", lines: ["God rest ye merry, gentlemen", "Let nothing you dismay", "Remember, Christ our Saviour", "Was born on Christmas Day"] },
-    { label: "", lines: ["To save us all from Satan\'s pow\'r", "When we were gone astray"] },
+    { label: "", lines: ["To save us all from Satan's pow'r", "When we were gone astray"] },
     { label: "", lines: ["O tidings of comfort and joy", "Comfort and joy", "O tidings of comfort and joy"] },
-    { label: "", lines: ["From God, our heav\'nly Father", "A blessed angel came", "And unto certain shepherds", "Brought tidings of the same", "How that, in Bethlehem, was born", "The Son of God by name"] },
+    { label: "", lines: ["From God, our heav'nly Father", "A blessed angel came", "And unto certain shepherds", "Brought tidings of the same", "How that, in Bethlehem, was born", "The Son of God by name"] },
     { label: "", lines: ["O tidings of comfort and joy", "Comfort and joy", "O tidings of comfort and joy"] },
     { label: "", lines: ["Now to the Lord sing praises", "All you within this place", "And with true love and brotherhood", "Each other now embrace"] },
     { label: "", lines: ["This holy tide of Christmas", "All other doth efface"] },
@@ -647,8 +647,8 @@ const LEGACY_SONGS = {
     title: "The Gospel Song",
     youtube: "https://www.youtube.com/results?search_query=The+Gospel+Song+worship+official",
     lyrics: [
-    { label: "", lines: ["Holy God, in sov\'reignty", "Chose my soul to spare, in Thee", "Purposed to redeem, and save", "Though my heart deserved the grave"] },
-    { label: "", lines: ["How to make unrighteousness", "Fit for heaven, nonetheless?", "Oh, what grace was Love\'s design", "Christ exchanged His own, for mine!"] },
+    { label: "", lines: ["Holy God, in sov'reignty", "Chose my soul to spare, in Thee", "Purposed to redeem, and save", "Though my heart deserved the grave"] },
+    { label: "", lines: ["How to make unrighteousness", "Fit for heaven, nonetheless?", "Oh, what grace was Love's design", "Christ exchanged His own, for mine!"] },
     { label: "", lines: ["Holy God, in love, became", "Perfect Man to bear my blame", "On the cross He took my sin", "By His death I live again"] },
     { label: "", lines: ["Justified, how can it be?", "Christ, now risen, lives in me!", "Abba, Father, by Your grace", "Christ, my all, my resting place"] }
   ]
@@ -669,13 +669,13 @@ const LEGACY_SONGS = {
     title: "Hark! The Herald Angels Sing",
     youtube: "https://www.youtube.com/results?search_query=Hark+The+Herald+Angels+Sing+hymn+official",
     lyrics: [
-    { label: "", lines: ["Hail, the Heav\'nly Prince of Peace!", "Hail, the Sun of righteousness!", "Light and life to all, He brings", "Ris\'n with healing in His wings"] },
+    { label: "", lines: ["Hail, the Heav'nly Prince of Peace!", "Hail, the Sun of righteousness!", "Light and life to all, He brings", "Ris'n with healing in His wings"] },
     { label: "", lines: ["Mild, He lays His Glory by", "Born that man no more may die", "Born to raise the sons of Earth", "Born to give them second birth"] },
     { label: "", lines: ["\"Hark!\", the herald angels sing", "\"Glory to the newborn King!\""] },
-    { label: "", lines: ["Christ, by highest heav\'n adored", "Christ, the everlasting Lord", "Late in time, behold Him come", "Offspring of a virgin\'s womb"] },
+    { label: "", lines: ["Christ, by highest heav'n adored", "Christ, the everlasting Lord", "Late in time, behold Him come", "Offspring of a virgin's womb"] },
     { label: "", lines: ["Veiled in flesh, the Godhead see", "Hail, the incarnate Deity", "Pleased, as man, with men to dwell", "Jesus, our Emmanuel"] },
-    { label: "", lines: ["\"Hark!\", the herald angels sing", "\"Glory to the newborn King!\"", "Adam\'s likeness, Lord, efface", "Stamp Thy image in its place", "Second Adam from above", "Reinstate us in Thy Love"] },
-    { label: "", lines: ["Let us, Thee, tho\' lost, regain", "Thee, the Life, the Heav\'nly Man", "O, to all, Thyself impart", "Form\'d in each believing heart"] },
+    { label: "", lines: ["\"Hark!\", the herald angels sing", "\"Glory to the newborn King!\"", "Adam's likeness, Lord, efface", "Stamp Thy image in its place", "Second Adam from above", "Reinstate us in Thy Love"] },
+    { label: "", lines: ["Let us, Thee, tho' lost, regain", "Thee, the Life, the Heav'nly Man", "O, to all, Thyself impart", "Form'd in each believing heart"] },
     { label: "", lines: ["\"Hark!\", the herald angels sing", "\"Glory to the newborn King!\""] },
     { label: "", lines: ["Hark, how all the Welkin rings!", "\"Glory to the King of kings", "\"Peace on Earth, and mercy, mild", "\"God and sinners reconciled!\""] },
     { label: "", lines: ["Joyful, all ye nations rise", "Join the triumph of the skies", "Shout with all Creation, say", "\"Christ the Lord is born today!\""] },
@@ -687,11 +687,11 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/results?search_query=He+Knows+My+Name+worship+official",
     lyrics: [
     { label: "", lines: ["I have a Maker", "He formed my heart", "Before even time began", "My life was in His hand"] },
-    { label: "", lines: ["He knows my name", "He knows my ev\'ry thought", "He sees each tear that falls", "And hears me when I call"] },
-    { label: "", lines: ["I have a Father", "He calls me His own", "He\'ll never leave me", "No matter where I go"] },
-    { label: "", lines: ["He knows my name", "He knows my ev\'ry thought", "He sees each tear that falls", "And hears me when I call"] },
-    { label: "", lines: ["He knows my name", "He knows my ev\'ry thought", "He sees each tear that falls", "And hears me when I call"] },
-    { label: "", lines: ["He knows my name", "He knows my ev\'ry thought", "He sees each tear that falls", "And hears me when I call", "He hears me when I call"] }
+    { label: "", lines: ["He knows my name", "He knows my ev'ry thought", "He sees each tear that falls", "And hears me when I call"] },
+    { label: "", lines: ["I have a Father", "He calls me His own", "He'll never leave me", "No matter where I go"] },
+    { label: "", lines: ["He knows my name", "He knows my ev'ry thought", "He sees each tear that falls", "And hears me when I call"] },
+    { label: "", lines: ["He knows my name", "He knows my ev'ry thought", "He sees each tear that falls", "And hears me when I call"] },
+    { label: "", lines: ["He knows my name", "He knows my ev'ry thought", "He sees each tear that falls", "And hears me when I call", "He hears me when I call"] }
   ]
   },
   "he-will-hold-me-fast": {
@@ -715,12 +715,12 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Hear the call of the kingdom", "To be children of light", "With the mercy of heaven,", "The humility of Christ"] },
     { label: "", lines: ["Walking justly before Him", "Loving all that is right", "That the life of Christ", "May shine through us"] },
     { label: "", lines: ["King of heaven", "We will answer the call", "We will follow,", "Bringing hope to the world"] },
-    { label: "", lines: ["Filled with passion,", "Filled with power to proclaim", "Salvation in Jesus\' name", "Hear the call of the kingdom", "To reach out to the lost", "With the Father\'s compassion", "In the wonder of the cross"] },
+    { label: "", lines: ["Filled with passion,", "Filled with power to proclaim", "Salvation in Jesus' name", "Hear the call of the kingdom", "To reach out to the lost", "With the Father's compassion", "In the wonder of the cross"] },
     { label: "", lines: ["Bringing peace and forgiveness", "And a hope yet to come", "Let the nations put their", "Trust in Him"] },
     { label: "", lines: ["King of heaven", "We will answer the call", "We will follow,", "Bringing hope to the world"] },
-    { label: "", lines: ["Filled with passion,", "Filled with power to proclaim", "Salvation in Jesus\' name"] },
+    { label: "", lines: ["Filled with passion,", "Filled with power to proclaim", "Salvation in Jesus' name"] },
     { label: "", lines: ["King of heaven", "We will answer the call", "We will follow,", "Bringing hope to the world"] },
-    { label: "", lines: ["Filled with passion,", "Filled with power to proclaim", "Salvation in Jesus\' name", "Salvation in Jesus\' name", "Salvation in Jesus\' name"] }
+    { label: "", lines: ["Filled with passion,", "Filled with power to proclaim", "Salvation in Jesus' name", "Salvation in Jesus' name", "Salvation in Jesus' name"] }
   ]
   },
   "help-us-see-christ": {
@@ -729,7 +729,7 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "", lines: ["Holy Spirit breath of God", "Witness to all that Christ has done", "Great Revealer radiant light", "One with the Father and the Son"] },
     { label: "", lines: ["Open our eyes, help us see Christ", "May we behold His majesty", "Open our eyes, Spirit we cry", "Show us the glory of our King", "Help us see Christ"] },
-    { label: "", lines: ["Holy Spirit voice of truth", "Speaking the Word of God to us", "Sent from heaven to our hearts", "That we might know the Father\'s love"] },
+    { label: "", lines: ["Holy Spirit voice of truth", "Speaking the Word of God to us", "Sent from heaven to our hearts", "That we might know the Father's love"] },
     { label: "", lines: ["Open our eyes, help us see Christ", "May we behold His majesty", "Open our eyes, Spirit we cry", "Show us the glory of our King", "Help us see Christ"] },
     { label: "", lines: ["Holy Spirit guarantee", "Of the redemption Christ has won", "Promised helper be our strength", "Until this race on earth is run"] },
     { label: "", lines: ["Open our eyes, help us see Christ", "May we behold His majesty", "Open our eyes, Spirit we cry", "Show us the glory of our King"] },
@@ -741,8 +741,8 @@ const LEGACY_SONGS = {
     title: "His Forever",
     youtube: "https://www.youtube.com/results?search_query=His+Forever+worship+official",
     lyrics: [
-    { label: "", lines: ["Jesus, friend of sinners", "Loved me \'ere I knew Him", "Drew me with His cords of love", "Tightly bound me to Him"] },
-    { label: "", lines: ["\'Round my heart still closely twined", "The ties that none can sever", "For I am His and He is mine", "Forever and forever"] },
+    { label: "", lines: ["Jesus, friend of sinners", "Loved me 'ere I knew Him", "Drew me with His cords of love", "Tightly bound me to Him"] },
+    { label: "", lines: ["'Round my heart still closely twined", "The ties that none can sever", "For I am His and He is mine", "Forever and forever"] },
     { label: "", lines: ["Jesus, friend of sinners", "A crown of thorns You wore for me", "Bruised for my transgressions", "Pierced for my iniquities"] },
     { label: "", lines: ["The wrath of God that I deserved", "Was poured out on the Innocent", "He took my place, my soul to save", "Now I am His forever", "Jesus, friend of sinners", "I love to tell the story", "Redeeming love has been my theme", "And will be when in glory"] },
     { label: "", lines: ["Not death, nor life, nor anything", "Can ever separate me", "O, love that will not let me go", "Yes, I am His forever"] },
@@ -753,7 +753,7 @@ const LEGACY_SONGS = {
     title: "His Glory and My Good",
     youtube: "https://www.youtube.com/results?search_query=His+Glory+and+My+Good+Matt+Boswell+official",
     lyrics: [
-    { label: "", lines: ["I have seen my Father\'s glory", "Revealed in Jesus Christ", "And the more that I behold Him", "The more He satisfies"] },
+    { label: "", lines: ["I have seen my Father's glory", "Revealed in Jesus Christ", "And the more that I behold Him", "The more He satisfies"] },
     { label: "", lines: ["When I gaze upon His beauty", "When I see Him as I should", "Then my eyes are lifted upward", "For His glory and my good"] },
     { label: "", lines: ["There is hope in every trial", "For I can trust the Lord", "He will turn my heart towards Him", "And help me bear the thorn"] },
     { label: "", lines: ["So in faith I follow Jesus", "On the road not understood", "For I know that He is working", "For His glory and my good"] },
@@ -788,17 +788,17 @@ const LEGACY_SONGS = {
     title: "His Robes for Mine (choral)",
     youtube: "https://www.youtube.com/results?search_query=His+Robes+for+Mine+Chris+Anderson+choral+official",
     lyrics: [
-    { label: "", lines: ["His robes for mine", "O wonderful exchange", "Clothed in my sin", "Christ suffered \'neath God\'s rage"] },
-    { label: "", lines: ["Draped in His righteousness", "I\'m justified", "In Christ I live", "For in my place He died"] },
+    { label: "", lines: ["His robes for mine", "O wonderful exchange", "Clothed in my sin", "Christ suffered 'neath God's rage"] },
+    { label: "", lines: ["Draped in His righteousness", "I'm justified", "In Christ I live", "For in my place He died"] },
     { label: "", lines: ["I cling to Christ", "And marvel at the cost", "Jesus forsaken", "God estranged from God"] },
     { label: "", lines: ["Bought by such love", "My life is not my own", "My praise, my all", "Shall be for Christ alone"] },
-    { label: "", lines: ["His robes for mine", "What cause have I for dread?", "God\'s daunting law", "Christ mastered in my stead"] },
-    { label: "", lines: ["Faultless I stand", "With righteous works not mine", "Saved by my Lord\'s", "Vicarious death and life"] },
-    { label: "", lines: ["His robes for mine", "God\'s justice is appeased", "Jesus is crushed", "And thus the Father\'s pleased"] },
-    { label: "", lines: ["Christ drank God\'s wrath on sin", "Then cried \"\'Tis done!\"", "Sin\'s wage is paid", "Propitiation won"] },
+    { label: "", lines: ["His robes for mine", "What cause have I for dread?", "God's daunting law", "Christ mastered in my stead"] },
+    { label: "", lines: ["Faultless I stand", "With righteous works not mine", "Saved by my Lord's", "Vicarious death and life"] },
+    { label: "", lines: ["His robes for mine", "God's justice is appeased", "Jesus is crushed", "And thus the Father's pleased"] },
+    { label: "", lines: ["Christ drank God's wrath on sin", "Then cried \"'Tis done!\"", "Sin's wage is paid", "Propitiation won"] },
     { label: "", lines: ["I cling to Christ", "And marvel at the cost", "Jesus forsaken", "God estranged from God"] },
     { label: "", lines: ["Bought by such love", "My life is not my own", "My praise, my all", "Shall be for Christ alone"] },
-    { label: "", lines: ["His robes for mine", "Such anguish none can know", "Christ, God\'s belov\'d", "Condemned as though His foe"] },
+    { label: "", lines: ["His robes for mine", "Such anguish none can know", "Christ, God's belov'd", "Condemned as though His foe"] },
     { label: "", lines: ["He, as though I", "Accursed and left alone", "I, as though He", "Embraced and welcomed home!"] },
     { label: "", lines: ["I cling to Christ", "And marvel at the cost", "Jesus forsaken", "God estranged from God"] },
     { label: "", lines: ["Bought by such love", "My life is not my own", "My praise, my all", "Shall be for Christ alone"] },
@@ -844,8 +844,8 @@ const LEGACY_SONGS = {
     title: "How Great",
     youtube: "https://www.youtube.com/watch?v=SNSoydKOXQo",
     lyrics: [
-    { label: "", lines: ["I\'ll bless your name, O God", "Each day that I awake", "From dawn to setting sun", "Your greatness I\'ll proclaim"] },
-    { label: "", lines: ["Your glory far exceeds", "All human thought", "So with each breath", "I\'ll bless Your name, O God"] },
+    { label: "", lines: ["I'll bless your name, O God", "Each day that I awake", "From dawn to setting sun", "Your greatness I'll proclaim"] },
+    { label: "", lines: ["Your glory far exceeds", "All human thought", "So with each breath", "I'll bless Your name, O God"] },
     { label: "", lines: ["Your name will be revered", "By children yet to come", "As generations sing", "Of wonders You have done"] },
     { label: "", lines: ["Your strong and mighty deeds", "Are always near", "O God, Most High", "Your name will be revered"] },
     { label: "", lines: ["How great is the Lord", "And greatly to be praised!", "How great is the Lord, our God"] },
@@ -854,7 +854,7 @@ const LEGACY_SONGS = {
     { label: "", lines: ["How great is the Lord", "And greatly to be praised!", "How great is the Lord, our God"] },
     { label: "", lines: ["How great is the Lord", "And greatly to be praised!"] },
     { label: "", lines: ["Forever without end", "Creation will rejoice", "When works of wicked men", "You finally destroy"] },
-    { label: "", lines: ["Your power we\'ll proclaim", "\'Til Christ descends", "And You will reign forever", "Without end"] },
+    { label: "", lines: ["Your power we'll proclaim", "'Til Christ descends", "And You will reign forever", "Without end"] },
     { label: "", lines: ["How great is the Lord", "And greatly to be praised!", "How great is the Lord, our God"] },
     { label: "", lines: ["How great is the Lord", "And greatly to be praised!", "And greatly to be praised!"] }
   ]
@@ -879,7 +879,7 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Our sorrows leave us weak and worn", "Surrounded by our fears", "We look to heaven", "Through feeble faith and tears", "How long, O Lord, how long?"] },
     { label: "", lines: ["Till Your glory fills our eyes", "And our faith is turned to sight", "Till our thirsty souls are satisfied", "How long, O Lord, how long?"] },
     { label: "", lines: ["Our foes and enemies rejoice", "Injustice seems to reign", "Lord, we are shaken", "And we are losing strength", "How long, O Lord, how long?", "Till Your glory fills our eyes", "And our faith is turned to sight", "Till our thirsty souls are satisfied", "How long, O Lord, how long?"] },
-    { label: "", lines: ["But we will trust Your steadfast love", "Your grace will be our song", "You bring new mercies", "With ev\'ry rising sun", "How long, O Lord, how long?"] },
+    { label: "", lines: ["But we will trust Your steadfast love", "Your grace will be our song", "You bring new mercies", "With ev'ry rising sun", "How long, O Lord, how long?"] },
     { label: "", lines: ["Till Your glory fills our eyes", "And our faith is turned to sight", "Till our thirsty souls are satisfied", "How long, O Lord, how long?", "How long, O Lord, how long?"] }
   ]
   },
@@ -889,7 +889,7 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "", lines: ["How sweet and aweful is the place", "With Christ within the doors", "While everlasting love displays", "The choicest of her stores"] },
     { label: "", lines: ["While all our hearts and all our songs", "Join to admire the feast", "Each of us cry with thankful tongues", "\"Lord, why was I a guest?\""] },
-    { label: "", lines: ["\"Why was I made to hear Thy voice", "And enter while there\'s room", "When thousands make a wretched choice", "And rather starve than come?\"", "\'Twas the same love that spread the feast", "That sweetly drew us in", "Else we had still refused to taste", "And perished in our sin"] },
+    { label: "", lines: ["\"Why was I made to hear Thy voice", "And enter while there's room", "When thousands make a wretched choice", "And rather starve than come?\"", "'Twas the same love that spread the feast", "That sweetly drew us in", "Else we had still refused to taste", "And perished in our sin"] },
     { label: "", lines: ["Pity the nations, O our God", "Constrain the earth to come", "Send Thy victorious Word abroad", "And bring the strangers home"] },
     { label: "", lines: ["We long to see Thy churches full", "That all the chosen race", "May with one voice and heart and soul", "Sing Thy redeeming grace"] }
   ]
@@ -898,12 +898,12 @@ const LEGACY_SONGS = {
     title: "I Asked the Lord That I Might Grow",
     youtube: "https://www.youtube.com/results?search_query=I+Asked+the+Lord+That+I+Might+Grow+worship+official",
     lyrics: [
-    { label: "", lines: ["I asked the Lord that I might grow", "In faith, and love, and ev\'ry grace", "Might more of His salvation know", "And seek more earnestly His face"] },
-    { label: "", lines: ["\'Twas He who taught me thus to pray", "And He, I trust, has answered prayer", "But it has been in such a way", "As almost drove me to despair"] },
-    { label: "", lines: ["I hoped that in some favored hour", "At once He\'d answer my request", "And, by His love\'s constraining pow\'r", "Subdue my sins, and give me rest"] },
-    { label: "", lines: ["Instead of this, He made me feel", "The hidden evils of my heart", "And let the angry pow\'rs of hell", "Assault my soul in ev\'ry part", "Yea, more, with His own hand He seemed", "Intent to aggravate my woe", "Crossed all the fair designs I schemed", "Humbled my heart, and laid me low"] },
-    { label: "", lines: ["\"Lord, why is this?\" I, trembling, cried", "\"Wilt thou pursue Thy worm to death?\"", "\"\'Tis in this way,\" the Lord replied,", "\"I answer prayer for grace and faith\""] },
-    { label: "", lines: ["\"These inward trials I employ\"", "\"From self and pride to set you free\"", "\"And break thy schemes of earthly joy\"", "\"That thou may\'st find your all in Me\""] }
+    { label: "", lines: ["I asked the Lord that I might grow", "In faith, and love, and ev'ry grace", "Might more of His salvation know", "And seek more earnestly His face"] },
+    { label: "", lines: ["'Twas He who taught me thus to pray", "And He, I trust, has answered prayer", "But it has been in such a way", "As almost drove me to despair"] },
+    { label: "", lines: ["I hoped that in some favored hour", "At once He'd answer my request", "And, by His love's constraining pow'r", "Subdue my sins, and give me rest"] },
+    { label: "", lines: ["Instead of this, He made me feel", "The hidden evils of my heart", "And let the angry pow'rs of hell", "Assault my soul in ev'ry part", "Yea, more, with His own hand He seemed", "Intent to aggravate my woe", "Crossed all the fair designs I schemed", "Humbled my heart, and laid me low"] },
+    { label: "", lines: ["\"Lord, why is this?\" I, trembling, cried", "\"Wilt thou pursue Thy worm to death?\"", "\"'Tis in this way,\" the Lord replied,", "\"I answer prayer for grace and faith\""] },
+    { label: "", lines: ["\"These inward trials I employ\"", "\"From self and pride to set you free\"", "\"And break thy schemes of earthly joy\"", "\"That thou may'st find your all in Me\""] }
   ]
   },
   "i-see-the-lord": {
@@ -925,8 +925,8 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "", lines: ["I will glory in my Redeemer", "Whose priceless blood has ransomed me", "Mine was the sin that drove the bitter nails", "And hung Him on that judgment tree"] },
     { label: "", lines: ["I will glory in my Redeemer", "Who crushed the power of sin and death", "My only Savior before the Holy Judge", "The Lamb Who is my righteousness", "The Lamb Who is my righteousness"] },
-    { label: "", lines: ["I will glory in my Redeemer", "My life He bought, my love He owns", "I have no longings for another", "I\'m satisfied in Him alone", "I will glory in my Redeemer", "His faithfulness, my standing place", "Though foes are mighty and rush upon me", "My feet are firm, held by His grace", "My feet are firm, held by His grace"] },
-    { label: "", lines: ["I will glory in my Redeemer", "Who carries me on eagle\'s wings", "He crowns my life with lovingkindness", "His triumph song I\'ll ever sing"] },
+    { label: "", lines: ["I will glory in my Redeemer", "My life He bought, my love He owns", "I have no longings for another", "I'm satisfied in Him alone", "I will glory in my Redeemer", "His faithfulness, my standing place", "Though foes are mighty and rush upon me", "My feet are firm, held by His grace", "My feet are firm, held by His grace"] },
+    { label: "", lines: ["I will glory in my Redeemer", "Who carries me on eagle's wings", "He crowns my life with lovingkindness", "His triumph song I'll ever sing"] },
     { label: "", lines: ["I will glory in my Redeemer", "Who waits for me at gates of gold", "And when He calls me it will be paradise", "His face forever to behold", "His face forever to behold", "His face forever to behold"] }
   ]
   },
@@ -949,11 +949,11 @@ const LEGACY_SONGS = {
     title: "Immortal, Invisible",
     youtube: "https://www.youtube.com/results?search_query=Immortal+Invisible+hymn+official+worship",
     lyrics: [
-    { label: "", lines: ["Immortal, You are not like a man", "That You change Your mind", "Or change Your plan", "Invisible, our human eyes can\'t see", "The depths of Your majesty"] },
-    { label: "", lines: ["You\'re the God of forever and ever, amen", "The Alpha, Omega, Beginning and End", "We sing \"Hallelujah!\"", "We worship in awe", "Immortal, invisible God"] },
-    { label: "", lines: ["Immortal, You are not bound by death", "You\'re the living God, my very breath", "Invisible, You are not bound by space", "But Your glory is filling this place", "Yes, Your glory is filling this place"] },
-    { label: "", lines: ["You\'re the God of forever and ever, amen", "The Alpha, Omega, Beginning and End", "We sing \"Hallelujah!\"", "We worship in awe", "Immortal, invisible God", "Immortal, yet You once died for me", "To pay my debt, to set me free", "Invisible, You will not always be", "\'Cause You\'re coming to reign as our King", "And the saints will fall down at Your feet"] },
-    { label: "", lines: ["You\'re the God of forever and ever, amen", "The Alpha, Omega, Beginning and End", "We sing \"Hallelujah!\"", "We worship in awe", "Immortal, invisible God"] },
+    { label: "", lines: ["Immortal, You are not like a man", "That You change Your mind", "Or change Your plan", "Invisible, our human eyes can't see", "The depths of Your majesty"] },
+    { label: "", lines: ["You're the God of forever and ever, amen", "The Alpha, Omega, Beginning and End", "We sing \"Hallelujah!\"", "We worship in awe", "Immortal, invisible God"] },
+    { label: "", lines: ["Immortal, You are not bound by death", "You're the living God, my very breath", "Invisible, You are not bound by space", "But Your glory is filling this place", "Yes, Your glory is filling this place"] },
+    { label: "", lines: ["You're the God of forever and ever, amen", "The Alpha, Omega, Beginning and End", "We sing \"Hallelujah!\"", "We worship in awe", "Immortal, invisible God", "Immortal, yet You once died for me", "To pay my debt, to set me free", "Invisible, You will not always be", "'Cause You're coming to reign as our King", "And the saints will fall down at Your feet"] },
+    { label: "", lines: ["You're the God of forever and ever, amen", "The Alpha, Omega, Beginning and End", "We sing \"Hallelujah!\"", "We worship in awe", "Immortal, invisible God"] },
     { label: "", lines: ["We sing \"Hallelujah!\"", "We worship in awe", "Immortal, invisible God", "Immortal, invisible God"] }
   ]
   },
@@ -976,12 +976,12 @@ const LEGACY_SONGS = {
     { label: "", lines: ["In Christ alone, who took on flesh", "Fullness of God in helpless Babe", "This gift of love and righteousness", "Scorned by the ones He came to save"] },
     { label: "", lines: ["Till on that cross as Jesus died", "The wrath of God was satisfied", "For every sin on Him was laid", "Here in the death of Christ I live"] },
     { label: "", lines: ["There in the ground His body lay", "Light of the world by darkness slain"] },
-    { label: "", lines: ["Then bursting forth in glorious Day", "Up from the grave He rose again", "And as He stands in victory", "Sin\'s curse has lost its grip on me", "For I am His, and He is mine", "Bought with the precious blood of Christ"] },
+    { label: "", lines: ["Then bursting forth in glorious Day", "Up from the grave He rose again", "And as He stands in victory", "Sin's curse has lost its grip on me", "For I am His, and He is mine", "Bought with the precious blood of Christ"] },
     { label: "", lines: ["On Christ, the solid Rock, I stand", "All other ground is sinking sand", "All other ground is sinking sand"] },
     { label: "", lines: ["On Christ, the solid Rock, I stand", "All other ground is sinking sand", "All other ground is sinking sand"] },
-    { label: "", lines: ["No guilt in life, no fear in death", "This is the power of Christ in me", "From life\'s first cry to final breath", "Jesus commands my destiny"] },
-    { label: "", lines: ["No power of hell, no scheme of man", "Can ever pluck me from His hand", "Till He returns, or calls me home", "Here in the power of Christ I\'ll stand", "Here in the power of Christ I\'ll stand"] },
-    { label: "", lines: ["Here in the power of Christ I\'ll stand"] }
+    { label: "", lines: ["No guilt in life, no fear in death", "This is the power of Christ in me", "From life's first cry to final breath", "Jesus commands my destiny"] },
+    { label: "", lines: ["No power of hell, no scheme of man", "Can ever pluck me from His hand", "Till He returns, or calls me home", "Here in the power of Christ I'll stand", "Here in the power of Christ I'll stand"] },
+    { label: "", lines: ["Here in the power of Christ I'll stand"] }
   ]
   },
   "in-remembrance-of-me": {
@@ -991,7 +991,7 @@ const LEGACY_SONGS = {
     { label: "", lines: ["This is My body, given for you", "This is the bread of life, a sign", "Of a new covenant", "This is forgiveness, simple and true", "This is the way that I have made for you"] },
     { label: "", lines: ["Before you eat, before you drink", "Take a long look inside", "And consider what you see", "He said, \"Do this in remembrance of Me\"", "\"Do this in remembrance of Me\""] },
     { label: "", lines: ["This is the blood of Christ, poured out for you", "This is the cup that holds the wine", "Of a new covenant", "This is the love of Christ, none can undo", "This is the Son of God who died for you"] },
-    { label: "", lines: ["Before you eat before you drink", "Be at peace with ev\'ry brother", "Walk in love and unity", "He said, \"Do this in remembrance of Me\"", "\"Do this in remembrance of Me\"", "This is My body, broken for you", "This is the cup that holds the blood", "Of the new covenant", "This is the table I\'ve set for you", "Until the Kingdom, when we drink anew"] },
+    { label: "", lines: ["Before you eat before you drink", "Be at peace with ev'ry brother", "Walk in love and unity", "He said, \"Do this in remembrance of Me\"", "\"Do this in remembrance of Me\"", "This is My body, broken for you", "This is the cup that holds the blood", "Of the new covenant", "This is the table I've set for you", "Until the Kingdom, when we drink anew"] },
     { label: "", lines: ["I will remember", "The cross that You bore for me", "I will remember", "The crown that You wore for me", "I will remember", "The reason You suffered and died"] },
     { label: "", lines: ["This is forgiveness, simple and true", "This is the way that I have made for you", "I am the way", "This is the way that I have made for you"] }
   ]
@@ -1000,7 +1000,7 @@ const LEGACY_SONGS = {
     title: "In the Cross Alone, I Glory",
     youtube: "https://www.youtube.com/results?search_query=In+the+Cross+Alone+I+Glory+worship+official",
     lyrics: [
-    { label: "", lines: ["In the cross alone, I glory", "Recognition laying down", "Greatest treasures count as worthless", "Standing next to Heaven\'s crowns", "Standing next to Heaven\'s crowns"] },
+    { label: "", lines: ["In the cross alone, I glory", "Recognition laying down", "Greatest treasures count as worthless", "Standing next to Heaven's crowns", "Standing next to Heaven's crowns"] },
     { label: "", lines: ["In the cross alone, I glory", "Ever reaching for the prize", "Pressing on and laying hold of", "That for which my Savior died", "That for which my Savior died"] },
     { label: "", lines: ["In the cross alone, I glory", "Nothing of my own to give", "Only that which Christ has offered", "For my soul that I may live", "For my soul that I may live"] },
     { label: "", lines: ["In the cross alone, I glory", "Holding fast the Word of Life", "Toiling not in vain, but being", "Poured out as a sacrifice", "Poured out as a sacrifice", "Never will I seek the glory", "That was never meant for me"] },
@@ -1056,11 +1056,11 @@ const LEGACY_SONGS = {
     title: "Jesus Shall Reign",
     youtube: "https://www.youtube.com/results?search_query=Jesus+Shall+Reign+hymn+official+worship",
     lyrics: [
-    { label: "", lines: ["Jesus shall reign where\'er the sun", "Does its successive journeys run", "His kingdom spread from shore to shore", "Till sun shall rise and set no more"] },
-    { label: "", lines: ["Blessings abound where\'er He reigns", "The pris\'ner leaps to lose his chains", "The weary find eternal rest", "And all the sons of want are blessed"] },
+    { label: "", lines: ["Jesus shall reign where'er the sun", "Does its successive journeys run", "His kingdom spread from shore to shore", "Till sun shall rise and set no more"] },
+    { label: "", lines: ["Blessings abound where'er He reigns", "The pris'ner leaps to lose his chains", "The weary find eternal rest", "And all the sons of want are blessed"] },
     { label: "", lines: ["To our King be highest praise", "Rising through eternal days", "Just and faithful He shall reign", "Jesus shall reign"] },
-    { label: "", lines: ["People and realms of ev\'ry tongue", "Dwell on His love with sweetest song", "And infant voices shall proclaim", "Their early blessings on His name", "To our King be highest praise", "Rising through eternal days", "Just and faithful He shall reign", "Jesus shall reign"] },
-    { label: "", lines: ["Let ev\'ry creature rise and bring", "Blessing and honor to our King", "Angels descend with songs again", "And earth repeat the loud Amen"] },
+    { label: "", lines: ["People and realms of ev'ry tongue", "Dwell on His love with sweetest song", "And infant voices shall proclaim", "Their early blessings on His name", "To our King be highest praise", "Rising through eternal days", "Just and faithful He shall reign", "Jesus shall reign"] },
+    { label: "", lines: ["Let ev'ry creature rise and bring", "Blessing and honor to our King", "Angels descend with songs again", "And earth repeat the loud Amen"] },
     { label: "", lines: ["To our King be highest praise", "Rising through eternal days", "Just and faithful He shall reign", "Jesus shall reign"] },
     { label: "", lines: ["To our King be highest praise", "Rising through eternal days", "Just and faithful He shall reign", "Jesus shall reign"] }
   ]
@@ -1080,13 +1080,13 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/results?search_query=Jesus+I+My+Cross+Have+Taken+worship+official",
     lyrics: [
     { label: "", lines: ["Jesus, I my cross have taken", "All to leave and follow Thee", "Destitute, despised, forsaken", "Thou from hence my all shall be"] },
-    { label: "", lines: ["Perish every fond ambition", "All I\'ve sought or hoped or known", "Yet how rich is my condition,", "God and heav\'n are still my own"] },
+    { label: "", lines: ["Perish every fond ambition", "All I've sought or hoped or known", "Yet how rich is my condition,", "God and heav'n are still my own"] },
     { label: "", lines: ["Let the world despise and leave me", "They have left my Savior, too", "Human hearts and looks deceive me", "Thou art not, like them, untrue"] },
     { label: "", lines: ["O while Thou dost smile upon me", "God of wisdom, love and might", "Foes may hate and friends disown me", "Show Thy face and all is bright"] },
     { label: "", lines: ["Go, then, earthly fame and treasure", "Come, disaster, scorn and pain", "In Thy service, pain is pleasure", "With Thy favor, loss is gain", "I have called Thee, \"Abba, Father\"", "I have stayed my heart on Thee", "Storms may howl, and clouds may gather", "All must work for good to me"] },
-    { label: "", lines: ["Soul, then know thy full salvation", "Rise o\'er sin and fear and care", "Joy to find in every station", "Something still to do or bear"] },
-    { label: "", lines: ["Think what Spirit dwells within thee", "Think what Father\'s smiles are thine", "Think that Jesus died to win thee", "Child of heaven, canst thou repine?"] },
-    { label: "", lines: ["Haste thee on from grace to glory", "Armed by faith and winged by prayer", "Heav\'n\'s eternal days before thee", "God\'s own hand shall guide thee there"] },
+    { label: "", lines: ["Soul, then know thy full salvation", "Rise o'er sin and fear and care", "Joy to find in every station", "Something still to do or bear"] },
+    { label: "", lines: ["Think what Spirit dwells within thee", "Think what Father's smiles are thine", "Think that Jesus died to win thee", "Child of heaven, canst thou repine?"] },
+    { label: "", lines: ["Haste thee on from grace to glory", "Armed by faith and winged by prayer", "Heav'n's eternal days before thee", "God's own hand shall guide thee there"] },
     { label: "", lines: ["Soon shall close thy earthly mission", "Swift shall pass thy pilgrim days", "Hope shall change to glad fruition", "Faith to sight, and prayer to praise"] },
     { label: "", lines: ["Faith to sight, and prayer to praise"] }
   ]
@@ -1096,14 +1096,14 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/watch?v=tHp8eThI2qk",
     lyrics: [
     { label: "Verse 1", lines: ["The mystery of the cross I cannot comprehend", "The agonies of Calvary", "You the perfect Holy One, crushed Your Son", "Who drank the bitter cup reserved for me"] },
-    { label: "Chorus", lines: ["Your blood has washed away my sin", "Jesus, thank You", "The Father\'s wrath completely satisfied", "Jesus, thank You", "Once Your enemy, now seated at Your table", "Jesus, thank You"] },
-    { label: "Verse 2", lines: ["By Your perfect sacrifice I\'ve been brought near", "Your enemy You\'ve made Your friend", "Pouring out the riches of Your glorious grace", "Your mercy and Your kindness know no end"] },
-    { label: "Chorus", lines: ["Your blood has washed away my sin", "Jesus, thank You", "The Father\'s wrath completely satisfied", "Jesus, thank You", "Once Your enemy, now seated at Your table", "Jesus, thank You"] },
+    { label: "Chorus", lines: ["Your blood has washed away my sin", "Jesus, thank You", "The Father's wrath completely satisfied", "Jesus, thank You", "Once Your enemy, now seated at Your table", "Jesus, thank You"] },
+    { label: "Verse 2", lines: ["By Your perfect sacrifice I've been brought near", "Your enemy You've made Your friend", "Pouring out the riches of Your glorious grace", "Your mercy and Your kindness know no end"] },
+    { label: "Chorus", lines: ["Your blood has washed away my sin", "Jesus, thank You", "The Father's wrath completely satisfied", "Jesus, thank You", "Once Your enemy, now seated at Your table", "Jesus, thank You"] },
     { label: "Bridge", lines: ["Lover of my soul", "I want to live for You"] },
     { label: "Bridge", lines: ["Lover of my soul", "I want to live for You"] },
     { label: "Bridge", lines: ["Lover of my soul", "I want to live for You"] },
-    { label: "", lines: ["Your blood has washed away my sin", "Jesus, thank You", "The Father\'s wrath completely satisfied", "Jesus, thank You"] },
-    { label: "Chorus", lines: ["Your blood has washed away my sin", "Jesus, thank You", "The Father\'s wrath completely satisfied", "Jesus, thank You", "Once Your enemy, now seated at Your table", "Jesus, thank You"] },
+    { label: "", lines: ["Your blood has washed away my sin", "Jesus, thank You", "The Father's wrath completely satisfied", "Jesus, thank You"] },
+    { label: "Chorus", lines: ["Your blood has washed away my sin", "Jesus, thank You", "The Father's wrath completely satisfied", "Jesus, thank You", "Once Your enemy, now seated at Your table", "Jesus, thank You"] },
     { label: "", lines: ["Jesus, thank You"] },
     { label: "", lines: ["Once Your enemy, now seated at Your table", "Jesus, thank You"] },
     { label: "", lines: ["...completely satisfied..."] },
@@ -1117,26 +1117,26 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/results?search_query=Jesus+What+a+Wonderful+Child+worship+official",
     lyrics: [
     { label: "", lines: ["Jesus, Jesus, oh, what a wonderful child", "Jesus, Jesus, so lowly, meek, and mild", "New life, new hope, new joy He brings", "Listen to the angels sing", "\"Glory, glory, glory to the newborn King!\""] },
-    { label: "", lines: ["Jesus, my Jesus, oh, what a wonderful child", "Jesus, my Jesus, so lowly, meek, and mild", "New life, new hope, new joy He brings", "Won\'t you listen to the angels sing", "\"Glory, glory, glory to the newborn King!\""] },
+    { label: "", lines: ["Jesus, my Jesus, oh, what a wonderful child", "Jesus, my Jesus, so lowly, meek, and mild", "New life, new hope, new joy He brings", "Won't you listen to the angels sing", "\"Glory, glory, glory to the newborn King!\""] },
     { label: "", lines: ["He was herald by the angels", "Born in a lowly manger", "The virgin Mary was His mother", "And Joseph was His earthly father"] },
-    { label: "", lines: ["Three wise men came from afar", "They were guided by a shining star", "To see King Jesus where He lay", "In a manger filled with hay", "Jesus, my Jesus, oh, my Lord,", "What a wonderful child", "I\'m talkin\' \'bout Jesus, my Jesus,", "My Lord, so lowly, meek, and mild"] },
-    { label: "", lines: ["New life, new hope, new joy He brings", "Won\'t you listen to the angels sing, singin\'", "\"Glory, glory, glory!\"", "\"Glory, glory, glory!\" They\'re singin\'", "\"Glory, glory, glory to the newborn King!\""] },
-    { label: "", lines: ["The angels are singin\' to the newborn King!"] },
-    { label: "", lines: ["Jesus, my Jesus, oh, my Lord,", "What a wonderful child", "I\'m talkin\' \'bout Jesus, my Jesus,", "My Lord, so lowly, meek, and mild"] },
-    { label: "", lines: ["New life, new hope, new joy He brings", "Won\'t you listen to the angels sing, singin\'", "\"Glory, glory, glory!\"", "\"Glory, glory, glory!\" They\'re singin\'", "\"Glory, glory, glory to the newborn King!\""] },
-    { label: "", lines: ["The angels are singin\' to the newborn King!"] }
+    { label: "", lines: ["Three wise men came from afar", "They were guided by a shining star", "To see King Jesus where He lay", "In a manger filled with hay", "Jesus, my Jesus, oh, my Lord,", "What a wonderful child", "I'm talkin' 'bout Jesus, my Jesus,", "My Lord, so lowly, meek, and mild"] },
+    { label: "", lines: ["New life, new hope, new joy He brings", "Won't you listen to the angels sing, singin'", "\"Glory, glory, glory!\"", "\"Glory, glory, glory!\" They're singin'", "\"Glory, glory, glory to the newborn King!\""] },
+    { label: "", lines: ["The angels are singin' to the newborn King!"] },
+    { label: "", lines: ["Jesus, my Jesus, oh, my Lord,", "What a wonderful child", "I'm talkin' 'bout Jesus, my Jesus,", "My Lord, so lowly, meek, and mild"] },
+    { label: "", lines: ["New life, new hope, new joy He brings", "Won't you listen to the angels sing, singin'", "\"Glory, glory, glory!\"", "\"Glory, glory, glory!\" They're singin'", "\"Glory, glory, glory to the newborn King!\""] },
+    { label: "", lines: ["The angels are singin' to the newborn King!"] }
   ]
   },
   "joy-has-dawned": {
     title: "Joy Has Dawned",
     youtube: "https://www.youtube.com/watch?v=1zqAxtZvOEU",
     lyrics: [
-    { label: "", lines: ["Joy has dawned upon the world", "Promised from creation", "God\'s salvation now unfurled", "Hope for ev\'ry nation"] },
+    { label: "", lines: ["Joy has dawned upon the world", "Promised from creation", "God's salvation now unfurled", "Hope for ev'ry nation"] },
     { label: "", lines: ["Not with fanfares from above", "Not with scenes of glory", "But a humble gift of love", "Jesus, born of Mary"] },
     { label: "", lines: ["Sounds of wonder fill the sky", "With the songs of angels", "As the mighty Prince of Life", "Shelters in a stable"] },
-    { label: "", lines: ["Hands that set each star in place", "Shaped the Earth in darkness", "Cling now to a mother\'s breast", "Vulnerable and helpless", "Shepherds bow before the Lamb", "Gazing at the glory", "Gifts of men from distant lands", "Prophesy the story"] },
-    { label: "", lines: ["Gold, a King is born today", "Incense, God is with us", "Myrrh, His death will make a way", "By His blood He\'ll win us"] },
-    { label: "", lines: ["Son of Adam, Son of heav\'n", "Given as a ransom", "Reconciling God and man", "Christ, our mighty Champion"] },
+    { label: "", lines: ["Hands that set each star in place", "Shaped the Earth in darkness", "Cling now to a mother's breast", "Vulnerable and helpless", "Shepherds bow before the Lamb", "Gazing at the glory", "Gifts of men from distant lands", "Prophesy the story"] },
+    { label: "", lines: ["Gold, a King is born today", "Incense, God is with us", "Myrrh, His death will make a way", "By His blood He'll win us"] },
+    { label: "", lines: ["Son of Adam, Son of heav'n", "Given as a ransom", "Reconciling God and man", "Christ, our mighty Champion"] },
     { label: "", lines: ["What a Savior, what a Friend", "What a glorious mystery", "Once, a babe in Bethlehem", "Now, the Lord of history"] }
   ]
   },
@@ -1148,8 +1148,8 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Repeat the sounding joy", "Repeat the sounding joy", "Repeat, repeat the sounding joy"] },
     { label: "", lines: ["He rules the world with truth and grace", "And makes the nations prove", "The glories of", "His righteousness", "And wonders of His love", "And wonders of His love", "And wonders, wonders, of His love"] },
     { label: "", lines: ["Joy to the world! The Lord is come!", "Let earth receive her King", "Let every heart", "Prepare Him room"] },
-    { label: "", lines: ["And heaven and nature sing", "And heaven and nature sing", "And heav\'n, and heav\'n, and nature sing"] },
-    { label: "", lines: ["And heav\'n, and heav\'n,", "And nature sing"] }
+    { label: "", lines: ["And heaven and nature sing", "And heaven and nature sing", "And heav'n, and heav'n, and nature sing"] },
+    { label: "", lines: ["And heav'n, and heav'n,", "And nature sing"] }
   ]
   },
   "the-king-of-glory-psalm-24": {
@@ -1159,10 +1159,10 @@ const LEGACY_SONGS = {
     { label: "", lines: ["The King of glory reigns", "Over all the world", "His mighty hand sustains", "The heavens and the earth"] },
     { label: "", lines: ["Who may come to Him", "Into His holy place?"] },
     { label: "", lines: ["The just, the pure in heart", "All whose hands are clean", "And those who love His name", "Above all other things"] },
-    { label: "", lines: ["Humbly I will bow", "And Jesus\' name confess"] },
+    { label: "", lines: ["Humbly I will bow", "And Jesus' name confess"] },
     { label: "", lines: ["He reigns, He reigns", "Jesus, the Lord", "He reigns, He reigns", "Forevermore"] },
     { label: "", lines: ["Swing wide you ancient gates", "Let the King come in", "His glory never fades", "Our hearts delight in Him"] },
-    { label: "", lines: ["Ev\'ry knee will bow", "Ev\'ry tongue confess"] },
+    { label: "", lines: ["Ev'ry knee will bow", "Ev'ry tongue confess"] },
     { label: "", lines: ["He reigns, He reigns", "Jesus, the Lord", "He reigns, He reigns", "Forevermore"] },
     { label: "", lines: ["He reigns, He reigns", "Jesus, the Lord", "He reigns, He reigns", "Forevermore", "Who is this King of glory?", "The Lord strong and mighty", "He bore the cross of shame", "Sing Hosanna!"] },
     { label: "", lines: ["Who is this King of glory?", "The Lord strong and mighty", "He rose up from the grave", "Sing Hosanna!"] },
@@ -1180,11 +1180,11 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Thru days of preparation", "Thy grace has made us strong", "And now, O King Eternal", "We lift our battle song"] },
     { label: "", lines: ["So lead on, lead on, King of Heaven", "Our light and our salvation", "Your faithfulness endures"] },
     { label: "", lines: ["O lead on, lead us to Your Kingdom", "To joy or tribulation", "We follow You, we follow You alone"] },
-    { label: "", lines: ["Lead on, O King Eternal", "Till sin\'s fierce war shall cease", "And holiness shall whisper", "The sweet Amen of peace"] },
-    { label: "", lines: ["For not with swords loud clashing", "Or roll of stirring drums", "With deeds of love and mercy", "Thy heav\'nly kingdom comes", "So lead on, lead on, King of Heaven", "Our light and our salvation", "Your faithfulness endures"] },
+    { label: "", lines: ["Lead on, O King Eternal", "Till sin's fierce war shall cease", "And holiness shall whisper", "The sweet Amen of peace"] },
+    { label: "", lines: ["For not with swords loud clashing", "Or roll of stirring drums", "With deeds of love and mercy", "Thy heav'nly kingdom comes", "So lead on, lead on, King of Heaven", "Our light and our salvation", "Your faithfulness endures"] },
     { label: "", lines: ["O lead on, lead us to Your Kingdom", "To joy or tribulation", "We follow You, we follow You alone"] },
-    { label: "", lines: ["Lead on, O King Eternal", "We follow not with fears", "For gladness breaks like morning", "Where e\'er Thy face appears"] },
-    { label: "", lines: ["Thy cross is lifted o\'er us", "We journey in its light", "The crown awaits the conquest", "Lead on O God of Might"] },
+    { label: "", lines: ["Lead on, O King Eternal", "We follow not with fears", "For gladness breaks like morning", "Where e'er Thy face appears"] },
+    { label: "", lines: ["Thy cross is lifted o'er us", "We journey in its light", "The crown awaits the conquest", "Lead on O God of Might"] },
     { label: "", lines: ["So lead on, lead on, King of Heaven", "Our light and our salvation", "Your faithfulness endures"] },
     { label: "", lines: ["O lead on, lead us to Your Kingdom", "To joy or tribulation", "We follow You, we follow You alone"] }
   ]
@@ -1196,9 +1196,9 @@ const LEGACY_SONGS = {
     { label: "Verse 1", lines: ["Lord, You are the maker of my heart", "The framer and reshaper of my soul", "Master and creator, healer and sustainer", "I will put my trust in You alone"] },
     { label: "Verse 2", lines: ["Teach me to be faithful to confess", "In this way my spirit will be blessed", "Though my sins are daily, You have loved me greatly", "Removing them as far as East from West"] },
     { label: "Chorus", lines: ["Let me be open, let me be humble", "Let me find the joy of my salvation in Your cross", "Let me be broken whenever I stumble", "Let me remember the great mercy of my God"] },
-    { label: "Verse 3", lines: ["And give me the full measure of Your grace", "As it is reflected in the Word", "Faith and reassurance, mercy and endurance", "Carry these to those who haven\'t heard"] },
+    { label: "Verse 3", lines: ["And give me the full measure of Your grace", "As it is reflected in the Word", "Faith and reassurance, mercy and endurance", "Carry these to those who haven't heard"] },
     { label: "Chorus", lines: ["Let me be open, let me be humble", "Let me find the joy of my salvation in Your cross", "Let me be broken whenever I stumble", "Let me remember the great mercy of my God"] },
-    { label: "Bridge", lines: ["All I have needed is laid at Your table", "All my achievements, I lay at Your feet", "Alive in Your spirit, I\'m willing and able", "You make my joy complete"] },
+    { label: "Bridge", lines: ["All I have needed is laid at Your table", "All my achievements, I lay at Your feet", "Alive in Your spirit, I'm willing and able", "You make my joy complete"] },
     { label: "Chorus", lines: ["Let me be open, let me be humble", "Let me find the joy of my salvation in Your cross", "Let me be broken whenever I stumble", "Let me remember the great mercy"] },
     { label: "", lines: ["Make my joy complete"] }
   ]
@@ -1212,7 +1212,7 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Let Your kingdom come", "Let Your will be done", "So that everyone might know", "Your Name"] },
     { label: "", lines: ["Let Your song be heard", "Everywhere on earth", "Till Your sovereign work", "On earth is done"] },
     { label: "", lines: ["Let Your kingdom come", "Give us Your strength, O God", "And courage to speak", "Perform Your wondrous deeds", "Through those who are weak"] },
-    { label: "", lines: ["Lord use us as You want", "Whatever the test", "By grace we\'ll preach Your gospel", "Till our dying breath"] },
+    { label: "", lines: ["Lord use us as You want", "Whatever the test", "By grace we'll preach Your gospel", "Till our dying breath"] },
     { label: "", lines: ["Let Your kingdom come", "Let Your will be done", "So that everyone might know", "Your Name"] },
     { label: "", lines: ["Let Your song be heard", "Everywhere on earth", "Till Your sovereign work", "On earth is done"] },
     { label: "", lines: ["Let Your kingdom come", "Let Your kingdom come", "Let Your kingdom come"] }
@@ -1224,9 +1224,9 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "", lines: ["Lift high the cross", "The love of Christ proclaim", "Till all the world adore", "His sacred name"] },
     { label: "", lines: ["O Lord once lifted", "On the glorious tree", "As Thou hast promised", "Draw men unto Thee"] },
-    { label: "", lines: ["Set up Thy throne", "That earth\'s despair may cease", "Beneath the shadow", "Of its healing peace"] },
+    { label: "", lines: ["Set up Thy throne", "That earth's despair may cease", "Beneath the shadow", "Of its healing peace"] },
     { label: "", lines: ["Lift high the cross", "The love of Christ proclaim", "Till all the world adore", "His sacred name"] },
-    { label: "", lines: ["For Thy blest cross", "Which doth for all atone", "Creation\'s praises", "Rise before Thy throne", "Each newborn servant", "Of the Crucified", "Bears on the brow", "The seal of Christ who died"] },
+    { label: "", lines: ["For Thy blest cross", "Which doth for all atone", "Creation's praises", "Rise before Thy throne", "Each newborn servant", "Of the Crucified", "Bears on the brow", "The seal of Christ who died"] },
     { label: "", lines: ["Lift high the cross", "The love of Christ proclaim", "Till all the world adore", "His sacred name"] },
     { label: "", lines: ["So shall our song", "Of triumph ever be", "Praise to the Crucified", "For victory"] },
     { label: "", lines: ["Lift high the cross", "The love of Christ proclaim", "Till all the world adore", "His sacred name"] },
@@ -1238,14 +1238,14 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/watch?v=koGRlLZI6RM",
     lyrics: [
     { label: "", lines: ["Lord, from sorrows deep I call", "When my hope is shaken", "Torn and ruined from the fall", "Hear my desperation"] },
-    { label: "", lines: ["For so long I\'ve pled and prayed", "\"God come to my rescue\"", "Even so the thorn remains", "Still, my heart will praise You"] },
+    { label: "", lines: ["For so long I've pled and prayed", "\"God come to my rescue\"", "Even so the thorn remains", "Still, my heart will praise You"] },
     { label: "", lines: ["Storms within my troubled soul", "Questions without answers", "On my faith these billows roll", "God, be now my shelter"] },
     { label: "", lines: ["Why are you cast down my soul?", "Hope in Him who saves you", "When the fires have all grown cold", "Cause this heart to praise You"] },
-    { label: "", lines: ["Oh, my soul, put your hope in God", "My help, my rock, I will praise Him", "Sing, oh sing, through the raging storm", "You\'re still my God, my salvation", "Should my life be torn from me", "Every worldly pleasure", "When all I possess is grief", "God, be then my treasure"] },
-    { label: "", lines: ["Be my vision in the night", "Be my hope and refuge", "\'Til my faith is turned to sight", "Lord, my heart will praise You"] },
-    { label: "", lines: ["Oh, my soul, put your hope in God", "My help, my rock, I will praise Him", "Sing, oh sing, through the raging storm", "You\'re still my God, my salvation"] },
+    { label: "", lines: ["Oh, my soul, put your hope in God", "My help, my rock, I will praise Him", "Sing, oh sing, through the raging storm", "You're still my God, my salvation", "Should my life be torn from me", "Every worldly pleasure", "When all I possess is grief", "God, be then my treasure"] },
+    { label: "", lines: ["Be my vision in the night", "Be my hope and refuge", "'Til my faith is turned to sight", "Lord, my heart will praise You"] },
+    { label: "", lines: ["Oh, my soul, put your hope in God", "My help, my rock, I will praise Him", "Sing, oh sing, through the raging storm", "You're still my God, my salvation"] },
     { label: "", lines: ["Oh, my soul, put your hope in God", "My help, my rock, I will praise Him", "Sing, oh sing, through the raging storm"] },
-    { label: "", lines: ["You\'re still my God, my salvation"] }
+    { label: "", lines: ["You're still my God, my salvation"] }
   ]
   },
   "magnificent-marvelous-matchless-love": {
@@ -1271,10 +1271,10 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Mary, did you know that your baby boy", "Would one day walk on water?", "Mary, did you know that your baby boy", "Would save our sons and daughters?"] },
     { label: "", lines: ["Did you know that your baby boy", "Has come to make you new?", "This child that you delivered", "Will soon deliver you?"] },
     { label: "", lines: ["Mary, did you know that your baby boy", "Will give sight to the blind man?", "Mary, did you know that your baby boy", "Will calm a storm with His hand"] },
-    { label: "", lines: ["Did you know that your baby boy", "Has walked where angels trod?", "And when you kiss your little baby", "You\'ve kissed the face of God?"] },
+    { label: "", lines: ["Did you know that your baby boy", "Has walked where angels trod?", "And when you kiss your little baby", "You've kissed the face of God?"] },
     { label: "", lines: ["Mary, did you know?", "Mary, did you know?", "The blind will see, the deaf will hear", "The dead will live again", "The lame will leap, the dumb will speak", "The praises of the Lamb"] },
     { label: "", lines: ["Mary, did you know that your baby boy", "Is Lord of all creation?", "Mary, did you know that your baby boy", "Will one day rule the nations?"] },
-    { label: "", lines: ["Did you know that your baby boy", "Was heaven\'s perfect Lamb?", "And the sleeping child you\'re holding", "Is the Great I AM"] },
+    { label: "", lines: ["Did you know that your baby boy", "Was heaven's perfect Lamb?", "And the sleeping child you're holding", "Is the Great I AM"] },
     { label: "", lines: ["Mary, did you know?"] }
   ]
   },
@@ -1296,12 +1296,12 @@ const LEGACY_SONGS = {
     { label: "", lines: ["How I yearn for streams of mercy", "Where my soul can be restored", "\"Come and drink\", Jesus calls me,", "\"And you will thirst no more\""] },
     { label: "", lines: ["Oh, the fullness of Christ", "Word of God, Word of Life"] },
     { label: "", lines: ["Living Word, You walked among us", "Our Emmanuel", "And You spoke into the darkness", "Broke the powers of hell"] },
-    { label: "", lines: ["Grace and mercy flowed from Calv\'ry", "To the valley of our need", "It is done, \"It is finished!\"", "From every sin set free"] },
+    { label: "", lines: ["Grace and mercy flowed from Calv'ry", "To the valley of our need", "It is done, \"It is finished!\"", "From every sin set free"] },
     { label: "", lines: ["Oh, the victory of Christ", "Word of God, Word of Life"] },
     { label: "", lines: ["How often in the stillness", "Have I heard Your voice", "Every whisper every promise", "Calls my heart to rejoice"] },
-    { label: "", lines: ["In the quiet of the morning", "Through the watches of the night", "In the fire of my struggles", "There\'s courage for the fight", "Oh, the power of Christ", "Word of God, Word of Life"] },
+    { label: "", lines: ["In the quiet of the morning", "Through the watches of the night", "In the fire of my struggles", "There's courage for the fight", "Oh, the power of Christ", "Word of God, Word of Life"] },
     { label: "", lines: ["My soul longs to walk closer", "With the Lord I serve", "More than riches, more than favor", "I delight in Your Word"] },
-    { label: "", lines: ["Turn my gaze from all that\'s worthless", "Set my heart on things above", "May my life tell Your goodness", "Your way of truth and love"] },
+    { label: "", lines: ["Turn my gaze from all that's worthless", "Set my heart on things above", "May my life tell Your goodness", "Your way of truth and love"] },
     { label: "", lines: ["Oh, the wisdom of Christ", "Word of God, Word of Life"] },
     { label: "", lines: ["My soul longs for the day", "I will see Your face", "Hear Your shout of jubilation", "\"No more tears, death or pain!\""] },
     { label: "", lines: ["Every word at last accomplished", "Heaven sings and earth replies", "\"To our God be the glory!\"", "Let all creation cry"] },
@@ -1315,14 +1315,14 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "", lines: ["When the enemy surrounds", "And my heart grows faint within", "When the darkness overwhelms", "And my fears are pressing in"] },
     { label: "", lines: ["I will trust in You, O Lord", "In the silence I will wait", "I will stand upon Your Word"] },
-    { label: "", lines: ["You\'re my solid rock and my salvation", "My steadfast hope that won\'t be shaken", "My soul will wait", "My soul will wait for You"] },
-    { label: "", lines: ["You\'re my stronghold and my shield", "In the midst of ev\'ry threat", "Though the wicked never yield", "They will vanish like a breath"] },
-    { label: "", lines: ["Yes, I know the outcome\'s sure", "Satan\'s evil plans will fail", "In Your power I\'m secure"] },
-    { label: "", lines: ["You\'re my solid rock and my salvation", "My steadfast hope that won\'t be shaken", "My soul will wait", "My soul will wait for You"] },
-    { label: "", lines: ["You\'re my comfort when I feel forsaken", "My refuge and my sure foundation", "My soul will wait", "My soul will wait for You", "This is love I can\'t explain", "This is mercy unreserved", "Through Your sacrifice so great", "I have peace that\'s undeserved"] },
+    { label: "", lines: ["You're my solid rock and my salvation", "My steadfast hope that won't be shaken", "My soul will wait", "My soul will wait for You"] },
+    { label: "", lines: ["You're my stronghold and my shield", "In the midst of ev'ry threat", "Though the wicked never yield", "They will vanish like a breath"] },
+    { label: "", lines: ["Yes, I know the outcome's sure", "Satan's evil plans will fail", "In Your power I'm secure"] },
+    { label: "", lines: ["You're my solid rock and my salvation", "My steadfast hope that won't be shaken", "My soul will wait", "My soul will wait for You"] },
+    { label: "", lines: ["You're my comfort when I feel forsaken", "My refuge and my sure foundation", "My soul will wait", "My soul will wait for You", "This is love I can't explain", "This is mercy unreserved", "Through Your sacrifice so great", "I have peace that's undeserved"] },
     { label: "", lines: ["For the battle has been won", "And I fear no shame or loss", "Now the sting of death is gone"] },
-    { label: "", lines: ["You\'re my solid rock and my salvation", "My steadfast hope that won\'t be shaken", "My soul will wait", "My soul will wait for You"] },
-    { label: "", lines: ["You\'re my comfort when I feel forsaken", "My refuge and my sure foundation", "My soul will wait", "My soul will wait for You"] },
+    { label: "", lines: ["You're my solid rock and my salvation", "My steadfast hope that won't be shaken", "My soul will wait", "My soul will wait for You"] },
+    { label: "", lines: ["You're my comfort when I feel forsaken", "My refuge and my sure foundation", "My soul will wait", "My soul will wait for You"] },
     { label: "", lines: ["Pouring out our hearts before You", "We will trust in You", "Perfect Savior, strong Defender", "We will trust in You"] },
     { label: "", lines: ["Pouring out our hearts before You", "We will trust in You", "Perfect Savior, strong Defender", "We will trust in You"] }
   ]
@@ -1348,24 +1348,24 @@ const LEGACY_SONGS = {
     { label: "", lines: ["No list of sins I have not done", "No list of virtues I pursue", "No list of those I am not like", "Can earn myself a place with You"] },
     { label: "", lines: ["O God, be merciful to me", "I am a sinner through and through", "My only hope of righteousness", "Is not in me, but only You"] },
     { label: "", lines: ["No humble dress, no fervent prayer", "No lifted hands, no tearful song", "No recitation of the truth", "Can justify a single wrong"] },
-    { label: "", lines: ["My righteousness is Jesus\' life", "My debt was paid by Jesus\' death", "My weary load was borne by Him", "And He alone can give me rest", "No separation from the world", "No work I do, no gift I give", "Can cleanse my conscience, cleanse my hands", "I cannot cause my soul to live"] },
-    { label: "", lines: ["But Jesus died and rose again", "The pow\'r of death is overthrown", "My God is merciful to me", "And merciful in Christ alone"] },
-    { label: "", lines: ["My righteousness is Jesus\' life", "My debt was paid by Jesus\' death", "My weary load was borne by Him", "And He alone can give me rest", "And He alone can give me rest"] }
+    { label: "", lines: ["My righteousness is Jesus' life", "My debt was paid by Jesus' death", "My weary load was borne by Him", "And He alone can give me rest", "No separation from the world", "No work I do, no gift I give", "Can cleanse my conscience, cleanse my hands", "I cannot cause my soul to live"] },
+    { label: "", lines: ["But Jesus died and rose again", "The pow'r of death is overthrown", "My God is merciful to me", "And merciful in Christ alone"] },
+    { label: "", lines: ["My righteousness is Jesus' life", "My debt was paid by Jesus' death", "My weary load was borne by Him", "And He alone can give me rest", "And He alone can give me rest"] }
   ]
   },
   "nothing-that-my-hands-can-do": {
     title: "Nothing That My Hands Can Do",
     youtube: "https://www.youtube.com/results?search_query=Nothing+That+My+Hands+Can+Do+worship+official",
     lyrics: [
-    { label: "", lines: ["There\'s nothing that my hands can do", "To save my guilty soul", "I cannot cleanse my filthy stains", "Or make my spirit whole"] },
+    { label: "", lines: ["There's nothing that my hands can do", "To save my guilty soul", "I cannot cleanse my filthy stains", "Or make my spirit whole"] },
     { label: "", lines: ["For nothing but the blood of Christ", "Can all my sins erase", "I dare not claim my righteousness", "But hide within His grace"] },
-    { label: "", lines: ["\'Tis Christ who saved me from the depths", "God\'s pardon I\'ve received", "I\'m washed within His precious blood", "My heart is sprinkled clean"] },
-    { label: "", lines: ["I\'ll praise the God of holiness", "Of justice, truth, and might", "Who guides me by His mighty hand", "To walk within His light"] },
+    { label: "", lines: ["'Tis Christ who saved me from the depths", "God's pardon I've received", "I'm washed within His precious blood", "My heart is sprinkled clean"] },
+    { label: "", lines: ["I'll praise the God of holiness", "Of justice, truth, and might", "Who guides me by His mighty hand", "To walk within His light"] },
     { label: "", lines: ["While Satan weaves his shallow lies", "God speaks to me in love", "Reminding me His only Son", "Has bought me with His blood", "And Christ dispels my every doubt", "Through Him I am redeemed", "I love because He loved me first", "I live because He lives"] },
-    { label: "", lines: ["My life is but a fleeting sigh", "A tear within the sea", "But You are everlasting, Lord", "And You\'ve predestined me"] },
-    { label: "", lines: ["To leave this fading world behind", "Not fearing death will come", "For then I\'ll look on Jesus Christ", "And to His arms I\'ll run"] },
-    { label: "", lines: ["And when I see Him face to face", "What glory that will be", "To look upon my Savior\'s scars", "And know they were for me"] },
-    { label: "", lines: ["And when I see Him face to face", "What glory that will be", "To look upon my Savior\'s scars", "And know they were for me"] }
+    { label: "", lines: ["My life is but a fleeting sigh", "A tear within the sea", "But You are everlasting, Lord", "And You've predestined me"] },
+    { label: "", lines: ["To leave this fading world behind", "Not fearing death will come", "For then I'll look on Jesus Christ", "And to His arms I'll run"] },
+    { label: "", lines: ["And when I see Him face to face", "What glory that will be", "To look upon my Savior's scars", "And know they were for me"] },
+    { label: "", lines: ["And when I see Him face to face", "What glory that will be", "To look upon my Savior's scars", "And know they were for me"] }
   ]
   },
   "now-why-this-fear": {
@@ -1374,17 +1374,17 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "", lines: ["Now why this fear and unbelief?", "Has not the Father put to grief", "His spotless Son for us?"] },
     { label: "", lines: ["And will the righteous Judge of men", "Condemn me for that debt of sin", "Now canceled at the cross?"] },
-    { label: "", lines: ["Jesus, all my trust", "Is in Your blood", "Jesus, You\'ve rescued us", "Through Your great love"] },
+    { label: "", lines: ["Jesus, all my trust", "Is in Your blood", "Jesus, You've rescued us", "Through Your great love"] },
     { label: "", lines: ["Complete atonement You have made", "And by Your death have fully paid", "The debt Your people owed"] },
-    { label: "", lines: ["No wrath remains for us to face", "We\'re sheltered by Your saving grace", "And sprinkled with Your blood"] },
+    { label: "", lines: ["No wrath remains for us to face", "We're sheltered by Your saving grace", "And sprinkled with Your blood"] },
     { label: "", lines: ["How sweet the sound of saving grace", "How sweet the sound of saving grace", "Christ died for me"] },
     { label: "", lines: ["How sweet the sound of saving grace", "How sweet the sound of saving grace", "Christ died for me"] },
-    { label: "", lines: ["Be still my soul and know this peace", "The merits of your great high priest", "Have bought your liberty", "Rely then on His precious blood", "Don\'t fear your banishment from God", "Since Jesus sets you free"] },
-    { label: "", lines: ["Jesus, all my trust", "Is in Your blood", "Jesus, You\'ve rescued us", "Through Your great love"] },
-    { label: "", lines: ["(men)", "Jesus", "All my trust", "Is in Your blood", "Jesus", "You\'ve rescued us", "Through Your great love"] },
+    { label: "", lines: ["Be still my soul and know this peace", "The merits of your great high priest", "Have bought your liberty", "Rely then on His precious blood", "Don't fear your banishment from God", "Since Jesus sets you free"] },
+    { label: "", lines: ["Jesus, all my trust", "Is in Your blood", "Jesus, You've rescued us", "Through Your great love"] },
+    { label: "", lines: ["(men)", "Jesus", "All my trust", "Is in Your blood", "Jesus", "You've rescued us", "Through Your great love"] },
     { label: "", lines: ["(women)", "How sweet the sound of saving grace", "How sweet the sound of saving grace", "Christ died for me", "How sweet the sound of saving grace", "How sweet the sound of saving grace", "Christ died for me"] },
     { label: "", lines: ["Now why this fear and unbelief?", "Has not the Father put to grief", "His spotless Son for us?"] },
-    { label: "", lines: ["No wrath remains for us to face", "We\'re sheltered by Your saving grace", "And sprinkled with Your blood"] }
+    { label: "", lines: ["No wrath remains for us to face", "We're sheltered by Your saving grace", "And sprinkled with Your blood"] }
   ]
   },
   "o-church-arise": {
@@ -1392,11 +1392,11 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/watch?v=x63cVewXAeg",
     lyrics: [
     { label: "", lines: ["O Church, arise and put your armour on", "Hear the call of Christ our Captain", "For now the weak can say that they are strong", "In the strength that God has given"] },
-    { label: "", lines: ["With shield of faith and belt of truth", "We\'ll stand against the devil\'s lies", "An army bold whose battlecry is Love", "Reaching out to those in darkness"] },
+    { label: "", lines: ["With shield of faith and belt of truth", "We'll stand against the devil's lies", "An army bold whose battlecry is Love", "Reaching out to those in darkness"] },
     { label: "", lines: ["Our call to war to love the captive soul", "But to rage against the captor", "And with the sword that makes the wounded whole", "We will fight with faith and valour"] },
-    { label: "", lines: ["When faced with trials on ev\'ry side", "We know the outcome is secure", "And Christ will have the prize for which He died", "An inheritance of nations", "Come see the cross where love and mercy meet", "As the Son of God is stricken", "Then see His foes lie crushed beneath His feet", "For the Conqueror has risen"] },
-    { label: "", lines: ["And as the stone is rolled away", "And Christ emerges from the grave", "This vict\'ry march continues till the day", "Every eye and heart shall see Him"] },
-    { label: "", lines: ["So Spirit come put strength in ev\'ry stride", "Give grace for ev\'ry hurdle", "That we may run with faith to win the prize", "Of a servant good and faithful"] },
+    { label: "", lines: ["When faced with trials on ev'ry side", "We know the outcome is secure", "And Christ will have the prize for which He died", "An inheritance of nations", "Come see the cross where love and mercy meet", "As the Son of God is stricken", "Then see His foes lie crushed beneath His feet", "For the Conqueror has risen"] },
+    { label: "", lines: ["And as the stone is rolled away", "And Christ emerges from the grave", "This vict'ry march continues till the day", "Every eye and heart shall see Him"] },
+    { label: "", lines: ["So Spirit come put strength in ev'ry stride", "Give grace for ev'ry hurdle", "That we may run with faith to win the prize", "Of a servant good and faithful"] },
     { label: "", lines: ["As saints of old still line the way", "Retelling triumphs of His grace", "We hear their calls and hunger for the day", "When with Christ we stand in glory"] },
     { label: "", lines: ["As saints of old still line the way", "Retelling triumphs of His grace", "We hear their calls and hunger for the day", "When with Christ we stand in glory"] }
   ]
@@ -1407,7 +1407,7 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "", lines: ["O come, all ye faithful", "Joyful and triumphant", "O come ye, O come ye to Bethlehem", "Come and behold Him", "Born the King of Angels"] },
     { label: "", lines: ["O come, let us adore Him", "O come, let us adore Him", "O come, let us adore Him", "Christ, the Lord!"] },
-    { label: "", lines: ["Sing, choirs of angels", "Sing in exultation", "Sing all that hear in heaven God\'s holy word", "Give to our Father", "Glory in the Highest"] },
+    { label: "", lines: ["Sing, choirs of angels", "Sing in exultation", "Sing all that hear in heaven God's holy word", "Give to our Father", "Glory in the Highest"] },
     { label: "", lines: ["O come, let us adore Him", "O come, let us adore Him", "O come, let us adore Him", "Christ, the Lord!"] },
     { label: "", lines: ["Hail, Lord, we greet Thee", "Born this happy morning", "Jesus, forevermore be Thy name adored", "Word of the Father", "Now in flesh appearing"] },
     { label: "", lines: ["O come, let us adore Him", "O come, let us adore Him", "O come, let us adore Him", "Christ, the Lord!"] },
@@ -1418,19 +1418,19 @@ const LEGACY_SONGS = {
     title: "O Great God",
     youtube: "https://www.youtube.com/watch?v=eKQHqUo6qOw",
     lyrics: [
-    { label: "", lines: ["O great God of highest heav\'n", "Occupy my lowly heart", "Own it all and reign supreme", "Conquer every rebel pow\'r"] },
+    { label: "", lines: ["O great God of highest heav'n", "Occupy my lowly heart", "Own it all and reign supreme", "Conquer every rebel pow'r"] },
     { label: "", lines: ["Let no vice or sin remain", "That resists Your holy war", "You have loved and purchased me", "Make me Yours forever more"] },
-    { label: "", lines: ["I was blinded by my sin", "Had no ears to hear Your voice", "Did not know Your love within", "Had no taste for heaven\'s joys"] },
-    { label: "", lines: ["Then Your Spirit gave me life", "Opened up Your word to me", "Through the gospel of Your Son", "Gave me endless hope and peace", "Help me now to live a life", "That\'s dependent on Your grace", "Keep my heart and guard my soul", "From the evils that I face"] },
-    { label: "", lines: ["You are worthy to be praised", "With my every thought and deed", "O great God of highest heav\'n", "Glorify Your Name through me"] },
-    { label: "", lines: ["You are worthy to be praised", "With my every thought and deed", "O great God of highest heav\'n", "Glorify Your Name through me"] }
+    { label: "", lines: ["I was blinded by my sin", "Had no ears to hear Your voice", "Did not know Your love within", "Had no taste for heaven's joys"] },
+    { label: "", lines: ["Then Your Spirit gave me life", "Opened up Your word to me", "Through the gospel of Your Son", "Gave me endless hope and peace", "Help me now to live a life", "That's dependent on Your grace", "Keep my heart and guard my soul", "From the evils that I face"] },
+    { label: "", lines: ["You are worthy to be praised", "With my every thought and deed", "O great God of highest heav'n", "Glorify Your Name through me"] },
+    { label: "", lines: ["You are worthy to be praised", "With my every thought and deed", "O great God of highest heav'n", "Glorify Your Name through me"] }
   ]
   },
   "o-holy-night": {
     title: "O Holy Night",
     youtube: "https://www.youtube.com/results?search_query=O+Holy+Night+hymn+official+worship",
     lyrics: [
-    { label: "", lines: ["O holy night, the stars are brightly shining", "It is the night of the dear Savior\'s birth", "Long lay the world in sin and error pining", "\'Til He appeared and the soul felt its worth"] },
+    { label: "", lines: ["O holy night, the stars are brightly shining", "It is the night of the dear Savior's birth", "Long lay the world in sin and error pining", "'Til He appeared and the soul felt its worth"] },
     { label: "", lines: ["A thrill of hope, the weary soul rejoices", "For yonder breaks a new and glorious morn"] },
     { label: "", lines: ["Fall on your knees, O hear the angel voices", "O night divine,", "O night when Christ was born", "O night, divine", "O night, O night divine", "Led by the light of faith serenely beaming", "With glowing hearts by His cradle we stand", "No fear or dread, our Savior is with us", "And in His care all oppression shall cease"] },
     { label: "", lines: ["Sweet hymns of joy in grateful chorus raise we", "Let all within us praise His holy name"] },
@@ -1442,7 +1442,7 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/results?search_query=O+Lord+My+Rock+and+My+Redeemer+worship+official",
     lyrics: [
     { label: "", lines: ["O Lord, my Rock and my Redeemer", "Greatest treasure of my longing soul", "My God, like You there is no other", "True delight is found in You alone"] },
-    { label: "", lines: ["Your grace, a well too deep to fathom", "Your love exceeds the heavens\' reach", "Your truth, a fount of perfect wisdom", "My highest good and my unending need"] },
+    { label: "", lines: ["Your grace, a well too deep to fathom", "Your love exceeds the heavens' reach", "Your truth, a fount of perfect wisdom", "My highest good and my unending need"] },
     { label: "", lines: ["O Lord, my Rock and my Redeemer", "Strong defender of my weary heart", "My sword to fight the cruel deceiver", "And my shield against his hateful darts"] },
     { label: "", lines: ["My song when enemies surround me", "My hope when tides of sorrow rise", "My joy when trials are abounding", "Your faithfulness my refuge in the night", "O Lord, my Rock and my Redeemer", "Gracious Savior of my ruined life", "My guilt and cross laid on Your shoulders", "In my place You suffered, bled and died"] },
     { label: "", lines: ["You rose; the grave and death are conquered", "You broke my bonds of sin and shame", "O Lord, my Rock and my Redeemer", "May all my days bring glory to Your Name"] },
@@ -1456,17 +1456,17 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "", lines: ["O, the deep, deep love of Jesus", "Vast, unmeasured, boundless, free", "Rolling as a mighty ocean", "In its fullness over me"] },
     { label: "", lines: ["Underneath me, all around me", "Is the current of Thy love", "Leading onward, leading homeward", "To Thy glorious rest above"] },
-    { label: "", lines: ["O, the deep, deep love of Jesus", "Spread His praise from shore to shore", "How He loveth, ever loveth", "Changeth never, nevermore", "How He watches o\'er His loved ones", "Died to call them all His own", "How for them He intercedeth", "Watcheth o\'er them from the throne"] },
-    { label: "", lines: ["O, the deep, deep love of Jesus", "Love of every love the best", "\'Tis an ocean vast of blessing", "\'Tis a haven sweet of rest"] },
-    { label: "", lines: ["O, the deep, deep love of Jesus", "\'Tis a heav\'n of heav\'ns to me", "And it lifts me up to glory", "For it lifts me", "Up to Thee"] }
+    { label: "", lines: ["O, the deep, deep love of Jesus", "Spread His praise from shore to shore", "How He loveth, ever loveth", "Changeth never, nevermore", "How He watches o'er His loved ones", "Died to call them all His own", "How for them He intercedeth", "Watcheth o'er them from the throne"] },
+    { label: "", lines: ["O, the deep, deep love of Jesus", "Love of every love the best", "'Tis an ocean vast of blessing", "'Tis a haven sweet of rest"] },
+    { label: "", lines: ["O, the deep, deep love of Jesus", "'Tis a heav'n of heav'ns to me", "And it lifts me up to glory", "For it lifts me", "Up to Thee"] }
   ]
   },
   "o-worship-the-king": {
     title: "O Worship the King",
     youtube: "https://www.youtube.com/results?search_query=O+Worship+the+King+hymn+official+worship",
     lyrics: [
-    { label: "", lines: ["O worship the King", "All glor\'ous above", "O gratefully sing", "His power and His love"] },
-    { label: "", lines: ["Our Shield and Defender", "The Ancient of Days", "Pavil\'oned in splendor", "And girded with praise"] },
+    { label: "", lines: ["O worship the King", "All glor'ous above", "O gratefully sing", "His power and His love"] },
+    { label: "", lines: ["Our Shield and Defender", "The Ancient of Days", "Pavil'oned in splendor", "And girded with praise"] },
     { label: "", lines: ["O tell of His might", "O sing of His grace!", "Whose robe is the light", "Whose canopy, space!"] },
     { label: "", lines: ["His chariots of wrath", "The deep thunderclouds form", "And dark is His path", "On the wings of the storm"] },
     { label: "", lines: ["Thy bountiful care", "What tongue can recite?", "It breathes in the air", "It shines in the light"] },
@@ -1481,10 +1481,10 @@ const LEGACY_SONGS = {
     title: "Olive Plants (Psalm 128)",
     youtube: "https://www.youtube.com/results?search_query=Olive+Plants+Psalm+128+worship+official",
     lyrics: [
-    { label: "", lines: ["Blessed is the one", "The one who fears the Lord", "The one who walks in the Lord\'s ways"] },
+    { label: "", lines: ["Blessed is the one", "The one who fears the Lord", "The one who walks in the Lord's ways"] },
     { label: "", lines: ["You will eat the fruit of your labor", "Blessings will be yours", "The Lord will make you rich indeed", "Your wife will be a fruitful vine"] },
     { label: "", lines: ["And your children like olive plants", "All your children like olive plants", "So is the one who fears the Lord", "So is the one who fears the Lord", "May God bless you from Zion", "May God bless you from Zion"] },
-    { label: "", lines: ["And may you see your children\'s children", "And may you see Jerusalem\'s riches", "And may peace be on Israel", "May God\'s peace be on Israel"] }
+    { label: "", lines: ["And may you see your children's children", "And may you see Jerusalem's riches", "And may peace be on Israel", "May God's peace be on Israel"] }
   ]
   },
   "our-great-god": {
@@ -1496,7 +1496,7 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Hallelujah!", "Glory be to our great God!", "Hallelujah!", "Glory be to our great God!"] },
     { label: "", lines: ["Lord, we are weak and frail", "Helpless in the storm", "Surround us with your angels", "Hold us in your arms"] },
     { label: "", lines: ["Our cold and ruthless enemy", "His pleasure is our harm", "Rise up, O Lord, and he will flee", "Before our Sovereign God", "Hallelujah!", "Glory be to our great God!", "Hallelujah!", "Glory be to our great God!"] },
-    { label: "", lines: ["Let ev\'ry creature in the sea", "And ev\'ry flying bird", "Let ev\'ry mountain, ev\'ry field", "And valley of the earth"] },
+    { label: "", lines: ["Let ev'ry creature in the sea", "And ev'ry flying bird", "Let ev'ry mountain, ev'ry field", "And valley of the earth"] },
     { label: "", lines: ["Let all the moons and all the stars", "In all the universe", "Sing praises to the living God", "Who rules them by His Word"] },
     { label: "", lines: ["Hallelujah!", "Glory be to our great God!", "Hallelujah!", "Glory be to our great God!"] },
     { label: "", lines: ["Hallelujah!", "Glory be to our great God!", "Hallelujah!", "Glory be to our great God!"] }
@@ -1540,14 +1540,14 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "", lines: ["Rejoice in the Lord, now and always", "Sing it again, we rejoice", "Delight in the love He has shown us", "Gratefully lift up your voice"] },
     { label: "", lines: ["His gentleness among us", "Will join our hearts with praise", "We gather in His goodness", "A family of grace"] },
-    { label: "", lines: ["With each breath He\'s given", "Praise the Lord", "In these times we live in, we will", "Praise the Lord"] },
+    { label: "", lines: ["With each breath He's given", "Praise the Lord", "In these times we live in, we will", "Praise the Lord"] },
     { label: "", lines: ["Throughout every season", "I am sure", "We have every reason to", "Praise the Lord"] },
     { label: "", lines: ["Rejoice and be anxious for nothing", "Praying for all that you need", "Come with a song of thanksgiving", "Lay your requests at His feet"] },
-    { label: "", lines: ["His peace will fall upon us", "To guard our hearts and minds", "In Christ who reigns eternal", "The Shepherd of our lives", "With each breath He\'s given", "Praise the Lord", "In these times we live in, we will", "Praise the Lord"] },
+    { label: "", lines: ["His peace will fall upon us", "To guard our hearts and minds", "In Christ who reigns eternal", "The Shepherd of our lives", "With each breath He's given", "Praise the Lord", "In these times we live in, we will", "Praise the Lord"] },
     { label: "", lines: ["Throughout every season", "I am sure", "We have every reason to", "Praise the Lord"] },
     { label: "", lines: ["Rejoice in the Lord, now and always", "Tell of the good He has done", "Worship the Lord to remember", "All of the joy yet to come"] },
-    { label: "", lines: ["The hope that burns within us", "The dark cannot destroy", "With praise that\'s never ending", "We say again, \"Rejoice!\""] },
-    { label: "", lines: ["With each breath He\'s given", "Praise the Lord", "In these times we live in, we will", "Praise the Lord"] },
+    { label: "", lines: ["The hope that burns within us", "The dark cannot destroy", "With praise that's never ending", "We say again, \"Rejoice!\""] },
+    { label: "", lines: ["With each breath He's given", "Praise the Lord", "In these times we live in, we will", "Praise the Lord"] },
     { label: "", lines: ["Throughout every season", "I am sure", "We have every reason to", "Praise the Lord", "We have every reason to", "Praise the Lord"] }
   ]
   },
@@ -1555,16 +1555,16 @@ const LEGACY_SONGS = {
     title: "Rescue Me",
     youtube: "https://www.youtube.com/results?search_query=Rescue+Me+worship+official",
     lyrics: [
-    { label: "", lines: ["I didn\'t know it would be this hard", "I didn\'t think I could fall so far", "But here I am"] },
+    { label: "", lines: ["I didn't know it would be this hard", "I didn't think I could fall so far", "But here I am"] },
     { label: "", lines: ["I feel the darkness of my heart", "The sin that keeps me far apart", "From you, O God"] },
     { label: "", lines: ["And the waves are crashing", "All around", "I need You, God,", "And I need You now"] },
     { label: "", lines: ["Rescue me", "By Your sovereign grace and kindness", "Rescue me, Jesus"] },
-    { label: "", lines: ["Rescue me", "You\'re my only hope and I am", "Powerless to save myself", "Forgive me, Lord;", "I know my desperate need"] },
-    { label: "", lines: ["Rescue me", "I didn\'t know it would be this hard", "I didn\'t think I could fall so far", "But here I am"] },
+    { label: "", lines: ["Rescue me", "You're my only hope and I am", "Powerless to save myself", "Forgive me, Lord;", "I know my desperate need"] },
+    { label: "", lines: ["Rescue me", "I didn't know it would be this hard", "I didn't think I could fall so far", "But here I am"] },
     { label: "", lines: ["I feel the darkness of my heart", "The sin that keeps me far apart", "From you, O God"] },
     { label: "", lines: ["And the waves are crashing", "All around", "I need You, God,", "And I need You now"] },
     { label: "", lines: ["Rescue me", "By Your sovereign grace and kindness", "Rescue me, Jesus"] },
-    { label: "", lines: ["Rescue me", "You\'re my only hope and I am", "Powerless to save myself", "Forgive me, Lord;", "I know my desperate need"] },
+    { label: "", lines: ["Rescue me", "You're my only hope and I am", "Powerless to save myself", "Forgive me, Lord;", "I know my desperate need"] },
     { label: "", lines: ["Rescue me"] }
   ]
   },
@@ -1584,7 +1584,7 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "", lines: ["Come let us worship, come let us adore", "Jesus, Messiah, our Savior is born", "Carol His glory and sing His sweet Name", "Offer a life of thanksgiving and praise"] },
     { label: "", lines: ["Join with the angels proclaiming to earth", "Join with the shepherds in awe of His birth", "Join all creation rejoicing this morn", "The glory of God-become-man has been born"] },
-    { label: "", lines: ["Come, let us adore Him", "Jesus, the hope of the world", "Come, worship before Him", "Christ, the Messiah has come", "Salvation is born", "Prophets foretold Him, the Promise of God", "The hope of Salvation and light of the world", "Born in a stable and born as a man", "Born to fulfill God\'s redeeming plan"] },
+    { label: "", lines: ["Come, let us adore Him", "Jesus, the hope of the world", "Come, worship before Him", "Christ, the Messiah has come", "Salvation is born", "Prophets foretold Him, the Promise of God", "The hope of Salvation and light of the world", "Born in a stable and born as a man", "Born to fulfill God's redeeming plan"] },
     { label: "", lines: ["Come, let us adore Him", "Jesus, the hope of the world", "Come, worship before Him", "Christ, the Messiah has come"] },
     { label: "", lines: ["Come, let us adore Him", "Jesus, the hope of the world", "Come, worship before Him", "Christ, the Messiah has come", "Salvation is born"] },
     { label: "", lines: ["Come let us worship, come let us adore", "Jesus, Messiah, our Savior is born"] }
@@ -1597,7 +1597,7 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Savior, like a shepherd lead us", "Much we need thy tender care", "In thy pleasant pastures feed us", "For our use thy folds prepare"] },
     { label: "", lines: ["Blessed Jesus, blessed Jesus", "Thou hast bought us, thine we are", "Blessed Jesus, blessed Jesus", "Thou hast bought us, thine we are"] },
     { label: "", lines: ["We are thine, do thou befriend us", "Be the guardian of our way", "Keep thy flock from sin, defend us", "Seek us when we go astray"] },
-    { label: "", lines: ["Blessed Jesus, blessed Jesus", "Hear, O hear us when we pray", "Blessed Jesus, blessed Jesus", "Hear, O hear us when we pray", "Thou hast promised to receive us", "Poor and sinful though we be", "Thou hast mercy to relieve us", "Grace to cleanse and pow\'r to free"] },
+    { label: "", lines: ["Blessed Jesus, blessed Jesus", "Hear, O hear us when we pray", "Blessed Jesus, blessed Jesus", "Hear, O hear us when we pray", "Thou hast promised to receive us", "Poor and sinful though we be", "Thou hast mercy to relieve us", "Grace to cleanse and pow'r to free"] },
     { label: "", lines: ["Blessed Jesus, blessed Jesus", "Early let us turn to thee", "Blessed Jesus, blessed Jesus", "Early let us turn to thee"] },
     { label: "", lines: ["Early let us seek thy favor", "Early let us do thy will", "Blessed Lord and only Savior", "With thy love our beings fill"] },
     { label: "", lines: ["Blessed Jesus, blessed Jesus", "Thou hast loved us, love us still", "Blessed Jesus, blessed Jesus", "Thou hast loved us, love us still"] }
@@ -1637,7 +1637,7 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/results?search_query=Sing+worship+song+official",
     lyrics: [
     { label: "", lines: ["Did you draw a breath as the dawn awoke", "And does your heart still beat?", "Is the mighty Word of the living God", "Upholding you? Then sing, O sing"] },
-    { label: "", lines: ["Has the Father\'s love filled your longing heart", "With grace for every need?", "Come and lay your burdens at Jesus\' feet", "And find new strength to sing, O sing"] },
+    { label: "", lines: ["Has the Father's love filled your longing heart", "With grace for every need?", "Come and lay your burdens at Jesus' feet", "And find new strength to sing, O sing"] },
     { label: "", lines: ["Morning and evening", "Everything breathing must sing, O sing!", "All of creation", "Rise up and praise the King of kings", "And sing!"] },
     { label: "", lines: ["Has the Son of God died to take away", "Your sin and set you free?", "Has the Conqueror trampled over death?", "Is Christ enthroned? Then sing, O sing!"] },
     { label: "", lines: ["Morning and evening", "Everything breathing must sing, O sing!", "All of creation", "Rise up and praise the King of kings", "And sing!", "On the final day when the Lord on High", "Returns in majesty", "We will bow in wonder before the Lamb", "And evermore the saints will sing", "Yes, evermore the saints will sing!"] },
@@ -1651,7 +1651,7 @@ const LEGACY_SONGS = {
     lyrics: [
     { label: "", lines: ["Sing we the song of Emmanuel", "This, the Christ who was long foretold", "Lo, in the shadows of Bethlehem", "Promise of dawn, now our eyes behold"] },
     { label: "", lines: ["God, Most High, in a manger laid", "Lift your voices and now proclaim", "Great and glorious!", "Love has come to us!", "Join now with the hosts of heaven"] },
-    { label: "", lines: ["Come we to welcome Emmanuel", "King who came with no crown or throne", "Helpless He lay, the Invincible", "Maker of Mary, now Mary\'s son"] },
+    { label: "", lines: ["Come we to welcome Emmanuel", "King who came with no crown or throne", "Helpless He lay, the Invincible", "Maker of Mary, now Mary's son"] },
     { label: "", lines: ["O what wisdom to save us all", "Shepherds, sages, before Him fall", "Grace and majesty!", "What humility!", "Come on bended knee, adore Him", "Go spread the news of Emmanuel", "Joy and peace for the weary heart", "Lift up your heads, for your King has come", "Sing, for the light overwhelms the dark"] },
     { label: "", lines: ["Glory shining for all to see", "Hope alive, let the gospel ring", "God has made a way!", "He will have the praise!", "Tell the world His name is Jesus"] },
     { label: "", lines: ["Glory shining for all to see", "Hope alive, let the gospel ring", "God has made a way!", "He will have the praise!", "Tell the world His name is Jesus"] }
@@ -1662,15 +1662,15 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/watch?v=B66DHRY1ITs",
     lyrics: [
     { label: "", lines: ["There is strength within the sorrow", "There is beauty in our tears", "And You meet us in our mourning", "With a love that casts out fear"] },
-    { label: "", lines: ["You are working in our waiting", "Sanctifying us", "When beyond our understanding", "You\'re teaching us to trust"] },
-    { label: "", lines: ["Your plans are still to prosper", "You have not forgotten us", "You\'re with us in the fire and the flood", "Faithful forever, perfect in love", "You are sov\'reign over us"] },
+    { label: "", lines: ["You are working in our waiting", "Sanctifying us", "When beyond our understanding", "You're teaching us to trust"] },
+    { label: "", lines: ["Your plans are still to prosper", "You have not forgotten us", "You're with us in the fire and the flood", "Faithful forever, perfect in love", "You are sov'reign over us"] },
     { label: "", lines: ["You are wisdom unimagined", "Who could understand Your ways", "Reigning high above the heavens", "Reaching down in endless grace"] },
-    { label: "", lines: ["You\'re the lifter of the lowly", "Compassionate and kind", "You surround and You uphold me", "And Your promises are my delight", "Your plans are still to prosper", "You have not forgotten us", "You\'re with us in the fire and the flood", "Faithful forever, perfect in love", "You are sov\'reign over us"] },
+    { label: "", lines: ["You're the lifter of the lowly", "Compassionate and kind", "You surround and You uphold me", "And Your promises are my delight", "Your plans are still to prosper", "You have not forgotten us", "You're with us in the fire and the flood", "Faithful forever, perfect in love", "You are sov'reign over us"] },
     { label: "", lines: ["Even what the enemy means for evil", "You turn it for our good", "You turn it for our good", "And for Your glory"] },
-    { label: "", lines: ["Even in the valley You are faithful", "You\'re working for our good", "You\'re working for our good", "And for Your glory"] },
+    { label: "", lines: ["Even in the valley You are faithful", "You're working for our good", "You're working for our good", "And for Your glory"] },
     { label: "", lines: ["Your plans are still to prosper", "You have not forgotten us"] },
-    { label: "", lines: ["You\'re with us in the fire and the flood", "Faithful forever, perfect in love", "You are sov\'reign over us"] },
-    { label: "", lines: ["Faithful forever, perfect in love", "You are sov\'reign over us"] }
+    { label: "", lines: ["You're with us in the fire and the flood", "Faithful forever, perfect in love", "You are sov'reign over us"] },
+    { label: "", lines: ["Faithful forever, perfect in love", "You are sov'reign over us"] }
   ]
   },
   "speak-o-lord": {
@@ -1691,12 +1691,12 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Praise the Lord you highest heavens", "And you waters above the skies", "Let them praise the name of Yahweh", "For He commanded and they were made"] },
     { label: "", lines: ["And He set a place for them", "To stay forevermore", "And He gave a decree", "That will never pass away", "Praise the Lord from the earth"] },
     { label: "", lines: ["Ooh, ooh, ooh, ooh (Selah)"] },
-    { label: "", lines: ["And you creatures of the sea", "And the ocean deep and proud", "And the lightning and the hail", "And the snow and all the clouds", "And ev\'ry stormy wind", "That do all His commands", "And you mountains and you hills", "And ev\'ry tree that stands"] },
-    { label: "", lines: ["And you creatures of the wild", "And you cattle ev\'rywhere", "And if you crawl along the ground", "Or if you\'re flying through the air"] },
-    { label: "", lines: ["And all you kings of the Earth", "Ev\'ry nation, ev\'ry tongue", "You princes and you rulers", "All the old and all the young, yeah"] },
+    { label: "", lines: ["And you creatures of the sea", "And the ocean deep and proud", "And the lightning and the hail", "And the snow and all the clouds", "And ev'ry stormy wind", "That do all His commands", "And you mountains and you hills", "And ev'ry tree that stands"] },
+    { label: "", lines: ["And you creatures of the wild", "And you cattle ev'rywhere", "And if you crawl along the ground", "Or if you're flying through the air"] },
+    { label: "", lines: ["And all you kings of the Earth", "Ev'ry nation, ev'ry tongue", "You princes and you rulers", "All the old and all the young, yeah"] },
     { label: "", lines: ["Let them praise the Lord", "Let them praise the Lord", "Praise the Lord", "Praise the Lord"] },
     { label: "", lines: ["Praise Him for His Name", "Alone is on high", "His splendor is over the", "Earth and the sky"] },
-    { label: "", lines: ["He\'s raised up a horn", "For those He set apart", "His saints, Israel,", "Who are close to His heart"] }
+    { label: "", lines: ["He's raised up a horn", "For those He set apart", "His saints, Israel,", "Who are close to His heart"] }
   ]
   },
   "ten-thousand-reasons-bless-the-lord": {
@@ -1727,7 +1727,7 @@ const LEGACY_SONGS = {
     title: "There Is One Gospel",
     youtube: "https://www.youtube.com/watch?v=nmBcTrDu4O4",
     lyrics: [
-    { label: "", lines: ["There is one Gospel on which I stand", "For all eternity", "It is my story, my Father\'s plan", "The Son has rescued me"] },
+    { label: "", lines: ["There is one Gospel on which I stand", "For all eternity", "It is my story, my Father's plan", "The Son has rescued me"] },
     { label: "", lines: ["Oh what a Gospel, oh what a peace", "My highest joy and my deepest need", "Now and forever He is my light", "I stand in the Gospel of Jesus Christ"] },
     { label: "", lines: ["There is one Gospel to which I cling", "All else I count as loss", "For there, where justice and mercy meet", "He saved me on the cross"] },
     { label: "", lines: ["No more I boast in what I can bring", "No more I carry the weight of sin", "For He has brought me from death to life", "I stand in the Gospel of Jesus Christ"] },
@@ -1744,9 +1744,9 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/results?search_query=Thou+Lovely+Source+of+True+Delight+hymn+official",
     lyrics: [
     { label: "", lines: ["Thou lovely source of true delight", "Whom I, unseen, adore", "Unveil Thy beauties to my sight", "That I might love Thee more", "Oh that I might love Thee more"] },
-    { label: "", lines: ["Thy glory o\'er creation shines", "But in Thy sacred Word", "I read in fairer, brighter lines", "My bleeding, dying Lord", "See my bleeding, dying Lord"] },
-    { label: "", lines: ["\'Tis here, whene\'er my comforts droop", "And sin and sorrow rise", "Thy love with cheering beams of hope", "My fainting heart\'s supplied", "My fainting heart\'s supplied", "But ah! Too soon the pleasing scene", "Is clouded o\'er with pain", "My gloomy fears rise dark between", "And I, again, complain", "Oh and I, again, complain"] },
-    { label: "", lines: ["Jesus, my Lord, my life, my light", "Oh come with blissful ray", "Break radiant through the shades of night", "And chase my fears away", "Won\'t You chase my fears away"] },
+    { label: "", lines: ["Thy glory o'er creation shines", "But in Thy sacred Word", "I read in fairer, brighter lines", "My bleeding, dying Lord", "See my bleeding, dying Lord"] },
+    { label: "", lines: ["'Tis here, whene'er my comforts droop", "And sin and sorrow rise", "Thy love with cheering beams of hope", "My fainting heart's supplied", "My fainting heart's supplied", "But ah! Too soon the pleasing scene", "Is clouded o'er with pain", "My gloomy fears rise dark between", "And I, again, complain", "Oh and I, again, complain"] },
+    { label: "", lines: ["Jesus, my Lord, my life, my light", "Oh come with blissful ray", "Break radiant through the shades of night", "And chase my fears away", "Won't You chase my fears away"] },
     { label: "", lines: ["Then shall my soul with rapture trace", "The wonders of Thy love", "But the full glories of Thy face", "Are only known above", "They are only known above"] }
   ]
   },
@@ -1768,10 +1768,10 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/results?search_query=We+Receive+worship+official",
     lyrics: [
     { label: "", lines: ["Beautiful Savior", "Fullness of heaven", "Though we have nothing", "Here we receive"] },
-    { label: "", lines: ["Jesus, You call us", "Now to remember", "You were the off\'ring", "For all who believe"] },
+    { label: "", lines: ["Jesus, You call us", "Now to remember", "You were the off'ring", "For all who believe"] },
     { label: "", lines: ["You laid Your life on the table", "Broken like bread, poured out like wine", "We sing what a wonderful Savior", "Jesus our King", "All that You give we receive"] },
     { label: "", lines: ["Pardon and blessing", "Life everlasting", "Mercy unmeasured", "How can it be?"] },
-    { label: "", lines: ["You are the Giver", "Faithful forever", "Help us to treasure", "All we\'ve received"] },
+    { label: "", lines: ["You are the Giver", "Faithful forever", "Help us to treasure", "All we've received"] },
     { label: "", lines: ["You laid Your life on the table", "Broken like bread, poured out like wine", "We sing what a wonderful Savior", "Jesus our King", "All that You give we receive", "For the price You paid", "We pour out our praises", "For this feast of grace", "We thank you, Jesus"] },
     { label: "", lines: ["For the price You paid", "We pour out our praises", "For this feast of grace", "We thank you, Jesus"] },
     { label: "", lines: ["For the price You paid", "We pour out our praises", "For this feast of grace", "We thank you, Jesus"] },
@@ -1784,8 +1784,8 @@ const LEGACY_SONGS = {
     youtube: "https://www.youtube.com/results?search_query=Wonderful+Merciful+Savior+Selah+official",
     lyrics: [
     { label: "", lines: ["Wonderful, merciful Savior", "Precious redeemer and Friend", "Who would have thought that a Lamb could", "Rescue the souls of men?", "Oh, You rescue the souls of men"] },
-    { label: "", lines: ["Counselor, comforter, Keeper", "Spirit we long to embrace", "You offer hope when our hearts have", "Hopelessly lost the way", "Oh, we\'ve hopelessly lost the way"] },
-    { label: "", lines: ["You are the One that we praise", "You are the One we adore", "You give the healing and grace our", "Hearts always hunger for", "Oh, our hearts always hunger for", "Almighty, infinite Father", "Faithfully loving Your own", "Here in our weakness You find us", "Falling before Your throne", "Oh, we\'re falling before Your throne"] },
+    { label: "", lines: ["Counselor, comforter, Keeper", "Spirit we long to embrace", "You offer hope when our hearts have", "Hopelessly lost the way", "Oh, we've hopelessly lost the way"] },
+    { label: "", lines: ["You are the One that we praise", "You are the One we adore", "You give the healing and grace our", "Hearts always hunger for", "Oh, our hearts always hunger for", "Almighty, infinite Father", "Faithfully loving Your own", "Here in our weakness You find us", "Falling before Your throne", "Oh, we're falling before Your throne"] },
     { label: "", lines: ["You are the One that we praise", "You are the One we adore", "You give the healing and grace our", "Hearts always hunger for", "Oh, our hearts always hunger for"] },
     { label: "", lines: ["You are the One that we praise", "You are the One we adore", "You give the healing and grace our", "Hearts always hunger for", "Oh, our hearts always hunger for"] },
     { label: "", lines: ["You are the One that we praise", "You are the One we adore", "You give the healing and grace our", "Hearts always hunger for", "Oh, our hearts always hunger for"] }
