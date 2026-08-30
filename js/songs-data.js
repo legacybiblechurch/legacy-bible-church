@@ -832,12 +832,16 @@ const LEGACY_SONGS = {
   },
   "how-deep-the-fathers-love-for-us": {
     title: "How Deep the Father's Love for Us",
-    youtube: "https://www.youtube.com/watch?v=A0CDqG5STPM",
+    youtube: "https://www.youtube.com/watch?v=z65YxhqY0_E",
     lyrics: [
     { label: "Verse 1", lines: ["How deep the Father's love for us", "How vast beyond all measure", "That He should give His only Son", "To make a wretch His treasure", "How great the pain of searing loss", "The Father turns His face away", "As wounds which mar the Chosen One", "Bring many sons to glory"] },
     { label: "Verse 2", lines: ["Behold the Man upon a cross", "My sin upon His shoulders", "Ashamed, I hear my mocking voice", "Call out among the scoffers", "It was my sin that held Him there", "Until it was accomplished", "His dying breath has brought me life", "I know that it is finished"] },
+    { label: "Tag", lines: ["It is finished"] },
+    { label: "Tag", lines: ["It is finished"] },
+    { label: "Tag", lines: ["It is finished"] },
     { label: "Verse 3", lines: ["I will not boast in anything", "No gifts, no power, no wisdom", "But I will boast in Jesus Christ", "His death and resurrection", "Why should I gain from His reward", "I cannot give an answer", "But this I know with all my heart", "His wounds have paid my ransom"] },
-    { label: "Verse 3", lines: ["Your wounds have paid my ransom"] }
+    { label: "Tag", lines: ["Why should I gain from His reward", "I cannot give an answer", "But this I know with all my heart", "His wounds have paid my ransom"] },
+    { label: "Tag", lines: ["Yes this I know with all my heart", "His wounds have paid my ransom"] }
   ]
   },
   "how-great": {

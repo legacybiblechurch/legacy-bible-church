@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-30T05:34:57+00:00",
+  "updatedAt": "2026-08-30T05:43:14+00:00",
   "sunday": "2026-08-30",
   "songs": [
     {
@@ -13,11 +13,11 @@
     },
     {
       "input": "how-deep-the-fathers-love-for-us",
-      "review": "",
-      "chosenVideo": "",
-      "status": "draft",
-      "confidence": 92,
-      "message": "5 candidate(s)",
+      "review": "Approve",
+      "chosenVideo": "https://www.youtube.com/watch?v=z65YxhqY0_E",
+      "status": "approved",
+      "confidence": null,
+      "message": "approved — https://www.youtube.com/watch?v=z65YxhqY0_E",
       "slug": "how-deep-the-fathers-love-for-us"
     },
     {
