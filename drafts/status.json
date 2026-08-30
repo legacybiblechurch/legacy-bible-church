@@ -1,31 +1,33 @@
 {
-  "updatedAt": "2026-08-30T04:44:37+00:00",
+  "updatedAt": "2026-08-30T04:53:33+00:00",
   "sunday": "2026-08-30",
   "songs": [
     {
       "input": "before-the-throne-of-god-above",
       "review": "",
       "chosenVideo": "",
-      "status": "queued",
-      "confidence": null,
-      "message": ""
+      "status": "draft",
+      "confidence": 78,
+      "message": "5 candidate(s)",
+      "slug": "before-the-throne-of-god-above"
     },
     {
       "input": "how-deep-the-fathers-love-for-us",
-      "review": "Approve",
-      "chosenVideo": "https://www.youtube.com/watch?v=z65YxhqY0_E",
-      "status": "approved",
-      "confidence": null,
-      "message": "approved — https://www.youtube.com/watch?v=z65YxhqY0_E",
+      "review": "",
+      "chosenVideo": "",
+      "status": "draft",
+      "confidence": 92,
+      "message": "5 candidate(s)",
       "slug": "how-deep-the-fathers-love-for-us"
     },
     {
       "input": "gladly-would-i-leave-behind-me",
       "review": "",
       "chosenVideo": "",
-      "status": "queued",
-      "confidence": null,
-      "message": ""
+      "status": "draft",
+      "confidence": 78,
+      "message": "5 candidate(s)",
+      "slug": "gladly-would-i-leave-behind-me"
     }
   ]
 }
