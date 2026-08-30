@@ -3,9 +3,9 @@
   "title": "His Forever",
   "input": "his-forever",
   "isNew": false,
-  "forced": null,
-  "signature": "5cc68f23e8fd911d",
-  "generatedAt": "2026-08-30T06:51:20+00:00",
+  "forced": "N2tAWI3uFWw",
+  "signature": "e0fe5a2a7d60ee7d",
+  "generatedAt": "2026-08-30T07:02:46+00:00",
   "candidates": [
     {
       "videoId": "N2tAWI3uFWw",
@@ -15,7 +15,7 @@
       "publishedAt": "2020-04-01T14:00:11Z",
       "durationSec": 188,
       "duration": "3:08",
-      "views": 63990,
+      "views": 63987,
       "hasCaptions": false,
       "lyrics": [
         {
@@ -25,85 +25,6 @@
             "Loved me 'ere I knew Him",
             "Drew me with His cords of love",
             "Tightly bound me to Him"
-          ]
-        },
-        {
-          "label": "Verse 2",
-          "lines": [
-            "'Round my heart still closely twined",
-            "The ties that none can sever",
-            "For I am His and He is mine",
-            "Forever and forever"
-          ]
-        },
-        {
-          "label": "Verse 3",
-          "lines": [
-            "Jesus, friend of sinners",
-            "A crown of thorns You wore for me",
-            "Bruised for my transgressions",
-            "Pierced for my iniquities"
-          ]
-        },
-        {
-          "label": "Bridge",
-          "lines": [
-            "I love to tell the story",
-            "Redeeming love has been my theme",
-            "And will be when in glory"
-          ]
-        },
-        {
-          "label": "Verse 4",
-          "lines": [
-            "Not death, nor life, nor anything",
-            "Can ever separate me",
-            "O, love that will not let me go",
-            "Yes, I am His forever"
-          ]
-        },
-        {
-          "label": "Verse 4",
-          "lines": [
-            "Not death, nor life, nor anything",
-            "Can ever separate me",
-            "O, love that will not let me go",
-            "Yes, I am His forever"
-          ]
-        }
-      ],
-      "transcriptSource": "subs",
-      "confidence": 85,
-      "notes": "Used reference wording, corrected garbled transcript. Structure follows transcript: two opening verses, a third verse, bridge, and the final section repeated twice.",
-      "order": "Verse 1 · Verse 2 · Verse 3 · Bridge · Verse 4 · Verse 4"
-    },
-    {
-      "videoId": "MlSCvbbRVYs",
-      "url": "https://www.youtube.com/watch?v=MlSCvbbRVYs",
-      "title": "His Forever",
-      "channel": "Steve Pettit Evangelistic Team - Topic",
-      "publishedAt": "2017-02-16T18:21:03Z",
-      "durationSec": 175,
-      "duration": "2:55",
-      "views": 61358,
-      "hasCaptions": false,
-      "lyrics": [
-        {
-          "label": "Verse 1",
-          "lines": [
-            "Jesus, friend of sinners",
-            "Loved me 'ere I knew Him",
-            "Drew me with His cords of love",
-            "Tightly bound me to Him"
-          ]
-        },
-        {
-          "label": "Verse 2",
-          "lines": [
-            "'Round my heart still closely twined",
-            "The ties that none can sever",
-            "For I am His and He is mine",
-            "Forever and forever"
           ]
         },
         {
@@ -121,39 +42,160 @@
             "The wrath of God that I deserved",
             "Was poured out on the Innocent",
             "He took my place, my soul to save",
-            "Now I am His forever"
+            "Now I am His forever",
+            "Jesus, friend of sinners",
+            "I love to tell the story",
+            "Redeeming love has been my theme",
+            "And will be when in glory"
           ]
         },
         {
           "label": "Verse 4",
+          "lines": [
+            "Not death, nor life, nor anything",
+            "Can ever separate me",
+            "O, love that will not let me go",
+            "Yes, I am His forever"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "Yes, I am His forever"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "Yes, I am His forever"
+          ]
+        }
+      ],
+      "transcriptSource": "subs",
+      "confidence": 85,
+      "notes": "Transcript omitted Verse 2; kept structure per transcript. Inserted missing bridge section (wrath of God) and added leading \"Jesus, friend of sinners\" before the story line as per human corrections. Added two extra \"Yes, I am His forever\" lines at the end as separate Tag blocks. Used reference wording for all lines.",
+      "order": "Verse 1 · Verse 3 · Bridge · Verse 4 · Tag · Tag"
+    },
+    {
+      "videoId": "MlSCvbbRVYs",
+      "url": "https://www.youtube.com/watch?v=MlSCvbbRVYs",
+      "title": "His Forever",
+      "channel": "Steve Pettit Evangelistic Team - Topic",
+      "publishedAt": "2017-02-16T18:21:03Z",
+      "durationSec": 175,
+      "duration": "2:55",
+      "views": 61361,
+      "hasCaptions": false,
+      "lyrics": [
+        {
+          "label": "Verse 1",
+          "lines": [
+            "Jesus, friend of sinners",
+            "Loved me 'ere I knew Him",
+            "Drew me with His cords of love",
+            "Tightly bound me to Him"
+          ]
+        },
+        {
+          "label": "Verse 2",
+          "lines": [
+            "'Round my heart still closely twined",
+            "The ties that none can sever",
+            "For I am His and He is mine",
+            "Forever and forever"
+          ]
+        },
+        {
+          "label": "Verse 3",
+          "lines": [
+            "Jesus, friend of sinners",
+            "A crown of thorns You wore for me",
+            "Bruised for my transgressions",
+            "Pierced for my iniquities",
+            "The wrath of God that I deserved",
+            "Was poured out on the Innocent",
+            "He took my place, my soul to save",
+            "Now I am His forever"
+          ]
+        },
+        {
+          "label": "Bridge",
           "lines": [
             "Jesus, friend of sinners",
             "I love to tell the story",
             "Redeeming love has been my theme",
             "And will be when in glory"
           ]
+        },
+        {
+          "label": "Verse 5",
+          "lines": [
+            "Not death, nor life, nor anything",
+            "Can ever separate me",
+            "O love that will not let me go",
+            "Yes, I am His forever"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "O love that will not let me go"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "Yes, I am His forever"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "Not death, nor life, nor anything",
+            "Can ever separate me"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "O love that will not let me go"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "Yes, I am His forever"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "O love that will not let me go"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "Yes, I am His forever"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "Yes, I am His forever"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "Yes, I am His forever"
+          ]
         }
       ],
       "transcriptSource": "subs",
-      "confidence": 0,
-      "notes": "",
-      "order": ""
-    },
-    {
-      "videoId": "d6xxWGWpaUQ",
-      "url": "https://www.youtube.com/watch?v=d6xxWGWpaUQ",
-      "title": "Chris Tomlin - Forever (Lyrics And Chords)",
-      "channel": "ChrisTomlinVEVO",
-      "publishedAt": "2014-12-09T08:00:04Z",
-      "durationSec": 327,
-      "duration": "5:27",
-      "views": 5930377,
-      "hasCaptions": false,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "No transcript (ERROR: [youtube] d6xxWGWpaUQ: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-).",
-      "order": ""
+      "confidence": 85,
+      "notes": "Applied human corrections: inserted missing 'The wrath of God...' section after 'Pierced for my iniquities', added leading 'Jesus, friend of sinners' before 'I love to tell the story', and appended two extra 'Yes, I am His forever' lines at the very end. Used reference wording for all lines; transcript variations were overridden by reference where appropriate.",
+      "order": "Verse 1 · Verse 2 · Verse 3 · Bridge · Verse 5 · Tag · Tag · Tag · Tag · Tag · Tag · Tag · Tag · Tag"
     },
     {
       "videoId": "fEqOlqB9G14",
@@ -179,7 +221,7 @@
       "publishedAt": "2016-11-05T19:29:51Z",
       "durationSec": 234,
       "duration": "3:54",
-      "views": 21343,
+      "views": 21344,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
@@ -228,6 +270,22 @@
       "durationSec": 204,
       "duration": "3:24",
       "views": 545,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "",
+      "order": ""
+    },
+    {
+      "videoId": "JZrZyum5icE",
+      "url": "https://www.youtube.com/watch?v=JZrZyum5icE",
+      "title": "His Forever",
+      "channel": "Praise Gathering - Topic",
+      "publishedAt": "2015-11-05T17:32:06Z",
+      "durationSec": 242,
+      "duration": "4:02",
+      "views": 351,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",

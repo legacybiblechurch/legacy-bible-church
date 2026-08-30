@@ -4,8 +4,8 @@
   "input": "i-asked-the-lord-that-i-might-grow",
   "isNew": false,
   "forced": null,
-  "signature": "a0a6e8235b85ce63",
-  "generatedAt": "2026-08-30T06:51:57+00:00",
+  "signature": "43e30c00b06045bb",
+  "generatedAt": "2026-08-30T07:03:23+00:00",
   "candidates": [
     {
       "videoId": "YCxrROZPCKw",
@@ -15,7 +15,7 @@
       "publishedAt": "2020-11-04T18:00:07Z",
       "durationSec": 260,
       "duration": "4:20",
-      "views": 43497,
+      "views": 43503,
       "hasCaptions": true,
       "lyrics": [
         {
@@ -41,13 +41,17 @@
           "lines": [
             "I hoped that in some favored hour",
             "At once He'd answer my request",
-            "And by His love's constraining pow'r",
+            "And, by His love's constraining pow'r",
             "Subdue my sins, and give me rest"
           ]
         },
         {
           "label": "Verse 4",
           "lines": [
+            "Instead of this, He made me feel",
+            "The hidden evils of my heart",
+            "And let the angry pow'rs of hell",
+            "Assault my soul in ev'ry part",
             "Yea, more, with His own hand He seemed",
             "Intent to aggravate my woe",
             "Crossed all the fair designs I schemed",
@@ -59,7 +63,7 @@
           "lines": [
             "\"Lord, why is this?\" I, trembling, cried",
             "\"Wilt thou pursue Thy worm to death?\"",
-            "\"'Tis in this way,\" the Lord replied",
+            "\"'Tis in this way,\" the Lord replied,",
             "\"I answer prayer for grace and faith\""
           ]
         },
@@ -67,26 +71,26 @@
           "label": "Verse 6",
           "lines": [
             "These inward trials I employ",
-            "From self and pride to set you free",
-            "And break thy schemes of earthly joy",
-            "That thou may'st find your all in Me"
+            "From self, and pride, to set thee free;",
+            "And break thy schemes of earthly joy,",
+            "That thou may’st find thy all in Me."
           ]
         }
       ],
       "transcriptSource": "subs",
-      "confidence": 92,
-      "notes": "Used reference wording for all lines except Verse 4 line 4, where the transcript shows \"Blasted my gourds, and laid me low\" differing from the reference; included that line as heard. All other lines follow the reference lyrics.",
+      "confidence": 93,
+      "notes": "Verse 4 line 8 uses transcript wording \"Blasted my gourds, and laid me low\" instead of reference \"Humbled my heart, and laid me low\". Verse 6 lines use transcript wording (thee, may’st, etc.) differing from reference.",
       "order": "Verse 1 · Verse 2 · Verse 3 · Verse 4 · Verse 5 · Verse 6"
     },
     {
-      "videoId": "-44GH3NhdIA",
-      "url": "https://www.youtube.com/watch?v=-44GH3NhdIA",
-      "title": "I Asked the Lord that I Might Grow • T4G Live II [Official Lyric Video]",
-      "channel": "SovereignGraceMusic",
-      "publishedAt": "2020-06-04T16:00:00Z",
-      "durationSec": 310,
-      "duration": "5:10",
-      "views": 409215,
+      "videoId": "0cnEDUMfPXs",
+      "url": "https://www.youtube.com/watch?v=0cnEDUMfPXs",
+      "title": "I Asked The Lord - Indelible Grace",
+      "channel": "tranceseraph",
+      "publishedAt": "2011-06-03T15:15:58Z",
+      "durationSec": 261,
+      "duration": "4:21",
+      "views": 541527,
       "hasCaptions": false,
       "lyrics": [
         {
@@ -130,28 +134,50 @@
           ]
         },
         {
-          "label": "Bridge",
+          "label": "Verse 5",
           "lines": [
-            "Lord, why is this? I, trembling, cried",
-            "Wilt thou pursue Thy worm to death?",
-            "'Tis in this way, the Lord replied,",
-            "I answer prayer for grace and faith"
+            "\"Lord, why is this?\" I, trembling, cried",
+            "\"Wilt thou pursue Thy worm to death?\"",
+            "'Tis in this way,\" the Lord replied,",
+            "\"I answer prayer for grace and faith\""
           ]
         },
         {
-          "label": "Outro",
+          "label": "Verse 6",
           "lines": [
-            "These inward trials I employ",
-            "From self and pride to set you free",
-            "And break thy schemes of earthly joy",
-            "That thou may'st find your all in Me"
+            "\"These inward trials I employ\"",
+            "\"From self and pride to set you free\"",
+            "\"And break thy schemes of earthly joy\"",
+            "\"That thou may'st find your all in Me\""
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "oh"
           ]
         }
       ],
-      "transcriptSource": "subs",
+      "transcriptSource": "asr",
       "confidence": 78,
-      "notes": "Human‑written captions contain numerous mis‑hearings (e.g., “I ask” vs “I asked”, “heal” vs “feel”, truncated phrases, and garbled wording). The transcript clearly shows the first three verses and parts of Verse 4, the bridge and the outro, but many lines are missing or corrupted. Structure was therefore taken from the reference lyrics; no section repeats were detected in the transcript. Discrepancies were corrected to match the reference wording.",
-      "order": "Verse 1 · Verse 2 · Verse 3 · Verse 4 · Bridge · Outro"
+      "notes": "Auto‑generated captions were garbled but clearly followed the six‑verse structure of the reference. Used reference wording for all lines; added a final Tag block for the vocal \"oh\" heard at the end of the recording.",
+      "order": "Verse 1 · Verse 2 · Verse 3 · Verse 4 · Verse 5 · Verse 6 · Tag"
+    },
+    {
+      "videoId": "-44GH3NhdIA",
+      "url": "https://www.youtube.com/watch?v=-44GH3NhdIA",
+      "title": "I Asked the Lord that I Might Grow • T4G Live II [Official Lyric Video]",
+      "channel": "SovereignGraceMusic",
+      "publishedAt": "2020-06-04T16:00:00Z",
+      "durationSec": 310,
+      "duration": "5:10",
+      "views": 409215,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "",
+      "order": ""
     },
     {
       "videoId": "7JNZyqWQ3-s",
@@ -177,7 +203,7 @@
       "publishedAt": "2013-11-25T22:32:36Z",
       "durationSec": 299,
       "duration": "4:59",
-      "views": 172066,
+      "views": 172068,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
@@ -193,7 +219,7 @@
       "publishedAt": "2020-08-06T06:11:56Z",
       "durationSec": 296,
       "duration": "4:56",
-      "views": 30321,
+      "views": 30322,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
@@ -226,22 +252,6 @@
       "durationSec": 239,
       "duration": "3:59",
       "views": 2143,
-      "hasCaptions": false,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "",
-      "order": ""
-    },
-    {
-      "videoId": "hGLF3EqHmm4",
-      "url": "https://www.youtube.com/watch?v=hGLF3EqHmm4",
-      "title": "I Asked the Lord that I Might Grow",
-      "channel": "Makhaira Mag",
-      "publishedAt": "2023-11-26T20:24:10Z",
-      "durationSec": 310,
-      "duration": "5:10",
-      "views": 63,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
