@@ -14,7 +14,7 @@
   // Paste the planner (Google Sheet) edit link here (the URL in the
   // address bar when you have the sheet open, ending in /edit). Until it's set,
   // the "Open the planner" buttons open a read-only view of the sheet.
-  var SHEET_EDIT = '';
+  var SHEET_EDIT = 'https://docs.google.com/spreadsheets/d/1sMsj05hV3QEJ0hrvwt_aEnB2RXzVfHae5UD7c-StPeA/edit?gid=0#gid=0';
   // ───────────────────────────────────────────────────────────────────────────
   var SHEET_VIEW = SHEET_CSV.replace('/pub?', '/pubhtml?').replace('&single=true&output=csv', '');
   var SHEET_LINK = SHEET_EDIT || SHEET_VIEW;
