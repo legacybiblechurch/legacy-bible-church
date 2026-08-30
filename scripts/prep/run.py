@@ -307,15 +307,19 @@ def main(mode: str) -> None:
             status.append(entry)
             traceback.print_exc()
 
-    if do_apply and approved_slugs:
-        # rebuild the live setlist from the approved rows, in sheet order
+    if do_apply:
+        # the live setlist always mirrors the approved rows of the CURRENT sheet, in
+        # sheet order - so swapping in next week's songs clears last week's until they
+        # are approved (rather than leaving stale songs on Control/Display)
         ordered = []
         for row in rows:
             if row.approved:
                 s, _, _ = resolve(row.song)
                 if s in approved_slugs and s not in ordered:
                     ordered.append(s)
-        lib_songs.write_setlist(ordered, sunday=sunday)
+        cur = lib_songs.load_setlist()
+        if ordered != cur:
+            lib_songs.write_setlist(ordered, sunday=sunday)
 
     write_status(status, sunday)
     print(json.dumps(status, indent=2, ensure_ascii=False))
