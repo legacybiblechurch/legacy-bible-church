@@ -147,13 +147,20 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
 def apply_row(row: sheet_mod.Row, songs: dict) -> tuple[str, str]:
     """Returns (slug, message). Writes into songs-data.js on success."""
     slug, title, is_new = resolve(row.song)
+    forced = yt.video_id(row.video) if row.video else None
+
+    # already applied? (song in library with the chosen video) -> idempotent no-op
+    if not row.redo and slug in songs:
+        cur_vid = yt.video_id(songs[slug].get("youtube", ""))
+        if cur_vid and (cur_vid == forced or not forced):
+            return slug, f"approved — https://www.youtube.com/watch?v={cur_vid}"
+
     draft = _load_draft(slug)
     if not draft:
         return slug, "approved but no draft yet — will apply next run"
 
     cands = draft["candidates"]
     chosen = None
-    forced = yt.video_id(row.video) if row.video else None
     if forced:
         chosen = next((c for c in cands if c["videoId"] == forced), None) or yt.details(forced)
     if not chosen:

@@ -16,10 +16,12 @@ from __future__ import annotations
 
 import csv
 import io
+import os
 import urllib.request
 from dataclasses import dataclass, field
 
-PUB_CSV = (
+# override with a URL or a local file path for testing: LBC_SHEET_CSV=./test.csv
+PUB_CSV = os.environ.get("LBC_SHEET_CSV") or (
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vSBczlDX3xoDhPZdmURMEmduM_"
     "s1lYvPZiRovZ-ObHroIEsnJ9u1D813GaRlLK6Q9NsDpOTtL4UaRnu/pub?gid=0&single=true&output=csv"
 )
@@ -49,6 +51,9 @@ class Row:
 
 
 def _fetch(url: str) -> str:
+    if not url.startswith("http"):
+        with open(url, encoding="utf-8") as f:
+            return f.read()
     req = urllib.request.Request(url, headers={"User-Agent": "lbc-worship-prep"})
     with urllib.request.urlopen(req, timeout=30) as r:
         return r.read().decode("utf-8")
