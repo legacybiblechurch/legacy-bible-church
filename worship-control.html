@@ -6,520 +6,318 @@
   <title>Worship Control — LBC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+    @font-face {
+      font-family: 'Priestacy';
+      src: url('fonts/Priestacy.woff') format('woff'), url('fonts/Priestacy.otf') format('opentype');
+      font-display: swap;
+    }
+
     :root {
-      --gold:     #C9A84C;
-      --gold-dim: rgba(201,168,76,0.18);
-      --bg:       #0e0e16;
-      --surface:  #161622;
-      --card:     #1e1e2e;
-      --border:   rgba(255,255,255,0.08);
-      --text:     #e8e8f0;
-      --muted:    rgba(255,255,255,0.35);
-      --header-h: 54px;
-      --footer-h: 64px;
-      --sidebar-w: 210px;
+      --bg:        #0d0d0f;
+      --panel:     #141416;
+      --panel-2:   #1b1b1e;
+      --panel-3:   #232327;
+      --line:      #2a2a2e;
+      --line-soft: #202024;
+      --ink:       #ececed;
+      --ink-dim:   #9a9a9e;
+      --ink-faint: #62626a;
+      --gold:      #c9a84c;
+      --live:      #d9534f;
+      --header-h:  52px;
+      --footer-h:  62px;
+      --sidebar-w: 224px;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     html, body {
       height: 100%;
       background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--ink);
+      font-family: var(--font);
       font-size: 14px;
       overflow: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── HEADER ───────────────────────────────── */
+    /* ── header ─────────────────────────────── */
     #header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: fixed; inset: 0 0 auto 0;
       height: var(--header-h);
-      background: #0a0a11;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center;
-      padding: 0 20px;
-      gap: 16px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; gap: 14px;
+      padding: 0 18px;
       z-index: 100;
     }
-    .header-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--gold); flex-shrink: 0;
-    }
-    .header-title {
-      font-weight: 700;
-      font-size: 15px;
-      color: var(--text);
-      letter-spacing: 0.02em;
-    }
+    .wordmark { font-family: 'Priestacy', var(--font); font-size: 22px; color: var(--ink); }
     .header-spacer { flex: 1; }
-    .display-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--gold); color: #111;
-      font-weight: 700; font-size: 12px;
-      padding: 7px 14px; border-radius: 6px;
-      text-decoration: none;
-      letter-spacing: 0.03em;
-      transition: opacity 0.15s;
-    }
-    .display-link:hover { opacity: 0.85; }
-    .kbd-hint {
-      font-size: 12px;
-      color: var(--muted);
-      display: flex; align-items: center; gap: 6px;
-    }
+    .kbd-hint { font-size: 12px; color: var(--ink-faint); display: flex; align-items: center; gap: 6px; }
     .kbd {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 2px 7px;
-      font-size: 11px;
-      font-family: inherit;
+      background: var(--panel-2); border: 1px solid var(--line);
+      border-radius: 4px; padding: 1px 6px; font-size: 11px; color: var(--ink-dim);
     }
+    .display-link {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+      color: var(--ink); text-decoration: none;
+      border: 1px solid var(--line); border-radius: 6px;
+      padding: 6px 12px;
+    }
+    .display-link:hover { border-color: var(--ink-faint); background: var(--panel-2); }
 
-    /* ── LAYOUT ───────────────────────────────── */
+    /* ── layout ─────────────────────────────── */
     #layout {
-      position: fixed;
-      top: var(--header-h);
-      bottom: var(--footer-h);
-      left: 0; right: 0;
+      position: fixed; inset: var(--header-h) 0 var(--footer-h) 0;
       display: flex;
     }
 
-    /* ── SIDEBAR (song list) ──────────────────── */
     #sidebar {
-      width: var(--sidebar-w);
-      flex-shrink: 0;
-      background: var(--surface);
-      border-right: 1px solid var(--border);
-      display: flex; flex-direction: column;
-      overflow: hidden;
+      width: var(--sidebar-w); flex-shrink: 0;
+      background: var(--panel);
+      border-right: 1px solid var(--line);
+      display: flex; flex-direction: column; overflow: hidden;
     }
     .sidebar-head {
-      padding: 14px 16px 10px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border-bottom: 1px solid var(--border);
+      padding: 14px 16px 9px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--ink-faint);
     }
-    #song-list {
-      flex: 1;
-      overflow-y: auto;
-      padding: 8px 0;
-    }
+    #song-list { flex: 1; overflow-y: auto; padding-bottom: 8px; }
     .song-item {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 16px;
-      cursor: pointer;
-      border-left: 3px solid transparent;
-      transition: background 0.12s, border-color 0.12s;
+      display: flex; align-items: baseline; gap: 10px;
+      padding: 9px 16px; cursor: pointer;
+      border-left: 2px solid transparent;
     }
-    .song-item:hover { background: rgba(255,255,255,0.04); }
-    .song-item.active {
-      border-left-color: var(--gold);
-      background: var(--gold-dim);
-    }
-    .song-num {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--muted);
-      width: 16px;
-      flex-shrink: 0;
-    }
-    .song-item.active .song-num { color: var(--gold); }
-    .song-name {
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 1.3;
-      color: var(--text);
-    }
-    .song-item.active .song-name { color: var(--gold); }
-    .song-count {
-      margin-left: auto;
-      font-size: 10px;
-      color: var(--muted);
-      flex-shrink: 0;
-    }
+    .song-item:hover { background: var(--panel-2); }
+    .song-item.active { border-left-color: var(--gold); background: var(--panel-2); }
+    .song-num { font-size: 11px; color: var(--ink-faint); width: 14px; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+    .song-name { font-size: 13px; font-weight: 500; line-height: 1.35; color: var(--ink-dim); }
+    .song-item.active .song-name { color: var(--ink); }
+    .song-count { margin-left: auto; font-size: 11px; color: var(--ink-faint); flex-shrink: 0; font-variant-numeric: tabular-nums; }
 
-    /* ── MAIN PANEL (slide grid) ──────────────── */
-    #main {
-      flex: 1;
-      overflow-y: auto;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
+    /* ── main / slide grid ──────────────────── */
+    #main { flex: 1; overflow-y: auto; padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; }
     .main-song-title {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--ink-faint);
     }
+    #slide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(196px, 1fr)); gap: 10px; }
 
-    #slide-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-      gap: 12px;
-    }
-
-    /* ── SLIDE THUMBNAIL ────────────────────── */
     .slide-thumb {
-      background: var(--card);
-      border: 2px solid transparent;
-      border-radius: 10px;
-      padding: 14px 14px 12px;
-      cursor: pointer;
-      transition: border-color 0.15s, background 0.15s;
-      position: relative;
-      min-height: 120px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      background: var(--panel); border: 1px solid var(--line-soft);
+      border-radius: 6px; padding: 13px 14px; cursor: pointer;
+      position: relative; min-height: 116px;
+      display: flex; flex-direction: column; gap: 7px;
     }
-    .slide-thumb:hover {
-      border-color: rgba(201,168,76,0.4);
-      background: #222235;
-    }
-    .slide-thumb.active {
-      border-color: var(--gold);
-      background: rgba(201,168,76,0.08);
-    }
+    .slide-thumb:hover { border-color: var(--ink-faint); background: var(--panel-2); }
+    .slide-thumb.active { border-color: var(--gold); }
     .thumb-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
+      font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold);
     }
-    .thumb-lines {
-      font-size: 12px;
-      font-weight: 300;
-      line-height: 1.55;
-      color: rgba(255,255,255,0.75);
-    }
+    .thumb-lines { font-size: 12px; line-height: 1.5; color: var(--ink-dim); }
     .thumb-lines .tl { display: block; }
     .live-badge {
-      position: absolute;
-      top: 10px; right: 10px;
-      background: #e05;
-      color: #fff;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      padding: 2px 6px;
-      border-radius: 4px;
-      text-transform: uppercase;
+      position: absolute; top: 10px; right: 10px;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--live);
     }
-    .live-badge::before {
-      content: '● ';
-      font-size: 8px;
-    }
+    .live-badge::before { content: '● '; }
 
-    /* ── FOOTER NAV ───────────────────────────── */
+    /* ── footer ─────────────────────────────── */
     #footer {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
+      position: fixed; inset: auto 0 0 0;
       height: var(--footer-h);
-      background: #0a0a11;
-      border-top: 1px solid var(--border);
-      display: flex; align-items: center;
-      padding: 0 20px;
-      gap: 12px;
+      background: var(--bg);
+      border-top: 1px solid var(--line);
+      display: flex; align-items: center; gap: 10px;
+      padding: 0 18px;
       z-index: 100;
     }
-
     .nav-btn {
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.12s, border-color 0.12s;
-      white-space: nowrap;
+      background: var(--panel-2); border: 1px solid var(--line);
+      color: var(--ink); font: inherit; font-size: 13px; font-weight: 600;
+      padding: 9px 18px; border-radius: 6px; cursor: pointer; white-space: nowrap;
     }
-    .nav-btn:hover { background: #2a2a3e; border-color: rgba(255,255,255,0.18); }
-    .nav-btn:active { background: #1a1a2a; }
-    .nav-btn.primary {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: #111;
-    }
-    .nav-btn.primary:hover { opacity: 0.9; }
-
-    #position-info {
-      flex: 1;
-      text-align: center;
-      font-size: 13px;
-      color: var(--muted);
-      font-weight: 500;
-      pointer-events: none;
-    }
-    #position-song {
-      font-weight: 700;
-      color: var(--text);
-    }
-
+    .nav-btn:hover { border-color: var(--ink-faint); background: var(--panel-3); }
+    .nav-btn.primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+    .nav-btn.primary:hover { background: #fff; }
+    #position-info { flex: 1; text-align: center; font-size: 13px; color: var(--ink-faint); pointer-events: none; }
+    #position-song { font-weight: 600; color: var(--ink-dim); }
     .blank-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-family: inherit;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 10px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.15s;
-      margin-left: 8px;
-      white-space: nowrap;
+      background: transparent; border: 1px solid var(--line);
+      color: var(--ink-faint); font: inherit; font-size: 12px; font-weight: 600;
+      padding: 9px 14px; border-radius: 6px; cursor: pointer; white-space: nowrap;
     }
-    .blank-btn:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
-    .blank-btn.blanked {
-      background: rgba(200,40,40,0.15);
-      border-color: rgba(200,40,40,0.5);
-      color: #f88;
-    }
+    .blank-btn:hover { border-color: var(--ink-faint); color: var(--ink-dim); }
+    .blank-btn.blanked { border-color: var(--live); color: var(--live); }
 
-    /* Scrollbar styling */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+    ::-webkit-scrollbar { width: 7px; }
+    ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
   </style>
 </head>
 <body>
-
-  <!-- HEADER -->
   <div id="header">
-    <div class="header-dot"></div>
-    <div class="header-title">LBC Worship Control</div>
-    <div class="header-spacer"></div>
-    <div class="kbd-hint">
-      <span class="kbd">←</span><span class="kbd">→</span> navigate &nbsp;|&nbsp;
-      <span class="kbd">B</span> blank
-    </div>
-    <a href="worship-display.html" target="_blank" class="display-link">
-      Open Display ↗
-    </a>
+    <span class="wordmark">Worship Control</span>
+    <span class="header-spacer"></span>
+    <span class="kbd-hint"><span class="kbd">&larr;</span><span class="kbd">&rarr;</span> move &nbsp;<span class="kbd">B</span> blank</span>
+    <a href="worship-display.html" target="_blank" class="display-link">Open display &nearr;</a>
   </div>
 
-  <!-- LAYOUT -->
   <div id="layout">
-
-    <!-- SONG LIST -->
     <aside id="sidebar">
-      <div class="sidebar-head">Today's Songs</div>
+      <div class="sidebar-head">Today's songs</div>
       <div id="song-list"></div>
     </aside>
-
-    <!-- SLIDE GRID -->
     <main id="main">
       <div class="main-song-title" id="main-song-title"></div>
       <div id="slide-grid"></div>
     </main>
-
   </div>
 
-  <!-- FOOTER NAV -->
   <div id="footer">
-    <button class="nav-btn" id="btn-prev">◀ Prev</button>
-    <div id="position-info">
-      <span id="position-song"></span>
-      <span id="position-slide"></span>
-    </div>
-    <button class="nav-btn primary" id="btn-next">Next ▶</button>
-    <button class="blank-btn" id="btn-blank">◈ Screensaver</button>
+    <button class="nav-btn" id="btn-prev">&larr; Prev</button>
+    <div id="position-info"><span id="position-song"></span><span id="position-slide"></span></div>
+    <button class="nav-btn primary" id="btn-next">Next &rarr;</button>
+    <button class="blank-btn" id="btn-blank">Blank screen</button>
   </div>
 
   <script src="js/songs-data.js"></script>
   <script src="js/worship-songs.js"></script>
   <script>
-    /* ─────────────── BUILD SONGS FROM SETLIST ─────────────── */
-    var MAX_LINES = 4; // max lines per slide — split bigger blocks automatically
+    var MAX_LINES = 4;
 
     function buildSlides(lyrics) {
       var slides = [];
-      lyrics.forEach(function(block) {
-        var lines = block.lines;
-        var lbl   = block.label || '';
-        if (lines.length <= MAX_LINES) {
-          slides.push({ label: lbl, lines: lines });
-        } else {
-          for (var i = 0; i < lines.length; i += MAX_LINES) {
-            slides.push({ label: lbl, lines: lines.slice(i, i + MAX_LINES) });
-          }
-        }
+      lyrics.forEach(function (block) {
+        var lines = block.lines, lbl = block.label || '';
+        if (lines.length <= MAX_LINES) { slides.push({ label: lbl, lines: lines }); }
+        else { for (var i = 0; i < lines.length; i += MAX_LINES) slides.push({ label: lbl, lines: lines.slice(i, i + MAX_LINES) }); }
       });
       return slides;
     }
 
     var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSBczlDX3xoDhPZdmURMEmduM_s1lYvPZiRovZ-ObHroIEsnJ9u1D813GaRlLK6Q9NsDpOTtL4UaRnu/pub?gid=0&single=true&output=csv';
 
-    var songs   = [];
-    var songIdx  = 0;
-    var slideIdx = 0;
-    var isBlank  = false;
-    var channel  = new BroadcastChannel('lbc-worship');
+    var songs = [], songIdx = 0, slideIdx = 0, isBlank = false;
+    var channel = new BroadcastChannel('lbc-worship');
 
     function buildSongsFromSlugs(slugs) {
-      return slugs.map(function(slug) {
+      return slugs.map(function (slug) {
         var data = LEGACY_SONGS[slug];
-        if (!data) return {
-          title: '⚠ Not found: ' + slug,
-          slides: [{ label: 'Error', lines: ['Song slug "' + slug + '" not in songs-data.js'] }]
-        };
+        if (!data) return { title: 'Not found: ' + slug, slides: [{ label: 'Error', lines: ['Song "' + slug + '" is not in the library yet'] }] };
         return { title: data.title, slides: buildSlides(data.lyrics) };
       });
     }
 
-    /* ─────────────── BROADCAST ─────────── */
     function broadcast() {
       var state = { songIndex: songIdx, slideIndex: slideIdx, blank: isBlank };
       localStorage.setItem('lbc-worship-state', JSON.stringify(state));
       channel.postMessage(state);
     }
 
-    /* ─────────────── NAVIGATION ─────────── */
     function goTo(si, li) {
       if (si < 0 || si >= songs.length) return;
-      var song = songs[si];
-      if (li < 0 || li >= song.slides.length) return;
-      songIdx  = si;
-      slideIdx = li;
-      render();
-      broadcast();
+      if (li < 0 || li >= songs[si].slides.length) return;
+      songIdx = si; slideIdx = li; render(); broadcast();
     }
-
     function next() {
-      var song = songs[songIdx];
-      if (slideIdx < song.slides.length - 1) {
-        goTo(songIdx, slideIdx + 1);
-      } else if (songIdx < songs.length - 1) {
-        goTo(songIdx + 1, 0);
-      }
+      var s = songs[songIdx];
+      if (slideIdx < s.slides.length - 1) goTo(songIdx, slideIdx + 1);
+      else if (songIdx < songs.length - 1) goTo(songIdx + 1, 0);
     }
-
     function prev() {
-      if (slideIdx > 0) {
-        goTo(songIdx, slideIdx - 1);
-      } else if (songIdx > 0) {
-        var prevSong = songs[songIdx - 1];
-        goTo(songIdx - 1, prevSong.slides.length - 1);
-      }
+      if (slideIdx > 0) goTo(songIdx, slideIdx - 1);
+      else if (songIdx > 0) goTo(songIdx - 1, songs[songIdx - 1].slides.length - 1);
     }
-
     function toggleBlank() {
       isBlank = !isBlank;
-      document.getElementById('btn-blank').classList.toggle('blanked', isBlank);
-      document.getElementById('btn-blank').textContent = isBlank ? '▪ Stop' : '◈ Screensaver';
+      var b = document.getElementById('btn-blank');
+      b.classList.toggle('blanked', isBlank);
+      b.textContent = isBlank ? 'Show screen' : 'Blank screen';
       broadcast();
     }
 
-    /* ─────────────── RENDER ─────────────── */
-    function esc(t) {
-      return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    }
+    function esc(t) { return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
     function render() {
-      var song  = songs[songIdx];
-
-      /* Song list */
-      var songListEl = document.getElementById('song-list');
-      songListEl.innerHTML = songs.map(function(s, i) {
-        return (
-          '<div class="song-item' + (i === songIdx ? ' active' : '') + '" onclick="goTo(' + i + ',0)">' +
-            '<span class="song-num">' + (i + 1) + '</span>' +
-            '<span class="song-name">' + esc(s.title) + '</span>' +
-            '<span class="song-count">' + s.slides.length + '</span>' +
-          '</div>'
-        );
+      var song = songs[songIdx];
+      document.getElementById('song-list').innerHTML = songs.map(function (s, i) {
+        return '<div class="song-item' + (i === songIdx ? ' active' : '') + '" onclick="goTo(' + i + ',0)">' +
+          '<span class="song-num">' + (i + 1) + '</span>' +
+          '<span class="song-name">' + esc(s.title) + '</span>' +
+          '<span class="song-count">' + s.slides.length + '</span></div>';
       }).join('');
 
-      /* Slide grid header */
       document.getElementById('main-song-title').textContent = song.title;
 
-      /* Slide grid */
       var grid = document.getElementById('slide-grid');
-      grid.innerHTML = song.slides.map(function(slide, i) {
-        var isActive = (i === slideIdx);
-        var previewLines = slide.lines.slice(0, 3).map(function(l) {
-          return '<span class="tl">' + esc(l) + '</span>';
-        }).join('');
-        return (
-          '<div class="slide-thumb' + (isActive ? ' active' : '') + '" onclick="goTo(' + songIdx + ',' + i + ')">' +
-            (isActive ? '<div class="live-badge">Live</div>' : '') +
-            '<div class="thumb-label">' + esc(slide.label) + '</div>' +
-            '<div class="thumb-lines">' + previewLines + '</div>' +
-          '</div>'
-        );
+      grid.innerHTML = song.slides.map(function (slide, i) {
+        var isActive = i === slideIdx;
+        var preview = slide.lines.slice(0, 3).map(function (l) { return '<span class="tl">' + esc(l) + '</span>'; }).join('');
+        return '<div class="slide-thumb' + (isActive ? ' active' : '') + '" onclick="goTo(' + songIdx + ',' + i + ')">' +
+          (isActive ? '<div class="live-badge">Live</div>' : '') +
+          '<div class="thumb-label">' + esc(slide.label) + '</div>' +
+          '<div class="thumb-lines">' + preview + '</div></div>';
       }).join('');
 
-      /* Position info */
       document.getElementById('position-song').textContent = song.title + ' — ';
-      document.getElementById('position-slide').textContent =
-        'Slide ' + (slideIdx + 1) + ' of ' + song.slides.length;
+      document.getElementById('position-slide').textContent = 'slide ' + (slideIdx + 1) + ' of ' + song.slides.length;
 
-      /* Scroll active thumb into view */
-      setTimeout(function() {
-        var activeThumb = grid.querySelector('.slide-thumb.active');
-        if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      setTimeout(function () {
+        var a = grid.querySelector('.slide-thumb.active');
+        if (a) a.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }, 50);
     }
 
-    /* ─────────────── KEYBOARD ─────────────── */
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
-      if (e.key === 'ArrowLeft')  { e.preventDefault(); prev(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
       if (e.key === 'b' || e.key === 'B') toggleBlank();
     });
-
     document.getElementById('btn-next').addEventListener('click', next);
     document.getElementById('btn-prev').addEventListener('click', prev);
     document.getElementById('btn-blank').addEventListener('click', toggleBlank);
 
-    /* ─────────────── INIT ─────────────── */
     function init(slugs) {
       songs = buildSongsFromSlugs(slugs);
       try {
         var saved = JSON.parse(localStorage.getItem('lbc-worship-state') || 'null');
         if (saved && saved.songIndex != null) {
-          songIdx  = saved.songIndex  || 0;
+          songIdx = saved.songIndex || 0;
           slideIdx = saved.slideIndex || 0;
-          isBlank  = !!saved.blank;
+          isBlank = !!saved.blank;
           if (isBlank) {
             document.getElementById('btn-blank').classList.add('blanked');
-            document.getElementById('btn-blank').textContent = '▪ Unblank';
+            document.getElementById('btn-blank').textContent = 'Show screen';
           }
         }
-      } catch(e) {}
-      render();
-      broadcast();
+      } catch (e) {}
+      if (songIdx >= songs.length) songIdx = 0;
+      if (slideIdx >= (songs[songIdx] ? songs[songIdx].slides.length : 1)) slideIdx = 0;
+      render(); broadcast();
     }
 
-    // Fetch setlist from Google Sheet, fall back to worship-songs.js
-    fetch(SHEET_CSV)
-      .then(function(r) { return r.text(); })
-      .then(function(csv) {
-        var slugs = csv.split('\n')
-          .map(function(l) { return l.trim().replace(/\r/g, ''); })
-          .filter(Boolean);
-        init(slugs);
-      })
-      .catch(function() {
-        init(window.WORSHIP_SETLIST || []);
-      });
+    // Prefer the committed setlist (js/worship-songs.js); fall back to the live sheet CSV.
+    if (Array.isArray(window.WORSHIP_SETLIST) && window.WORSHIP_SETLIST.length) {
+      init(window.WORSHIP_SETLIST);
+    } else {
+      fetch(SHEET_CSV)
+        .then(function (r) { return r.text(); })
+        .then(function (csv) {
+          var lines = csv.split('\n').map(function (l) { return l.trim().replace(/\r/g, ''); }).filter(Boolean);
+          var header = lines[0] ? lines[0].toLowerCase().split(',') : [];
+          var hasHeader = header.indexOf('song') !== -1;
+          var slugs = (hasHeader ? lines.slice(1) : lines).map(function (l) { return l.split(',')[0].trim(); }).filter(Boolean);
+          init(slugs);
+        })
+        .catch(function () { init([]); });
+    }
   </script>
 </body>
 </html>
