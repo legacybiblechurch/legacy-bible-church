@@ -275,7 +275,8 @@
       if (live && live.video) { var m = live.video.match(/[A-Za-z0-9_-]{11}/); chosenId = m ? m[0] : ''; }
 
       var meta = [];
-      if (draft && draft.generatedAt) meta.push('drafted ' + draft.generatedAt.replace('T', ' ').replace('+00:00', ' UTC'));
+      if (libReady) meta.push(draft.approvedAt ? 'prepared & approved ' + draft.approvedAt + ' — no review needed' : 'already in the library — no review needed');
+      else if (draft && draft.generatedAt) meta.push('drafted ' + draft.generatedAt.replace('T', ' ').replace('+00:00', ' UTC'));
       if (live && live.review) meta.push('sheet: Review = ' + live.review);
 
       return '' +

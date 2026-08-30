@@ -37,6 +37,23 @@ from transcript import fetch_transcript
 REPO = Path(__file__).resolve().parents[2]
 DRAFTS = REPO / "drafts"
 STATUS = DRAFTS / "status.json"
+APPROVALS = REPO / "drafts" / "approvals.json"   # slug -> {video, approvedAt}
+
+
+def _load_approvals() -> dict:
+    try:
+        return json.loads(APPROVALS.read_text())
+    except Exception:
+        return {}
+
+
+def _record_approval(slug: str, video_url: str) -> None:
+    data = _load_approvals()
+    vid = yt.video_id(video_url) or video_url
+    if data.get(slug, {}).get("video") == vid:
+        return
+    data[slug] = {"video": vid, "approvedAt": dt.date.today().isoformat()}
+    APPROVALS.write_text(json.dumps(data, indent=2, sort_keys=True))
 
 MAX_CANDIDATES = 5
 RECONCILE_TOP = 2          # only draft lyrics for the N best candidates (API cost / rate limits)
@@ -87,9 +104,11 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
     if not row.redo and not forced and not is_new:
         cur_vid = yt.video_id(songs[slug].get("youtube", ""))
         if cur_vid:
+            approved_at = _load_approvals().get(slug, {}).get("approvedAt", "")
             prev = _load_draft(slug)
             if (prev and prev.get("signature") == "library"
-                    and prev["candidates"] and prev["candidates"][0]["videoId"] == cur_vid):
+                    and prev["candidates"] and prev["candidates"][0]["videoId"] == cur_vid
+                    and prev.get("approvedAt", "") == approved_at):
                 prev["input"] = row.song
                 return prev
             done = {
@@ -97,15 +116,18 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
                 "forced": None, "signature": "library",
                 "generatedAt": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
                 "libraryReady": True,
+                "approvedAt": approved_at,
                 "candidates": [{
                     "videoId": cur_vid,
                     "url": f"https://www.youtube.com/watch?v={cur_vid}",
                     "title": title, "channel": "", "duration": "", "durationSec": 0,
                     "views": 0, "hasCaptions": True, "transcriptSource": "library",
                     "lyrics": songs[slug]["lyrics"], "confidence": 100,
-                    "order": "", "notes": "Already prepared and approved previously. "
-                                          "Set Review = Approve to add it to this Sunday, "
-                                          "or put 'redo' in Review to rebuild it.",
+                    "order": "", "notes": (
+                        ("Prepared and approved " + approved_at + ". " if approved_at
+                         else "Already in the library. ")
+                        + "Nothing to review - set Review = Approve to add it to this "
+                          "Sunday, or put 'redo' in Review to rebuild it from scratch."),
                 }],
             }
             DRAFTS.mkdir(exist_ok=True)
@@ -196,7 +218,9 @@ def apply_row(row: sheet_mod.Row, songs: dict) -> tuple[str, str]:
     if not row.redo and slug in songs:
         cur_vid = yt.video_id(songs[slug].get("youtube", ""))
         if cur_vid and (cur_vid == forced or not forced):
-            return slug, f"approved — https://www.youtube.com/watch?v={cur_vid}"
+            url = f"https://www.youtube.com/watch?v={cur_vid}"
+            _record_approval(slug, url)
+            return slug, f"approved — {url}"
 
     draft = _load_draft(slug)
     if not draft:
@@ -222,6 +246,7 @@ def apply_row(row: sheet_mod.Row, songs: dict) -> tuple[str, str]:
             lyrics = r["lyrics"]
 
     lib_songs.upsert_song(slug, title=title, youtube=chosen["url"], lyrics=lyrics)
+    _record_approval(slug, chosen["url"])
     return slug, f"approved — {chosen['url']}"
 
 
