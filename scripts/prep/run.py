@@ -55,8 +55,8 @@ def _record_approval(slug: str, video_url: str) -> None:
     data[slug] = {"video": vid, "approvedAt": dt.date.today().isoformat()}
     APPROVALS.write_text(json.dumps(data, indent=2, sort_keys=True))
 
-MAX_CANDIDATES = 5
-RECONCILE_TOP = 2          # only draft lyrics for the N best candidates (API cost / rate limits)
+MAX_CANDIDATES = 8        # search pool; we only fetch transcripts until RECONCILE_TOP hit
+RECONCILE_TOP = 2         # draft lyrics for the first N candidates that have a transcript
 ALLOW_AUDIO = bool(os.environ.get("GROQ_API_KEY"))
 
 
@@ -134,7 +134,8 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
             _draft_path(slug).write_text(json.dumps(done, indent=2, ensure_ascii=False))
             return done
 
-    # candidate videos
+    # candidate videos (wider net — the highest-view "official" upload often has no
+    # captions, so we need enough options to find ones that do)
     candidates: list[dict] = []
     if forced:
         d = yt.details(forced)
@@ -143,7 +144,6 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
     for c in yt.search(title, max_results=MAX_CANDIDATES):
         if c["videoId"] not in {x["videoId"] for x in candidates}:
             candidates.append(c)
-    candidates = candidates[:MAX_CANDIDATES + (1 if forced else 0)]
 
     prev = _load_draft(slug)
     signature = _sig([c["videoId"] for c in candidates], reference)
@@ -152,25 +152,26 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
         prev["forced"] = forced
         return prev  # unchanged — skip re-reconcile
 
-    # draft lyrics for the top candidates
-    for i, c in enumerate(candidates):
-        c["lyrics"] = None
+    for c in candidates:
+        c.setdefault("lyrics", None)
         c["transcriptSource"] = "none"
         c["confidence"] = 0
         c["notes"] = ""
         c["order"] = ""
-        rank_ok = i < RECONCILE_TOP or c["videoId"] == forced
-        if not rank_ok:
-            continue
+
+    # walk candidates in rank order, drafting until RECONCILE_TOP of them have lyrics
+    import transcript as _t
+    drafted = 0
+    for c in candidates:
+        if drafted >= RECONCILE_TOP and c["videoId"] != forced:
+            break
         try:
             tr = fetch_transcript(c["url"], allow_audio=ALLOW_AUDIO)
             if not tr:
-                import transcript as _t
                 c["notes"] = f"No transcript ({_t.LAST_ERROR or 'no captions'})."
                 continue
             c["transcriptSource"] = tr["source"]
             r = rec.reconcile(title, reference, tr, fixes=row.fixes)
-            # auto-captions too garbled to reconcile -> re-transcribe the audio
             if r["confidence"] < 55 and ALLOW_AUDIO and tr["source"] == "asr":
                 tr2 = fetch_transcript(c["url"], allow_audio=True, force_audio=True)
                 if tr2:
@@ -180,8 +181,22 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
                         c["transcriptSource"] = tr2["source"]
             c.update(lyrics=r["lyrics"], confidence=r["confidence"],
                      notes=r["notes"], order=r["order"])
+            drafted += 1
         except Exception as e:  # noqa: BLE001 — one bad video shouldn't kill the run
             c["notes"] = f"Draft failed: {e}"
+
+    # nothing had a readable transcript, but we do have known-good library lyrics ->
+    # offer those in standard order so the person has something to pick + verify
+    if drafted == 0 and reference and candidates:
+        top = next((c for c in candidates if c["videoId"] == forced), candidates[0])
+        top["lyrics"] = reference
+        top["transcriptSource"] = "reference"
+        top["confidence"] = 55
+        top["order"] = ""
+        top["notes"] = ("No captioned video turned up, so these are the lyrics already "
+                        "in the library, in the song's standard order. Pick the video you "
+                        "want, play it through, and check that the verses and repeats "
+                        "match - note any change in the Fixes column.")
 
     # float the candidates we actually drafted lyrics for (best confidence) to the top,
     # keeping a forced pick first of all

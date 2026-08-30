@@ -67,9 +67,12 @@ def _iso8601_to_seconds(dur: str) -> int:
     return h * 3600 + mn * 60 + s
 
 
+_QUERIES = ("{t} lyrics", "{t} lyric video", "{t} worship lyrics", "{t} hymn lyrics", "{t}")
+
+
 def _search_api(title: str, max_results: int) -> list[dict]:
     seen: dict[str, dict] = {}
-    for q in (f"{title} lyrics", f"{title} worship lyric video", title):
+    for q in (s.format(t=title) for s in _QUERIES):
         try:
             res = _api_get("search", part="snippet", q=q, type="video",
                            maxResults=max_results, videoEmbeddable="true")
@@ -126,7 +129,7 @@ def _ytdlp_json(args: list[str]) -> list[dict]:
 
 def _search_ytdlp(title: str, max_results: int) -> list[dict]:
     seen: dict[str, dict] = {}
-    for q in (f"{title} lyrics", f"{title} worship lyric video"):
+    for q in (s.format(t=title) for s in _QUERIES[:3]):
         for d in _ytdlp_json([f"ytsearch{max_results}:{q}"]):
             vid = d.get("id")
             if not vid or vid in seen:
