@@ -79,8 +79,40 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
     row.slug, row.title, row.is_new = slug, title, is_new
     reference = None if is_new else songs[slug]["lyrics"]
 
-    # candidate videos
     forced = yt.video_id(row.video) if row.video else None
+
+    # Already perfected in the library (real video + lyrics) and the person isn't
+    # forcing a new video or asking for a redo -> don't spend search/transcript/LLM.
+    # Just present the locked-in version; approving it is a no-op that keeps it.
+    if not row.redo and not forced and not is_new:
+        cur_vid = yt.video_id(songs[slug].get("youtube", ""))
+        if cur_vid:
+            prev = _load_draft(slug)
+            if (prev and prev.get("signature") == "library"
+                    and prev["candidates"] and prev["candidates"][0]["videoId"] == cur_vid):
+                prev["input"] = row.song
+                return prev
+            done = {
+                "slug": slug, "title": title, "input": row.song, "isNew": False,
+                "forced": None, "signature": "library",
+                "generatedAt": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+                "libraryReady": True,
+                "candidates": [{
+                    "videoId": cur_vid,
+                    "url": f"https://www.youtube.com/watch?v={cur_vid}",
+                    "title": title, "channel": "", "duration": "", "durationSec": 0,
+                    "views": 0, "hasCaptions": True, "transcriptSource": "library",
+                    "lyrics": songs[slug]["lyrics"], "confidence": 100,
+                    "order": "", "notes": "Already prepared and approved previously. "
+                                          "Set Review = Approve to add it to this Sunday, "
+                                          "or put 'redo' in Review to rebuild it.",
+                }],
+            }
+            DRAFTS.mkdir(exist_ok=True)
+            _draft_path(slug).write_text(json.dumps(done, indent=2, ensure_ascii=False))
+            return done
+
+    # candidate videos
     candidates: list[dict] = []
     if forced:
         d = yt.details(forced)
