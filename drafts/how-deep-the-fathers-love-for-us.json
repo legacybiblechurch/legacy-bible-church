@@ -4,83 +4,9 @@
   "input": "how-deep-the-fathers-love-for-us",
   "isNew": false,
   "forced": null,
-  "signature": "193eb3d3f6f269a5",
-  "generatedAt": "2026-08-30T04:26:12+00:00",
+  "signature": "da46280e01a5048e",
+  "generatedAt": "2026-08-30T05:03:07+00:00",
   "candidates": [
-    {
-      "videoId": "UfhRs5g5t8M",
-      "url": "https://www.youtube.com/watch?v=UfhRs5g5t8M",
-      "title": "How Deep The Father&#39;s Love (Official Music Video) | Celtic Worship",
-      "channel": "Celtic Worship",
-      "publishedAt": "2021-10-07T08:00:10Z",
-      "durationSec": 377,
-      "duration": "6:17",
-      "views": 3665580,
-      "hasCaptions": true,
-      "lyrics": [
-        {
-          "label": "Verse 1",
-          "lines": [
-            "How deep the Father's love for us",
-            "How vast beyond all measure",
-            "That He should give His only Son",
-            "To make a wretch His treasure",
-            "How great the pain of searing loss",
-            "The Father turns His face away",
-            "As wounds which mar the Chosen One",
-            "Bring many sons to glory"
-          ]
-        },
-        {
-          "label": "Verse 2",
-          "lines": [
-            "Behold the Man upon a cross",
-            "My sin upon His shoulders",
-            "Ashamed, I hear my mocking voice",
-            "Call out among the scoffers",
-            "It was my sin that held Him there",
-            "Until it was accomplished",
-            "His dying breath has brought me life",
-            "I know that it is finished"
-          ]
-        },
-        {
-          "label": "Verse 3",
-          "lines": [
-            "I will not boast in anything",
-            "No gifts, no power, no wisdom",
-            "But I will boast in Jesus Christ",
-            "His death and resurrection",
-            "Why should I gain from His reward",
-            "I cannot give an answer",
-            "But this I know with all my heart",
-            "His wounds have paid my ransom"
-          ]
-        },
-        {
-          "label": "Tag",
-          "lines": [
-            "Why should I gain from His reward",
-            "I cannot give an answer",
-            "But this I know with all my heart",
-            "His wounds have paid my ransom"
-          ]
-        },
-        {
-          "label": "Tag",
-          "lines": [
-            "How deep the Father's love for us",
-            "How vast beyond all measure",
-            "That He should give His only Son",
-            "To make a wretch His treasure"
-          ]
-        }
-      ],
-      "transcriptSource": "subs",
-      "confidence": 92,
-      "notes": "Structure follows the human‑written captions: full Verse 1, Verse 2, Verse 3, then a four‑line tag repeating the last part of Verse 3, and a final four‑line tag repeating the opening of Verse 1. No additional repeats inferred.",
-      "order": "Verse 1 · Verse 2 · Verse 3 · Tag · Tag"
-    },
     {
       "videoId": "z65YxhqY0_E",
       "url": "https://www.youtube.com/watch?v=z65YxhqY0_E",
@@ -89,86 +15,13 @@
       "publishedAt": "2015-10-16T08:32:13Z",
       "durationSec": 271,
       "duration": "4:31",
-      "views": 3019008,
+      "views": 3019046,
       "hasCaptions": true,
-      "lyrics": [
-        {
-          "label": "Verse 1",
-          "lines": [
-            "How deep the Father's love for us",
-            "How vast beyond all measure",
-            "That He should give His only Son",
-            "To make a wretch His treasure",
-            "How great the pain of searing loss",
-            "The Father turns His face away",
-            "As wounds which mar the Chosen One",
-            "Bring many sons to glory"
-          ]
-        },
-        {
-          "label": "Verse 2",
-          "lines": [
-            "Behold the Man upon a cross",
-            "My sin upon His shoulders",
-            "Ashamed, I hear my mocking voice",
-            "Call out among the scoffers",
-            "It was my sin that held Him there",
-            "Until it was accomplished",
-            "His dying breath has brought me life",
-            "I know that it is finished"
-          ]
-        },
-        {
-          "label": "Tag",
-          "lines": [
-            "It is finished"
-          ]
-        },
-        {
-          "label": "Tag",
-          "lines": [
-            "It is finished"
-          ]
-        },
-        {
-          "label": "Verse 3",
-          "lines": [
-            "I will not boast in anything",
-            "No gifts, no power, no wisdom",
-            "But I will boast in Jesus Christ",
-            "His death and resurrection",
-            "Why should I gain from His reward",
-            "I cannot give an answer",
-            "But this I know with all my heart",
-            "His wounds have paid my ransom"
-          ]
-        },
-        {
-          "label": "Tag",
-          "lines": [
-            "Why should I gain from His reward",
-            "I cannot give an answer",
-            "But this I know with all my heart",
-            "His wounds have paid my ransom"
-          ]
-        },
-        {
-          "label": "Tag",
-          "lines": [
-            "Yes this I know with all my heart"
-          ]
-        },
-        {
-          "label": "Tag",
-          "lines": [
-            "His wounds have paid my ransom"
-          ]
-        }
-      ],
-      "transcriptSource": "subs",
-      "confidence": 92,
-      "notes": "Used reference wording for all standard verses. Transcript showed two solo \"It is finished\" lines after the final line of Verse 2; each rendered as a separate Tag block. After Verse 3 the last four lines repeat verbatim, captured as a Tag block. Transcript also included an extra line \"YES THIS I KNOW WITH ALL MY HEART\" not present in the reference; added as a Tag and noted here.",
-      "order": "Verse 1 · Verse 2 · Tag · Tag · Verse 3 · Tag · Tag · Tag"
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No captions available for this video.",
+      "order": ""
     },
     {
       "videoId": "SKDujmtyAVk",
@@ -178,12 +31,12 @@
       "publishedAt": "2011-10-02T15:40:25Z",
       "durationSec": 201,
       "duration": "3:21",
-      "views": 3405911,
+      "views": 3405950,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
       "confidence": 0,
-      "notes": "",
+      "notes": "No captions available for this video.",
       "order": ""
     },
     {
@@ -194,7 +47,7 @@
       "publishedAt": "2020-04-26T18:20:20Z",
       "durationSec": 218,
       "duration": "3:38",
-      "views": 428421,
+      "views": 428433,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
@@ -210,7 +63,23 @@
       "publishedAt": "2022-06-07T01:15:30Z",
       "durationSec": 154,
       "duration": "2:34",
-      "views": 267235,
+      "views": 267303,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "",
+      "order": ""
+    },
+    {
+      "videoId": "dzKsLbM9UcY",
+      "url": "https://www.youtube.com/watch?v=dzKsLbM9UcY",
+      "title": "How Deep The Father&#39;s Love For Us - Phillips, Craig &amp; Dean (lyrics)",
+      "channel": "CHICAGO UBF - University Bible Fellowship",
+      "publishedAt": "2024-03-27T19:13:10Z",
+      "durationSec": 202,
+      "duration": "3:22",
+      "views": 12518,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
