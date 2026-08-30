@@ -169,6 +169,25 @@
 
     .loading, .empty { color: var(--ink-dim); font-size: 14px; padding: 40px 0; text-align: center; }
     .stale { font-size: 12px; color: var(--warn); margin-top: 6px; }
+
+    /* ── mobile ─────────────────────────────── */
+    @media (max-width: 600px) {
+      header { padding: 18px 16px 14px; gap: 6px 14px; }
+      .brand { font-size: 25px; }
+      .header-links { margin-left: 0; width: 100%; gap: 16px; }
+      main { padding: 18px 16px 40px; }
+      .hint { padding: 12px 13px; font-size: 12.5px; margin-bottom: 22px; }
+      .song { margin-bottom: 30px; }
+      .song-title { font-size: 18px; }
+      .cand-row { padding: 11px 12px; gap: 10px; flex-wrap: wrap; }
+      .cand-main { flex-basis: 100%; order: 1; }
+      .cand-rank { order: 0; }
+      .chev { order: 0; margin-left: auto; }
+      .badge { order: 2; font-size: 10.5px; }
+      .player, .lyrics { padding: 12px; }
+      .slide-line { font-size: 14px; }
+      .player-actions .btn { flex: 1; justify-content: center; min-height: 40px; }
+    }
   </style>
 </head>
 <body>
@@ -176,6 +195,7 @@
     <span class="brand">Worship Prep</span>
     <span class="sub" id="sunday-line"></span>
     <span class="header-links">
+      <a href="worship.html">Home</a>
       <a href="worship-control.html">Control &rarr;</a>
       <a href="setlist.html">Setlist &rarr;</a>
     </span>

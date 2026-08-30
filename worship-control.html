@@ -162,6 +162,43 @@
 
     ::-webkit-scrollbar { width: 7px; }
     ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+
+    /* ── mobile ─────────────────────────────── */
+    @media (max-width: 760px) {
+      :root { --header-h: 48px; --footer-h: 68px; }
+      .kbd-hint { display: none; }
+      #header { padding: 0 14px; gap: 10px; }
+      .wordmark { font-size: 19px; }
+      .display-link { padding: 7px 11px; }
+
+      #layout { flex-direction: column; }
+      #sidebar {
+        width: auto; height: auto; flex-shrink: 0;
+        border-right: 0; border-bottom: 1px solid var(--line);
+        flex-direction: row; overflow-x: auto; overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+      }
+      .sidebar-head { display: none; }
+      #song-list { display: flex; flex-direction: row; padding: 8px 10px; gap: 8px; overflow: visible; }
+      .song-item {
+        flex-direction: column; align-items: flex-start; gap: 2px;
+        border: 1px solid var(--line); border-left: 1px solid var(--line);
+        border-radius: 7px; padding: 8px 12px; white-space: nowrap;
+      }
+      .song-item.active { border-color: var(--gold); }
+      .song-name { -webkit-line-clamp: 1; font-size: 13px; }
+      .song-count::before { content: '· '; }
+
+      #main { padding: 14px 14px 18px; }
+      #slide-grid { grid-template-columns: 1fr; gap: 8px; }
+      .slide-thumb { min-height: 0; padding: 12px 14px; }
+      .thumb-lines { font-size: 13px; }
+
+      #footer { padding: 0 12px; gap: 8px; }
+      .nav-btn { flex: 1; padding: 13px 10px; font-size: 14px; text-align: center; justify-content: center; }
+      #position-info { display: none; }
+      .blank-btn { padding: 13px 12px; font-size: 12px; }
+    }
   </style>
 </head>
 <body>

@@ -127,6 +127,19 @@
       display: block;
       opacity: 0.9;
     }
+
+    /* ── mobile / portrait ──────────────────────── */
+    @media (max-width: 760px) {
+      html, body { cursor: auto; }
+      #slide-wrap { padding: 8vw 6vw; }
+      .slide-line { font-size: clamp(22px, 6.2vw, 40px); line-height: 1.35; }
+      .slide-label { font-size: 12px; letter-spacing: 0.2em; margin-bottom: 5vh; }
+      .slide-lines { gap: clamp(8px, 2.4vh, 18px); }
+      .standby-logo { font-size: clamp(20px, 7vw, 34px); letter-spacing: 0.14em; padding: 0 6vw; }
+      .standby-sub { font-size: 13px; letter-spacing: 0.18em; }
+      #song-title { bottom: 16px; right: 18px; left: 18px; text-align: center; }
+      #dvd-logo { width: 40vw; }
+    }
   </style>
 </head>
 <body>
