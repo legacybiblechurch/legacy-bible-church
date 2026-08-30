@@ -109,7 +109,8 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
         try:
             tr = fetch_transcript(c["url"], allow_audio=ALLOW_AUDIO)
             if not tr:
-                c["notes"] = "No captions available for this video."
+                import transcript as _t
+                c["notes"] = f"No transcript ({_t.LAST_ERROR or 'no captions'})."
                 continue
             c["transcriptSource"] = tr["source"]
             r = rec.reconcile(title, reference, tr, fixes=row.fixes)

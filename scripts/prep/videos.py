@@ -19,7 +19,7 @@ import urllib.parse
 import urllib.request
 
 API = "https://www.googleapis.com/youtube/v3"
-_EXTRACTOR_ARGS = "youtube:player_client=android,web"
+_EXTRACTOR_ARGS = "youtube:player_client=default,tv,web_safari"
 _VID_RE = re.compile(r"(?:v=|/shorts/|youtu\.be/|/embed/|/live/)([A-Za-z0-9_-]{11})")
 
 

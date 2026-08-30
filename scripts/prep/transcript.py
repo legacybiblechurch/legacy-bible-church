@@ -92,9 +92,17 @@ def _cues_to_text(cues: list[dict]) -> str:
 
 # ---------------------------------------------------------------- yt-dlp captions
 
+# YouTube gates different player clients differently, and the gating changes often
+# (and is harsher from datacenter IPs like GitHub Actions). Try several, in order.
+_CLIENT_ARGS = [
+    "youtube:player_client=default",
+    "youtube:player_client=tv",
+    "youtube:player_client=web_safari,mweb",
+    "youtube:player_client=android,web",
+    "youtube:player_client=ios",
+]
 
-# yt-dlp needs a non-default client or YouTube replies "The page needs to be reloaded"
-_EXTRACTOR_ARGS = "youtube:player_client=android,web"
+LAST_ERROR = ""   # last yt-dlp failure reason, for surfacing in the draft notes
 
 
 def _load_cues(path: Path) -> list[dict]:
@@ -102,49 +110,90 @@ def _load_cues(path: Path) -> list[dict]:
     return _parse_json3(raw) if path.suffix == ".json3" else _parse_vtt(raw)
 
 
+def _pick_track_urls(info: dict) -> list[tuple[str, bool]]:
+    """(url, is_asr) for the best English json3 track from the info json, manual first."""
+    out = []
+    for key, is_asr in (("subtitles", False), ("automatic_captions", True)):
+        tracks = info.get(key) or {}
+        for lang in ("en", "en-US", "en-GB", "en-orig"):
+            for t in tracks.get(lang, []):
+                if t.get("ext") in ("json3", "srv3", "vtt") and t.get("url"):
+                    out.append((t["url"], is_asr))
+    # de-dup, keep order
+    seen, uniq = set(), []
+    for u, a in out:
+        if u not in seen:
+            seen.add(u)
+            uniq.append((u, a))
+    return uniq
+
+
+def _fetch_track(url: str) -> list[dict]:
+    """Download a timedtext track URL directly (separate code path from yt-dlp's own
+    subtitle downloader, which is more aggressively rate-limited)."""
+    if "fmt=" not in url:
+        url += "&fmt=json3"
+    try:
+        from http_util import request_json
+        data = request_json("GET", url, timeout=30)
+        return _parse_json3(json.dumps(data))
+    except Exception:
+        try:
+            import urllib.request as _u
+            raw = _u.urlopen(_u.Request(url, headers={"User-Agent": "Mozilla/5.0"}), timeout=30).read().decode("utf-8", "replace")
+            return _parse_json3(raw) if raw.lstrip().startswith("{") else _parse_vtt(raw)
+        except Exception:
+            return []
+
+
 def _ytdlp_captions(url: str) -> dict | None:
+    global LAST_ERROR
     if not _have("yt-dlp"):
+        LAST_ERROR = "yt-dlp not installed"
         return None
-    with tempfile.TemporaryDirectory() as tmp:
-        _run([
-            "yt-dlp", "--skip-download",
-            "--write-subs", "--write-auto-subs",
-            "--sub-langs", "en.*,en",
-            "--sub-format", "json3/vtt/best",
-            "--write-info-json",
-            "--extractor-args", _EXTRACTOR_ARGS,
-            "--no-warnings", "--no-progress",
-            "-o", f"{tmp}/v.%(ext)s", url,
-        ])
-        d = Path(tmp)
-        info_f = next(d.glob("*.info.json"), None)
-        manual_langs: set[str] = set()
-        if info_f:
-            try:
-                info = json.loads(info_f.read_text())
-                manual_langs = set((info.get("subtitles") or {}).keys())
-            except Exception:
-                pass
 
-        subs = [f for f in d.iterdir() if f.suffix in (".json3", ".vtt")]
-        # a track is "manual" if its language tag is in the info json's subtitles map
-        def is_manual(f: Path) -> bool:
-            lang = f.name.split(".")[1] if len(f.name.split(".")) > 2 else ""
-            return lang in manual_langs
+    for client in _CLIENT_ARGS:
+        with tempfile.TemporaryDirectory() as tmp:
+            r = _run([
+                "yt-dlp", "--skip-download",
+                "--write-subs", "--write-auto-subs",
+                "--sub-langs", "en.*,en",
+                "--sub-format", "json3/vtt/best",
+                "--write-info-json",
+                "--extractor-args", client,
+                "--no-warnings", "--no-progress",
+                "-o", f"{tmp}/v.%(ext)s", url,
+            ])
+            d = Path(tmp)
+            info_f = next(d.glob("*.info.json"), None)
+            if not info_f:
+                LAST_ERROR = (r.stderr or r.stdout or "no info").strip().splitlines()[-1][:200] if (r.stderr or r.stdout) else "no info json"
+                continue
+            info = json.loads(info_f.read_text())
+            manual_langs = set((info.get("subtitles") or {}).keys())
 
-        manual = sorted((f for f in subs if is_manual(f)), key=lambda p: p.suffix != ".json3")
-        auto = sorted((f for f in subs if not is_manual(f)), key=lambda p: p.suffix != ".json3")
+            # (a) files yt-dlp already wrote
+            subs = [f for f in d.iterdir() if f.suffix in (".json3", ".vtt")]
+            def is_manual(f: Path) -> bool:
+                parts = f.name.split(".")
+                return len(parts) > 2 and parts[1] in manual_langs
 
-        for group, is_asr in ((manual, False), (auto, True)):
-            for f in group:
-                cues = _load_cues(f)
+            for group, is_asr in ((sorted((f for f in subs if is_manual(f)), key=lambda p: p.suffix != ".json3"), False),
+                                  (sorted((f for f in subs if not is_manual(f)), key=lambda p: p.suffix != ".json3"), True)):
+                for f in group:
+                    cues = _load_cues(f)
+                    if len(cues) >= 3:
+                        return {"source": "asr" if is_asr else "subs", "is_asr": is_asr,
+                                "cues": cues, "text": _cues_to_text(cues)}
+
+            # (b) direct track URLs from the info json
+            for turl, is_asr in _pick_track_urls(info):
+                cues = _fetch_track(turl)
                 if len(cues) >= 3:
-                    return {
-                        "source": "asr" if is_asr else "subs",
-                        "is_asr": is_asr,
-                        "cues": cues,
-                        "text": _cues_to_text(cues),
-                    }
+                    return {"source": "asr" if is_asr else "subs", "is_asr": is_asr,
+                            "cues": cues, "text": _cues_to_text(cues)}
+
+            LAST_ERROR = "info ok but no usable caption track"
     return None
 
 
@@ -158,15 +207,17 @@ def _download_audio(url: str, dest_dir: str) -> Path | None:
         return None
     out = f"{dest_dir}/audio.%(ext)s"
     fmt = "bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio/worstaudio"
-    if _have("ffmpeg"):
-        _run(["yt-dlp", "-x", "--audio-format", "mp3", "--audio-quality", "5",
-              "--extractor-args", _EXTRACTOR_ARGS,
-              "--no-warnings", "--no-progress", "-o", out, url])
-    else:
-        _run(["yt-dlp", "-f", fmt, "--extractor-args", _EXTRACTOR_ARGS,
-              "--no-warnings", "--no-progress", "-o", out, url])
-    files = [p for p in Path(dest_dir).glob("audio.*") if p.stat().st_size > 1000]
-    return files[0] if files else None
+    for client in _CLIENT_ARGS:
+        if _have("ffmpeg"):
+            _run(["yt-dlp", "-x", "--audio-format", "mp3", "--audio-quality", "5",
+                  "--extractor-args", client, "--no-warnings", "--no-progress", "-o", out, url])
+        else:
+            _run(["yt-dlp", "-f", fmt, "--extractor-args", client,
+                  "--no-warnings", "--no-progress", "-o", out, url])
+        files = [p for p in Path(dest_dir).glob("audio.*") if p.stat().st_size > 1000]
+        if files:
+            return files[0]
+    return None
 
 
 GROQ_WHISPER_MODEL = os.environ.get("GROQ_WHISPER_MODEL", "whisper-large-v3")
