@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-06T14:02:51+00:00",
+  "updatedAt": "2026-09-06T14:32:08+00:00",
   "sunday": "2026-09-06",
   "songs": [
     {
@@ -25,7 +25,7 @@
       "review": "",
       "chosenVideo": "https://www.youtube.com/watch?v=ju9nbjIONzE",
       "status": "draft",
-      "confidence": 0,
+      "confidence": 20,
       "message": "9 candidate(s)",
       "slug": "as-the-dear"
     }
