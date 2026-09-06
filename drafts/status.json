@@ -1,33 +1,33 @@
 {
-  "updatedAt": "2026-09-04T00:04:01+00:00",
+  "updatedAt": "2026-09-06T06:39:58+00:00",
   "sunday": "2026-09-06",
   "songs": [
     {
-      "input": "Speak O Lord",
-      "review": "Approve",
-      "chosenVideo": "https://www.youtube.com/watch?v=jKtJVv5ffdw",
-      "status": "approved",
-      "confidence": null,
-      "message": "approved — https://www.youtube.com/watch?v=jKtJVv5ffdw",
-      "slug": "speak-o-lord"
+      "input": "My Soul Longs for the Lord",
+      "review": "",
+      "chosenVideo": "https://www.youtube.com/watch?v=avFBQh0iWMI&list=RDavFBQh0iWMI&start_radio=1",
+      "status": "draft",
+      "confidence": 55,
+      "message": "8 candidate(s)",
+      "slug": "my-soul-longs-for-the-lord"
     },
     {
-      "input": "I Asked the Lord that I Might Grow",
-      "review": "Approve",
-      "chosenVideo": "https://www.youtube.com/watch?v=YCxrROZPCKw",
-      "status": "approved",
-      "confidence": null,
-      "message": "approved — https://www.youtube.com/watch?v=YCxrROZPCKw",
-      "slug": "i-asked-the-lord-that-i-might-grow"
+      "input": "How Long, O Lord, How Long?",
+      "review": "",
+      "chosenVideo": "https://www.youtube.com/watch?v=tT4RFGzheN0",
+      "status": "draft",
+      "confidence": 55,
+      "message": "8 candidate(s)",
+      "slug": "how-long-o-lord-how-long-psalm-13"
     },
     {
-      "input": "Savior Like a Shepherd Lead us",
-      "review": "Approve",
-      "chosenVideo": "https://www.youtube.com/watch?v=Pco0Y7nIHSQ",
-      "status": "approved",
+      "input": "As the dear",
+      "review": "",
+      "chosenVideo": "https://www.youtube.com/watch?v=ju9nbjIONzE",
+      "status": "draft",
       "confidence": null,
-      "message": "approved — https://www.youtube.com/watch?v=Pco0Y7nIHSQ",
-      "slug": "savior-like-a-shepherd-lead-us"
+      "message": "9 candidate(s)",
+      "slug": "as-the-dear"
     }
   ]
 }
