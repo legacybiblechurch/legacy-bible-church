@@ -77,6 +77,7 @@
       color: #C9A84C;
       margin-bottom: clamp(16px, 3vh, 44px);
     }
+    .slide-label:empty { display: none; }
 
     .slide-lines {
       display: flex; flex-direction: column;
@@ -171,21 +172,20 @@
 
   <script src="js/songs-data.js"></script>
   <script src="js/worship-songs.js"></script>
-  <script src="js/sheet.js?v=5"></script>
+  <script src="js/sheet.js?v=6"></script>
   <script>
     /* Build songs from setlist — same source as the website hymnal */
-    var MAX_LINES = 4;
+    function perSlide(lines) {
+      // long lines (contemporary) -> 2 per slide; short lines (hymn stanzas) -> 4
+      var avg = lines.join(' ').length / Math.max(lines.length, 1);
+      return avg > 38 ? 2 : 4;
+    }
     function buildSlides(lyrics) {
       var slides = [];
       lyrics.forEach(function(block) {
-        var lines = block.lines;
-        var lbl   = block.label || '';
-        if (lines.length <= MAX_LINES) {
-          slides.push({ label: lbl, lines: lines });
-        } else {
-          for (var i = 0; i < lines.length; i += MAX_LINES) {
-            slides.push({ label: lbl, lines: lines.slice(i, i + MAX_LINES) });
-          }
+        var lines = block.lines, lbl = block.label || '', n = perSlide(lines);
+        for (var i = 0; i < lines.length; i += n) {
+          slides.push({ label: lbl, lines: lines.slice(i, i + n) });
         }
       });
       return slides;
@@ -260,7 +260,7 @@
       standby.classList.add('hidden');
 
       setTimeout(function () {
-        slideLabel.textContent = slide.label;
+        slideLabel.textContent = '';   // no "Verse 1 / Chorus" on the congregation's screen
         slideLines.innerHTML = slide.lines
           .map(function(l){ return '<div class="slide-line">' + esc(l) + '</div>'; })
           .join('');

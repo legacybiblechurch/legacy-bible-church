@@ -240,16 +240,17 @@
 
   <script src="js/songs-data.js"></script>
   <script src="js/worship-songs.js"></script>
-  <script src="js/sheet.js?v=5"></script>
+  <script src="js/sheet.js?v=6"></script>
   <script>
-    var MAX_LINES = 4;
-
+    function perSlide(lines) {
+      var avg = lines.join(' ').length / Math.max(lines.length, 1);
+      return avg > 38 ? 2 : 4;   // long lines -> 2/slide, short hymn lines -> 4/slide
+    }
     function buildSlides(lyrics) {
       var slides = [];
       lyrics.forEach(function (block) {
-        var lines = block.lines, lbl = block.label || '';
-        if (lines.length <= MAX_LINES) { slides.push({ label: lbl, lines: lines }); }
-        else { for (var i = 0; i < lines.length; i += MAX_LINES) slides.push({ label: lbl, lines: lines.slice(i, i + MAX_LINES) }); }
+        var lines = block.lines, lbl = block.label || '', n = perSlide(lines);
+        for (var i = 0; i < lines.length; i += n) slides.push({ label: lbl, lines: lines.slice(i, i + n) });
       });
       return slides;
     }
