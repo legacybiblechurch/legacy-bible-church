@@ -192,10 +192,19 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
         if c.get("lyrics"):
             return
         if reference:
-            c.update(lyrics=reference, transcriptSource="reference", confidence=55, order="",
-                     notes="This video has no captions, so these are the lyrics already in "
-                           "the library, in the song's standard order. Play the video through "
-                           "and check the verses and repeats match - note any change in Fixes.")
+            lyr, note, conf = reference, (
+                "This video has no captions, so these are the lyrics already in the library, "
+                "in the song's standard order. Play the video through and check the verses "
+                "and repeats match - note any change in Fixes."), 55
+            if row.fixes.strip():
+                try:
+                    r = rec.reconcile(title, reference, {"source": "reference", "cues": []},
+                                      fixes=row.fixes)
+                    lyr, note = r["lyrics"], "Library lyrics with your Fixes applied - " + \
+                        "still no captions on this video, so double-check the order against it."
+                except Exception:  # noqa: BLE001
+                    pass
+            c.update(lyrics=lyr, transcriptSource="reference", confidence=conf, order="", notes=note)
         else:
             try:
                 r = rec.from_title(title, fixes=row.fixes)
@@ -266,21 +275,24 @@ def apply_row(row: sheet_mod.Row, songs: dict) -> tuple[str, str]:
         return slug, "approved but no usable video found"
 
     lyrics = chosen.get("lyrics")
-    if row.fixes.strip() or not lyrics:
+    fixes = row.fixes.strip()
+    if fixes or not lyrics:
         reference = None if is_new else (songs[slug]["lyrics"] if slug in songs else None)
+        base = reference or lyrics            # what a fix should be applied to
         tr = fetch_transcript(chosen["url"], allow_audio=ALLOW_AUDIO)
         if tr:
             lyrics = rec.reconcile(title, reference, tr, fixes=row.fixes)["lyrics"]
-        elif reference:
-            lyrics = reference
-        elif not lyrics:
+        elif fixes and base:
+            # no transcript, but there's a correction to apply to the base lyrics
+            lyrics = rec.reconcile(title, base, {"source": "reference", "cues": []},
+                                   fixes=row.fixes)["lyrics"]
+        elif base:
+            lyrics = base
+        else:
             try:
                 lyrics = rec.from_title(title, fixes=row.fixes)["lyrics"]
             except Exception:  # noqa: BLE001
                 return slug, "approved but no captions and not in the library — add a lyric video or type the words in Fixes"
-        elif row.fixes.strip():
-            # have draft lyrics + a fix but no way to re-reconcile — keep draft lyrics
-            pass
 
     lib_songs.upsert_song(slug, title=title, youtube=chosen["url"], lyrics=lyrics)
     _record_approval(slug, chosen["url"])
