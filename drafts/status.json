@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-09-06T17:03:04+00:00",
+  "updatedAt": "2026-09-06T17:24:38+00:00",
   "sunday": "2026-09-06",
   "songs": [
     {
       "input": "My Soul Longs for the Lord",
-      "review": "",
+      "review": "Approve",
       "chosenVideo": "https://www.youtube.com/watch?v=avFBQh0iWMI&list=RDavFBQh0iWMI&start_radio=1",
-      "status": "draft",
-      "confidence": 55,
-      "message": "8 candidate(s)",
+      "status": "approved",
+      "confidence": null,
+      "message": "approved — https://www.youtube.com/watch?v=avFBQh0iWMI",
       "slug": "my-soul-longs-for-the-lord"
     },
     {
