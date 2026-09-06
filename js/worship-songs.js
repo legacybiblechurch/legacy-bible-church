@@ -9,4 +9,5 @@
 window.WORSHIP_SETLIST = [
   'my-soul-longs-for-the-lord',
   'how-long-o-lord-how-long-psalm-13',
+  'as-the-deer',
 ];

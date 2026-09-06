@@ -1812,4 +1812,15 @@ const LEGACY_SONGS = {
     { label: "Chorus 4", lines: ["To this I hold, my hope is only Jesus", "All the glory evermore to Him", "When the race is complete", "Still my lips shall repeat", "Yet not I, but through Christ in me"] }
   ]
   },
+  "as-the-deer": {
+    title: "As The Deer",
+    youtube: "https://www.youtube.com/watch?v=ju9nbjIONzE",
+    lyrics: [
+    { label: "Verse 1", lines: ["As the dear panteth for the water", "So my soul longeth after Thee", "You alone are my hearts desire", "And I long to worship Thee", "You alone are my strength, my shield", "To You alone may my spirit yield"] },
+    { label: "Chorus", lines: ["You alone are my hearts desire", "And I long to worship Thee", "You're my friend and you are my brother", "Even though you are a king", "I love you more than any other", "So much more than anything"] },
+    { label: "Verse 2", lines: ["You alone are my strength, my shield", "To You alone may my spirit yield", "You alone are my hearts desire", "And I long to worship Thee", "I want You more than gold or silver"] },
+    { label: "Bridge", lines: ["Only You can satisfy", "You alone are the real joy giver", "And the apple of My eye", "You alone are my strength, my shield", "To You alone make my spirit yield"] },
+    { label: "Tag", lines: ["You alone are my hearts desire", "And I long to worship Thee"] }
+  ]
+  },
 };

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-06T17:24:38+00:00",
+  "updatedAt": "2026-09-06T17:42:30+00:00",
   "sunday": "2026-09-06",
   "songs": [
     {
@@ -22,11 +22,11 @@
     },
     {
       "input": "As The Deer",
-      "review": "",
+      "review": "Approve",
       "chosenVideo": "https://www.youtube.com/watch?v=ju9nbjIONzE",
-      "status": "draft",
-      "confidence": 90,
-      "message": "9 candidate(s)",
+      "status": "approved",
+      "confidence": null,
+      "message": "approved — https://www.youtube.com/watch?v=ju9nbjIONzE",
       "slug": "as-the-deer"
     }
   ]
