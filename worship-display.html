@@ -171,7 +171,7 @@
 
   <script src="js/songs-data.js"></script>
   <script src="js/worship-songs.js"></script>
-  <script src="js/sheet.js?v=4"></script>
+  <script src="js/sheet.js?v=5"></script>
   <script>
     /* Build songs from setlist — same source as the website hymnal */
     var MAX_LINES = 4;
@@ -195,29 +195,30 @@
     var songsReady  = false;
     var pendingState = null;
 
-    function buildSongsFromSlugs(slugs) {
-      return slugs.map(function(slug) {
-        var data = LEGACY_SONGS[slug];
-        if (!data) return {
-          title: slug,
-          slides: [{ label: 'Error', lines: ['Song not found: ' + slug] }]
-        };
-        return { title: data.title, slides: buildSlides(data.lyrics) };
+    function buildSongs(items) {
+      return items.map(function (it) {
+        if (typeof it === 'string') {
+          var d = LEGACY_SONGS[it];
+          it = d ? { title: d.title, lyrics: d.lyrics } : { title: it, lyrics: null };
+        }
+        if (!it.lyrics || !it.lyrics.length) {
+          return { title: it.title, slides: [{ label: '', lines: ['—'] }] };
+        }
+        return { title: it.title, slides: buildSlides(it.lyrics) };
       });
     }
 
-    function onSongsReady(slugs) {
-      SONGS_BUILT = buildSongsFromSlugs(slugs);
+    function onSongsReady(items) {
+      SONGS_BUILT = buildSongs(items);
       songsReady = true;
-      // Render any state that arrived before songs were ready
       if (pendingState) {
         renderState(pendingState);
         pendingState = null;
       }
     }
 
-    // committed setlist first (keeps display in lock-step with control), sheet CSV fallback
-    LBCSheet.loadSetlist(onSongsReady);
+    // full plan from the planner, approved lyrics where locked / draft lyrics otherwise
+    LBCSheet.loadSongs(onSongsReady);
 
     var channel    = new BroadcastChannel('lbc-worship');
     var standby    = document.getElementById('standby');

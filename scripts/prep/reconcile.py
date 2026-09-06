@@ -251,15 +251,20 @@ def reconcile(title: str, reference: list[dict] | None, transcript: dict,
 _FROM_TITLE_SYSTEM = """You lay out worship lyrics for a church that projects them on a screen, \
 segmented into labelled blocks ("Verse 1", "Verse 2", "Chorus", "Bridge", "Tag").
 
-If HUMAN LYRICS are given, those ARE the lyrics - use every word exactly as written, only \
-splitting them into sensible blocks and labels. Do not add, drop, reword, or reorder lines. \
+If HUMAN LYRICS are given, keep their WORDS and their ORDER - do not add, drop, substitute or \
+rephrase any words. But present them properly for the screen:
+- start each line with a capital letter; capitalise names and "God", "Lord", "You"/"Your" \
+  when they refer to God; use straight apostrophes
+- fix only obvious spelling slips ("dear"->"deer", "herarts"->"hearts", "yeild"->"yield")
+- break the text into natural sung lines - one short phrase per line, about 4 lines per block
+- group the lines into the song's real sections and label them
 Set confidence 90.
 
 Otherwise write the song's lyrics from your own knowledge of that title, in the common \
 performance order; if you are unsure you know the exact song, still give your best attempt \
 and set confidence 25-40.
 
-No leading/trailing blank lines, no "[Music]" markers, straight apostrophes.
+No leading/trailing blank lines, no "[Music]" markers.
 Return ONLY minified JSON: {lyrics:[{label,lines}], order, confidence, notes}."""
 
 
@@ -273,7 +278,7 @@ def from_title(title: str, fixes: str = "") -> dict:
     supplied = bool(fixes) and (len(fixes) > 160 or bool(_SUPPLIED_HINT.search(fixes)))
     prompt = "SONG: " + title
     if fixes:
-        prompt += ("\n\nHUMAN LYRICS (use verbatim):\n" if supplied
+        prompt += ("\n\nHUMAN LYRICS (keep the words/order, format for the screen):\n" if supplied
                    else "\n\nHUMAN CORRECTIONS:\n") + fixes
     prompt += "\n\nReturn the minified JSON now."
     out = _extract_json(_llm(prompt, system=_FROM_TITLE_SYSTEM))

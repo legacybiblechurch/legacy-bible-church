@@ -92,9 +92,48 @@
       .catch(function () { resolve([]); });
   }
 
+  // The full plan for Sunday, in planner order, with lyrics from the best source:
+  //   approved song  -> the locked library entry   (approved: true)
+  //   pending song   -> its current draft          (approved: false)
+  // resolve([{ slug, title, lyrics:[{label,lines}], approved }])
+  function loadSongs(resolve) {
+    var L = (typeof global.LEGACY_SONGS !== 'undefined') ? global.LEGACY_SONGS : {};
+    var approved = Array.isArray(global.WORSHIP_SETLIST) ? global.WORSHIP_SETLIST : [];
+
+    fetch(SHEET_CSV).then(function (r) { return r.text(); }).then(function (t) {
+      var slugs = slugsFromCsv(t);
+      if (!slugs.length) { resolve([]); return; }
+      Promise.all(slugs.map(function (slug) {
+        if (L[slug] && L[slug].lyrics) {
+          return Promise.resolve({ slug: slug, title: L[slug].title, lyrics: L[slug].lyrics,
+                                   approved: approved.indexOf(slug) !== -1 });
+        }
+        return fetch('drafts/' + slug + '.json?t=' + Date.now())
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (d) {
+            if (!d || !d.candidates) return { slug: slug, title: slug, lyrics: null, approved: false };
+            var c = null, i;
+            for (i = 0; i < d.candidates.length; i++) {
+              if (d.forced && d.candidates[i].videoId === d.forced && d.candidates[i].lyrics) { c = d.candidates[i]; break; }
+            }
+            if (!c) for (i = 0; i < d.candidates.length; i++) { if (d.candidates[i].lyrics) { c = d.candidates[i]; break; } }
+            return { slug: slug, title: d.title || slug, lyrics: c ? c.lyrics : null, approved: false };
+          })
+          .catch(function () { return { slug: slug, title: slug, lyrics: null, approved: false }; });
+      })).then(resolve);
+    }).catch(function () {
+      // no planner reachable — fall back to the approved list only
+      loadSetlist(function (sl) {
+        resolve(sl.map(function (s) {
+          return { slug: s, title: (L[s] && L[s].title) || s, lyrics: (L[s] && L[s].lyrics) || null, approved: true };
+        }));
+      });
+    });
+  }
+
   global.LBCSheet = {
     SHEET_CSV: SHEET_CSV, SHEET_LINK: SHEET_LINK, sheetEditSet: !!SHEET_EDIT,
     parseCsv: parseCsv, slugsFromCsv: slugsFromCsv, loadSetlist: loadSetlist,
-    resolveSlug: resolveSlug
+    loadSongs: loadSongs, resolveSlug: resolveSlug
   };
 })(window);
