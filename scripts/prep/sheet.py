@@ -71,10 +71,15 @@ def parse_csv(text: str) -> list[Row]:
     rows: list[Row] = []
     if has_header:
         idx = {name: header.index(name) for name in _KNOWN if name in header}
+        # a published sheet sometimes drops a header cell (e.g. "Fixes" comes back
+        # blank) - fill any missing column positionally from the Song column
+        base = idx.get("song", 0)
+        for off, name in enumerate(("song", "video", "review", "fixes")):
+            idx.setdefault(name, base + off)
 
         def cell(r, name):
             i = idx.get(name)
-            return r[i].strip() if i is not None and i < len(r) else ""
+            return r[i].strip() if i is not None and 0 <= i < len(r) else ""
 
         for r in reader[1:]:
             song = cell(r, "song")

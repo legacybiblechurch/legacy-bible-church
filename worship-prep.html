@@ -212,7 +212,7 @@
   </main>
 
   <script src="js/songs-data.js"></script>
-  <script src="js/sheet.js?v=3"></script>
+  <script src="js/sheet.js?v=4"></script>
   <script>
     var MAX_LINES = 4;
     function buildSlides(lyrics) {
@@ -323,13 +323,16 @@
       if (!rows.length) return {};
       var head = rows[0].map(function (h) { return h.trim().toLowerCase(); });
       if (head.indexOf('song') === -1) return {};
-      var iS = head.indexOf('song'), iV = head.indexOf('video'), iR = head.indexOf('review');
+      var iS = head.indexOf('song');
+      // published sheets sometimes drop a header cell — fall back to position
+      var iV = head.indexOf('video');  if (iV < 0) iV = iS + 1;
+      var iR = head.indexOf('review'); if (iR < 0) iR = iS + 2;
       var out = {};
       rows.slice(1).forEach(function (r) {
         var song = (r[iS] || '').trim();
         if (song) out[song.toLowerCase()] = {
-          video: iV > -1 ? (r[iV] || '').trim() : '',
-          review: iR > -1 ? (r[iR] || '').trim() : ''
+          video: (r[iV] || '').trim(),
+          review: (r[iR] || '').trim()
         };
       });
       return out;
