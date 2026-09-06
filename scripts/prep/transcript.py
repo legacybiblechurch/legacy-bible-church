@@ -145,7 +145,8 @@ _CLIENT_ARGS = [
     "youtube:player_client=ios",
 ]
 
-LAST_ERROR = ""   # last yt-dlp failure reason, for surfacing in the draft notes
+LAST_ERROR = ""     # last yt-dlp failure reason, for surfacing in the draft notes
+_YTDLP_BLOCKED = [False]  # once YouTube bot-blocks us this run, stop retrying yt-dlp
 
 
 def _load_cues(path: Path) -> list[dict]:
@@ -194,6 +195,9 @@ def _ytdlp_captions(url: str) -> dict | None:
     if not _have("yt-dlp"):
         LAST_ERROR = "yt-dlp not installed"
         return None
+    if _YTDLP_BLOCKED[0]:
+        LAST_ERROR = "yt-dlp blocked by YouTube this run"
+        return None
 
     for client in _CLIENT_ARGS:
         with tempfile.TemporaryDirectory() as tmp:
@@ -210,7 +214,11 @@ def _ytdlp_captions(url: str) -> dict | None:
             d = Path(tmp)
             info_f = next(d.glob("*.info.json"), None)
             if not info_f:
-                LAST_ERROR = (r.stderr or r.stdout or "no info").strip().splitlines()[-1][:200] if (r.stderr or r.stdout) else "no info json"
+                err = (r.stderr or r.stdout or "").strip()
+                LAST_ERROR = err.splitlines()[-1][:200] if err else "no info json"
+                if "not a bot" in err or "Sign in to confirm" in err:
+                    _YTDLP_BLOCKED[0] = True
+                    return None
                 continue
             info = json.loads(info_f.read_text())
             manual_langs = set((info.get("subtitles") or {}).keys())
@@ -246,7 +254,7 @@ def _ytdlp_captions(url: str) -> dict | None:
 def _download_audio(url: str, dest_dir: str) -> Path | None:
     """Grab the smallest usable audio-only stream. No ffmpeg needed - Groq's Whisper
     accepts m4a/webm/opus directly, so we don't re-encode."""
-    if not _have("yt-dlp"):
+    if not _have("yt-dlp") or _YTDLP_BLOCKED[0]:
         return None
     out = f"{dest_dir}/audio.%(ext)s"
     fmt = "bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio/worstaudio"

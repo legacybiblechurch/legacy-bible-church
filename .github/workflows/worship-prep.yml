@@ -56,11 +56,14 @@ jobs:
             exit 0
           fi
           git commit -m "worship-prep: refresh drafts / apply approvals [skip ci]"
-          # another run or a manual push may have moved main since checkout
+          # another run or a manual push may have moved main since checkout; merge it
+          # in, letting the newer remote win any file-level conflict (drafts are
+          # regenerated wholesale so there is nothing to hand-merge)
           for i in 1 2 3 4 5; do
             git push && exit 0
-            echo "push rejected, rebasing (attempt $i)"
-            git pull --rebase --autostash origin main || true
-            sleep $((RANDOM % 5 + 2))
+            echo "push rejected, merging remote (attempt $i)"
+            git fetch -q origin main
+            git merge -X theirs --no-edit origin/main || git merge --abort
+            sleep $((RANDOM % 6 + 2))
           done
           git push
