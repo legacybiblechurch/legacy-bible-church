@@ -1,0 +1,67 @@
+{
+  "slug": "as-the-deer",
+  "title": "As The Deer",
+  "input": "As The Deer",
+  "isNew": true,
+  "forced": "ju9nbjIONzE",
+  "signature": "fee19c2bc9ec249c",
+  "generatedAt": "2026-09-06T16:37:11+00:00",
+  "candidates": [
+    {
+      "videoId": "ju9nbjIONzE",
+      "url": "https://www.youtube.com/watch?v=ju9nbjIONzE",
+      "title": "As the Deer",
+      "channel": "Juan Karlos Labaijo - Topic",
+      "publishedAt": "2026-02-12T06:20:58Z",
+      "durationSec": 207,
+      "duration": "3:27",
+      "views": 123674,
+      "hasCaptions": false,
+      "lyrics": [
+        {
+          "label": "Verse 1",
+          "lines": [
+            "As the dear panteth for the water so my soul longeth after thee",
+            "you alone are my herarts desire and i long to worship thee",
+            "you alone are my strength my shield to"
+          ]
+        },
+        {
+          "label": "Verse 2",
+          "lines": [
+            "you alone may my spirit yield",
+            "you alone are my hearts desire and i long to worship thee",
+            "youre my friend and you are my brother even though you are a king i love you more than any other so much more than anything"
+          ]
+        },
+        {
+          "label": "Chorus",
+          "lines": [
+            "you alone are my my strength my shield to",
+            "you alone may my spirit yield",
+            "you alone are my hearts desire and i long to worship thee"
+          ]
+        },
+        {
+          "label": "Bridge",
+          "lines": [
+            "i want you more than gold or silver only you can satisfy",
+            "you alone are the real joy giver and the apple of my eye"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "you alone are my strength my shield to",
+            "you alone make my spirit yield",
+            "you alone are my hearts desire and i long to worship thee"
+          ]
+        }
+      ],
+      "transcriptSource": "fromtitle",
+      "confidence": 90,
+      "notes": "Used verbatim lyrics, split into sensible blocks.",
+      "order": "['Verse 1', 'Verse 2', 'Chorus', 'Bridge', 'Tag']"
+    }
+  ]
+}
