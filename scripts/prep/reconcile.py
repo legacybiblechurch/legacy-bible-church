@@ -283,7 +283,7 @@ def from_title(title: str, fixes: str = "") -> dict:
     except (TypeError, ValueError):
         conf = 0
     return {"lyrics": lyrics, "order": str(out.get("order", "")),
-            "confidence": max(0, min(45, conf)),
+            "confidence": max(20, min(45, conf)),
             "notes": str(out.get("notes", "")) or
             "Lyrics written from general knowledge - no captions on this video. "
             "Check every line and section against the video before Sunday."}

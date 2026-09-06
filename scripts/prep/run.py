@@ -185,25 +185,32 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
         except Exception as e:  # noqa: BLE001 — one bad video shouldn't kill the run
             c["notes"] = f"Draft failed: {e}"
 
-    # no candidate had a readable transcript -> still give the person lyrics to check:
-    # the library version if we have it, otherwise the model's best recollection
-    if drafted == 0 and candidates:
-        top = next((c for c in candidates if c["videoId"] == forced), candidates[0])
+    # make sure the person always has lyrics to review: fill any candidate that still
+    # has none - the forced (pasted) one first, then the top pick - from the library
+    # if we have it, else the model's best recollection of the song.
+    def _fill(c):
+        if c.get("lyrics"):
+            return
         if reference:
-            top.update(lyrics=reference, transcriptSource="reference", confidence=55, order="",
-                       notes="No captioned video turned up, so these are the lyrics already "
-                             "in the library, in the song's standard order. Play your chosen "
-                             "video through and check the verses and repeats match - note any "
-                             "change in the Fixes column.")
+            c.update(lyrics=reference, transcriptSource="reference", confidence=55, order="",
+                     notes="This video has no captions, so these are the lyrics already in "
+                           "the library, in the song's standard order. Play the video through "
+                           "and check the verses and repeats match - note any change in Fixes.")
         else:
             try:
                 r = rec.from_title(title, fixes=row.fixes)
-                top.update(lyrics=r["lyrics"], transcriptSource="fromtitle",
-                           confidence=r["confidence"], order=r["order"], notes=r["notes"])
+                c.update(lyrics=r["lyrics"], transcriptSource="fromtitle",
+                         confidence=r["confidence"], order=r["order"], notes=r["notes"])
             except Exception as e:  # noqa: BLE001
-                top["notes"] = ("This video has no captions and the song isn't in the "
-                                "library yet. Paste a lyric video with captions, or type "
-                                "the lyrics into the Fixes column. (" + str(e)[:80] + ")")
+                c["notes"] = ("This video has no captions and the song isn't in the library "
+                              "yet. Paste a lyric video that has captions, or type the lyrics "
+                              "into the Fixes column. (" + str(e)[:80] + ")")
+
+    forced_c = next((c for c in candidates if c["videoId"] == forced), None)
+    if forced_c is not None:
+        _fill(forced_c)
+    if candidates and not any(c.get("lyrics") for c in candidates):
+        _fill(candidates[0])
 
     # float the candidates we actually drafted lyrics for (best confidence) to the top,
     # keeping a forced pick first of all
