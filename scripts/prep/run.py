@@ -65,12 +65,14 @@ def next_sunday(today: dt.date | None = None) -> str:
     return (today + dt.timedelta(days=(6 - today.weekday()) % 7)).isoformat()
 
 
-def _sig(candidate_ids: list[str], reference: list | None) -> str:
+def _sig(candidate_ids: list[str], reference: list | None, fixes: str = "") -> str:
     # sorted + deduped so day-to-day YouTube search-order / view-count jitter on the
-    # same set of videos does not trigger a needless (quota-burning) re-draft
+    # same set of videos does not trigger a needless re-draft; the Fixes text IS
+    # included so editing it re-drafts the song
     h = hashlib.sha256()
     h.update("|".join(sorted(set(candidate_ids))).encode())
     h.update(json.dumps(reference or [], sort_keys=True).encode())
+    h.update(fixes.strip().encode())
     return h.hexdigest()[:16]
 
 
@@ -146,7 +148,7 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
             candidates.append(c)
 
     prev = _load_draft(slug)
-    signature = _sig([c["videoId"] for c in candidates], reference)
+    signature = _sig([c["videoId"] for c in candidates], reference, row.fixes)
     if prev and prev.get("signature") == signature and not row.redo:
         prev["input"] = row.song
         prev["forced"] = forced

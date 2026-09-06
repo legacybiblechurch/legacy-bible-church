@@ -248,27 +248,33 @@ def reconcile(title: str, reference: list[dict] | None, transcript: dict,
             "confidence": max(0, min(cap, conf)), "notes": str(out.get("notes", ""))}
 
 
-_FROM_TITLE_SYSTEM = """You write worship lyrics for a church that projects them on a screen. Given only a \
-song title, write out that song's lyrics from your own knowledge, in the common performance \
-order, segmented into labelled blocks ("Verse 1", "Chorus", "Bridge", "Tag"). If a human \
-correction is given, follow it. If you are not confident you know this exact song, still give \
-your best attempt but set confidence low.
+_FROM_TITLE_SYSTEM = """You lay out worship lyrics for a church that projects them on a screen, \
+segmented into labelled blocks ("Verse 1", "Verse 2", "Chorus", "Bridge", "Tag").
+
+If HUMAN LYRICS are given, those ARE the lyrics - use every word exactly as written, only \
+splitting them into sensible blocks and labels. Do not add, drop, reword, or reorder lines. \
+Set confidence 90.
+
+Otherwise write the song's lyrics from your own knowledge of that title, in the common \
+performance order; if you are unsure you know the exact song, still give your best attempt \
+and set confidence 25-40.
 
 No leading/trailing blank lines, no "[Music]" markers, straight apostrophes.
-confidence: this is a guess from memory with no recording to check against - 45 max, lower \
-if the title is ambiguous or unfamiliar.
+Return ONLY minified JSON: {lyrics:[{label,lines}], order, confidence, notes}."""
 
-Return ONLY minified JSON: {lyrics:[{label,lines}], order, confidence, notes}. In notes, say \
-plainly that these came from general knowledge and every line/section must be checked against \
-the chosen video."""
+
+_SUPPLIED_HINT = re.compile(r"(instead|use these|change (all|the) lyrics|here are the|actual lyrics|correct lyrics|:\s*\n)", re.I)
 
 
 def from_title(title: str, fixes: str = "") -> dict:
-    """Last resort for a brand-new song whose video has no captions: lyrics from the
-    model's own knowledge, hard-capped at low confidence."""
+    """Brand-new song whose video has no captions: lyrics from the model's knowledge,
+    or verbatim from the person's Fixes text if they pasted the lyrics there."""
+    fixes = (fixes or "").strip()
+    supplied = bool(fixes) and (len(fixes) > 160 or bool(_SUPPLIED_HINT.search(fixes)))
     prompt = "SONG: " + title
-    if fixes.strip():
-        prompt += "\n\nHUMAN CORRECTIONS:\n" + fixes.strip()
+    if fixes:
+        prompt += ("\n\nHUMAN LYRICS (use verbatim):\n" if supplied
+                   else "\n\nHUMAN CORRECTIONS:\n") + fixes
     prompt += "\n\nReturn the minified JSON now."
     out = _extract_json(_llm(prompt, system=_FROM_TITLE_SYSTEM))
     lyrics = []
@@ -282,11 +288,13 @@ def from_title(title: str, fixes: str = "") -> dict:
         conf = int(out.get("confidence", 0))
     except (TypeError, ValueError):
         conf = 0
+    lo, hi = (75, 95) if supplied else (20, 45)
+    note = ("Lyrics you typed into Fixes, laid out into slides - give them a final read."
+            if supplied else
+            "Lyrics from general knowledge - no captions on this video. Check every line "
+            "and section against the video before Sunday.")
     return {"lyrics": lyrics, "order": str(out.get("order", "")),
-            "confidence": max(20, min(45, conf)),
-            "notes": str(out.get("notes", "")) or
-            "Lyrics written from general knowledge - no captions on this video. "
-            "Check every line and section against the video before Sunday."}
+            "confidence": max(lo, min(hi, conf)), "notes": str(out.get("notes", "")) or note}
 
 
 if __name__ == "__main__":
