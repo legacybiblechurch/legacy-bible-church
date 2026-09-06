@@ -114,19 +114,22 @@
       transition: opacity 0.5s ease;
       z-index: 999;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     #blank.active { opacity: 1; }
 
+    /* static, centered church logo — no motion during the service */
     #dvd-logo {
-      position: absolute;
-      width: clamp(180px, 18vw, 300px);
-      left: 0; top: 0;
-      will-change: transform;
+      position: static;
+      width: clamp(340px, 48vw, 820px);
+      max-width: 82vw;
     }
     #dvd-logo img {
       width: 100%;
       display: block;
-      opacity: 0.9;
+      opacity: 0.92;
     }
 
     /* ── mobile / portrait ──────────────────────── */
@@ -244,7 +247,7 @@
       var blank    = !!state.blank;
 
       blankEl.classList.toggle('active', blank);
-      if (blank) { startDvd(); } else { stopDvd(); }
+      stopDvd();   // logo stays put during the service
 
       if (songIdx == null || songIdx === undefined) {
         showStandby();
