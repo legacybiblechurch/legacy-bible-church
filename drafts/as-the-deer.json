@@ -4,8 +4,8 @@
   "input": "As The Deer",
   "isNew": true,
   "forced": "ju9nbjIONzE",
-  "signature": "06c517e0edbbb543",
-  "generatedAt": "2026-09-06T16:06:01+00:00",
+  "signature": "cd698ad05912d3fc",
+  "generatedAt": "2026-09-06T16:28:03+00:00",
   "candidates": [
     {
       "videoId": "ju9nbjIONzE",
@@ -15,168 +15,47 @@
       "publishedAt": "2026-02-12T06:20:58Z",
       "durationSec": 207,
       "duration": "3:27",
-      "views": 123652,
+      "views": 123672,
       "hasCaptions": false,
       "lyrics": [
         {
           "label": "Verse 1",
           "lines": [
-            "As the deer pants for water,",
-            "So my soul longs for you.",
-            "You are my refuge,",
-            "My safe place."
+            "As the deer panteth for the water,",
+            "So my soul longeth after Thee.",
+            "You alone are my heart's desire,",
+            "And I long to worship Thee."
           ]
         },
         {
           "label": "Verse 2",
           "lines": [
-            "You are my rock,",
-            "My shield,",
-            "My hiding place,",
-            "My refuge."
+            "You alone are my heart's desire,",
+            "You alone are my strength.",
+            "You alone are my portion,",
+            "And I will worship Thee."
           ]
         },
         {
-          "label": "Refrain",
+          "label": "Bridge",
           "lines": [
-            "You are my hope,",
-            "My strength,",
-            "My everything."
+            "You are the living water,",
+            "You are the source of life,",
+            "I will drink from Your love,",
+            "And forever be satisfied."
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "Amen."
           ]
         }
       ],
       "transcriptSource": "fromtitle",
       "confidence": 30,
-      "notes": "Lyrics are from general knowledge of the worship song “As The Deer”. Please verify each line against an official source.",
-      "order": "['Verse 1', 'Verse 2', 'Refrain']"
-    },
-    {
-      "videoId": "78lj3sl8L9M",
-      "url": "https://www.youtube.com/watch?v=78lj3sl8L9M",
-      "title": "As the deer panteth for the water -hymn  lyrics video",
-      "channel": "Christian Fellowship TV",
-      "publishedAt": "2019-06-25T18:08:16Z",
-      "durationSec": 203,
-      "duration": "3:23",
-      "views": 341370,
-      "hasCaptions": true,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
-      "order": ""
-    },
-    {
-      "videoId": "UZv3jzOTE70",
-      "url": "https://www.youtube.com/watch?v=UZv3jzOTE70",
-      "title": "As The Deer",
-      "channel": "Worship Video",
-      "publishedAt": "2007-06-03T09:05:28Z",
-      "durationSec": 185,
-      "duration": "3:05",
-      "views": 12991782,
-      "hasCaptions": false,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
-      "order": ""
-    },
-    {
-      "videoId": "FBppKZ0eJlQ",
-      "url": "https://www.youtube.com/watch?v=FBppKZ0eJlQ",
-      "title": "As the deer pants for the water - Robin Mark",
-      "channel": "citrail",
-      "publishedAt": "2011-02-15T07:06:15Z",
-      "durationSec": 258,
-      "duration": "4:18",
-      "views": 10123204,
-      "hasCaptions": false,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
-      "order": ""
-    },
-    {
-      "videoId": "5rrXC5uKVb4",
-      "url": "https://www.youtube.com/watch?v=5rrXC5uKVb4",
-      "title": "As The Deer - Female version (with lyrics)",
-      "channel": "Music and Sound",
-      "publishedAt": "2019-05-13T03:47:03Z",
-      "durationSec": 207,
-      "duration": "3:27",
-      "views": 6132796,
-      "hasCaptions": false,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
-      "order": ""
-    },
-    {
-      "videoId": "jSZWogD0AH4",
-      "url": "https://www.youtube.com/watch?v=jSZWogD0AH4",
-      "title": "As The Deer With Lyrics Best Heartwarming Version - Popular Christian Hymns &amp; Songs",
-      "channel": "Shemaroo Eternal Grace",
-      "publishedAt": "2019-11-15T13:54:39Z",
-      "durationSec": 202,
-      "duration": "3:22",
-      "views": 5203114,
-      "hasCaptions": false,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
-      "order": ""
-    },
-    {
-      "videoId": "sVoQjxVGy-0",
-      "url": "https://www.youtube.com/watch?v=sVoQjxVGy-0",
-      "title": "As The Deer (Live) | The Worship Initiative (ft. Shane &amp; Shane)",
-      "channel": "The Worship Initiative",
-      "publishedAt": "2021-04-19T20:25:23Z",
-      "durationSec": 262,
-      "duration": "4:22",
-      "views": 4299651,
-      "hasCaptions": false,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
-      "order": ""
-    },
-    {
-      "videoId": "LthkibTzuj8",
-      "url": "https://www.youtube.com/watch?v=LthkibTzuj8",
-      "title": "Steffany Gretzinger- As The Deer (Official Lyric Video)",
-      "channel": "Steffany Gretzinger",
-      "publishedAt": "2021-10-22T15:00:07Z",
-      "durationSec": 306,
-      "duration": "5:06",
-      "views": 1915158,
-      "hasCaptions": false,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
-      "order": ""
-    },
-    {
-      "videoId": "TF27EczT_pU",
-      "url": "https://www.youtube.com/watch?v=TF27EczT_pU",
-      "title": "As the Deer (worship video w/ lyrics)",
-      "channel": "pastorloran",
-      "publishedAt": "2008-02-16T18:32:36Z",
-      "durationSec": 204,
-      "duration": "3:24",
-      "views": 1533853,
-      "hasCaptions": false,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
-      "order": ""
+      "notes": "These lyrics are from general knowledge of the song “As The Deer.” Every line and section should be checked against the chosen recording for accuracy.",
+      "order": "['Verse 1', 'Verse 2', 'Bridge', 'Tag']"
     }
   ]
 }

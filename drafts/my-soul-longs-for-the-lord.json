@@ -4,8 +4,8 @@
   "input": "My Soul Longs for the Lord",
   "isNew": false,
   "forced": "avFBQh0iWMI",
-  "signature": "b4294334240fc544",
-  "generatedAt": "2026-09-06T16:05:39+00:00",
+  "signature": "d879a353dbd59f2a",
+  "generatedAt": "2026-09-06T16:27:14+00:00",
   "candidates": [
     {
       "videoId": "avFBQh0iWMI",
@@ -19,7 +19,7 @@
       "hasCaptions": false,
       "lyrics": [
         {
-          "label": "Verse 1",
+          "label": "",
           "lines": [
             "My soul longs for the Lord",
             "In a weary land",
@@ -28,7 +28,7 @@
           ]
         },
         {
-          "label": "Verse 2",
+          "label": "",
           "lines": [
             "How I yearn for streams of mercy",
             "Where my soul can be restored",
@@ -37,14 +37,14 @@
           ]
         },
         {
-          "label": "Refrain",
+          "label": "",
           "lines": [
             "Oh, the fullness of Christ",
             "Word of God, Word of Life"
           ]
         },
         {
-          "label": "Verse 3",
+          "label": "",
           "lines": [
             "Living Word, You walked among us",
             "Our Emmanuel",
@@ -53,7 +53,7 @@
           ]
         },
         {
-          "label": "Verse 4",
+          "label": "",
           "lines": [
             "Grace and mercy flowed from Calv'ry",
             "To the valley of our need",
@@ -62,14 +62,14 @@
           ]
         },
         {
-          "label": "Refrain",
+          "label": "",
           "lines": [
             "Oh, the victory of Christ",
             "Word of God, Word of Life"
           ]
         },
         {
-          "label": "Verse 5",
+          "label": "",
           "lines": [
             "How often in the stillness",
             "Have I heard Your voice",
@@ -78,7 +78,7 @@
           ]
         },
         {
-          "label": "Verse 6",
+          "label": "",
           "lines": [
             "In the quiet of the morning",
             "Through the watches of the night",
@@ -89,14 +89,7 @@
           ]
         },
         {
-          "label": "Refrain",
-          "lines": [
-            "Oh, the power of Christ",
-            "Word of God, Word of Life"
-          ]
-        },
-        {
-          "label": "Verse 7",
+          "label": "",
           "lines": [
             "My soul longs to walk closer",
             "With the Lord I serve",
@@ -105,7 +98,7 @@
           ]
         },
         {
-          "label": "Verse 8",
+          "label": "",
           "lines": [
             "Turn my gaze from all that's worthless",
             "Set my heart on things above",
@@ -114,14 +107,14 @@
           ]
         },
         {
-          "label": "Refrain",
+          "label": "",
           "lines": [
             "Oh, the wisdom of Christ",
             "Word of God, Word of Life"
           ]
         },
         {
-          "label": "Verse 9",
+          "label": "",
           "lines": [
             "My soul longs for the day",
             "I will see Your face",
@@ -130,7 +123,7 @@
           ]
         },
         {
-          "label": "Verse 10",
+          "label": "",
           "lines": [
             "Every word at last accomplished",
             "Heaven sings and earth replies",
@@ -139,20 +132,14 @@
           ]
         },
         {
-          "label": "Refrain",
+          "label": "",
           "lines": [
             "Praise and honor to Christ",
             "Word of God, Word of Life"
           ]
         },
         {
-          "label": "Tag",
-          "lines": [
-            "To our God be the glory let all creation cry"
-          ]
-        },
-        {
-          "label": "Refrain",
+          "label": "",
           "lines": [
             "Praise and honor to Christ",
             "Word of God, Word of Life"
@@ -161,34 +148,18 @@
       ],
       "transcriptSource": "reference",
       "confidence": 55,
-      "notes": "Library lyrics with your Fixes applied - still no captions on this video, so double-check the order against it.",
+      "notes": "This video has no captions, so these are the lyrics already in the library, in the song's standard order. Play the video through and check the verses and repeats match - note any change in Fixes.",
       "order": ""
     },
     {
-      "videoId": "XtwIT8JjddM",
-      "url": "https://www.youtube.com/watch?v=XtwIT8JjddM",
-      "title": "Matt Redman - 10,000 Reasons (Bless the Lord)",
-      "channel": "MattRedmanVEVO",
-      "publishedAt": "2012-07-05T07:00:28Z",
-      "durationSec": 262,
-      "duration": "4:22",
-      "views": 120518194,
-      "hasCaptions": true,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
-      "order": ""
-    },
-    {
-      "videoId": "-Jzqq4B8H2Q",
-      "url": "https://www.youtube.com/watch?v=-Jzqq4B8H2Q",
-      "title": "Set A Fire - Jesus Culture w/ Lyrics",
-      "channel": "MaDieuVit",
-      "publishedAt": "2012-11-25T00:29:22Z",
-      "durationSec": 278,
-      "duration": "4:38",
-      "views": 36063597,
+      "videoId": "i7lv9oMjv_0",
+      "url": "https://www.youtube.com/watch?v=i7lv9oMjv_0",
+      "title": "Third Day - Soul On Fire (Official Lyric Video)",
+      "channel": "ThirdDayVEVO",
+      "publishedAt": "2014-12-19T23:17:51Z",
+      "durationSec": 205,
+      "duration": "3:25",
+      "views": 40015188,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
@@ -197,14 +168,14 @@
       "order": ""
     },
     {
-      "videoId": "UoHrBNTfzIs",
-      "url": "https://www.youtube.com/watch?v=UoHrBNTfzIs",
-      "title": "Gratitude - Brandon Lake (Lyrics)",
-      "channel": "Holy Spirit Music",
-      "publishedAt": "2020-09-12T10:19:09Z",
-      "durationSec": 338,
-      "duration": "5:38",
-      "views": 12946378,
+      "videoId": "raFnjGVkHe8",
+      "url": "https://www.youtube.com/watch?v=raFnjGVkHe8",
+      "title": "Praise (feat. Brandon Lake, Chris Brown &amp; Chandler Moore) | Official Lyric Video",
+      "channel": "Elevation Worship",
+      "publishedAt": "2023-05-19T04:00:34Z",
+      "durationSec": 305,
+      "duration": "5:05",
+      "views": 27446292,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
@@ -213,14 +184,14 @@
       "order": ""
     },
     {
-      "videoId": "LpYD7HQo9QQ",
-      "url": "https://www.youtube.com/watch?v=LpYD7HQo9QQ",
-      "title": "Michael W. Smith - The Heart Of Worship [with lyrics]",
-      "channel": "Worship Videos (Louange et Adoration)",
-      "publishedAt": "2012-02-24T13:21:11Z",
-      "durationSec": 339,
-      "duration": "5:39",
-      "views": 8551482,
+      "videoId": "iJE4yahElBQ",
+      "url": "https://www.youtube.com/watch?v=iJE4yahElBQ",
+      "title": "Trust In God (feat. Chris Brown) | Official Lyric Video | Elevation Worship",
+      "channel": "Elevation Worship",
+      "publishedAt": "2023-05-03T16:00:28Z",
+      "durationSec": 443,
+      "duration": "7:23",
+      "views": 21123774,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
@@ -229,14 +200,14 @@
       "order": ""
     },
     {
-      "videoId": "cTZH717-dYM",
-      "url": "https://www.youtube.com/watch?v=cTZH717-dYM",
-      "title": "Brandon Lake - Gratitude (with lyrics)(2021)",
-      "channel": "Gary McDuffee",
-      "publishedAt": "2022-01-08T18:09:30Z",
-      "durationSec": 335,
-      "duration": "5:35",
-      "views": 1517419,
+      "videoId": "A1Ljl32SqRc",
+      "url": "https://www.youtube.com/watch?v=A1Ljl32SqRc",
+      "title": "Kim Walker-Smith - Throne Room (Lyric Video)",
+      "channel": "Jesus Culture",
+      "publishedAt": "2017-03-10T05:16:32Z",
+      "durationSec": 293,
+      "duration": "4:53",
+      "views": 11572918,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
@@ -245,14 +216,14 @@
       "order": ""
     },
     {
-      "videoId": "_uG-vhX-s0E",
-      "url": "https://www.youtube.com/watch?v=_uG-vhX-s0E",
-      "title": "I Need You - Eddie James (Best Worship Song with Lyrics)",
-      "channel": "GloryToFatherGod",
-      "publishedAt": "2014-11-23T00:04:41Z",
-      "durationSec": 406,
-      "duration": "6:46",
-      "views": 1049264,
+      "videoId": "54zz1sZx4z8",
+      "url": "https://www.youtube.com/watch?v=54zz1sZx4z8",
+      "title": "Kari Jobe Carnes - Lover Of My Soul (Live/Lyric Video)",
+      "channel": "KariJobeVEVO",
+      "publishedAt": "2018-02-07T05:00:00Z",
+      "durationSec": 275,
+      "duration": "4:35",
+      "views": 3548659,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
@@ -261,14 +232,46 @@
       "order": ""
     },
     {
-      "videoId": "5_TOOXRpn8w",
-      "url": "https://www.youtube.com/watch?v=5_TOOXRpn8w",
-      "title": "Spirit Break Out - Kim Walker-Smith w/ Lyrics",
-      "channel": "MaDieuVit",
-      "publishedAt": "2013-01-19T22:37:47Z",
-      "durationSec": 724,
-      "duration": "12:04",
-      "views": 19570787,
+      "videoId": "BDNrouqSGjY",
+      "url": "https://www.youtube.com/watch?v=BDNrouqSGjY",
+      "title": "Behold (Then Sings My Soul) Lyric Video - Hillsong Worship",
+      "channel": "Hillsong Worship",
+      "publishedAt": "2016-11-15T05:37:40Z",
+      "durationSec": 407,
+      "duration": "6:47",
+      "views": 2902377,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "LthkibTzuj8",
+      "url": "https://www.youtube.com/watch?v=LthkibTzuj8",
+      "title": "Steffany Gretzinger- As The Deer (Official Lyric Video)",
+      "channel": "Steffany Gretzinger",
+      "publishedAt": "2021-10-22T15:00:07Z",
+      "durationSec": 306,
+      "duration": "5:06",
+      "views": 1915187,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "-XD1Qi2xPlQ",
+      "url": "https://www.youtube.com/watch?v=-XD1Qi2xPlQ",
+      "title": "Vocal Coach SINGS Elevation Worship Praise the Lord",
+      "channel": "Cheryl Porter Vocal Coach",
+      "publishedAt": "2023-09-16T12:26:29Z",
+      "durationSec": 11,
+      "duration": "0:11",
+      "views": 5009670,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
