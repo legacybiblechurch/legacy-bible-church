@@ -57,6 +57,11 @@ reference lacks, in which case transcribe it as best you can and flag it in note
 "Tag", "Intro". Reuse the same label when a section recurs.
 - If a single line is repeated on its own for emphasis (a vamp), output it as its own \
 one-line block, once per repeat.
+- FORMAT every line for the screen: one short sung phrase per line, about 6 words / 40 \
+characters, matching the line length of the rest of the song. Never put two phrases on one \
+line. If a HUMAN CORRECTION supplies run-on text, break it into proper lines the same way. \
+Sentence case - capitalise the first word of each line and words naming God ("God", "Lord", \
+"Christ", "You", "Your", "Him", "His", "Thee", "Thy") - do not random-capitalise other words.
 - No leading/trailing blank lines. No "[Music]" markers. Straight apostrophes.
 - If REFERENCE LYRICS are absent, reconstruct from the transcript plus your own knowledge \
 of the song, and lower your confidence.

@@ -134,26 +134,37 @@
   // Presentation only — split a projection line that crams two sung phrases onto
   // one line ("X for the water so my soul Y") at a natural break near the middle.
   // Same words, never reordered or dropped.
-  var BREAKS = [' so ', ' and ', ' but ', ' O ', ' yet ', ' for ', ' to ', ' where ',
-                ' when ', ' that ', ' though ', ' even though '];
+  // last-resort splitter for a line the drafting step still left too long; prefers a
+  // comma/semicolon, then a conjunction, and never leaves a 1-2 word orphan
+  var BREAKS = [' and ', ' so ', ' but ', ' yet ', ' where ', ' when ', ' while ',
+                ' though ', ' for ', ' to ', ' O '];
+  function words(s) { return s.trim().split(/\s+/).filter(Boolean).length; }
   function splitLine(line, limit) {
-    limit = limit || 42;
-    if (line.length <= limit) return [line];
-    var mid = line.length / 2, best = -1, bestD = 1e9, bi;
-    for (bi = 0; bi < BREAKS.length; bi++) {
-      var from = 6;
-      while (true) {
-        var at = line.toLowerCase().indexOf(BREAKS[bi], from);
-        if (at < 6 || at > line.length - 6) break;
-        var d = Math.abs(at - mid);
-        if (d < bestD) { bestD = d; best = at; }
-        from = at + 1;
+    limit = limit || 48;
+    if (line.length <= limit || words(line) <= 6) return [line];
+    var mid = line.length / 2, best = -1, bestD = 1e9, m, re, at, d;
+    // 1) punctuation break
+    re = /[,;:]\s+/g;
+    while ((m = re.exec(line))) {
+      at = m.index + 1;
+      d = Math.abs(at - mid);
+      if (words(line.slice(0, at)) >= 3 && words(line.slice(at)) >= 3 && d < bestD) { bestD = d; best = at; }
+    }
+    // 2) conjunction break (only if no good comma)
+    if (best < 0) {
+      for (var bi = 0; bi < BREAKS.length; bi++) {
+        var from = 4, low = line.toLowerCase();
+        while ((at = low.indexOf(BREAKS[bi], from)) !== -1) {
+          from = at + 1;
+          if (words(line.slice(0, at)) < 3 || words(line.slice(at)) < 3) continue;
+          d = Math.abs(at - mid);
+          if (d < bestD) { bestD = d; best = at; }
+        }
       }
     }
     if (best < 0) return [line];
-    var a = line.slice(0, best).trim();
-    var b = line.slice(best + 1).trim();          // keep the break word on line 2
-    return splitLine(a, limit).concat(splitLine(b, limit));
+    return splitLine(line.slice(0, best).replace(/[,;:]\s*$/, '').trim(), limit)
+      .concat(splitLine(line.slice(best).replace(/^[,;:]\s*/, '').trim(), limit));
   }
   function tidyBlocks(blocks) {
     return (blocks || []).map(function (bl) {

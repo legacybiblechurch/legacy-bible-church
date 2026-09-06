@@ -1313,7 +1313,7 @@ const LEGACY_SONGS = {
     { label: "Verse 10", lines: ["Every word at last accomplished", "Heaven sings and earth replies", "To our God be the glory!", "Let all creation cry"] },
     { label: "Refrain", lines: ["Praise and honor to Christ", "Word of God, Word of Life"] },
     { label: "Refrain", lines: ["Praise and honor to Christ", "Word of God, Word of Life"] },
-    { label: "Final Slide", lines: ["To our god be the glory let all creation cry Praise and honor to Christ word of God word of life"] }
+    { label: "Final", lines: ["To our God be the glory", "Let all creation cry", "Praise and honor to Christ", "Word of God, Word of Life"] }
   ]
   },
   "my-soul-will-wait-psalm-62": {
