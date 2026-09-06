@@ -41,6 +41,33 @@
     return rows.filter(function (r) { return r.some(function (x) { return x.trim(); }); });
   }
 
+  // "How Long, O Lord?" (what a person types) -> "how-long-o-lord-how-long-psalm-13"
+  function slugify(s) {
+    return String(s).toLowerCase().normalize('NFKD')
+      .replace(/&rsquo;|&#39;|&apos;/g, "'").replace(/&amp;/g, 'and')
+      .replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+  function normTitle(s) {
+    return String(s).toLowerCase().replace(/&[a-z]+;/g, ' ').replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim();
+  }
+  function resolveSlug(text) {
+    var L = (typeof global.LEGACY_SONGS !== 'undefined') ? global.LEGACY_SONGS
+          : (typeof LEGACY_SONGS !== 'undefined') ? LEGACY_SONGS : null;
+    var guess = slugify(text);
+    if (!L) return guess;
+    if (L[guess]) return guess;
+    if (L[text.trim()]) return text.trim();
+    var q = normTitle(text), best = null;
+    for (var slug in L) {
+      var t = normTitle(L[slug].title || slug);
+      if (t === q) return slug;
+      if (q && (t.indexOf(q) === 0 || t.indexOf(' ' + q) !== -1 || q.indexOf(t) === 0)) {
+        if (!best || t.length < normTitle(L[best].title || best).length) best = slug;
+      }
+    }
+    return best || guess;
+  }
+
   function slugsFromCsv(text) {
     var rows = parseCsv(text);
     if (!rows.length) return [];
@@ -49,7 +76,8 @@
     var col = hasHeader ? head.indexOf('song') : 0;
     return (hasHeader ? rows.slice(1) : rows)
       .map(function (r) { return (r[col] || '').trim(); })
-      .filter(Boolean);
+      .filter(Boolean)
+      .map(resolveSlug);
   }
 
   // resolve(slugs) is called with the final list of slugs, from whichever source
@@ -66,6 +94,7 @@
 
   global.LBCSheet = {
     SHEET_CSV: SHEET_CSV, SHEET_LINK: SHEET_LINK, sheetEditSet: !!SHEET_EDIT,
-    parseCsv: parseCsv, slugsFromCsv: slugsFromCsv, loadSetlist: loadSetlist
+    parseCsv: parseCsv, slugsFromCsv: slugsFromCsv, loadSetlist: loadSetlist,
+    resolveSlug: resolveSlug
   };
 })(window);
