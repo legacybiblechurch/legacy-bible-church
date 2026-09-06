@@ -4,8 +4,8 @@
   "input": "My Soul Longs for the Lord",
   "isNew": false,
   "forced": "avFBQh0iWMI",
-  "signature": "298a439b72841494",
-  "generatedAt": "2026-09-06T16:44:30+00:00",
+  "signature": "2617c04988322c7e",
+  "generatedAt": "2026-09-06T16:58:17+00:00",
   "candidates": [
     {
       "videoId": "avFBQh0iWMI",
@@ -37,14 +37,14 @@
           ]
         },
         {
-          "label": "Verse 3",
+          "label": "Refrain",
           "lines": [
             "Oh, the fullness of Christ",
             "Word of God, Word of Life"
           ]
         },
         {
-          "label": "Verse 4",
+          "label": "Verse 3",
           "lines": [
             "Living Word, You walked among us",
             "Our Emmanuel",
@@ -53,7 +53,7 @@
           ]
         },
         {
-          "label": "Verse 5",
+          "label": "Verse 4",
           "lines": [
             "Grace and mercy flowed from Calv'ry",
             "To the valley of our need",
@@ -62,14 +62,14 @@
           ]
         },
         {
-          "label": "Verse 6",
+          "label": "Refrain",
           "lines": [
             "Oh, the victory of Christ",
             "Word of God, Word of Life"
           ]
         },
         {
-          "label": "Verse 7",
+          "label": "Verse 5",
           "lines": [
             "How often in the stillness",
             "Have I heard Your voice",
@@ -78,7 +78,7 @@
           ]
         },
         {
-          "label": "Verse 8",
+          "label": "Verse 6",
           "lines": [
             "In the quiet of the morning",
             "Through the watches of the night",
@@ -89,7 +89,7 @@
           ]
         },
         {
-          "label": "Verse 9",
+          "label": "Verse 7",
           "lines": [
             "My soul longs to walk closer",
             "With the Lord I serve",
@@ -98,7 +98,7 @@
           ]
         },
         {
-          "label": "Verse 10",
+          "label": "Verse 8",
           "lines": [
             "Turn my gaze from all that's worthless",
             "Set my heart on things above",
@@ -107,14 +107,14 @@
           ]
         },
         {
-          "label": "Verse 11",
+          "label": "Refrain",
           "lines": [
             "Oh, the wisdom of Christ",
             "Word of God, Word of Life"
           ]
         },
         {
-          "label": "Verse 12",
+          "label": "Verse 9",
           "lines": [
             "My soul longs for the day",
             "I will see Your face",
@@ -123,7 +123,7 @@
           ]
         },
         {
-          "label": "Verse 13",
+          "label": "Verse 10",
           "lines": [
             "Every word at last accomplished",
             "Heaven sings and earth replies",
@@ -132,7 +132,7 @@
           ]
         },
         {
-          "label": "Final",
+          "label": "Final Slide",
           "lines": [
             "To our God be the Glory let all creation Cry Praise and Honor to Christ word of God word of life"
           ]
@@ -141,6 +141,134 @@
       "transcriptSource": "reference",
       "confidence": 55,
       "notes": "Library lyrics with your Fixes applied - still no captions on this video, so double-check the order against it.",
+      "order": ""
+    },
+    {
+      "videoId": "f2oxGYpuLkw",
+      "url": "https://www.youtube.com/watch?v=f2oxGYpuLkw",
+      "title": "Praise (feat. Brandon Lake, Chris Brown &amp; Chandler Moore) | Elevation Worship",
+      "channel": "Elevation Worship",
+      "publishedAt": "2023-05-22T14:00:34Z",
+      "durationSec": 305,
+      "duration": "5:05",
+      "views": 273906318,
+      "hasCaptions": true,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "XtwIT8JjddM",
+      "url": "https://www.youtube.com/watch?v=XtwIT8JjddM",
+      "title": "Matt Redman - 10,000 Reasons (Bless the Lord)",
+      "channel": "MattRedmanVEVO",
+      "publishedAt": "2012-07-05T07:00:28Z",
+      "durationSec": 262,
+      "duration": "4:22",
+      "views": 120520089,
+      "hasCaptions": true,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "raFnjGVkHe8",
+      "url": "https://www.youtube.com/watch?v=raFnjGVkHe8",
+      "title": "Praise (feat. Brandon Lake, Chris Brown &amp; Chandler Moore) | Official Lyric Video",
+      "channel": "Elevation Worship",
+      "publishedAt": "2023-05-19T04:00:34Z",
+      "durationSec": 305,
+      "duration": "5:05",
+      "views": 27446514,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "qoxZFtWNHd8",
+      "url": "https://www.youtube.com/watch?v=qoxZFtWNHd8",
+      "title": "Ten Thousand Reasons  Matt Redman   -Lyrics",
+      "channel": "Bruce Hil Worship Lyrics",
+      "publishedAt": "2012-10-11T20:36:29Z",
+      "durationSec": 328,
+      "duration": "5:28",
+      "views": 20442264,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "Z5a-hW9AJQI",
+      "url": "https://www.youtube.com/watch?v=Z5a-hW9AJQI",
+      "title": "Your Presence is Heaven with Lyrics",
+      "channel": "HubofWorship",
+      "publishedAt": "2012-09-21T18:07:46Z",
+      "durationSec": 426,
+      "duration": "7:06",
+      "views": 17213614,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "LpYD7HQo9QQ",
+      "url": "https://www.youtube.com/watch?v=LpYD7HQo9QQ",
+      "title": "Michael W. Smith - The Heart Of Worship [with lyrics]",
+      "channel": "Worship Videos (Louange et Adoration)",
+      "publishedAt": "2012-02-24T13:21:11Z",
+      "durationSec": 339,
+      "duration": "5:39",
+      "views": 8551737,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "QbMbx0jCoe4",
+      "url": "https://www.youtube.com/watch?v=QbMbx0jCoe4",
+      "title": "George Harrison - My Sweet Lord (lyrics)",
+      "channel": "Wind Music",
+      "publishedAt": "2021-09-30T04:38:18Z",
+      "durationSec": 281,
+      "duration": "4:41",
+      "views": 4156718,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "_uG-vhX-s0E",
+      "url": "https://www.youtube.com/watch?v=_uG-vhX-s0E",
+      "title": "I Need You - Eddie James (Best Worship Song with Lyrics)",
+      "channel": "GloryToFatherGod",
+      "publishedAt": "2014-11-23T00:04:41Z",
+      "durationSec": 406,
+      "duration": "6:46",
+      "views": 1049264,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
       "order": ""
     }
   ]
