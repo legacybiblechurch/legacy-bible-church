@@ -131,9 +131,42 @@
     });
   }
 
+  // Presentation only — split a projection line that crams two sung phrases onto
+  // one line ("X for the water so my soul Y") at a natural break near the middle.
+  // Same words, never reordered or dropped.
+  var BREAKS = [' so ', ' and ', ' but ', ' O ', ' yet ', ' for ', ' to ', ' where ',
+                ' when ', ' that ', ' though ', ' even though '];
+  function splitLine(line, limit) {
+    limit = limit || 42;
+    if (line.length <= limit) return [line];
+    var mid = line.length / 2, best = -1, bestD = 1e9, bi;
+    for (bi = 0; bi < BREAKS.length; bi++) {
+      var from = 6;
+      while (true) {
+        var at = line.toLowerCase().indexOf(BREAKS[bi], from);
+        if (at < 6 || at > line.length - 6) break;
+        var d = Math.abs(at - mid);
+        if (d < bestD) { bestD = d; best = at; }
+        from = at + 1;
+      }
+    }
+    if (best < 0) return [line];
+    var a = line.slice(0, best).trim();
+    var b = line.slice(best + 1).trim();          // keep the break word on line 2
+    return splitLine(a, limit).concat(splitLine(b, limit));
+  }
+  function tidyBlocks(blocks) {
+    return (blocks || []).map(function (bl) {
+      var out = [];
+      (bl.lines || []).forEach(function (l) { out = out.concat(splitLine(l)); });
+      return { label: bl.label || '', lines: out };
+    });
+  }
+
   global.LBCSheet = {
     SHEET_CSV: SHEET_CSV, SHEET_LINK: SHEET_LINK, sheetEditSet: !!SHEET_EDIT,
     parseCsv: parseCsv, slugsFromCsv: slugsFromCsv, loadSetlist: loadSetlist,
-    loadSongs: loadSongs, resolveSlug: resolveSlug
+    loadSongs: loadSongs, resolveSlug: resolveSlug,
+    splitLine: splitLine, tidyBlocks: tidyBlocks
   };
 })(window);

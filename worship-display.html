@@ -172,7 +172,7 @@
 
   <script src="js/songs-data.js"></script>
   <script src="js/worship-songs.js"></script>
-  <script src="js/sheet.js?v=6"></script>
+  <script src="js/sheet.js?v=7"></script>
   <script>
     /* Build songs from setlist — same source as the website hymnal */
     function perSlide(lines) {
@@ -182,7 +182,7 @@
     }
     function buildSlides(lyrics) {
       var slides = [];
-      lyrics.forEach(function(block) {
+      (window.LBCSheet ? LBCSheet.tidyBlocks(lyrics) : lyrics).forEach(function(block) {
         var lines = block.lines, lbl = block.label || '', n = perSlide(lines);
         for (var i = 0; i < lines.length; i += n) {
           slides.push({ label: lbl, lines: lines.slice(i, i + n) });
