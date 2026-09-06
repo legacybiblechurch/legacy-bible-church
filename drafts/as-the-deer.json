@@ -4,8 +4,8 @@
   "input": "As The Deer",
   "isNew": true,
   "forced": "ju9nbjIONzE",
-  "signature": "5a1012f0e08e7da4",
-  "generatedAt": "2026-09-06T16:58:38+00:00",
+  "signature": "61b170063253608d",
+  "generatedAt": "2026-09-06T17:03:04+00:00",
   "candidates": [
     {
       "videoId": "ju9nbjIONzE",
@@ -21,72 +21,43 @@
         {
           "label": "Verse 1",
           "lines": [
-            "As the deer panteth for the water",
-            "So my soul longeth after thee",
-            "You alone are my hearts desire",
-            "And I long to worship thee"
-          ]
-        },
-        {
-          "label": "Verse 2",
-          "lines": [
+            "As the deer panteth for the water so my soul longeth after Thee",
+            "You alone are my hearts desire and I long to worship Thee",
             "You alone are my strength my shield",
-            "To You alone may my spirit yield",
-            "You alone are my hearts desire",
-            "And I long to worship thee"
+            "To You alone may my spirit yield"
           ]
         },
         {
           "label": "Chorus",
           "lines": [
-            "Youre my friend and You are my brother",
-            "Even though You are a king",
-            "I love You more than any other",
-            "So much more than anything"
+            "You alone are my hearts desire and I long to worship Thee",
+            "You're my friend and You are my brother even though You are a king",
+            "I love You more than any other so much more than anything",
+            "You alone are my strength my shield"
           ]
         },
         {
-          "label": "Bridge",
+          "label": "Verse 2",
           "lines": [
-            "You alone are my my strength my shield",
             "To You alone may my spirit yield",
-            "You alone are my hearts desire",
-            "And I long to worship thee"
+            "You alone are my hearts desire and I long to worship Thee",
+            "I want You more than gold or silver only You can satisfy",
+            "You alone are the real joy giver and the apple of My eye"
           ]
         },
         {
           "label": "Tag",
           "lines": [
-            "I want You more than gold or silver",
-            "Only You can satisfy",
-            "You alone are the real joy giver and the apple of my eye",
             "You alone are my strength my shield",
             "To You alone make my spirit yield",
-            "You alone are my hearts desire",
-            "And I long to worship thee"
+            "You alone are my hearts desire and I long to worship Thee"
           ]
         }
       ],
       "transcriptSource": "fromtitle",
       "confidence": 90,
-      "notes": "Spelling corrected (dear→deer, herarts→hearts). Capitalized You as reference to God. Formatted for screen.",
-      "order": "['Verse 1', 'Verse 2', 'Chorus', 'Bridge', 'Tag']"
-    },
-    {
-      "videoId": "78lj3sl8L9M",
-      "url": "https://www.youtube.com/watch?v=78lj3sl8L9M",
-      "title": "As the deer panteth for the water -hymn  lyrics video",
-      "channel": "Christian Fellowship TV",
-      "publishedAt": "2019-06-25T18:08:16Z",
-      "durationSec": 203,
-      "duration": "3:23",
-      "views": 341404,
-      "hasCaptions": true,
-      "lyrics": null,
-      "transcriptSource": "none",
-      "confidence": 0,
-      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
-      "order": ""
+      "notes": "Spelling corrected (dear→deer, herarts→hearts). Capitalised You/Your when referring to God. Lines broken for screen display.",
+      "order": "['Verse 1', 'Chorus', 'Verse 2', 'Tag']"
     },
     {
       "videoId": "UZv3jzOTE70",
@@ -128,7 +99,7 @@
       "publishedAt": "2019-05-13T03:47:03Z",
       "durationSec": 207,
       "duration": "3:27",
-      "views": 6132864,
+      "views": 6132868,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
@@ -160,7 +131,7 @@
       "publishedAt": "2021-04-19T20:25:23Z",
       "durationSec": 262,
       "duration": "4:22",
-      "views": 4299758,
+      "views": 4299764,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
@@ -176,7 +147,7 @@
       "publishedAt": "2021-10-22T15:00:07Z",
       "durationSec": 306,
       "duration": "5:06",
-      "views": 1915202,
+      "views": 1915204,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
@@ -185,14 +156,30 @@
       "order": ""
     },
     {
-      "videoId": "TF27EczT_pU",
-      "url": "https://www.youtube.com/watch?v=TF27EczT_pU",
-      "title": "As the Deer (worship video w/ lyrics)",
-      "channel": "pastorloran",
-      "publishedAt": "2008-02-16T18:32:36Z",
-      "durationSec": 204,
-      "duration": "3:24",
-      "views": 1533854,
+      "videoId": "zrCT90eSjVY",
+      "url": "https://www.youtube.com/watch?v=zrCT90eSjVY",
+      "title": "As the deer pants for the water English Christian worship song",
+      "channel": "Yogesh Oraon",
+      "publishedAt": "2018-11-24T17:15:44Z",
+      "durationSec": 202,
+      "duration": "3:22",
+      "views": 1594917,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "nJaTfAy5NU0",
+      "url": "https://www.youtube.com/watch?v=nJaTfAy5NU0",
+      "title": "As the deer | with lyrics | female version",
+      "channel": "Christian Tamil Songs | English Hymns",
+      "publishedAt": "2021-07-12T17:35:36Z",
+      "durationSec": 207,
+      "duration": "3:27",
+      "views": 1232,
       "hasCaptions": false,
       "lyrics": null,
       "transcriptSource": "none",
