@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-06T06:39:58+00:00",
+  "updatedAt": "2026-09-06T14:02:51+00:00",
   "sunday": "2026-09-06",
   "songs": [
     {
@@ -21,11 +21,11 @@
       "slug": "how-long-o-lord-how-long-psalm-13"
     },
     {
-      "input": "As the dear",
+      "input": "As The Dear",
       "review": "",
       "chosenVideo": "https://www.youtube.com/watch?v=ju9nbjIONzE",
       "status": "draft",
-      "confidence": null,
+      "confidence": 0,
       "message": "9 candidate(s)",
       "slug": "as-the-dear"
     }
