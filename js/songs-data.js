@@ -879,7 +879,7 @@ const LEGACY_SONGS = {
   },
   "how-long-o-lord-how-long-psalm-13": {
     title: "How Long, O Lord, How Long? (Psalm 13)",
-    youtube: "https://www.youtube.com/results?search_query=How+Long+O+Lord+How+Long+Psalm+13+worship+official",
+    youtube: "https://www.youtube.com/watch?v=tT4RFGzheN0",
     lyrics: [
     { label: "", lines: ["O Lord, our God, to You we come", "Will You still hide Your face?", "We cry before You", "And on our knees we pray,", "\"How long, O Lord, how long?\""] },
     { label: "", lines: ["Our sorrows leave us weak and worn", "Surrounded by our fears", "We look to heaven", "Through feeble faith and tears", "How long, O Lord, how long?"] },

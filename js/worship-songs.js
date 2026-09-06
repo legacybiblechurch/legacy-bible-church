@@ -7,4 +7,5 @@
  */
 
 window.WORSHIP_SETLIST = [
+  'how-long-o-lord-how-long-psalm-13',
 ];
