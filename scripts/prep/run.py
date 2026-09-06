@@ -238,13 +238,14 @@ def apply_row(row: sheet_mod.Row, songs: dict) -> tuple[str, str]:
             return slug, f"approved — {url}"
 
     draft = _load_draft(slug)
-    if not draft:
-        return slug, "approved but no draft yet — will apply next run"
-
-    cands = draft["candidates"]
+    cands = (draft or {}).get("candidates", [])
     chosen = None
     if forced:
+        # a pasted video URL is applied straight away, even with no draft yet -
+        # one cycle instead of two
         chosen = next((c for c in cands if c["videoId"] == forced), None) or yt.details(forced)
+    if not chosen and not draft:
+        return slug, "approved but no draft yet — will apply next run"
     if not chosen:
         chosen = next((c for c in cands if c.get("lyrics")), None) or (cands[0] if cands else None)
     if not chosen:
