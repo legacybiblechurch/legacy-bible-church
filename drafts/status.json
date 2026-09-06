@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-06T16:37:11+00:00",
+  "updatedAt": "2026-09-06T16:45:10+00:00",
   "sunday": "2026-09-06",
   "songs": [
     {
@@ -8,7 +8,7 @@
       "chosenVideo": "https://www.youtube.com/watch?v=avFBQh0iWMI&list=RDavFBQh0iWMI&start_radio=1",
       "status": "draft",
       "confidence": 55,
-      "message": "8 candidate(s)",
+      "message": "1 candidate(s)",
       "slug": "my-soul-longs-for-the-lord"
     },
     {
