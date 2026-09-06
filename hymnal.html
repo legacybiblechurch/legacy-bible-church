@@ -12,11 +12,40 @@
   <style>
     .hymnal-intro {
       max-width: 720px;
-      margin: 0 auto 3rem;
+      margin: 0 auto 2rem;
       text-align: center;
       color: var(--text-secondary);
       line-height: 1.75;
     }
+    .hymnal-search {
+      max-width: 460px;
+      margin: 0 auto 2rem;
+      position: relative;
+    }
+    .hymnal-search input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 2.6rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: inherit;
+      -webkit-appearance: none;
+    }
+    .hymnal-search input:focus {
+      outline: none;
+      border-color: var(--accent-dim);
+    }
+    .hymnal-search input::placeholder { color: var(--text-muted); }
+    .hymnal-search svg {
+      position: absolute; left: 0.9rem; top: 50%; transform: translateY(-50%);
+      width: 16px; height: 16px; color: var(--text-muted); pointer-events: none;
+    }
+    .hymnal-noresults {
+      text-align: center; color: var(--text-secondary); padding: 2rem 0; font-size: 0.95rem;
+    }
+    .az-nav[hidden], .hymnal-section[hidden], .hymnal-songs li[hidden] { display: none !important; }
     .az-nav {
       display: flex;
       flex-wrap: wrap;
@@ -148,10 +177,16 @@
         One of the great joys of the gathered church is singing together to the glory of God. We choose our music carefully &mdash; drawing from both classic hymns and faithful contemporary worship &mdash; for its sound theology, beauty, and fitness for corporate worship. Click any title to hear a recording.
       </p>
 
+      <div class="hymnal-search">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>
+        <input type="search" id="hymnalSearch" placeholder="Search songs&hellip;" autocomplete="off" aria-label="Search songs">
+      </div>
+
       <!-- A–Z NAVIGATION (generated) -->
       <nav class="az-nav" id="azNav" aria-label="Jump to letter"></nav>
 
       <div id="hymnalList"></div>
+      <p class="hymnal-noresults" id="hymnalNoResults" hidden>No songs match that search.</p>
 
     </div>
   </section>

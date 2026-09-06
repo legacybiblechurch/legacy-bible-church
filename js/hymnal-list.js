@@ -55,11 +55,43 @@
       var titleHtml = isVideo || yt
         ? '<a href="' + esc(yt) + '" target="_blank" rel="noopener">' + esc(s.title) + '</a>'
         : '<span>' + esc(s.title) + '</span>';
-      return '<li>' + titleHtml +
+      return '<li data-title="' + esc(s.title.toLowerCase()) + '">' + titleHtml +
         '<a href="song.html?s=' + esc(s.slug) + '" class="lyrics-btn" title="View &amp; print lyrics">Lyrics</a></li>';
     }).join('');
     return '<div class="hymnal-section" id="hym-' + id + '">' +
       '<h2 class="hymnal-letter">' + (c === '#' ? '0–9' : c) + '</h2>' +
       '<ul class="hymnal-songs">' + items + '</ul></div>';
   }).join('');
+
+  // ── search ────────────────────────────────────────────────────────────────
+  var search = document.getElementById('hymnalSearch');
+  var noResults = document.getElementById('hymnalNoResults');
+  if (search) {
+    var lis = [].slice.call(listEl.querySelectorAll('li'));
+    var runFilter = function () {
+      var q = search.value.trim().toLowerCase().replace(/[^a-z0-9 ]/g, '');
+      var any = false;
+      if (!q) {
+        lis.forEach(function (li) { li.hidden = false; });
+        listEl.querySelectorAll('.hymnal-section').forEach(function (s) { s.hidden = false; });
+        if (navEl) navEl.hidden = false;
+        if (noResults) noResults.hidden = true;
+        return;
+      }
+      lis.forEach(function (li) {
+        var match = li.getAttribute('data-title').replace(/[^a-z0-9 ]/g, '').indexOf(q) !== -1;
+        li.hidden = !match;
+        if (match) any = true;
+      });
+      listEl.querySelectorAll('.hymnal-section').forEach(function (sec) {
+        sec.hidden = !sec.querySelector('li:not([hidden])');
+      });
+      if (navEl) navEl.hidden = true;
+      if (noResults) noResults.hidden = any;
+    };
+    search.addEventListener('input', runFilter);
+    // support ?q= in the URL
+    var qp = new URLSearchParams(location.search).get('q');
+    if (qp) { search.value = qp; runFilter(); }
+  }
 })();
