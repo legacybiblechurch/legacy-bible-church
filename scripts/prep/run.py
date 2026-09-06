@@ -185,18 +185,25 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
         except Exception as e:  # noqa: BLE001 — one bad video shouldn't kill the run
             c["notes"] = f"Draft failed: {e}"
 
-    # nothing had a readable transcript, but we do have known-good library lyrics ->
-    # offer those in standard order so the person has something to pick + verify
-    if drafted == 0 and reference and candidates:
+    # no candidate had a readable transcript -> still give the person lyrics to check:
+    # the library version if we have it, otherwise the model's best recollection
+    if drafted == 0 and candidates:
         top = next((c for c in candidates if c["videoId"] == forced), candidates[0])
-        top["lyrics"] = reference
-        top["transcriptSource"] = "reference"
-        top["confidence"] = 55
-        top["order"] = ""
-        top["notes"] = ("No captioned video turned up, so these are the lyrics already "
-                        "in the library, in the song's standard order. Pick the video you "
-                        "want, play it through, and check that the verses and repeats "
-                        "match - note any change in the Fixes column.")
+        if reference:
+            top.update(lyrics=reference, transcriptSource="reference", confidence=55, order="",
+                       notes="No captioned video turned up, so these are the lyrics already "
+                             "in the library, in the song's standard order. Play your chosen "
+                             "video through and check the verses and repeats match - note any "
+                             "change in the Fixes column.")
+        else:
+            try:
+                r = rec.from_title(title, fixes=row.fixes)
+                top.update(lyrics=r["lyrics"], transcriptSource="fromtitle",
+                           confidence=r["confidence"], order=r["order"], notes=r["notes"])
+            except Exception as e:  # noqa: BLE001
+                top["notes"] = ("This video has no captions and the song isn't in the "
+                                "library yet. Paste a lyric video with captions, or type "
+                                "the lyrics into the Fixes column. (" + str(e)[:80] + ")")
 
     # float the candidates we actually drafted lyrics for (best confidence) to the top,
     # keeping a forced pick first of all
@@ -255,11 +262,18 @@ def apply_row(row: sheet_mod.Row, songs: dict) -> tuple[str, str]:
     if row.fixes.strip() or not lyrics:
         reference = None if is_new else (songs[slug]["lyrics"] if slug in songs else None)
         tr = fetch_transcript(chosen["url"], allow_audio=ALLOW_AUDIO)
-        if not tr and not lyrics:
-            return slug, "approved but the chosen video has no transcript"
         if tr:
-            r = rec.reconcile(title, reference, tr, fixes=row.fixes)
-            lyrics = r["lyrics"]
+            lyrics = rec.reconcile(title, reference, tr, fixes=row.fixes)["lyrics"]
+        elif reference:
+            lyrics = reference
+        elif not lyrics:
+            try:
+                lyrics = rec.from_title(title, fixes=row.fixes)["lyrics"]
+            except Exception:  # noqa: BLE001
+                return slug, "approved but no captions and not in the library — add a lyric video or type the words in Fixes"
+        elif row.fixes.strip():
+            # have draft lyrics + a fix but no way to re-reconcile — keep draft lyrics
+            pass
 
     lib_songs.upsert_song(slug, title=title, youtube=chosen["url"], lyrics=lyrics)
     _record_approval(slug, chosen["url"])

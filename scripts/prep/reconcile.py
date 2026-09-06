@@ -126,11 +126,11 @@ def build_prompt(title, reference, transcript, fixes=""):
 # ---------------------------------------------------------------- providers
 
 
-def _call_gemini(prompt: str, key: str) -> str:
+def _call_gemini(prompt: str, key: str, *, system: str = SYSTEM) -> str:
     url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
            f"{GEMINI_MODEL}:generateContent?key={key}")
     res = post_json(url, json_body={
-        "systemInstruction": {"parts": [{"text": SYSTEM}]},
+        "systemInstruction": {"parts": [{"text": system}]},
         "contents": [{"role": "user", "parts": [{"text": prompt}]}],
         "generationConfig": {"responseMimeType": "application/json",
                              "temperature": 0.2, "maxOutputTokens": 8192},
@@ -139,19 +139,19 @@ def _call_gemini(prompt: str, key: str) -> str:
     return "".join(p.get("text", "") for p in cand.get("content", {}).get("parts", []))
 
 
-def _call_anthropic(prompt: str, key: str) -> str:
+def _call_anthropic(prompt: str, key: str, *, system: str = SYSTEM) -> str:
     res = post_json("https://api.anthropic.com/v1/messages", json_body={
-        "model": ANTHROPIC_MODEL, "max_tokens": 4000, "system": SYSTEM,
+        "model": ANTHROPIC_MODEL, "max_tokens": 4000, "system": system,
         "messages": [{"role": "user", "content": prompt}],
     }, headers={"x-api-key": key, "anthropic-version": "2023-06-01"}, timeout=150)
     return "".join(p.get("text", "") for p in res.get("content", []))
 
 
-def _call_groq(prompt: str, key: str, *, json_mode: bool = True) -> str:
+def _call_groq(prompt: str, key: str, *, json_mode: bool = True, system: str = SYSTEM) -> str:
     body = {
         "model": GROQ_LLM_MODEL, "temperature": 0.2,
         "messages": [
-            {"role": "system", "content": SYSTEM},
+            {"role": "system", "content": system},
             {"role": "user", "content": prompt},
         ],
     }
@@ -163,13 +163,13 @@ def _call_groq(prompt: str, key: str, *, json_mode: bool = True) -> str:
     return res["choices"][0]["message"]["content"]
 
 
-def _llm_once(prompt: str, *, json_mode: bool = True) -> str:
+def _llm_once(prompt: str, *, json_mode: bool = True, system: str = SYSTEM) -> str:
     if os.environ.get("ANTHROPIC_API_KEY"):
-        return _call_anthropic(prompt, os.environ["ANTHROPIC_API_KEY"])
+        return _call_anthropic(prompt, os.environ["ANTHROPIC_API_KEY"], system=system)
     if os.environ.get("GEMINI_API_KEY"):
-        return _call_gemini(prompt, os.environ["GEMINI_API_KEY"])
+        return _call_gemini(prompt, os.environ["GEMINI_API_KEY"], system=system)
     if os.environ.get("GROQ_API_KEY"):
-        return _call_groq(prompt, os.environ["GROQ_API_KEY"], json_mode=json_mode)
+        return _call_groq(prompt, os.environ["GROQ_API_KEY"], json_mode=json_mode, system=system)
     raise RuntimeError("set ANTHROPIC_API_KEY, GEMINI_API_KEY or GROQ_API_KEY")
 
 
@@ -177,7 +177,7 @@ _last_call = [0.0]
 _MIN_GAP = float(os.environ.get("LLM_MIN_GAP_SECONDS", "4"))
 
 
-def _llm(prompt: str) -> str:
+def _llm(prompt: str, *, system: str = SYSTEM) -> str:
     """Retry on rate-limits; on a JSON-mode generation failure, retry free-form."""
     import time
 
@@ -190,7 +190,7 @@ def _llm(prompt: str) -> str:
     delay = 8
     for attempt in range(5):
         try:
-            out = _llm_once(prompt)
+            out = _llm_once(prompt, system=system)
             _last_call[0] = time.time()
             return out
         except HTTPError as e:
@@ -199,7 +199,7 @@ def _llm(prompt: str) -> str:
             json_fail = e.status == 400 and "generate JSON" in e.body
             if json_fail:
                 return _llm_once(prompt + "\n\nRespond with ONLY the JSON object, no other text.",
-                                 json_mode=False)
+                                 json_mode=False, system=system)
             if not transient or attempt == 4:
                 raise
             m = re.search(r'"?retry.?after"?[:\s"]+([0-9.]+)', e.body, re.I)
@@ -246,6 +246,47 @@ def reconcile(title: str, reference: list[dict] | None, transcript: dict,
     cap = 50 if transcript.get("source") == _IS_DESCRIPTION else 100
     return {"lyrics": lyrics, "order": str(order),
             "confidence": max(0, min(cap, conf)), "notes": str(out.get("notes", ""))}
+
+
+_FROM_TITLE_SYSTEM = """You write worship lyrics for a church that projects them on a screen. Given only a \
+song title, write out that song's lyrics from your own knowledge, in the common performance \
+order, segmented into labelled blocks ("Verse 1", "Chorus", "Bridge", "Tag"). If a human \
+correction is given, follow it. If you are not confident you know this exact song, still give \
+your best attempt but set confidence low.
+
+No leading/trailing blank lines, no "[Music]" markers, straight apostrophes.
+confidence: this is a guess from memory with no recording to check against - 45 max, lower \
+if the title is ambiguous or unfamiliar.
+
+Return ONLY minified JSON: {lyrics:[{label,lines}], order, confidence, notes}. In notes, say \
+plainly that these came from general knowledge and every line/section must be checked against \
+the chosen video."""
+
+
+def from_title(title: str, fixes: str = "") -> dict:
+    """Last resort for a brand-new song whose video has no captions: lyrics from the
+    model's own knowledge, hard-capped at low confidence."""
+    prompt = "SONG: " + title
+    if fixes.strip():
+        prompt += "\n\nHUMAN CORRECTIONS:\n" + fixes.strip()
+    prompt += "\n\nReturn the minified JSON now."
+    out = _extract_json(_llm(prompt, system=_FROM_TITLE_SYSTEM))
+    lyrics = []
+    for b in out.get("lyrics", []):
+        lines = [str(x).strip() for x in b.get("lines", []) if str(x).strip()]
+        if lines:
+            lyrics.append({"label": str(b.get("label", "")).strip(), "lines": lines})
+    if not lyrics:
+        raise ValueError("from_title produced no lyrics")
+    try:
+        conf = int(out.get("confidence", 0))
+    except (TypeError, ValueError):
+        conf = 0
+    return {"lyrics": lyrics, "order": str(out.get("order", "")),
+            "confidence": max(0, min(45, conf)),
+            "notes": str(out.get("notes", "")) or
+            "Lyrics written from general knowledge - no captions on this video. "
+            "Check every line and section against the video before Sunday."}
 
 
 if __name__ == "__main__":
