@@ -109,23 +109,25 @@ def _supadata_captions(url: str) -> dict | None:
     key = os.environ.get("SUPADATA_API_KEY")
     if not key:
         return None
+    global LAST_ERROR
     try:
         from http_util import request_json
+        from urllib.parse import quote
         res = request_json(
             "GET",
-            "https://api.supadata.ai/v1/transcript?lang=en&url=" + url,
+            "https://api.supadata.ai/v1/transcript?lang=en&url=" + quote(url, safe=""),
             headers={"x-api-key": key},
             timeout=60,
         )
     except Exception as e:  # noqa: BLE001
-        global LAST_ERROR
-        LAST_ERROR = f"supadata: {e}"
+        LAST_ERROR = f"supadata: {str(e)[:160]}"
         return None
 
     segs = res.get("content") or []
     cues = [{"t": round((s.get("offset", 0) or 0) / 1000, 2), "text": s.get("text", "").strip()}
             for s in segs if s.get("text", "").strip()]
     if len(cues) < 3:
+        LAST_ERROR = "supadata: no captions on this video"
         return None
     full = _cues_to_text(cues)
     manual = _looks_manual(full)
@@ -423,20 +425,27 @@ def fetch_transcript(url: str, *, allow_audio: bool = False,
         if got:
             return got
 
+    global LAST_ERROR
     got = _supadata_captions(url)          # works from any IP
     if got:
         return got
+    reasons = [LAST_ERROR] if LAST_ERROR else []
 
     for _ in range(2):                     # residential-IP path / local dev
         got = _ytdlp_captions(url)
         if got:
             return got
+    if LAST_ERROR and LAST_ERROR not in reasons:
+        reasons.append("yt-dlp: " + LAST_ERROR)
 
     if allow_audio:
         got = _whisper_from_url(url)
         if got:
             return got
 
+    # every source failed: keep ALL the reasons, so the draft note says why
+    # (a later step used to overwrite the first cause with the last one)
+    LAST_ERROR = "; ".join(reasons) or "no captions"
     return _description_lyrics(url)         # words only, no structure
 
 

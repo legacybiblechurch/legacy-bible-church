@@ -557,11 +557,15 @@
                 '<button class="btn primary" id="blankBtn">Paste them in</button></div>';
       } else {
         html += '<div class="cands">' + cands.map(function (c, i) {
-          var conf = c.confidence || 0;
+          var conf = c.confidence || 0, src = c.transcriptSource || 'none';
+          var how = (src === 'subs' || src === 'asr' || src === 'whisper') ? 'words heard from this recording'
+                  : src === 'description' ? 'words from the video description — check the order'
+                  : 'words from memory, not this recording — check every line';
           return '<div class="cand' + (i === 0 ? ' best' : '') + '">' +
             '<a href="' + esc(c.url) + '" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/' + esc(c.videoId) + '/mqdefault.jpg" alt=""></a>' +
             '<div><div class="t"></div><div class="f">' + esc(S.decodeEntities(c.channel || '')) + (c.duration ? ' · ' + esc(c.duration) : '') +
-            ' · <b class="' + (conf >= 80 ? '' : 'mid') + '">' + conf + '% match</b>' + (i === 0 ? ' · best guess' : '') + '</div></div>' +
+            ' · <b class="' + (conf >= 80 ? '' : 'mid') + '">' + conf + '% match</b>' + (i === 0 ? ' · best guess' : '') +
+            '<br>' + how + '</div></div>' +
             '<div class="acts"><button class="btn primary" data-i="' + i + '">Use this one</button>' +
             '<a class="btn" href="' + esc(c.url) + '" target="_blank" rel="noopener">Listen &nearr;</a></div></div>';
         }).join('') + '</div>';

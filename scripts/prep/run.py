@@ -415,7 +415,9 @@ def draft_one(name: str, video: str = "") -> None:
     file so the Studio can show a human-readable reason instead of waiting
     forever.
     """
-    row = sheet_mod.Row(song=name, video=video or "")
+    # "redo" = always search and transcribe afresh. A person pressing "find" in
+    # the Studio wants a real attempt now, not last week's cached draft.
+    row = sheet_mod.Row(song=name, video=video or "", review="redo")
     songs = lib_songs.load_songs()
     slug, title, _ = resolve(name)
     try:
