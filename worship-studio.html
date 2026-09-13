@@ -119,6 +119,21 @@
     .cand .f b.mid { color: var(--warn); }
     .cand .acts { display: flex; flex-direction: column; gap: 6px; }
 
+    .verdict { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 9px; border-radius: 100px; border: 1px solid var(--line); color: var(--ink-dim); }
+    .verdict.verified { color: var(--good); border-color: rgba(123,179,126,0.45); }
+    .verdict.check { color: var(--warn); border-color: rgba(216,166,87,0.45); }
+    .verdict.unverified { color: var(--bad); border-color: rgba(217,138,122,0.45); }
+    .cand .f .how { display: block; margin-top: 4px; color: var(--ink-faint); }
+    .chk { flex: 1; overflow-y: auto; padding: 18px 22px; display: flex; flex-direction: column; gap: 14px; max-width: 760px; margin: 0 auto; width: 100%; }
+    .chk-prog { font-size: 12px; color: var(--ink-faint); letter-spacing: 0.08em; text-transform: uppercase; }
+    .chk iframe { width: 100%; aspect-ratio: 16/9; border: 0; border-radius: 8px; background: #000; }
+    .chk-q { font-size: 15px; color: var(--ink-dim); }
+    .chk-opts { display: flex; flex-direction: column; gap: 8px; }
+    .chk-opt { text-align: left; font-size: 17px; padding: 13px 16px; border-radius: 9px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+    .chk-opt:hover { border-color: var(--gold); }
+    .chk-own { display: flex; gap: 8px; }
+    .chk-own input { flex: 1; font: inherit; font-size: 15px; background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+    .chk-foot { display: flex; gap: 8px; justify-content: space-between; align-items: center; font-size: 12.5px; color: var(--ink-faint); }
     #toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 11px 18px; font-size: 13.5px; z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.2s; max-width: 90vw; }
     #toast.show { opacity: 1; pointer-events: auto; }
     #toast.err { border-color: rgba(217,138,122,0.5); color: var(--bad); }
@@ -335,7 +350,7 @@
         var st = finding[slug] ? 'busy' : isReady(slug) ? '' : 'warn';
         row.appendChild(el('span', 'dot ' + st));
         var nm = el('span', 'nm', S.decodeEntities((found[slug] && found[slug].title) || (finding[slug] && finding[slug].title) || s.title));
-        if (finding[slug]) nm.appendChild(el('small', '', 'finding the words…'));
+        if (finding[slug]) nm.appendChild(el('small', '', finding[slug].phase === 'listening' ? 'listening to the recording…' : 'finding the song…'));
         else if (found[slug]) nm.appendChild(el('small', '', 'pick a video'));
         else if (!isReady(slug)) nm.appendChild(el('small', '', 'no words yet'));
         row.appendChild(nm);
@@ -484,13 +499,21 @@
         var d = JSON.parse(f.text);
         var when = Date.parse(d.generatedAt || 0);
         if (!(when > started - 60000)) throw new Error('old');     // a stale draft from before
+        if (d.needsAudio && !d.error) {
+          // videos found; the church computer still has to listen to the recording
+          if (finding[slug].phase !== 'listening') {
+            finding[slug].phase = 'listening'; persistFinding();
+            renderRail(); if (current === slug) renderMain();
+          }
+          throw new Error('listening');
+        }
         delete finding[slug]; persistFinding();
         found[slug] = d;
         renderRail();
         if (current === slug) renderMain();
         toast(d.error ? 'Couldn’t find that song automatically.' : 'Found “' + (d.title || slug) + '”. Pick the video that sounds right.', d.error ? 'err' : 'ok');
       }).catch(function () {
-        if (Date.now() - started > 9 * 60000) {
+        if (Date.now() - started > 20 * 60000) {
           delete finding[slug]; persistFinding();
           found[slug] = { slug: slug, title: songOf(slug).title, candidates: [], error: 'took too long' };
           renderRail(); if (current === slug) renderMain();
@@ -507,15 +530,75 @@
     }
     setInterval(function () { if (current && finding[current]) paintElapsed(current); }, 1000);
 
+    var pendingChecks = {};   // slug -> {checks, i}
     function useCandidate(slug, c) {
       var s = songOf(slug);
       s.title = S.decodeEntities((found[slug] && found[slug].title) || s.title);
       s.youtube = c.url || ('https://www.youtube.com/watch?v=' + c.videoId);
       s.lyrics = JSON.parse(JSON.stringify(c.lyrics || []));
+      s.engineLines = (c.engine && c.engine.lines) ? JSON.parse(JSON.stringify(c.engine.lines.filter(function (l) { return l.status !== 'excluded'; }))) : null;
       delete found[slug];
       dirty[slug] = true;
+      var checks = (c.engine && c.engine.checks) || [];
+      if (checks.length && s.engineLines) {
+        pendingChecks[slug] = { checks: checks, i: 0 };
+        renderRail(); renderMain();
+        return;
+      }
       renderRail(); renderMain();
       saveSong(slug);      // automation: choosing the video IS the confirmation
+    }
+
+    // the person answers only the genuinely ambiguous lines, with the video cued
+    // a couple of seconds before each one
+    function renderChecks(slug) {
+      var main = document.getElementById('main'), s = songOf(slug), pc = pendingChecks[slug];
+      var ch = pc.checks[pc.i], vid = S.videoId(s.youtube);
+      var opts = [];
+      ch.options.forEach(function (o) {
+        var t = String(o).replace(/[\s.,;]+$/, '').trim();
+        if (t && !opts.some(function (x) { return S.slugify(x) === S.slugify(t); })) opts.push(t);
+      });
+      main.innerHTML =
+        '<div class="main-head"><span class="main-title"></span><div class="main-actions">' +
+          '<button class="btn quiet" id="chkSkipAll">Skip the rest, I’ll edit by hand</button></div></div>' +
+        '<div class="chk">' +
+          '<div class="chk-prog">Quick check ' + (pc.i + 1) + ' of ' + pc.checks.length + '</div>' +
+          (vid ? '<iframe src="https://www.youtube.com/embed/' + vid + '?start=' + Math.floor(ch.t0) + '&autoplay=1&rel=0" allow="autoplay; encrypted-media"></iframe>' : '') +
+          '<div class="chk-q">Listen — which is it?</div>' +
+          '<div class="chk-opts">' + opts.map(function (o, i) { return '<button class="chk-opt" data-i="' + i + '"></button>'; }).join('') + '</div>' +
+          '<div class="chk-own"><input id="chkOwn" placeholder="Or type what you hear"><button class="btn" id="chkOwnBtn">Use this</button></div>' +
+          '<div class="chk-foot"><span>' + esc(ch.why || '') + '</span><button class="btn quiet" id="chkSkip">Not sure — skip</button></div>' +
+        '</div>';
+      main.querySelector('.main-title').textContent = s.title;
+      var btns = main.querySelectorAll('.chk-opt');
+      opts.forEach(function (o, i) { btns[i].textContent = o; btns[i].onclick = function () { answerCheck(slug, o); }; });
+      document.getElementById('chkOwnBtn').onclick = function () { var v = document.getElementById('chkOwn').value.trim(); if (v) answerCheck(slug, v); };
+      document.getElementById('chkOwn').onkeydown = function (e) { if (e.key === 'Enter') document.getElementById('chkOwnBtn').click(); };
+      document.getElementById('chkSkip').onclick = function () { answerCheck(slug, null); };
+      document.getElementById('chkSkipAll').onclick = function () { delete pendingChecks[slug]; renderRail(); renderMain(); };
+    }
+    function answerCheck(slug, text) {
+      var s = songOf(slug), pc = pendingChecks[slug], ch = pc.checks[pc.i];
+      if (text) {
+        // the check's line is the engine line at that moment; the slide blocks were
+        // built from these lines in order, so rebuild them in step
+        var li = -1, bestD = 1e9;
+        s.engineLines.forEach(function (l, i) { var d = Math.abs((l.t0 || 0) - (ch.t0 + 2)); if (d < bestD) { bestD = d; li = i; } });
+        if (li >= 0) {
+          s.engineLines[li].text = text; s.engineLines[li].status = 'verified';
+          var k = 0;
+          s.lyrics.forEach(function (b) { b.lines = b.lines.map(function (line) { var t = s.engineLines[k] ? s.engineLines[k].text : line; k++; return t; }); });
+        }
+      }
+      pc.i++;
+      if (pc.i >= pc.checks.length) {
+        delete pendingChecks[slug];
+        renderRail(); renderMain();
+        saveSong(slug);
+        return;
+      }
+      renderChecks(slug);
     }
     function useBlank(slug) {
       delete found[slug]; dirty[slug] = true;
@@ -534,21 +617,31 @@
         return;
       }
       if (finding[current]) {
+        var listening = finding[current].phase === 'listening';
         main.innerHTML = '<div class="main-head"><span class="main-title"></span></div>' +
-          '<div class="center"><div class="spinner"></div><h2>Finding the words</h2>' +
-          '<p>Searching YouTube and listening to the recording so the words match it. Usually 1–3 minutes. You can add other songs while you wait.</p>' +
+          '<div class="center"><div class="spinner"></div><h2>' + (listening ? 'Listening to the recording' : 'Finding the song') + '</h2>' +
+          '<p>' + (listening
+            ? 'The church computer is listening to the recording three separate ways and comparing what it hears, so the words match this exact version. About a minute when it’s on; if it’s off, this waits until it is.'
+            : 'Searching YouTube for the song. You can add other songs while you wait.') + '</p>' +
           '<p style="color:var(--ink-faint);font-size:12px" id="elapsed"></p></div>';
         main.querySelector('.main-title').textContent = songOf(current).title;
         paintElapsed(current);
         return;
       }
       if (found[current]) { renderCandidates(current); return; }
+      if (pendingChecks[current]) { renderChecks(current); return; }
       renderEditor(current);
     }
 
     function renderCandidates(slug) {
       var main = document.getElementById('main'), d = found[slug];
-      var cands = (d.candidates || []).filter(function (c) { return c.lyrics && c.lyrics.length; });
+      var rank = { verified: 0, check: 1, unverified: 2 };
+      var cands = (d.candidates || []).filter(function (c) { return c.lyrics && c.lyrics.length; })
+        .sort(function (a, b) {
+          var ra = rank[(a.engine || {}).verdict] ?? 3, rb = rank[(b.engine || {}).verdict] ?? 3;
+          if (ra !== rb) return ra - rb;
+          return ((a.engine || {}).checks || []).length - ((b.engine || {}).checks || []).length;
+        });
       var html = '<div class="main-head"><span class="main-title"></span><div class="main-actions">' +
                  '<button class="btn quiet" id="skipBtn">I’ll paste the words myself</button></div></div>';
       if (!cands.length) {
@@ -558,15 +651,20 @@
                 '<button class="btn primary" id="blankBtn">Paste them in</button></div>';
       } else {
         html += '<div class="cands">' + cands.map(function (c, i) {
-          var conf = c.confidence || 0, src = c.transcriptSource || 'none';
-          var how = (src === 'subs' || src === 'asr' || src === 'whisper') ? 'words heard from this recording'
+          var conf = c.confidence || 0, src = c.transcriptSource || 'none', eng = c.engine || null;
+          var v = eng ? eng.verdict : '';
+          var how = eng ? (v === 'verified' ? 'Every line verified — the listens, and the words we already had, agree'
+                          : v === 'check' ? (eng.checks || []).length + ' line' + ((eng.checks || []).length === 1 ? '' : 's') + ' to confirm by ear — the rest is verified'
+                          : 'Hard to hear — the words will need a look')
+                  : (src === 'subs' || src === 'asr' || src === 'whisper') ? 'words heard from this recording'
                   : src === 'description' ? 'words from the video description — check the order'
                   : 'words from memory, not this recording — check every line';
+          var badge = eng ? '<span class="verdict ' + v + '">' + (v === 'verified' ? 'Verified' : v === 'check' ? 'Quick check' : 'Unclear') + '</span> ' : '';
           return '<div class="cand' + (i === 0 ? ' best' : '') + '">' +
             '<a href="' + esc(c.url) + '" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/' + esc(c.videoId) + '/mqdefault.jpg" alt=""></a>' +
-            '<div><div class="t"></div><div class="f">' + esc(S.decodeEntities(c.channel || '')) + (c.duration ? ' · ' + esc(c.duration) : '') +
-            ' · <b class="' + (conf >= 80 ? '' : 'mid') + '">' + conf + '% match</b>' + (i === 0 ? ' · best guess' : '') +
-            '<br>' + how + '</div></div>' +
+            '<div><div class="t"></div><div class="f">' + badge + esc(S.decodeEntities(c.channel || '')) + (c.duration ? ' · ' + esc(c.duration) : '') +
+            (eng ? '' : ' · <b class="' + (conf >= 80 ? '' : 'mid') + '">' + conf + '% match</b>') + (i === 0 ? ' · best guess' : '') +
+            '<span class="how">' + how + '</span></div></div>' +
             '<div class="acts"><button class="btn primary" data-i="' + i + '">Use this one</button>' +
             '<a class="btn" href="' + esc(c.url) + '" target="_blank" rel="noopener">Listen &nearr;</a></div></div>';
         }).join('') + '</div>';
@@ -649,8 +747,26 @@
         dirty[slug] = false; LIB[slug] = JSON.parse(JSON.stringify(s));
         toast('Saved “' + s.title + '”.', 'ok');
         renderRail(); paintSaveState();
+        return storeVerified(slug, s);
       }).catch(function (e) { toast(e.message, 'err', true); })
         .then(function () { saving = false; var b = document.getElementById('saveBtn'); if (b) { b.disabled = false; b.textContent = 'Save'; } });
+    }
+
+    // A saved song is a human-confirmed recording: remember the exact words for this
+    // exact video, so the next time anyone adds it there is nothing to listen to.
+    function storeVerified(slug, s) {
+      var vid = S.videoId(s.youtube);
+      if (!vid) return;
+      var path = 'verified/' + vid + '.json';
+      var body = JSON.stringify({ videoId: vid, slug: slug, title: s.title, lyrics: s.lyrics,
+        lines: (s.engineLines || []).map(function (l) { return { text: l.text, t0: l.t0, t1: l.t1 }; }),
+        verifiedAt: new Date().toISOString(), by: 'worship studio' }, null, 1);
+      return getFile(path, true).then(function (f) { return f.sha; }, function () { return null; })
+        .then(function (sha) {
+          var payload = { message: 'verified: ' + s.title + ' (' + vid + ')', content: b64encode(body), branch: 'main' };
+          if (sha) payload.sha = sha;
+          return gh('/repos/' + REPO + '/contents/' + path, { method: 'PUT', body: JSON.stringify(payload) });
+        }).catch(function () { /* the library save already succeeded; this memory is best effort */ });
     }
 
     // "Ready for Sunday" = validate, then publish the set to Control/Display
