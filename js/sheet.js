@@ -119,6 +119,7 @@
           slug: s,
           title: (L[s] && L[s].title) || s,
           lyrics: (L[s] && L[s].lyrics) || null,
+          youtube: (L[s] && L[s].youtube) || '',
           approved: true
         };
       }));
