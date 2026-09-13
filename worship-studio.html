@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worship Studio — LBC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:        #0d0d0f;
+      --panel:     #161618;
+      --panel-2:   #1c1c1f;
+      --line:      #2a2a2e;
+      --line-soft: #202024;
+      --ink:       #ececed;
+      --ink-dim:   #9a9a9e;
+      --ink-faint: #6a6a6e;
+      --gold:      #c9a84c;
+      --good:      #7bb37e;
+      --warn:      #d8a657;
+      --bad:       #d98a7a;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    @font-face {
+      font-family: 'Priestacy';
+      src: url('fonts/Priestacy.woff') format('woff'),
+           url('fonts/Priestacy.otf') format('opentype');
+      font-display: swap;
+    }
+
+    html, body { background: var(--bg); color: var(--ink); font-family: var(--font); height: 100%; }
+    body { line-height: 1.5; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; }
+    a { color: inherit; }
+
+    /* ── header ─────────────────────────────── */
+    header {
+      border-bottom: 1px solid var(--line);
+      padding: 14px 22px;
+      display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    .brand { font-family: 'Priestacy', var(--font); font-size: 27px; }
+    .header-links { margin-left: auto; display: flex; gap: 16px; font-size: 13px; align-items: center; }
+    .header-links a { color: var(--ink-dim); text-decoration: none; }
+    .header-links a:hover { color: var(--ink); }
+
+    .btn {
+      font: inherit; font-size: 13px; font-weight: 500;
+      background: var(--panel-2); color: var(--ink); border: 1px solid var(--line);
+      padding: 7px 13px; border-radius: 6px; cursor: pointer; text-decoration: none;
+      display: inline-block; white-space: nowrap;
+    }
+    .btn:hover { border-color: var(--ink-faint); }
+    .btn:disabled { opacity: 0.4; cursor: default; }
+    .btn.primary { background: var(--gold); color: #16130a; border-color: var(--gold); font-weight: 600; }
+    .btn.primary:hover { filter: brightness(1.08); }
+    .btn.primary:disabled { background: var(--panel-2); color: var(--ink-faint); border-color: var(--line); filter: none; }
+    .btn.danger { color: var(--bad); }
+
+    /* ── setup gate ─────────────────────────── */
+    #gate { max-width: 620px; margin: 0 auto; padding: 48px 24px; }
+    #gate h1 { font-size: 21px; font-weight: 600; margin-bottom: 10px; }
+    #gate p { color: var(--ink-dim); font-size: 14px; margin-bottom: 16px; }
+    #gate ol { color: var(--ink-dim); font-size: 14px; margin: 0 0 18px 20px; }
+    #gate li { margin-bottom: 9px; }
+    #gate b { color: var(--ink); font-weight: 600; }
+    #gate code {
+      background: var(--panel-2); border: 1px solid var(--line);
+      padding: 1px 6px; border-radius: 4px; font-size: 12.5px; font-family: var(--mono);
+    }
+    .token-row { display: flex; gap: 8px; margin-top: 6px; }
+    .token-row input {
+      flex: 1; font: inherit; font-family: var(--mono); font-size: 13px;
+      background: var(--panel); color: var(--ink);
+      border: 1px solid var(--line); border-radius: 6px; padding: 9px 11px;
+    }
+    .gate-msg { font-size: 13px; margin-top: 12px; min-height: 20px; }
+    .gate-msg.err { color: var(--bad); }
+    .gate-msg.ok { color: var(--good); }
+
+    /* ── workspace ──────────────────────────── */
+    #work { flex: 1; display: grid; grid-template-columns: 258px 1fr; min-height: 0; }
+
+    .rail {
+      border-right: 1px solid var(--line); overflow-y: auto;
+      padding: 16px 14px; display: flex; flex-direction: column; gap: 6px;
+    }
+    .rail-label {
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--ink-faint); margin: 10px 0 4px;
+    }
+    .song-btn {
+      text-align: left; font: inherit; font-size: 13.5px;
+      background: none; border: 1px solid transparent; border-radius: 6px;
+      padding: 8px 10px; cursor: pointer; color: var(--ink-dim);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .song-btn:hover { background: var(--panel); color: var(--ink); }
+    .song-btn.active { background: var(--panel-2); border-color: var(--line); color: var(--ink); }
+    .song-btn .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    .song-btn .dot.off { background: var(--line); }
+    .song-btn .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .song-btn .unsaved { color: var(--warn); font-size: 15px; line-height: 1; }
+
+    .add-box { display: flex; gap: 6px; margin-top: 4px; }
+    .add-box input {
+      flex: 1; min-width: 0; font: inherit; font-size: 13px;
+      background: var(--panel); color: var(--ink);
+      border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px;
+    }
+    .add-box input::placeholder { color: var(--ink-faint); }
+
+    /* ── editor ─────────────────────────────── */
+    .main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+    .main-head {
+      padding: 14px 22px; border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap; flex-shrink: 0;
+    }
+    .main-title { font-size: 18px; font-weight: 600; }
+    .main-actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+    .save-state { font-size: 12.5px; color: var(--ink-faint); }
+    .save-state.dirty { color: var(--warn); }
+    .save-state.ok { color: var(--good); }
+
+    .panes { flex: 1; display: grid; grid-template-columns: 1fr 1fr; min-height: 0; }
+    .pane { display: flex; flex-direction: column; min-width: 0; min-height: 0; overflow: hidden; }
+    .pane + .pane { border-left: 1px solid var(--line); }
+    .pane-head {
+      padding: 9px 16px; font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-faint);
+      border-bottom: 1px solid var(--line-soft); flex-shrink: 0;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .pane-head .hint { font-weight: 400; letter-spacing: 0; text-transform: none; font-size: 11.5px; }
+
+    #lyricBox {
+      flex: 1; width: 100%; resize: none; font: inherit; font-size: 15px; line-height: 1.72;
+      background: var(--bg); color: var(--ink); border: 0; padding: 16px 20px; outline: none;
+      tab-size: 2;
+    }
+
+    .preview { flex: 1; overflow-y: auto; padding: 16px; }
+    .pv-slide {
+      border: 1px solid var(--line-soft); border-radius: 6px;
+      padding: 11px 13px; margin-bottom: 7px; background: var(--panel);
+    }
+    .pv-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 5px;
+    }
+    .pv-line { font-size: 14px; }
+    .pv-count { color: var(--ink-faint); font-weight: 400; letter-spacing: 0; text-transform: none; font-size: 11.5px; margin-left: auto; }
+
+    .video-strip { padding: 12px 16px; border-bottom: 1px solid var(--line-soft); flex-shrink: 0; }
+    .video-strip iframe { width: 100%; aspect-ratio: 16/9; border: 0; border-radius: 6px; background: #000; display: block; }
+    .video-strip .vid-row { display: flex; gap: 8px; margin-top: 8px; }
+    .video-strip input {
+      flex: 1; min-width: 0; font: inherit; font-size: 12.5px; font-family: var(--mono);
+      background: var(--panel); color: var(--ink-dim);
+      border: 1px solid var(--line); border-radius: 6px; padding: 6px 9px;
+    }
+
+    .empty-main { padding: 60px 24px; text-align: center; color: var(--ink-dim); font-size: 14px; }
+
+    #toast {
+      position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+      background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px;
+      padding: 11px 18px; font-size: 13.5px; z-index: 99;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+      max-width: 90vw;
+    }
+    #toast.show { opacity: 1; }
+    #toast.err { border-color: rgba(217,138,122,0.5); color: var(--bad); }
+    #toast.ok { border-color: rgba(123,179,126,0.45); color: var(--good); }
+
+    @media (max-width: 900px) {
+      #work { grid-template-columns: 1fr; }
+      .rail { border-right: 0; border-bottom: 1px solid var(--line); max-height: 190px; }
+      .panes { grid-template-columns: 1fr; }
+      .pane + .pane { border-left: 0; border-top: 1px solid var(--line); }
+      #lyricBox { min-height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span class="brand">Worship Studio</span>
+    <span class="header-links">
+      <a href="worship.html">Home</a>
+      <a href="worship-control.html">Control &rarr;</a>
+      <a href="worship-display.html" target="_blank" rel="noopener">Display &nearr;</a>
+      <button class="btn" id="signOut" style="display:none">Sign out</button>
+    </span>
+  </header>
+
+  <!-- ── one-time setup ─────────────────────── -->
+  <div id="gate" style="display:none">
+    <h1>Connect once, then never again</h1>
+    <p>
+      This page saves lyric edits straight into the song library. To do that it needs
+      permission to write to the church's website. That's a one-time setup on this
+      computer &mdash; about two minutes.
+    </p>
+    <ol>
+      <li>
+        Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener"><b>this GitHub page</b> &nearr;</a>
+        (sign in if it asks).
+      </li>
+      <li>Give it a name &mdash; anything, like <code>worship studio</code>.</li>
+      <li>Under <b>Expiration</b>, pick <code>No expiration</code> so you don't have to redo this.</li>
+      <li>Under <b>Repository access</b>, choose <b>Only select repositories</b> and pick
+          <code>legacy-bible-church</code>.</li>
+      <li>
+        Under <b>Permissions &rarr; Repository permissions</b>, set these two to
+        <b>Read and write</b>:
+        <br><code>Contents</code> &nbsp;and&nbsp; <code>Actions</code>
+      </li>
+      <li>Click <b>Generate token</b>, copy it, and paste it below.</li>
+    </ol>
+    <div class="token-row">
+      <input id="tokenInput" type="password" placeholder="github_pat_..." autocomplete="off" spellcheck="false">
+      <button class="btn primary" id="tokenSave">Connect</button>
+    </div>
+    <div class="gate-msg" id="gateMsg"></div>
+    <p style="margin-top:20px; font-size:12.5px; color:var(--ink-faint)">
+      The token is stored only in this browser, on this computer. It is never put on the
+      website and nobody else can see it. It can only touch this one repository &mdash;
+      you can delete it any time from GitHub's settings page.
+    </p>
+  </div>
+
+  <!-- ── workspace ──────────────────────────── -->
+  <div id="work" style="display:none">
+    <div class="rail" id="rail"></div>
+    <div class="main" id="main"></div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script src="js/songs-data.js"></script>
+  <script src="js/worship-songs.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var REPO = 'legacybiblechurch/legacy-bible-church';
+    var SONGS_PATH   = 'js/songs-data.js';
+    var SETLIST_PATH = 'js/worship-songs.js';
+    var TOKEN_KEY    = 'lbc-gh-token';
+
+    // songs-data.js declares LEGACY_SONGS with const, so it is not on window
+    var LIB = (typeof LEGACY_SONGS !== 'undefined') ? LEGACY_SONGS : {};
+    var SETLIST = Array.isArray(window.WORSHIP_SETLIST) ? window.WORSHIP_SETLIST.slice() : [];
+
+    // working copy: slug -> {title, youtube, lyrics}. Edits live here until saved.
+    var draft = {};
+    var dirty = {};        // slug -> true
+    var current = null;    // selected slug
+
+    // ─────────────────────────────────────────── token + GitHub API
+
+    function token() { try { return localStorage.getItem(TOKEN_KEY) || ''; } catch (e) { return ''; } }
+    function setToken(t) { try { t ? localStorage.setItem(TOKEN_KEY, t) : localStorage.removeItem(TOKEN_KEY); } catch (e) {} }
+
+    function gh(path, opts) {
+      opts = opts || {};
+      return fetch('https://api.github.com' + path, {
+        method: opts.method || 'GET',
+        headers: {
+          'Accept': 'application/vnd.github+json',
+          'Authorization': 'Bearer ' + token(),
+          'X-GitHub-Api-Version': '2022-11-28'
+        },
+        body: opts.body
+      }).then(function (r) {
+        return r.text().then(function (t) {
+          var j = null;
+          try { j = JSON.parse(t); } catch (e) {}
+          if (!r.ok) {
+            var msg = (j && j.message) || ('HTTP ' + r.status);
+            if (r.status === 401) msg = 'That token was rejected. It may be wrong or deleted.';
+            if (r.status === 403) msg = 'Token lacks permission. It needs Contents: Read and write on this repository.';
+            if (r.status === 404) msg = 'Token cannot see this repository. Check it was given access to legacy-bible-church.';
+            if (r.status === 409) msg = 'Someone else changed the file just now. Reload and redo this edit.';
+            var e = new Error(msg); e.status = r.status; throw e;
+          }
+          return j;
+        });
+      });
+    }
+
+    // base64 <-> utf8 that survives a 200KB file (no arg-spreading)
+    function b64encode(str) {
+      var bytes = new TextEncoder().encode(str), out = '', CH = 0x8000;
+      for (var i = 0; i < bytes.length; i += CH) {
+        out += String.fromCharCode.apply(null, bytes.subarray(i, i + CH));
+      }
+      return btoa(out);
+    }
+    function b64decode(b64) {
+      var bin = atob(String(b64).replace(/\s/g, ''));
+      var bytes = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return new TextDecoder().decode(bytes);
+    }
+
+    function getFile(path) {
+      return gh('/repos/' + REPO + '/contents/' + path + '?ref=main&cb=' + Date.now())
+        .then(function (j) { return { text: b64decode(j.content), sha: j.sha }; });
+    }
+    function putFile(path, text, sha, message) {
+      return gh('/repos/' + REPO + '/contents/' + path, {
+        method: 'PUT',
+        body: JSON.stringify({ message: message, content: b64encode(text), sha: sha, branch: 'main' })
+      });
+    }
+
+    // ─────────────────────────────────────────── songs-data.js serializer
+    // Mirrors scripts/prep/lib_songs.py _emit_song exactly, so a song written from
+    // this page is byte-identical to one written by the Action. Verified by that
+    // module's `--check` round-trip.
+
+    function emitStr(s) {
+      return '"' + String(s == null ? '' : s).replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
+    }
+    function emitSong(slug, song) {
+      var blocks = (song.lyrics || []).map(function (b) {
+        return '    { label: ' + emitStr(b.label || '') +
+               ', lines: [' + (b.lines || []).map(emitStr).join(', ') + '] }';
+      }).join(',\n');
+      return '  ' + emitStr(slug) + ': {\n' +
+             '    title: ' + emitStr(song.title) + ',\n' +
+             '    youtube: ' + emitStr(song.youtube || '') + ',\n' +
+             '    lyrics: [\n' + blocks + '\n  ]\n  }';
+    }
+
+    // Surgical: replace only this song's block, leaving the other 128 untouched.
+    // Song keys are the only thing in the file that start a line with two spaces
+    // and a quote, so that anchor is unambiguous.
+    function spliceSong(fileText, slug, song) {
+      var objEnd = fileText.indexOf('\n};');
+      if (objEnd === -1) throw new Error('songs-data.js: could not find end of LEGACY_SONGS');
+      var start = fileText.indexOf('\n  ' + emitStr(slug) + ': {');
+      var emitted = emitSong(slug, song);
+      if (start === -1 || start > objEnd) {           // new song -> append
+        return fileText.slice(0, objEnd) + ',\n' + emitted + fileText.slice(objEnd);
+      }
+      var next = fileText.indexOf('\n  "', start + 1);
+      if (next === -1 || next > objEnd) next = objEnd;
+      return fileText.slice(0, start) + '\n' + emitted + ',' + fileText.slice(next);
+    }
+
+    // Never commit a file we cannot parse back. Runs the candidate text and checks
+    // the library is intact and the edit actually landed.
+    function verify(fileText, slug, song, expectCount) {
+      var obj;
+      try {
+        obj = new Function(fileText + '\n;return LEGACY_SONGS;')();
+      } catch (e) {
+        throw new Error('Refusing to save: the rebuilt file would not parse (' + e.message + ')');
+      }
+      var n = Object.keys(obj).length;
+      if (n !== expectCount) {
+        throw new Error('Refusing to save: song count changed ' + expectCount + ' -> ' + n);
+      }
+      if (JSON.stringify(obj[slug]) !== JSON.stringify(song)) {
+        throw new Error('Refusing to save: the edit did not round-trip cleanly');
+      }
+      return true;
+    }
+
+    // ─────────────────────────────────────────── lyrics text <-> blocks
+    // Plain text is the editor. A blank line starts a new slide. A line in
+    // [brackets] on its own names the slide (Control only; never shown on the TV).
+
+    function blocksToText(lyrics) {
+      return (lyrics || []).map(function (b) {
+        var head = b.label ? '[' + b.label + ']\n' : '';
+        return head + (b.lines || []).join('\n');
+      }).join('\n\n');
+    }
+    function textToBlocks(text) {
+      return String(text).replace(/\r/g, '').split(/\n\s*\n/)
+        .map(function (chunk) {
+          var lines = chunk.split('\n').map(function (l) { return l.trim(); }).filter(Boolean);
+          if (!lines.length) return null;
+          var label = '';
+          var m = lines[0].match(/^\[(.*)\]$/);
+          if (m) { label = m[1].trim(); lines = lines.slice(1); }
+          if (!lines.length) return null;
+          return { label: label, lines: lines };
+        })
+        .filter(Boolean);
+    }
+
+    function videoId(url) {
+      var m = String(url || '').match(/(?:v=|\/shorts\/|youtu\.be\/|\/embed\/|\/live\/)([A-Za-z0-9_-]{11})/);
+      if (m) return m[1];
+      return /^[A-Za-z0-9_-]{11}$/.test(String(url || '').trim()) ? String(url).trim() : '';
+    }
+    function slugify(s) {
+      return String(s).toLowerCase().normalize('NFKD')
+        .replace(/['’]/g, '').replace(/&/g, 'and')
+        .replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
+    }
+
+    // ─────────────────────────────────────────── UI
+
+    function toast(msg, kind) {
+      var el = document.getElementById('toast');
+      el.textContent = msg;
+      el.className = 'show' + (kind ? ' ' + kind : '');
+      clearTimeout(toast._t);
+      toast._t = setTimeout(function () { el.className = ''; }, kind === 'err' ? 7000 : 3200);
+    }
+
+    function songOf(slug) {
+      if (!draft[slug]) {
+        var src = LIB[slug] || { title: slug, youtube: '', lyrics: [] };
+        draft[slug] = {
+          title: src.title || slug,
+          youtube: src.youtube || '',
+          lyrics: JSON.parse(JSON.stringify(src.lyrics || []))
+        };
+      }
+      return draft[slug];
+    }
+
+    function allSlugs() {
+      var seen = {}, out = [];
+      SETLIST.concat(Object.keys(draft)).forEach(function (s) {
+        if (!seen[s]) { seen[s] = 1; out.push(s); }
+      });
+      return out;
+    }
+
+    function renderRail() {
+      var rail = document.getElementById('rail');
+      rail.innerHTML = '';
+
+      var lbl = document.createElement('div');
+      lbl.className = 'rail-label';
+      lbl.textContent = "This Sunday";
+      rail.appendChild(lbl);
+
+      var slugs = allSlugs();
+      if (!slugs.length) {
+        var none = document.createElement('div');
+        none.style.cssText = 'font-size:13px;color:var(--ink-faint);padding:4px 10px';
+        none.textContent = 'No songs yet.';
+        rail.appendChild(none);
+      }
+      slugs.forEach(function (slug) {
+        var s = songOf(slug);
+        var b = document.createElement('button');
+        b.className = 'song-btn' + (slug === current ? ' active' : '');
+        b.innerHTML = '<span class="dot' + (SETLIST.indexOf(slug) === -1 ? ' off' : '') + '"></span>' +
+                      '<span class="nm"></span>' +
+                      (dirty[slug] ? '<span class="unsaved" title="unsaved">&bull;</span>' : '');
+        b.querySelector('.nm').textContent = s.title;
+        b.onclick = function () { select(slug); };
+        rail.appendChild(b);
+      });
+
+      var lbl2 = document.createElement('div');
+      lbl2.className = 'rail-label';
+      lbl2.textContent = 'Add a song';
+      rail.appendChild(lbl2);
+
+      var box = document.createElement('div');
+      box.className = 'add-box';
+      box.innerHTML = '<input id="addName" placeholder="Song name" autocomplete="off">';
+      var addBtn = document.createElement('button');
+      addBtn.className = 'btn';
+      addBtn.textContent = 'Add';
+      box.appendChild(addBtn);
+      rail.appendChild(box);
+
+      function doAdd() {
+        var name = box.querySelector('#addName').value.trim();
+        if (!name) return;
+        addSong(name);
+        box.querySelector('#addName').value = '';
+      }
+      addBtn.onclick = doAdd;
+      box.querySelector('#addName').onkeydown = function (e) { if (e.key === 'Enter') doAdd(); };
+    }
+
+    function addSong(name) {
+      var slug = slugify(name);
+      // already in the library? just open it.
+      if (LIB[slug]) {
+        if (SETLIST.indexOf(slug) === -1) SETLIST.push(slug);
+        select(slug);
+        saveSetlist();
+        return;
+      }
+      // otherwise start a blank one the person can paste into
+      draft[slug] = { title: name, youtube: '', lyrics: [] };
+      dirty[slug] = true;
+      if (SETLIST.indexOf(slug) === -1) SETLIST.push(slug);
+      select(slug);
+      toast('Blank song created. Paste the YouTube link and the words, then Save.', 'ok');
+    }
+
+    function select(slug) {
+      current = slug;
+      renderRail();
+      renderMain();
+    }
+
+    function renderMain() {
+      var main = document.getElementById('main');
+      if (!current) {
+        main.innerHTML = '<div class="empty-main">Pick a song on the left, or add one.</div>';
+        return;
+      }
+      var s = songOf(current);
+      var vid = videoId(s.youtube);
+      var inSet = SETLIST.indexOf(current) !== -1;
+
+      main.innerHTML =
+        '<div class="main-head">' +
+          '<span class="main-title"></span>' +
+          '<div class="main-actions">' +
+            '<span class="save-state" id="saveState"></span>' +
+            '<button class="btn" id="setToggle"></button>' +
+            '<button class="btn primary" id="saveBtn">Save</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="panes">' +
+          '<div class="pane">' +
+            '<div class="video-strip">' +
+              (vid ? '<iframe src="https://www.youtube.com/embed/' + vid + '" allow="encrypted-media" referrerpolicy="origin-when-cross-origin"></iframe>' : '') +
+              '<div class="vid-row">' +
+                '<input id="vidInput" placeholder="Paste the YouTube link" spellcheck="false">' +
+              '</div>' +
+            '</div>' +
+            '<div class="pane-head">Words' +
+              '<span class="hint">blank line = new slide &nbsp;&middot;&nbsp; [Chorus] names a slide</span>' +
+            '</div>' +
+            '<textarea id="lyricBox" spellcheck="true"></textarea>' +
+          '</div>' +
+          '<div class="pane">' +
+            '<div class="pane-head">On the screen<span class="pv-count" id="pvCount"></span></div>' +
+            '<div class="preview" id="preview"></div>' +
+          '</div>' +
+        '</div>';
+
+      main.querySelector('.main-title').textContent = s.title;
+      var setBtn = document.getElementById('setToggle');
+      setBtn.textContent = inSet ? 'In Sunday’s set' : 'Not in the set';
+      setBtn.onclick = function () {
+        var i = SETLIST.indexOf(current);
+        if (i === -1) SETLIST.push(current); else SETLIST.splice(i, 1);
+        renderRail(); renderMain();
+        saveSetlist();
+      };
+
+      var vidIn = document.getElementById('vidInput');
+      vidIn.value = s.youtube || '';
+      vidIn.onchange = function () {
+        s.youtube = vidIn.value.trim();
+        dirty[current] = true;
+        renderRail(); renderMain();
+      };
+
+      var box = document.getElementById('lyricBox');
+      box.value = blocksToText(s.lyrics);
+      box.oninput = function () {
+        s.lyrics = textToBlocks(box.value);
+        dirty[current] = true;
+        paintPreview(s);
+        paintSaveState();
+        // cheap rail refresh only when the unsaved marker needs to appear
+        if (!document.querySelector('.song-btn.active .unsaved')) renderRail();
+      };
+
+      document.getElementById('saveBtn').onclick = function () { saveSong(current); };
+      paintPreview(s);
+      paintSaveState();
+    }
+
+    // mirrors worship-display.html's slide builder so the preview is truthful
+    function perSlide(lines) {
+      var avg = lines.join(' ').length / Math.max(lines.length, 1);
+      return avg > 38 ? 2 : 4;
+    }
+    function buildSlides(lyrics) {
+      var out = [];
+      (lyrics || []).forEach(function (b) {
+        var lines = b.lines || [], n = perSlide(lines);
+        for (var i = 0; i < lines.length; i += n) out.push({ label: b.label || '', lines: lines.slice(i, i + n) });
+      });
+      return out;
+    }
+    function paintPreview(s) {
+      var slides = buildSlides(s.lyrics);
+      var pv = document.getElementById('preview');
+      pv.innerHTML = '';
+      slides.forEach(function (sl) {
+        var d = document.createElement('div');
+        d.className = 'pv-slide';
+        if (sl.label) {
+          var l = document.createElement('div');
+          l.className = 'pv-label'; l.textContent = sl.label;
+          d.appendChild(l);
+        }
+        sl.lines.forEach(function (line) {
+          var p = document.createElement('div');
+          p.className = 'pv-line'; p.textContent = line;
+          d.appendChild(p);
+        });
+        pv.appendChild(d);
+      });
+      document.getElementById('pvCount').textContent =
+        slides.length + (slides.length === 1 ? ' slide' : ' slides');
+    }
+    function paintSaveState() {
+      var el = document.getElementById('saveState');
+      if (!el) return;
+      if (dirty[current]) { el.textContent = 'Unsaved'; el.className = 'save-state dirty'; }
+      else { el.textContent = ''; el.className = 'save-state'; }
+    }
+
+    // ─────────────────────────────────────────── saving
+
+    var saving = false;
+    function saveSong(slug) {
+      if (saving) return;
+      var s = songOf(slug);
+      if (!s.lyrics.length) { toast('Nothing to save yet — add some words first.', 'err'); return; }
+      saving = true;
+      var btn = document.getElementById('saveBtn');
+      if (btn) { btn.disabled = true; btn.textContent = 'Saving…'; }
+
+      getFile(SONGS_PATH).then(function (f) {
+        var before = new Function(f.text + '\n;return LEGACY_SONGS;')();
+        var count = Object.keys(before).length + (before[slug] ? 0 : 1);
+        var next = spliceSong(f.text, slug, s);
+        verify(next, slug, s, count);
+        return putFile(SONGS_PATH, next, f.sha,
+          'worship studio: update lyrics for ' + s.title + '\n\nEdited in Worship Studio by hand.');
+      }).then(function () {
+        dirty[slug] = false;
+        LIB[slug] = JSON.parse(JSON.stringify(s));
+        toast('Saved. It goes live in about a minute.', 'ok');
+        renderRail(); paintSaveState();
+      }).catch(function (e) {
+        toast(e.message, 'err');
+      }).then(function () {
+        saving = false;
+        var b = document.getElementById('saveBtn');
+        if (b) { b.disabled = false; b.textContent = 'Save'; }
+      });
+    }
+
+    var setlistTimer = null;
+    function saveSetlist() {
+      clearTimeout(setlistTimer);
+      setlistTimer = setTimeout(function () {
+        var body = SETLIST.map(function (s) { return "  '" + s + "',\n"; }).join('');
+        var text =
+          '/**\n' +
+          ' * LBC Sunday Setlist\n' +
+          ' * ──────────────────\n' +
+          ' * Set in Worship Studio.\n' +
+          ' */\n\n' +
+          'window.WORSHIP_SETLIST = [\n' + body + '];\n';
+        getFile(SETLIST_PATH).then(function (f) {
+          return putFile(SETLIST_PATH, text, f.sha, 'worship studio: update Sunday setlist');
+        }).then(function () {
+          toast('Setlist updated.', 'ok');
+        }).catch(function (e) { toast(e.message, 'err'); });
+      }, 600);
+    }
+
+    // ─────────────────────────────────────────── boot
+
+    function showGate(msg, kind) {
+      document.getElementById('gate').style.display = '';
+      document.getElementById('work').style.display = 'none';
+      document.getElementById('signOut').style.display = 'none';
+      if (msg) {
+        var m = document.getElementById('gateMsg');
+        m.textContent = msg; m.className = 'gate-msg ' + (kind || '');
+      }
+    }
+    function showWork() {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('work').style.display = '';
+      document.getElementById('signOut').style.display = '';
+      SETLIST.forEach(songOf);
+      if (!current) current = SETLIST[0] || null;
+      renderRail();
+      renderMain();
+    }
+
+    document.getElementById('tokenSave').onclick = function () {
+      var t = document.getElementById('tokenInput').value.trim();
+      if (!t) return;
+      setToken(t);
+      var m = document.getElementById('gateMsg');
+      m.textContent = 'Checking…'; m.className = 'gate-msg';
+      gh('/repos/' + REPO).then(function (r) {
+        if (!r.permissions || !r.permissions.push) {
+          throw new Error('That token can read the site but not write to it. Set Contents to "Read and write".');
+        }
+        showWork();
+      }).catch(function (e) {
+        setToken('');
+        showGate(e.message, 'err');
+      });
+    };
+    document.getElementById('tokenInput').onkeydown = function (e) {
+      if (e.key === 'Enter') document.getElementById('tokenSave').click();
+    };
+    document.getElementById('signOut').onclick = function () {
+      if (Object.keys(dirty).some(function (k) { return dirty[k]; }) &&
+          !confirm('You have unsaved edits. Sign out anyway?')) return;
+      setToken('');
+      location.reload();
+    };
+
+    window.addEventListener('beforeunload', function (e) {
+      if (Object.keys(dirty).some(function (k) { return dirty[k]; })) {
+        e.preventDefault(); e.returnValue = '';
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+        e.preventDefault();
+        if (current && dirty[current]) saveSong(current);
+      }
+    });
+
+    if (token()) {
+      gh('/repos/' + REPO).then(function (r) {
+        if (!r.permissions || !r.permissions.push) throw new Error('Token cannot write to the site.');
+        showWork();
+      }).catch(function (e) { setToken(''); showGate(e.message, 'err'); });
+    } else {
+      showGate();
+    }
+  })();
+  </script>
+</body>
+</html>
