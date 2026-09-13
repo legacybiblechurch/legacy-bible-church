@@ -1,0 +1,20 @@
+name: yt-diag
+on: { workflow_dispatch: {} }
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q -U yt-dlp
+      - name: try clients
+        run: |
+          yt-dlp --version
+          for c in default tv web_safari ios android mweb tv_embedded web_embedded; do
+            echo "=== client=$c"
+            if yt-dlp -q --no-warnings --extractor-args "youtube:player_client=$c" -f "bestaudio[ext=m4a]/bestaudio" -o "out_$c.%(ext)s" "https://www.youtube.com/watch?v=avFBQh0iWMI" 2>err.txt; then
+              ls -la out_$c.* && echo "OK via $c"
+            else
+              tail -1 err.txt
+            fi
+          done
