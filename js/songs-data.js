@@ -1350,7 +1350,9 @@ const LEGACY_SONGS = {
     { label: "Verse 4", lines: ["I will not boast in wealth or might", "Or human wisdom's fleeting light", "But I will boast in knowing Christ", "At the cross"] },
     { label: "Chorus", lines: ["I rejoice in my Redeemer", "Greatest treasure", "Wellspring of my soul", "I will trust in Him, no other", "My soul is satisfied", "In Him alone"] },
     { label: "Verse 5", lines: ["Two wonders here that I confess", "My worth and my unworthiness", "My value fixed, my ransom paid", "At the cross"] },
-    { label: "Chorus", lines: ["I rejoice in my Redeemer", "Greatest treasure", "Wellspring of my soul", "I will trust in Him, no other", "My soul is satisfied", "In Him alone"] }
+    { label: "Chorus", lines: ["I rejoice in my Redeemer", "Greatest treasure", "Wellspring of my soul", "I will trust in Him, no other", "My soul is satisfied", "In Him alone"] },
+    { label: "", lines: ["I rejoice in my Redeemer", "Greatest treasure", "Wellspring of my soul"] },
+    { label: "", lines: ["I will trust in Him no other", "My soul is satisfied in Him alone"] }
   ]
   },
   "not-in-me": {
