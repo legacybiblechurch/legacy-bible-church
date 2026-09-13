@@ -218,9 +218,11 @@
       <li>Under <b>Repository access</b>, choose <b>Only select repositories</b> and pick
           <code>legacy-bible-church</code>.</li>
       <li>
-        Under <b>Permissions &rarr; Repository permissions</b>, set these two to
-        <b>Read and write</b>:
-        <br><code>Contents</code> &nbsp;and&nbsp; <code>Actions</code>
+        Under <b>Permissions &rarr; Repository permissions</b>, find <code>Contents</code>
+        and change its dropdown from <i>Read-only</i> to <b>Read and write</b>.
+        <br>
+        <span style="color:var(--warn)">This is the step everything depends on. If it
+        says Read-only, saving will fail.</span>
       </li>
       <li>Click <b>Generate token</b>, copy it, and paste it below.</li>
     </ol>
@@ -255,6 +257,11 @@
     var SETLIST_PATH = 'js/worship-songs.js';
     var TOKEN_KEY    = 'lbc-gh-token';
 
+    var NEEDS_WRITE = 'This token can read the site but not write to it. Open ' +
+      'github.com/settings/personal-access-tokens, click your token, and under ' +
+      'Repository permissions set Contents to "Read and write", then Update token. ' +
+      'No need to re-paste it here.';
+
     // songs-data.js declares LEGACY_SONGS with const, so it is not on window
     var LIB = (typeof LEGACY_SONGS !== 'undefined') ? LEGACY_SONGS : {};
     var SETLIST = Array.isArray(window.WORSHIP_SETLIST) ? window.WORSHIP_SETLIST.slice() : [];
@@ -286,7 +293,7 @@
           if (!r.ok) {
             var msg = (j && j.message) || ('HTTP ' + r.status);
             if (r.status === 401) msg = 'That token was rejected. It may be wrong or deleted.';
-            if (r.status === 403) msg = 'Token lacks permission. It needs Contents: Read and write on this repository.';
+            if (r.status === 403) msg = NEEDS_WRITE;
             if (r.status === 404) msg = 'Token cannot see this repository. Check it was given access to legacy-bible-church.';
             if (r.status === 409) msg = 'Someone else changed the file just now. Reload and redo this edit.';
             var e = new Error(msg); e.status = r.status; throw e;
@@ -309,6 +316,30 @@
       var bytes = new Uint8Array(bin.length);
       for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
       return new TextDecoder().decode(bytes);
+    }
+
+    // Confirms the token can actually WRITE, which the repo endpoint cannot tell us:
+    // for fine-grained tokens its `permissions` block reflects the person's own access
+    // to the repo, not what the token was scoped to. So a read-only token sails
+    // through that check and only fails later, on save.
+    //
+    // Asking to create a ref that already exists is a real write call with no effect:
+    // 403 = the token has no write permission, 422 "already exists" = it does.
+    function checkAccess() {
+      return gh('/repos/' + REPO).then(function () {
+        return fetch('https://api.github.com/repos/' + REPO + '/git/refs', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/vnd.github+json',
+            'Authorization': 'Bearer ' + token(),
+            'X-GitHub-Api-Version': '2022-11-28'
+          },
+          body: JSON.stringify({ ref: 'refs/heads/main', sha: '0'.repeat(40) })
+        });
+      }).then(function (r) {
+        if (r.status === 403 || r.status === 401) throw new Error(NEEDS_WRITE);
+        return true;   // 422 (exists / bad sha) means the write path is open to us
+      });
     }
 
     function getFile(path) {
@@ -704,18 +735,14 @@
     }
 
     document.getElementById('tokenSave').onclick = function () {
-      var t = document.getElementById('tokenInput').value.trim();
+      // falls back to the stored token, so after fixing permissions on GitHub you can
+      // just press the button again instead of digging the token out a second time
+      var t = document.getElementById('tokenInput').value.trim() || token();
       if (!t) return;
       setToken(t);
       var m = document.getElementById('gateMsg');
       m.textContent = 'Checking…'; m.className = 'gate-msg';
-      gh('/repos/' + REPO).then(function (r) {
-        if (!r.permissions || !r.permissions.push) {
-          throw new Error('That token can read the site but not write to it. Set Contents to "Read and write".');
-        }
-        showWork();
-      }).catch(function (e) {
-        setToken('');
+      checkAccess().then(showWork).catch(function (e) {
         showGate(e.message, 'err');
       });
     };
@@ -742,10 +769,13 @@
     });
 
     if (token()) {
-      gh('/repos/' + REPO).then(function (r) {
-        if (!r.permissions || !r.permissions.push) throw new Error('Token cannot write to the site.');
-        showWork();
-      }).catch(function (e) { setToken(''); showGate(e.message, 'err'); });
+      // keep the token on failure - it is usually a permission that needs widening,
+      // not a bad token, and making them paste it again to retry is pure friction
+      checkAccess().then(showWork).catch(function (e) {
+        showGate(e.message, 'err');
+        var b = document.getElementById('tokenSave');
+        if (b) b.textContent = 'Try again';
+      });
     } else {
       showGate();
     }
