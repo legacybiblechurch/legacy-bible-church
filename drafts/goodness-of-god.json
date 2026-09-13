@@ -1,0 +1,274 @@
+{
+  "slug": "goodness-of-god",
+  "title": "Goodness of God",
+  "input": "Goodness of God",
+  "isNew": true,
+  "forced": null,
+  "signature": "5b582436e574dd6f",
+  "generatedAt": "2026-09-13T19:16:30+00:00",
+  "titleKey": "goodness of god",
+  "searchCandidates": [
+    {
+      "videoId": "-f4MUUMWMV4",
+      "url": "https://www.youtube.com/watch?v=-f4MUUMWMV4",
+      "title": "Goodness Of God (Lyrics) ~ Bethel Music",
+      "channel": "music meets heaven",
+      "publishedAt": "2019-02-08T23:00:00Z",
+      "durationSec": 304,
+      "duration": "5:04",
+      "views": 151408845,
+      "hasCaptions": false
+    },
+    {
+      "videoId": "9sE5kEnitqE",
+      "url": "https://www.youtube.com/watch?v=9sE5kEnitqE",
+      "title": "CeCe Winans - Goodness of God (Official Video)",
+      "channel": "CeCeWinansVEVO",
+      "publishedAt": "2022-09-14T16:00:18Z",
+      "durationSec": 296,
+      "duration": "4:56",
+      "views": 275619113,
+      "hasCaptions": false
+    },
+    {
+      "videoId": "9LSN-cAdtTM",
+      "url": "https://www.youtube.com/watch?v=9LSN-cAdtTM",
+      "title": "Goodness of God-Cece Winans Lyrics",
+      "channel": "SOX MAN GH",
+      "publishedAt": "2022-01-24T15:58:35Z",
+      "durationSec": 275,
+      "duration": "4:35",
+      "views": 15090794,
+      "hasCaptions": false
+    },
+    {
+      "videoId": "IvSuGyJQ6oM",
+      "url": "https://www.youtube.com/watch?v=IvSuGyJQ6oM",
+      "title": "Goodness of God (Official Lyric Video) - Bethel Music &amp; Jenn Johnson | VICTORY",
+      "channel": "Bethel Music",
+      "publishedAt": "2019-01-25T14:59:47Z",
+      "durationSec": 295,
+      "duration": "4:55",
+      "views": 13030401,
+      "hasCaptions": false
+    },
+    {
+      "videoId": "-AwLTeMyq20",
+      "url": "https://www.youtube.com/watch?v=-AwLTeMyq20",
+      "title": "CeCe Winans - Goodness of God (Official Lyric Video)",
+      "channel": "CeCeWinansVEVO",
+      "publishedAt": "2022-08-03T07:00:00Z",
+      "durationSec": 298,
+      "duration": "4:58",
+      "views": 7012369,
+      "hasCaptions": false
+    },
+    {
+      "videoId": "uvdLA6praRY",
+      "url": "https://www.youtube.com/watch?v=uvdLA6praRY",
+      "title": "Goodness of God Lyrics - CeCe Winans",
+      "channel": "BlessingsnBreakthroughs",
+      "publishedAt": "2022-04-21T18:20:42Z",
+      "durationSec": 295,
+      "duration": "4:55",
+      "views": 233911,
+      "hasCaptions": false
+    },
+    {
+      "videoId": "LWI50WoQDf4",
+      "url": "https://www.youtube.com/watch?v=LWI50WoQDf4",
+      "title": "Goodness of God (with Lyrics) ✝️ Beautiful Christian Worship Song with Lyrics",
+      "channel": "DonMoenTV",
+      "publishedAt": "2026-04-23T11:00:38Z",
+      "durationSec": 283,
+      "duration": "4:43",
+      "views": 94613,
+      "hasCaptions": false
+    },
+    {
+      "videoId": "dyv4h8_qg2c",
+      "url": "https://www.youtube.com/watch?v=dyv4h8_qg2c",
+      "title": "GOODNESS OF GOD Lyrics ~  Bethel Music",
+      "channel": "House Of God",
+      "publishedAt": "2023-06-05T10:06:59Z",
+      "durationSec": 304,
+      "duration": "5:04",
+      "views": 26128,
+      "hasCaptions": false
+    }
+  ],
+  "candidates": [
+    {
+      "videoId": "-f4MUUMWMV4",
+      "url": "https://www.youtube.com/watch?v=-f4MUUMWMV4",
+      "title": "Goodness Of God (Lyrics) ~ Bethel Music",
+      "channel": "music meets heaven",
+      "publishedAt": "2019-02-08T23:00:00Z",
+      "durationSec": 304,
+      "duration": "5:04",
+      "views": 151408845,
+      "hasCaptions": false,
+      "lyrics": [
+        {
+          "label": "Verse 1",
+          "lines": [
+            "What love is this, oh what a love",
+            "What a love that never ends",
+            "What a love that lifts me up",
+            "When I'm weak, You lift me up"
+          ]
+        },
+        {
+          "label": "Chorus",
+          "lines": [
+            "All my life You have been faithful",
+            "All my life You have been so good",
+            "All my life You have been faithful",
+            "All my life You have been so good"
+          ]
+        },
+        {
+          "label": "Verse 2",
+          "lines": [
+            "I have seen Your love in the storm",
+            "I have felt Your love in the night",
+            "I have walked through fire and rain",
+            "You have been there each time"
+          ]
+        },
+        {
+          "label": "Bridge",
+          "lines": [
+            "Your goodness is never ending",
+            "Your love is never ending",
+            "Your grace is always there",
+            "Your mercy never fails"
+          ]
+        },
+        {
+          "label": "Tag",
+          "lines": [
+            "All my life You have been faithful",
+            "All my life You have been so good"
+          ]
+        }
+      ],
+      "transcriptSource": "fromtitle",
+      "confidence": 30,
+      "notes": "Best effort based on known lyrics; may contain minor variations.",
+      "order": "['Verse 1', 'Chorus', 'Verse 2', 'Bridge', 'Tag']"
+    },
+    {
+      "videoId": "9sE5kEnitqE",
+      "url": "https://www.youtube.com/watch?v=9sE5kEnitqE",
+      "title": "CeCe Winans - Goodness of God (Official Video)",
+      "channel": "CeCeWinansVEVO",
+      "publishedAt": "2022-09-14T16:00:18Z",
+      "durationSec": 296,
+      "duration": "4:56",
+      "views": 275619113,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "9LSN-cAdtTM",
+      "url": "https://www.youtube.com/watch?v=9LSN-cAdtTM",
+      "title": "Goodness of God-Cece Winans Lyrics",
+      "channel": "SOX MAN GH",
+      "publishedAt": "2022-01-24T15:58:35Z",
+      "durationSec": 275,
+      "duration": "4:35",
+      "views": 15090794,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "IvSuGyJQ6oM",
+      "url": "https://www.youtube.com/watch?v=IvSuGyJQ6oM",
+      "title": "Goodness of God (Official Lyric Video) - Bethel Music &amp; Jenn Johnson | VICTORY",
+      "channel": "Bethel Music",
+      "publishedAt": "2019-01-25T14:59:47Z",
+      "durationSec": 295,
+      "duration": "4:55",
+      "views": 13030401,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "-AwLTeMyq20",
+      "url": "https://www.youtube.com/watch?v=-AwLTeMyq20",
+      "title": "CeCe Winans - Goodness of God (Official Lyric Video)",
+      "channel": "CeCeWinansVEVO",
+      "publishedAt": "2022-08-03T07:00:00Z",
+      "durationSec": 298,
+      "duration": "4:58",
+      "views": 7012369,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "uvdLA6praRY",
+      "url": "https://www.youtube.com/watch?v=uvdLA6praRY",
+      "title": "Goodness of God Lyrics - CeCe Winans",
+      "channel": "BlessingsnBreakthroughs",
+      "publishedAt": "2022-04-21T18:20:42Z",
+      "durationSec": 295,
+      "duration": "4:55",
+      "views": 233911,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "LWI50WoQDf4",
+      "url": "https://www.youtube.com/watch?v=LWI50WoQDf4",
+      "title": "Goodness of God (with Lyrics) ✝️ Beautiful Christian Worship Song with Lyrics",
+      "channel": "DonMoenTV",
+      "publishedAt": "2026-04-23T11:00:38Z",
+      "durationSec": 283,
+      "duration": "4:43",
+      "views": 94613,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    },
+    {
+      "videoId": "dyv4h8_qg2c",
+      "url": "https://www.youtube.com/watch?v=dyv4h8_qg2c",
+      "title": "GOODNESS OF GOD Lyrics ~  Bethel Music",
+      "channel": "House Of God",
+      "publishedAt": "2023-06-05T10:06:59Z",
+      "durationSec": 304,
+      "duration": "5:04",
+      "views": 26128,
+      "hasCaptions": false,
+      "lyrics": null,
+      "transcriptSource": "none",
+      "confidence": 0,
+      "notes": "No transcript (yt-dlp blocked by YouTube this run).",
+      "order": ""
+    }
+  ]
+}
