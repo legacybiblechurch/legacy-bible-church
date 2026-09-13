@@ -430,9 +430,19 @@ def draft_one(name: str, video: str = "") -> None:
         import engine as eng
         known = None if d.get("isNew") else d["slug"]
         settled = False
-        for c in d["candidates"][:3]:
+        import tempfile
+        import sources as esrc
+        audio_dir = Path(tempfile.mkdtemp(prefix="lbc-audio-"))
+        can_fetch = bool(os.environ.get("YT_PROXY"))
+        listened = False
+        for c in d["candidates"][:2]:
+            audio = esrc.fetch_audio(c["videoId"], audio_dir) if can_fetch else None
+            if can_fetch and not audio:
+                c.setdefault("notes", "")
+                c["fetchError"] = esrc.FETCH_ERROR
+            listened = listened or bool(audio)
             try:
-                res = eng.analyze(c["url"], known, None)
+                res = eng.analyze(c["url"], known, audio)
             except Exception as e:  # noqa: BLE001
                 c["engine"] = {"verdict": "unverified", "report": {"note": f"engine error: {str(e)[:120]}"}}
                 continue
@@ -445,7 +455,10 @@ def draft_one(name: str, video: str = "") -> None:
                 c["lyrics"] = None; c["confidence"] = 0; c["transcriptSource"] = "none"
                 c["notes"] = "Waiting to listen to the recording."
             settled = settled or res["verdict"] == "verified"
-        d["needsAudio"] = not settled
+        # audio was actually listened to here -> nothing left for a listener machine
+        d["needsAudio"] = not settled and not listened
+        if listened:
+            d["listenedAt"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
         _draft_path(d["slug"]).write_text(json.dumps(d, indent=2, ensure_ascii=False))
         print(json.dumps({"slug": d["slug"], "candidates": len(d["candidates"]),
                           "needsAudio": d["needsAudio"]}))

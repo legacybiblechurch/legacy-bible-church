@@ -99,6 +99,34 @@ def verified_recording(video_id: str, repo_root: Path) -> dict | None:
     return None
 
 
+# ───────────────────────────────────────────── audio
+
+FETCH_ERROR = ""
+
+
+def fetch_audio(video_id: str, dest_dir: Path) -> Path | None:
+    """Download the recording's audio with yt-dlp. YouTube refuses datacenter
+    addresses (GitHub's runners), so on GitHub this goes through the residential
+    proxy in YT_PROXY; from a home connection no proxy is needed."""
+    global FETCH_ERROR
+    import subprocess
+    dest_dir = Path(dest_dir); dest_dir.mkdir(parents=True, exist_ok=True)
+    for f in dest_dir.glob(video_id + ".*"):
+        return f
+    cmd = [sys.executable, "-m", "yt_dlp", "-q", "--no-warnings",
+           "-f", "bestaudio[abr<=128][ext=m4a]/bestaudio[ext=m4a]/bestaudio",
+           "-o", str(dest_dir / "%(id)s.%(ext)s")]
+    proxy = os.environ.get("YT_PROXY", "").strip()
+    if proxy:
+        cmd += ["--proxy", proxy]
+    cmd.append(f"https://www.youtube.com/watch?v={video_id}")
+    r = subprocess.run(cmd, text=True, capture_output=True)
+    if r.returncode != 0:
+        FETCH_ERROR = (r.stderr.strip().splitlines() or ["download failed"])[-1][:200]
+        return None
+    return next(iter(dest_dir.glob(video_id + ".*")), None)
+
+
 # ───────────────────────────────────────────── ASR (Groq Whisper)
 
 GROQ_URL = "https://api.groq.com/openai/v1/audio/transcriptions"
