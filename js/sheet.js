@@ -1,70 +1,54 @@
 /**
- * Shared setlist / planner loading for worship-control / worship-display / worship-prep.
+ * LBCSheet — the one shared module behind Studio, Control and Display.
  *
- * The committed setlist (js/worship-songs.js -> window.WORSHIP_SETLIST) is the
- * source of truth. The published Google Sheet CSV is only a fallback for when the
- * automation hasn't run yet. That CSV can contain quoted, multi-line fields (the
- * "Fixes" column), so it needs a real parser - a naive split('\n') turns every
- * continuation line into a phantom song.
+ *   library()        the song library (js/songs-data.js)
+ *   loadSongs(cb)    this Sunday's songs, in order, with lyrics + video
+ *   buildSlides()    lyrics blocks -> congregation-sized slides (ONE implementation,
+ *                    so what Studio previews is exactly what the TV shows)
+ *   searchLibrary()  fuzzy title search for the "add a song" box
+ *   textToBlocks / blocksToText   the plain-text lyric editor format
+ *
+ * Sunday morning depends on nothing outside this site: no Google, no API.
+ * (The file keeps its old name so no page has to change its <script> tag.)
  */
 (function (global) {
-  var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSBczlDX3xoDhPZdmURMEmduM_s1lYvPZiRovZ-ObHroIEsnJ9u1D813GaRlLK6Q9NsDpOTtL4UaRnu/pub?gid=0&single=true&output=csv';
+  'use strict';
 
-  // ── EDIT ME ────────────────────────────────────────────────────────────────
-  // Paste the planner (Google Sheet) edit link here (the URL in the
-  // address bar when you have the sheet open, ending in /edit). Until it's set,
-  // the "Open the planner" buttons open a read-only view of the sheet.
-  var SHEET_EDIT = 'https://docs.google.com/spreadsheets/d/1sMsj05hV3QEJ0hrvwt_aEnB2RXzVfHae5UD7c-StPeA/edit?gid=0#gid=0';
-  // ───────────────────────────────────────────────────────────────────────────
-  var SHEET_VIEW = SHEET_CSV.replace('/pub?', '/pubhtml?').replace('&single=true&output=csv', '');
-  var SHEET_LINK = SHEET_EDIT || SHEET_VIEW;
-
-  // RFC-4180-ish CSV -> array of rows (each row an array of cell strings)
-  function parseCsv(text) {
-    var rows = [], row = [], cell = '', i = 0, inQuotes = false, c;
-    while (i < text.length) {
-      c = text[i];
-      if (inQuotes) {
-        if (c === '"') {
-          if (text[i + 1] === '"') { cell += '"'; i += 2; continue; }
-          inQuotes = false; i++; continue;
-        }
-        cell += c; i++; continue;
-      }
-      if (c === '"') { inQuotes = true; i++; continue; }
-      if (c === ',') { row.push(cell); cell = ''; i++; continue; }
-      if (c === '\r') { i++; continue; }
-      if (c === '\n') { row.push(cell); rows.push(row); row = []; cell = ''; i++; continue; }
-      cell += c; i++;
-    }
-    if (cell.length || row.length) { row.push(cell); rows.push(row); }
-    return rows.filter(function (r) { return r.some(function (x) { return x.trim(); }); });
-  }
-
-  // "How Long, O Lord?" (what a person types) -> "how-long-o-lord-how-long-psalm-13"
-  function slugify(s) {
-    return String(s).toLowerCase().normalize('NFKD')
-      .replace(/&rsquo;|&#39;|&apos;/g, "'").replace(/&amp;/g, 'and')
-      .replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
-  }
-  function normTitle(s) {
-    return String(s).toLowerCase().replace(/&[a-z]+;/g, ' ').replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim();
-  }
   // songs-data.js declares LEGACY_SONGS with `const`, so it is NOT a property of
-  // window - `global.LEGACY_SONGS` is always undefined. Every reader has to fall
-  // back to the bare identifier, so it lives in one place.
+  // window. Every reader has to fall back to the bare identifier.
   function library() {
     if (typeof global.LEGACY_SONGS !== 'undefined') return global.LEGACY_SONGS;
     if (typeof LEGACY_SONGS !== 'undefined') return LEGACY_SONGS;
-    return null;
+    return {};
+  }
+  function setlist() {
+    return Array.isArray(global.WORSHIP_SETLIST) ? global.WORSHIP_SETLIST.slice() : [];
   }
 
-  function resolveSlug(text) {
+  // ─────────────────────────────────────────── titles, slugs, search
+
+  function slugify(s) {
+    return String(s || '').toLowerCase().normalize('NFKD')
+      .replace(/&rsquo;|&#39;|&apos;|['’]/g, '').replace(/&amp;|&/g, 'and')
+      .replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+  function normTitle(s) {
+    return String(s || '').toLowerCase().replace(/&[a-z]+;/g, ' ').replace(/[^a-z0-9 ]/g, '')
+      .replace(/\s+/g, ' ').trim();
+  }
+  function decodeEntities(s) {
+    return String(s || '').replace(/&rsquo;|&#39;|&apos;/g, "'").replace(/&amp;/g, '&')
+      .replace(/&ldquo;|&rdquo;/g, '"').replace(/&mdash;/g, '—').replace(/&ndash;/g, '–');
+  }
+  function titleOf(slug) {
     var L = library();
-    var guess = slugify(text);
-    if (!L) return guess;
+    return decodeEntities((L[slug] && L[slug].title) || slug);
+  }
+
+  // exact slug -> exact title -> prefix / contains -> slugified guess
+  function resolveSlug(text) {
+    var L = library(), guess = slugify(text);
     if (L[guess]) return guess;
-    if (L[text.trim()]) return text.trim();
     var q = normTitle(text), best = null;
     for (var slug in L) {
       var t = normTitle(L[slug].title || slug);
@@ -76,107 +60,80 @@
     return best || guess;
   }
 
-  function slugsFromCsv(text) {
-    var rows = parseCsv(text);
-    if (!rows.length) return [];
-    var head = rows[0].map(function (h) { return h.trim().toLowerCase(); });
-    var hasHeader = head.indexOf('song') !== -1;
-    var col = hasHeader ? head.indexOf('song') : 0;
-    return (hasHeader ? rows.slice(1) : rows)
-      .map(function (r) { return (r[col] || '').trim(); })
-      .filter(Boolean)
-      .map(resolveSlug);
-  }
-
-  // resolve(slugs) is called with the final list of slugs, from whichever source
-  function loadSetlist(resolve) {
-    if (Array.isArray(global.WORSHIP_SETLIST) && global.WORSHIP_SETLIST.length) {
-      resolve(global.WORSHIP_SETLIST.slice());
-      return;
+  // Ranked matches for a partial title. Word-prefix matches first, then
+  // contains, then a loose "all the typed letters appear in order" match that
+  // survives a misspelling or two.
+  function searchLibrary(query, limit) {
+    var L = library(), q = normTitle(query);
+    limit = limit || 8;
+    if (!q) return [];
+    var qWords = q.split(' '), out = [];
+    for (var slug in L) {
+      var t = normTitle(L[slug].title || slug), score = 0;
+      if (t === q) score = 100;
+      else if (t.indexOf(q) === 0) score = 90;
+      else if (qWords.every(function (w) { return t.split(' ').some(function (tw) { return tw.indexOf(w) === 0; }); })) score = 80;
+      else if (t.indexOf(q) !== -1) score = 70;
+      else if (subsequence(q.replace(/ /g, ''), t.replace(/ /g, ''))) score = 30;
+      if (score) out.push({ slug: slug, title: titleOf(slug), score: score - t.length / 200 });
     }
-    fetch(SHEET_CSV)
-      .then(function (r) { return r.text(); })
-      .then(function (t) { resolve(slugsFromCsv(t)); })
-      .catch(function () { resolve([]); });
+    return out.sort(function (a, b) { return b.score - a.score; }).slice(0, limit);
+  }
+  function subsequence(needle, hay) {
+    var i = 0;
+    for (var j = 0; j < hay.length && i < needle.length; j++) if (hay[j] === needle[i]) i++;
+    return i === needle.length && needle.length >= 4;
   }
 
-  // The full plan for Sunday, in planner order, with lyrics from the best source:
-  //   approved song  -> the locked library entry   (approved: true)
-  //   pending song   -> its current draft          (approved: false)
-  // resolve([{ slug, title, lyrics:[{label,lines}], approved }])
+  function videoId(url) {
+    var s = String(url || '').trim();
+    var m = s.match(/(?:v=|\/shorts\/|youtu\.be\/|\/embed\/|\/live\/)([A-Za-z0-9_-]{11})/);
+    if (m) return m[1];
+    return /^[A-Za-z0-9_-]{11}$/.test(s) ? s : '';
+  }
+
+  // ─────────────────────────────────────────── this Sunday
+
+  // resolve([{ slug, title, lyrics:[{label,lines}]|null, youtube, ready }])
+  // Order is the setlist order. A song that has somehow lost its lyrics still
+  // appears (ready:false) so the operator sees the gap instead of a missing song.
   function loadSongs(resolve) {
-    var L = library() || {};
-    var approved = Array.isArray(global.WORSHIP_SETLIST) ? global.WORSHIP_SETLIST : [];
-
-    // Once anything is approved, THAT is Sunday. Show exactly the approved set and
-    // ignore the planner - otherwise whatever someone is mid-way through typing
-    // into the sheet would appear on the TV during a service.
-    // Nothing approved yet (prep in progress) -> fall back to the planner below,
-    // so drafts are still reviewable on Control.
-    if (approved.length) {
-      resolve(approved.map(function (s) {
-        return {
-          slug: s,
-          title: (L[s] && L[s].title) || s,
-          lyrics: (L[s] && L[s].lyrics) || null,
-          youtube: (L[s] && L[s].youtube) || '',
-          approved: true
-        };
-      }));
-      return;
-    }
-
-    fetch(SHEET_CSV).then(function (r) { return r.text(); }).then(function (t) {
-      var slugs = slugsFromCsv(t);
-      if (!slugs.length) { resolve([]); return; }
-      Promise.all(slugs.map(function (slug) {
-        if (L[slug] && L[slug].lyrics) {
-          return Promise.resolve({ slug: slug, title: L[slug].title, lyrics: L[slug].lyrics,
-                                   approved: approved.indexOf(slug) !== -1 });
-        }
-        return fetch('drafts/' + slug + '.json?t=' + Date.now())
-          .then(function (r) { return r.ok ? r.json() : null; })
-          .then(function (d) {
-            if (!d || !d.candidates) return { slug: slug, title: slug, lyrics: null, approved: false };
-            var c = null, i;
-            for (i = 0; i < d.candidates.length; i++) {
-              if (d.forced && d.candidates[i].videoId === d.forced && d.candidates[i].lyrics) { c = d.candidates[i]; break; }
-            }
-            if (!c) for (i = 0; i < d.candidates.length; i++) { if (d.candidates[i].lyrics) { c = d.candidates[i]; break; } }
-            return { slug: slug, title: d.title || slug, lyrics: c ? c.lyrics : null, approved: false };
-          })
-          .catch(function () { return { slug: slug, title: slug, lyrics: null, approved: false }; });
-      })).then(resolve);
-    }).catch(function () {
-      // no planner reachable — fall back to the approved list only
-      loadSetlist(function (sl) {
-        resolve(sl.map(function (s) {
-          return { slug: s, title: (L[s] && L[s].title) || s, lyrics: (L[s] && L[s].lyrics) || null, approved: true };
-        }));
-      });
-    });
+    var L = library();
+    // always async, even though the data is local: callers set up their page
+    // after calling this, and a synchronous callback would run before that
+    setTimeout(function () { resolve(build()); }, 0);
+    function build() { return setlist().map(function (s) {
+      var d = L[s];
+      var ok = !!(d && d.lyrics && d.lyrics.length);
+      return {
+        slug: s,
+        title: titleOf(s),
+        lyrics: ok ? d.lyrics : null,
+        youtube: (d && d.youtube && videoId(d.youtube)) ? d.youtube : '',
+        ready: ok
+      };
+    }); }
   }
 
-  // Presentation only — split a projection line that crams two sung phrases onto
-  // one line ("X for the water so my soul Y") at a natural break near the middle.
+  // ─────────────────────────────────────────── slides
+
+  // A line the drafting step left too long is split at a natural break -
+  // comma first, then a conjunction - never leaving a 1-2 word orphan.
   // Same words, never reordered or dropped.
-  // last-resort splitter for a line the drafting step still left too long; prefers a
-  // comma/semicolon, then a conjunction, and never leaves a 1-2 word orphan
   var BREAKS = [' and ', ' so ', ' but ', ' yet ', ' where ', ' when ', ' while ',
                 ' though ', ' for ', ' to ', ' O '];
-  function words(s) { return s.trim().split(/\s+/).filter(Boolean).length; }
+  function words(s) { return String(s).trim().split(/\s+/).filter(Boolean).length; }
   function splitLine(line, limit) {
     limit = limit || 48;
+    line = String(line);
     if (line.length <= limit || words(line) <= 6) return [line];
     var mid = line.length / 2, best = -1, bestD = 1e9, m, re, at, d;
-    // 1) punctuation break
     re = /[,;:]\s+/g;
     while ((m = re.exec(line))) {
       at = m.index + 1;
       d = Math.abs(at - mid);
       if (words(line.slice(0, at)) >= 3 && words(line.slice(at)) >= 3 && d < bestD) { bestD = d; best = at; }
     }
-    // 2) conjunction break (only if no good comma)
     if (best < 0) {
       for (var bi = 0; bi < BREAKS.length; bi++) {
         var from = 4, low = line.toLowerCase();
@@ -195,15 +152,74 @@
   function tidyBlocks(blocks) {
     return (blocks || []).map(function (bl) {
       var out = [];
-      (bl.lines || []).forEach(function (l) { out = out.concat(splitLine(l)); });
+      (bl.lines || []).forEach(function (l) {
+        if (String(l).trim()) out = out.concat(splitLine(String(l).trim()));
+      });
       return { label: bl.label || '', lines: out };
     });
   }
 
+  // How many lines fit comfortably depends on how long they are: hymn stanzas
+  // (short lines) take four, contemporary songs (long lines) take two.
+  function perSlide(lines) {
+    var avg = lines.join(' ').length / Math.max(lines.length, 1);
+    return avg > 38 ? 2 : avg > 27 ? 3 : 4;
+  }
+
+  // Split a block of N lines into the fewest slides that respect the cap, sized
+  // as evenly as possible - so 5 lines become 3 + 2, never 4 + a lonely 1.
+  function chunkEven(lines, cap) {
+    var n = lines.length;
+    if (n <= cap) return [lines];
+    var count = Math.ceil(n / cap);
+    // a slide one line over the cap beats a slide with a single orphaned line
+    while (count > 1 && Math.floor(n / count) < 2) count--;
+    var base = Math.floor(n / count), extra = n % count, out = [], i = 0;
+    for (var k = 0; k < count; k++) {
+      var size = base + (k < extra ? 1 : 0);
+      out.push(lines.slice(i, i + size));
+      i += size;
+    }
+    return out;
+  }
+
+  // lyrics blocks -> [{ label, lines }] slides. The single source of truth.
+  function buildSlides(lyrics) {
+    var slides = [];
+    tidyBlocks(lyrics).forEach(function (block) {
+      if (!block.lines.length) return;
+      chunkEven(block.lines, perSlide(block.lines)).forEach(function (chunk) {
+        slides.push({ label: block.label, lines: chunk });
+      });
+    });
+    return slides;
+  }
+
+  // ─────────────────────────────────────────── the editor's plain-text format
+  // A blank line starts a new slide. A line in [brackets] on its own names the
+  // section (shown on Control only, never on the TV).
+
+  function blocksToText(lyrics) {
+    return (lyrics || []).map(function (b) {
+      return (b.label ? '[' + b.label + ']\n' : '') + (b.lines || []).join('\n');
+    }).join('\n\n');
+  }
+  function textToBlocks(text) {
+    return String(text || '').replace(/\r/g, '').split(/\n\s*\n/).map(function (chunk) {
+      var lines = chunk.split('\n').map(function (l) { return l.trim(); }).filter(Boolean);
+      if (!lines.length) return null;
+      var label = '', m = lines[0].match(/^\[(.*)\]$/);
+      if (m) { label = m[1].trim(); lines = lines.slice(1); }
+      if (!lines.length) return null;
+      return { label: label, lines: lines };
+    }).filter(Boolean);
+  }
+
   global.LBCSheet = {
-    SHEET_CSV: SHEET_CSV, SHEET_LINK: SHEET_LINK, sheetEditSet: !!SHEET_EDIT,
-    parseCsv: parseCsv, slugsFromCsv: slugsFromCsv, loadSetlist: loadSetlist,
-    loadSongs: loadSongs, resolveSlug: resolveSlug,
-    splitLine: splitLine, tidyBlocks: tidyBlocks
+    library: library, setlist: setlist, titleOf: titleOf, decodeEntities: decodeEntities,
+    slugify: slugify, resolveSlug: resolveSlug, searchLibrary: searchLibrary, videoId: videoId,
+    loadSongs: loadSongs,
+    buildSlides: buildSlides, splitLine: splitLine, tidyBlocks: tidyBlocks,
+    blocksToText: blocksToText, textToBlocks: textToBlocks
   };
 })(window);

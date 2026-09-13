@@ -406,6 +406,35 @@ def _best_conf(draft: dict) -> int | None:
     return max(confs) if confs else None
 
 
+def draft_one(name: str, video: str = "") -> None:
+    """Draft a single song by name - the path Worship Studio's "Add a song" uses.
+
+    No sheet, no setlist changes, no library writes: it only produces
+    drafts/<slug>.json, which the Studio polls for and then shows the person
+    (video + drafted words) to confirm. Any failure is written into that same
+    file so the Studio can show a human-readable reason instead of waiting
+    forever.
+    """
+    row = sheet_mod.Row(song=name, video=video or "")
+    songs = lib_songs.load_songs()
+    slug, title, _ = resolve(name)
+    try:
+        d = draft_row(row, songs)
+        print(json.dumps({"slug": d["slug"], "candidates": len(d["candidates"]),
+                          "confidence": _best_conf(d)}))
+    except Exception as e:  # noqa: BLE001
+        traceback.print_exc()
+        DRAFTS.mkdir(exist_ok=True)
+        _draft_path(slug).write_text(json.dumps({
+            "slug": slug, "title": title, "input": name, "isNew": slug not in songs,
+            "generatedAt": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+            "error": str(e)[:200], "candidates": [],
+        }, indent=2, ensure_ascii=False))
+
+
 if __name__ == "__main__":
-    arg = sys.argv[1] if len(sys.argv) > 1 else "both"
-    main({"draft": "draft", "apply": "apply", "both": "both"}.get(arg, "both"))
+    if len(sys.argv) > 2 and sys.argv[1] == "--song":
+        draft_one(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else "")
+    else:
+        arg = sys.argv[1] if len(sys.argv) > 1 else "both"
+        main({"draft": "draft", "apply": "apply", "both": "both"}.get(arg, "both"))

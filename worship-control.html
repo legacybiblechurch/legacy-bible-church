@@ -69,6 +69,13 @@
       padding: 6px 12px;
     }
     .display-link:hover { border-color: var(--ink-faint); background: var(--panel-2); }
+    .disp-pill { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--ink-dim); margin-right: 6px; }
+    .disp-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warn); }
+    .disp-pill.on .dot { background: #7bb37e; }
+    .disp-pill.on { color: var(--ink-dim); }
+    .disp-pill.off #disp-pill-text { color: var(--warn); }
+    .empty-service { padding: 60px 24px; text-align: center; color: var(--ink-dim); font-size: 15px; line-height: 1.7; }
+    .empty-service a { color: var(--ink); }
 
     /* ── layout ─────────────────────────────── */
     #layout {
@@ -226,6 +233,7 @@
   <div id="header">
     <a href="worship.html" target="_blank" rel="noopener" class="wordmark" style="text-decoration:none">Worship Control</a>
     <span class="header-spacer"></span>
+    <span class="disp-pill off" id="disp-pill" title="Is the congregation screen open?"><span class="dot"></span><span id="disp-pill-text">Display not open</span></span>
     <span class="kbd-hint"><span class="kbd">&larr;</span><span class="kbd">&rarr;</span> move &nbsp;<span class="kbd">B</span> blank</span>
     <a href="worship-display.html" target="_blank" class="display-link">Open display &nearr;</a>
   </div>
@@ -253,38 +261,20 @@
 
   <script src="js/songs-data.js"></script>
   <script src="js/worship-songs.js"></script>
-  <script src="js/sheet.js?v=11"></script>
+  <script src="js/sheet.js?v=12"></script>
   <script>
-    function perSlide(lines) {
-      var avg = lines.join(' ').length / Math.max(lines.length, 1);
-      return avg > 38 ? 2 : 4;   // long lines -> 2/slide, short hymn lines -> 4/slide
-    }
-    function buildSlides(lyrics) {
-      var slides = [];
-      (window.LBCSheet ? LBCSheet.tidyBlocks(lyrics) : lyrics).forEach(function (block) {
-        var lines = block.lines, lbl = block.label || '', n = perSlide(lines);
-        for (var i = 0; i < lines.length; i += n) slides.push({ label: lbl, lines: lines.slice(i, i + n) });
-      });
-      return slides;
-    }
 
     var songs = [], songIdx = 0, slideIdx = 0, isBlank = false;
     var channel = new BroadcastChannel('lbc-worship');
 
     function buildSongs(items) {
       return items.map(function (it) {
-        // accept a plain slug (old path) or a {slug,title,lyrics,approved} object
-        if (typeof it === 'string') {
-          var d = LEGACY_SONGS[it];
-          it = d ? { slug: it, title: d.title, lyrics: d.lyrics, youtube: d.youtube, approved: true }
-                 : { slug: it, title: it, lyrics: null, youtube: '', approved: false };
-        }
         if (!it.lyrics || !it.lyrics.length) {
-          return { title: it.title || it.slug, approved: it.approved, youtube: it.youtube || '',
-                   slides: [{ label: '', lines: ['(no lyrics yet — finish this song in the studio)'] }] };
+          return { title: it.title, ready: false, youtube: it.youtube || '',
+                   slides: [{ label: '', lines: ['No words yet — open Studio to fix this song'] }] };
         }
-        return { title: it.title, approved: it.approved, youtube: it.youtube || '',
-                 slides: buildSlides(it.lyrics) };
+        return { title: it.title, ready: true, youtube: it.youtube || '',
+                 slides: LBCSheet.buildSlides(it.lyrics) };
       });
     }
 
@@ -294,17 +284,30 @@
       channel.postMessage(state);
     }
 
+    var displaySeen = 0;
+    channel.onmessage = function (e) {
+      if (e.data && e.data.type === 'ping' && e.data.from === 'display') displaySeen = Date.now();
+    };
+    setInterval(function () {
+      var on = Date.now() - displaySeen < 4000;
+      document.getElementById('disp-pill').className = 'disp-pill ' + (on ? 'on' : 'off');
+      document.getElementById('disp-pill-text').textContent = on ? 'Display connected' : 'Display not open';
+    }, 1000);
+
     function goTo(si, li) {
+      if (!songs.length) return;
       if (si < 0 || si >= songs.length) return;
       if (li < 0 || li >= songs[si].slides.length) return;
       songIdx = si; slideIdx = li; render(); broadcast();
     }
     function next() {
+      if (!songs.length) return;
       var s = songs[songIdx];
       if (slideIdx < s.slides.length - 1) goTo(songIdx, slideIdx + 1);
       else if (songIdx < songs.length - 1) goTo(songIdx + 1, 0);
     }
     function prev() {
+      if (!songs.length) return;
       if (slideIdx > 0) goTo(songIdx, slideIdx - 1);
       else if (songIdx > 0) goTo(songIdx - 1, songs[songIdx - 1].slides.length - 1);
     }
@@ -319,11 +322,22 @@
     function esc(t) { return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
     function render() {
+      if (!songs.length) {
+        document.getElementById('song-list').innerHTML = '';
+        document.getElementById('main-song-title').textContent = '';
+        document.getElementById('yt-link').className = 'yt-link missing';
+        document.getElementById('slide-grid').innerHTML =
+          '<div class="empty-service">Nothing is ready for Sunday yet.<br>' +
+          '<a href="worship-studio.html" target="_blank" rel="noopener">Open Worship Studio</a> to add the songs, then come back here.</div>';
+        document.getElementById('position-song').textContent = '';
+        document.getElementById('position-slide').textContent = '';
+        return;
+      }
       var song = songs[songIdx];
       document.getElementById('song-list').innerHTML = songs.map(function (s, i) {
-        return '<div class="song-item' + (i === songIdx ? ' active' : '') + (s.approved ? '' : ' pending') + '" onclick="goTo(' + i + ',0)">' +
+        return '<div class="song-item' + (i === songIdx ? ' active' : '') + (s.ready ? '' : ' pending') + '" onclick="goTo(' + i + ',0)">' +
           '<span class="song-num">' + (i + 1) + '</span>' +
-          '<span class="song-name">' + esc(s.title) + (s.approved ? '' : ' <span class="pend-tag">draft</span>') + '</span>' +
+          '<span class="song-name">' + esc(s.title) + (s.ready ? '' : ' <span class="pend-tag">no words</span>') + '</span>' +
           '<span class="song-count">' + s.slides.length + '</span></div>';
       }).join('');
 
@@ -378,7 +392,8 @@
       } catch (e) {}
       if (songIdx >= songs.length) songIdx = 0;
       if (slideIdx >= (songs[songIdx] ? songs[songIdx].slides.length : 1)) slideIdx = 0;
-      render(); broadcast();
+      render();
+      if (songs.length) broadcast();
     }
 
     LBCSheet.loadSongs(init);

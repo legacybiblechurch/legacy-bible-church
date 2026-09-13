@@ -166,7 +166,7 @@
   <!-- Song title, bottom-right -->
   <div id="song-title"></div>
 
-  <!-- Screensaver overlay — bouncing logo -->
+  <!-- Blank screen: the church logo, still -->
   <div id="blank">
     <div id="dvd-logo">
       <img src="images/logo-dark.png" alt="Legacy Bible Church">
@@ -175,39 +175,16 @@
 
   <script src="js/songs-data.js"></script>
   <script src="js/worship-songs.js"></script>
-  <script src="js/sheet.js?v=11"></script>
+  <script src="js/sheet.js?v=12"></script>
   <script>
-    /* Build songs from setlist — same source as the website hymnal */
-    function perSlide(lines) {
-      // long lines (contemporary) -> 2 per slide; short lines (hymn stanzas) -> 4
-      var avg = lines.join(' ').length / Math.max(lines.length, 1);
-      return avg > 38 ? 2 : 4;
-    }
-    function buildSlides(lyrics) {
-      var slides = [];
-      (window.LBCSheet ? LBCSheet.tidyBlocks(lyrics) : lyrics).forEach(function(block) {
-        var lines = block.lines, lbl = block.label || '', n = perSlide(lines);
-        for (var i = 0; i < lines.length; i += n) {
-          slides.push({ label: lbl, lines: lines.slice(i, i + n) });
-        }
-      });
-      return slides;
-    }
-
     var SONGS_BUILT = [];
     var songsReady  = false;
     var pendingState = null;
 
     function buildSongs(items) {
       return items.map(function (it) {
-        if (typeof it === 'string') {
-          var d = LEGACY_SONGS[it];
-          it = d ? { title: d.title, lyrics: d.lyrics } : { title: it, lyrics: null };
-        }
-        if (!it.lyrics || !it.lyrics.length) {
-          return { title: it.title, slides: [{ label: '', lines: ['—'] }] };
-        }
-        return { title: it.title, slides: buildSlides(it.lyrics) };
+        if (!it.lyrics || !it.lyrics.length) return { title: it.title, slides: [{ label: '', lines: [] }] };
+        return { title: it.title, slides: LBCSheet.buildSlides(it.lyrics) };
       });
     }
 
@@ -220,7 +197,9 @@
       }
     }
 
-    // full plan from the planner, approved lyrics where locked / draft lyrics otherwise
+    // If this window is refreshed mid-service, resume the current slide instead of
+    // dropping to standby until the operator presses a key.
+    try { pendingState = JSON.parse(localStorage.getItem('lbc-worship-state') || 'null'); } catch (e) {}
     LBCSheet.loadSongs(onSongsReady);
 
     var channel    = new BroadcastChannel('lbc-worship');
@@ -312,9 +291,13 @@
     // Restore last known state only after songs are ready
     // (handled in onSongsReady via pendingState)
 
+    // heartbeat: Control shows a green "Display connected" while these arrive
+    setInterval(function () { channel.postMessage({ type: 'ping', from: 'display' }); }, 1500);
+    channel.postMessage({ type: 'ping', from: 'display' });
+
     // Live updates from control page
     channel.onmessage = function(e) {
-      if (e.data && e.data.type === 'ping') return;
+      if (!e.data || e.data.type === 'ping') return;
       localStorage.setItem('lbc-worship-state', JSON.stringify(e.data));
       if (songsReady) {
         renderState(e.data);

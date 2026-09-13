@@ -7,8 +7,16 @@ name: Worship prep
 on:
   workflow_dispatch:
     inputs:
+      song:
+        description: "Draft ONE song by name (what Worship Studio's Add button sends). Leave blank for the old sheet-driven run."
+        default: ""
+        required: false
+      video:
+        description: "Optional YouTube link to use for that song"
+        default: ""
+        required: false
       mode:
-        description: "draft | apply | both"
+        description: "draft | apply | both  (sheet-driven run only)"
         default: "both"
         required: false
   # PAUSED ON PURPOSE while the prep workflow is being reworked.
@@ -54,7 +62,12 @@ jobs:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           SUPADATA_API_KEY: ${{ secrets.SUPADATA_API_KEY }}
         working-directory: scripts/prep
-        run: python run.py "${{ github.event.inputs.mode || 'both' }}"
+        run: |
+          if [ -n "${{ github.event.inputs.song }}" ]; then
+            python run.py --song "${{ github.event.inputs.song }}" "${{ github.event.inputs.video }}"
+          else
+            python run.py "${{ github.event.inputs.mode || 'both' }}"
+          fi
 
       - name: Commit changes
         run: |

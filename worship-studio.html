@@ -9,182 +9,145 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
-      --bg:        #0d0d0f;
-      --panel:     #161618;
-      --panel-2:   #1c1c1f;
-      --line:      #2a2a2e;
-      --line-soft: #202024;
-      --ink:       #ececed;
-      --ink-dim:   #9a9a9e;
-      --ink-faint: #6a6a6e;
-      --gold:      #c9a84c;
-      --good:      #7bb37e;
-      --warn:      #d8a657;
-      --bad:       #d98a7a;
+      --bg: #0d0d0f; --panel: #161618; --panel-2: #1c1c1f; --line: #2a2a2e; --line-soft: #202024;
+      --ink: #ececed; --ink-dim: #9a9a9e; --ink-faint: #6a6a6e;
+      --gold: #c9a84c; --good: #7bb37e; --warn: #d8a657; --bad: #d98a7a;
       --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
     }
-
-    @font-face {
-      font-family: 'Priestacy';
-      src: url('fonts/Priestacy.woff') format('woff'),
-           url('fonts/Priestacy.otf') format('opentype');
-      font-display: swap;
-    }
-
+    @font-face { font-family: 'Priestacy'; src: url('fonts/Priestacy.woff') format('woff'), url('fonts/Priestacy.otf') format('opentype'); font-display: swap; }
     html, body { background: var(--bg); color: var(--ink); font-family: var(--font); height: 100%; }
     body { line-height: 1.5; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; }
     a { color: inherit; }
+    button { font: inherit; }
 
-    /* ── header ─────────────────────────────── */
-    header {
-      border-bottom: 1px solid var(--line);
-      padding: 14px 22px;
-      display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
-      flex-shrink: 0;
-    }
+    header { border-bottom: 1px solid var(--line); padding: 12px 20px; display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
     .brand { font-family: 'Priestacy', var(--font); font-size: 27px; }
-    .header-links { margin-left: auto; display: flex; gap: 16px; font-size: 13px; align-items: center; }
-    .header-links a { color: var(--ink-dim); text-decoration: none; }
-    .header-links a:hover { color: var(--ink); }
+    .hdr-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+    .pill { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--ink-dim); padding: 5px 10px; border: 1px solid var(--line); border-radius: 100px; cursor: pointer; background: none; }
+    .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warn); }
+    .pill.on .dot { background: var(--good); }
+    .pill.on { cursor: default; }
 
-    .btn {
-      font: inherit; font-size: 13px; font-weight: 500;
-      background: var(--panel-2); color: var(--ink); border: 1px solid var(--line);
-      padding: 7px 13px; border-radius: 6px; cursor: pointer; text-decoration: none;
-      display: inline-block; white-space: nowrap;
-    }
+    .btn { font-size: 13px; font-weight: 500; background: var(--panel-2); color: var(--ink); border: 1px solid var(--line); padding: 8px 14px; border-radius: 7px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
     .btn:hover { border-color: var(--ink-faint); }
-    .btn:disabled { opacity: 0.4; cursor: default; }
+    .btn:disabled { opacity: 0.45; cursor: default; }
     .btn.primary { background: var(--gold); color: #16130a; border-color: var(--gold); font-weight: 600; }
     .btn.primary:hover { filter: brightness(1.08); }
     .btn.primary:disabled { background: var(--panel-2); color: var(--ink-faint); border-color: var(--line); filter: none; }
-    .btn.danger { color: var(--bad); }
+    .btn.big { font-size: 15px; padding: 13px 18px; width: 100%; justify-content: center; }
+    .btn.good { background: var(--good); border-color: var(--good); color: #0f1a10; font-weight: 600; }
+    .btn.quiet { background: none; border-color: transparent; color: var(--ink-dim); }
+    .btn.quiet:hover { color: var(--ink); border-color: var(--line); }
 
-    /* ── setup gate ─────────────────────────── */
-    #gate { max-width: 620px; margin: 0 auto; padding: 48px 24px; }
-    #gate h1 { font-size: 21px; font-weight: 600; margin-bottom: 10px; }
-    #gate p { color: var(--ink-dim); font-size: 14px; margin-bottom: 16px; }
-    #gate ol { color: var(--ink-dim); font-size: 14px; margin: 0 0 18px 20px; }
-    #gate li { margin-bottom: 9px; }
-    #gate b { color: var(--ink); font-weight: 600; }
-    #gate code {
-      background: var(--panel-2); border: 1px solid var(--line);
-      padding: 1px 6px; border-radius: 4px; font-size: 12.5px; font-family: var(--mono);
-    }
-    .token-row { display: flex; gap: 8px; margin-top: 6px; }
-    .token-row input {
-      flex: 1; font: inherit; font-family: var(--mono); font-size: 13px;
-      background: var(--panel); color: var(--ink);
-      border: 1px solid var(--line); border-radius: 6px; padding: 9px 11px;
-    }
-    .gate-msg { font-size: 13px; margin-top: 12px; min-height: 20px; }
-    .gate-msg.err { color: var(--bad); }
-    .gate-msg.ok { color: var(--good); }
+    #work { flex: 1; display: grid; grid-template-columns: 290px 1fr; min-height: 0; }
 
-    /* ── workspace ──────────────────────────── */
-    #work { flex: 1; display: grid; grid-template-columns: 258px 1fr; min-height: 0; }
+    /* ── rail ─────────────────────────────────── */
+    .rail { border-right: 1px solid var(--line); overflow-y: auto; padding: 18px 14px; display: flex; flex-direction: column; gap: 6px; }
+    .rail-label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-faint); margin: 8px 2px 4px; display: flex; align-items: center; }
+    .rail-label .sub { margin-left: auto; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--warn); }
+    .song-row { display: flex; align-items: center; gap: 6px; border: 1px solid transparent; border-radius: 7px; padding: 4px 4px 4px 10px; color: var(--ink-dim); cursor: pointer; }
+    .song-row:hover { background: var(--panel); color: var(--ink); }
+    .song-row.active { background: var(--panel-2); border-color: var(--line); color: var(--ink); }
+    .song-row .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--good); flex-shrink: 0; }
+    .song-row .dot.warn { background: var(--warn); }
+    .song-row .dot.busy { background: var(--ink-faint); animation: pulse 1.2s infinite; }
+    @keyframes pulse { 50% { opacity: 0.3; } }
+    .song-row .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13.5px; padding: 4px 0; }
+    .song-row .nm small { display: block; font-size: 11px; color: var(--ink-faint); }
+    .song-row .unsaved { color: var(--warn); font-size: 16px; line-height: 1; }
+    .song-row .ctl { display: none; gap: 1px; }
+    .song-row:hover .ctl, .song-row.active .ctl { display: inline-flex; }
+    .ico { background: none; border: 0; color: var(--ink-faint); width: 24px; height: 24px; border-radius: 5px; cursor: pointer; font-size: 12px; }
+    .ico:hover { background: var(--line); color: var(--ink); }
+    .ico:disabled { opacity: 0.25; cursor: default; }
+    .ico.x:hover { color: var(--bad); }
 
-    .rail {
-      border-right: 1px solid var(--line); overflow-y: auto;
-      padding: 16px 14px; display: flex; flex-direction: column; gap: 6px;
-    }
-    .rail-label {
-      font-size: 10.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
-      color: var(--ink-faint); margin: 10px 0 4px;
-    }
-    .song-btn {
-      text-align: left; font: inherit; font-size: 13.5px;
-      background: none; border: 1px solid transparent; border-radius: 6px;
-      padding: 8px 10px; cursor: pointer; color: var(--ink-dim);
-      display: flex; align-items: center; gap: 8px;
-    }
-    .song-btn:hover { background: var(--panel); color: var(--ink); }
-    .song-btn.active { background: var(--panel-2); border-color: var(--line); color: var(--ink); }
-    .song-btn .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-    .song-btn .dot.off { background: var(--line); }
-    .song-btn .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .song-btn .unsaved { color: var(--warn); font-size: 15px; line-height: 1; }
+    .add-wrap { position: relative; margin-top: 4px; }
+    .add-wrap input { width: 100%; font: inherit; font-size: 14px; background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 7px; padding: 11px 12px; }
+    .add-wrap input:focus { outline: none; border-color: var(--ink-faint); }
+    .add-wrap input::placeholder { color: var(--ink-faint); }
+    .sugg { position: absolute; left: 0; right: 0; top: 100%; margin-top: 4px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; z-index: 20; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: none; }
+    .sugg.show { display: block; }
+    .sugg button { display: flex; width: 100%; text-align: left; align-items: center; gap: 9px; background: none; border: 0; color: var(--ink); padding: 10px 12px; cursor: pointer; font-size: 13.5px; border-bottom: 1px solid var(--line-soft); }
+    .sugg button:last-child { border-bottom: 0; }
+    .sugg button:hover, .sugg button.hi { background: var(--line-soft); }
+    .sugg .tag { margin-left: auto; font-size: 11px; color: var(--ink-faint); white-space: nowrap; }
+    .sugg .find { color: var(--gold); }
+    .rail-foot { margin-top: auto; padding-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .ready-note { font-size: 12px; color: var(--ink-faint); text-align: center; min-height: 18px; }
+    .ready-note.warn { color: var(--warn); }
+    .ready-note.good { color: var(--good); }
 
-    .add-box { display: flex; gap: 6px; margin-top: 4px; }
-    .add-box input {
-      flex: 1; min-width: 0; font: inherit; font-size: 13px;
-      background: var(--panel); color: var(--ink);
-      border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px;
-    }
-    .add-box input::placeholder { color: var(--ink-faint); }
-
-    /* ── editor ─────────────────────────────── */
+    /* ── main ─────────────────────────────────── */
     .main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
-    .main-head {
-      padding: 14px 22px; border-bottom: 1px solid var(--line);
-      display: flex; align-items: center; gap: 14px; flex-wrap: wrap; flex-shrink: 0;
-    }
+    .main-head { padding: 12px 22px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 14px; flex-wrap: wrap; flex-shrink: 0; min-height: 58px; }
     .main-title { font-size: 18px; font-weight: 600; }
     .main-actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
     .save-state { font-size: 12.5px; color: var(--ink-faint); }
     .save-state.dirty { color: var(--warn); }
-    .save-state.ok { color: var(--good); }
-
     .panes { flex: 1; display: grid; grid-template-columns: 1fr 1fr; min-height: 0; }
     .pane { display: flex; flex-direction: column; min-width: 0; min-height: 0; overflow: hidden; }
     .pane + .pane { border-left: 1px solid var(--line); }
-    .pane-head {
-      padding: 9px 16px; font-size: 10.5px; font-weight: 700;
-      letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-faint);
-      border-bottom: 1px solid var(--line-soft); flex-shrink: 0;
-      display: flex; align-items: center; gap: 10px;
-    }
+    .pane-head { padding: 9px 16px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-faint); border-bottom: 1px solid var(--line-soft); flex-shrink: 0; display: flex; align-items: center; gap: 10px; }
     .pane-head .hint { font-weight: 400; letter-spacing: 0; text-transform: none; font-size: 11.5px; }
-
-    #lyricBox {
-      flex: 1; width: 100%; resize: none; font: inherit; font-size: 15px; line-height: 1.72;
-      background: var(--bg); color: var(--ink); border: 0; padding: 16px 20px; outline: none;
-      tab-size: 2;
-    }
-
+    .pane-head .right { margin-left: auto; font-weight: 400; letter-spacing: 0; text-transform: none; font-size: 11.5px; }
+    #lyricBox { flex: 1; width: 100%; resize: none; font: inherit; font-size: 15px; line-height: 1.72; background: var(--bg); color: var(--ink); border: 0; padding: 16px 20px; outline: none; }
     .preview { flex: 1; overflow-y: auto; padding: 16px; }
-    .pv-slide {
-      border: 1px solid var(--line-soft); border-radius: 6px;
-      padding: 11px 13px; margin-bottom: 7px; background: var(--panel);
-    }
-    .pv-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 5px;
-    }
+    .pv { border: 1px solid var(--line-soft); border-radius: 6px; padding: 11px 13px; margin-bottom: 7px; background: var(--panel); }
+    .pv-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
     .pv-line { font-size: 14px; }
-    .pv-count { color: var(--ink-faint); font-weight: 400; letter-spacing: 0; text-transform: none; font-size: 11.5px; margin-left: auto; }
-
     .video-strip { padding: 12px 16px; border-bottom: 1px solid var(--line-soft); flex-shrink: 0; }
     .video-strip iframe { width: 100%; aspect-ratio: 16/9; border: 0; border-radius: 6px; background: #000; display: block; }
-    .video-strip .vid-row { display: flex; gap: 8px; margin-top: 8px; }
-    .video-strip input {
-      flex: 1; min-width: 0; font: inherit; font-size: 12.5px; font-family: var(--mono);
-      background: var(--panel); color: var(--ink-dim);
-      border: 1px solid var(--line); border-radius: 6px; padding: 6px 9px;
-    }
+    .video-strip .novid { aspect-ratio: 16/9; border: 1px dashed var(--line); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--ink-faint); font-size: 13px; }
+    .video-strip input { width: 100%; margin-top: 8px; font: inherit; font-size: 12.5px; font-family: var(--mono); background: var(--panel); color: var(--ink-dim); border: 1px solid var(--line); border-radius: 6px; padding: 6px 9px; }
 
-    .empty-main { padding: 60px 24px; text-align: center; color: var(--ink-dim); font-size: 14px; }
+    /* finding / candidates */
+    .center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 24px; color: var(--ink-dim); gap: 10px; }
+    .center h2 { font-size: 20px; font-weight: 600; color: var(--ink); }
+    .center p { max-width: 460px; font-size: 14px; }
+    .spinner { width: 28px; height: 28px; border: 3px solid var(--line); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.9s linear infinite; margin-bottom: 8px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .cands { flex: 1; overflow-y: auto; padding: 18px 22px; display: flex; flex-direction: column; gap: 10px; }
+    .cand { display: grid; grid-template-columns: 200px 1fr auto; gap: 16px; align-items: center; background: var(--panel); border: 1px solid var(--line-soft); border-radius: 9px; padding: 12px; }
+    .cand.best { border-color: rgba(201,168,76,0.5); }
+    .cand img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 5px; display: block; background: #000; }
+    .cand .t { font-size: 14px; font-weight: 500; }
+    .cand .f { font-size: 12px; color: var(--ink-dim); margin-top: 3px; }
+    .cand .f b { color: var(--good); font-weight: 600; }
+    .cand .f b.mid { color: var(--warn); }
+    .cand .acts { display: flex; flex-direction: column; gap: 6px; }
 
-    #toast {
-      position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
-      background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px;
-      padding: 11px 18px; font-size: 13.5px; z-index: 99;
-      opacity: 0; pointer-events: none; transition: opacity 0.2s;
-      max-width: 90vw;
-    }
-    #toast.show { opacity: 1; }
+    #toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 11px 18px; font-size: 13.5px; z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.2s; max-width: 90vw; }
+    #toast.show { opacity: 1; pointer-events: auto; }
     #toast.err { border-color: rgba(217,138,122,0.5); color: var(--bad); }
     #toast.ok { border-color: rgba(123,179,126,0.45); color: var(--good); }
 
+    /* connect sheet */
+    #connect { position: fixed; inset: 0; background: rgba(0,0,0,0.65); display: none; align-items: center; justify-content: center; z-index: 50; padding: 20px; }
+    #connect.show { display: flex; }
+    .sheet { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; max-width: 600px; width: 100%; padding: 26px 28px; max-height: 92vh; overflow-y: auto; }
+    .sheet h1 { font-size: 19px; font-weight: 600; margin-bottom: 8px; }
+    .sheet p { color: var(--ink-dim); font-size: 14px; margin-bottom: 14px; }
+    .sheet ol { color: var(--ink-dim); font-size: 14px; margin: 0 0 16px 20px; }
+    .sheet li { margin-bottom: 8px; }
+    .sheet b { color: var(--ink); font-weight: 600; }
+    .sheet code { background: var(--panel-2); border: 1px solid var(--line); padding: 1px 6px; border-radius: 4px; font-size: 12.5px; font-family: var(--mono); }
+    .token-row { display: flex; gap: 8px; }
+    .token-row input { flex: 1; font: inherit; font-family: var(--mono); font-size: 13px; background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 9px 11px; }
+    .gate-msg { font-size: 13px; margin-top: 10px; min-height: 20px; }
+    .gate-msg.err { color: var(--bad); }
+    .sheet .foot { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; font-size: 12px; color: var(--ink-faint); }
+
     @media (max-width: 900px) {
       #work { grid-template-columns: 1fr; }
-      .rail { border-right: 0; border-bottom: 1px solid var(--line); max-height: 190px; }
+      .rail { border-right: 0; border-bottom: 1px solid var(--line); max-height: 46vh; }
       .panes { grid-template-columns: 1fr; }
       .pane + .pane { border-left: 0; border-top: 1px solid var(--line); }
-      #lyricBox { min-height: 300px; }
+      #lyricBox { min-height: 280px; }
+      .cand { grid-template-columns: 1fr; }
+      .song-row .ctl { display: inline-flex; }
     }
   </style>
 </head>
@@ -192,592 +155,564 @@
 
   <header>
     <span class="brand">Worship Studio</span>
-    <span class="header-links">
-      <a href="worship.html" target="_blank" rel="noopener">Home &nearr;</a>
-      <a href="worship-control.html" target="_blank" rel="noopener">Control &nearr;</a>
-      <a href="worship-display.html" target="_blank" rel="noopener">Display &nearr;</a>
-      <button class="btn" id="signOut" style="display:none">Sign out</button>
-    </span>
+    <div class="hdr-right">
+      <button class="pill off" id="connPill"><span class="dot"></span><span id="connText">Not connected</span></button>
+      <a class="btn" href="worship-control.html" target="_blank" rel="noopener">Run Sunday &nearr;</a>
+    </div>
   </header>
 
-  <!-- ── one-time setup ─────────────────────── -->
-  <div id="gate" style="display:none">
-    <h1>Connect once, then never again</h1>
-    <p>
-      This page saves lyric edits straight into the song library. To do that it needs
-      permission to write to the church's website. That's a one-time setup on this
-      computer &mdash; about two minutes.
-    </p>
-    <ol>
-      <li>
-        Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener"><b>this GitHub page</b> &nearr;</a>
-        (sign in if it asks).
-      </li>
-      <li>Give it a name &mdash; anything, like <code>worship studio</code>.</li>
-      <li>Under <b>Expiration</b>, pick <code>No expiration</code> so you don't have to redo this.</li>
-      <li>Under <b>Repository access</b>, choose <b>Only select repositories</b> and pick
-          <code>legacy-bible-church</code>.</li>
-      <li>
-        Under <b>Permissions &rarr; Repository permissions</b>, find <code>Contents</code>
-        and change its dropdown from <i>Read-only</i> to <b>Read and write</b>.
-        <br>
-        <span style="color:var(--warn)">This is the step everything depends on. If it
-        says Read-only, saving will fail.</span>
-      </li>
-      <li>Click <b>Generate token</b>, copy it, and paste it below.</li>
-    </ol>
-    <div class="token-row">
-      <input id="tokenInput" type="password" placeholder="github_pat_..." autocomplete="off" spellcheck="false">
-      <button class="btn primary" id="tokenSave">Connect</button>
-    </div>
-    <div class="gate-msg" id="gateMsg"></div>
-    <p style="margin-top:20px; font-size:12.5px; color:var(--ink-faint)">
-      The token is stored only in this browser, on this computer. It is never put on the
-      website and nobody else can see it. It can only touch this one repository &mdash;
-      you can delete it any time from GitHub's settings page.
-    </p>
-  </div>
-
-  <!-- ── workspace ──────────────────────────── -->
-  <div id="work" style="display:none">
+  <div id="work">
     <div class="rail" id="rail"></div>
     <div class="main" id="main"></div>
   </div>
 
   <div id="toast"></div>
 
+  <div id="connect">
+    <div class="sheet">
+      <h1>Connect this computer</h1>
+      <p>Saving songs needs permission to write to the church website. One-time setup on this computer, about two minutes. After that nobody sees this again.</p>
+      <ol>
+        <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener"><b>this GitHub page</b> &nearr;</a> (sign in as the church account if asked).</li>
+        <li>Name it anything, like <code>worship studio</code>. Expiration: <b>No expiration</b>.</li>
+        <li><b>Repository access</b> &rarr; <b>Only select repositories</b> &rarr; pick <code>legacy-bible-church</code>.</li>
+        <li><b>Repository permissions</b> &rarr; <b>Add permissions</b> &rarr; add <code>Contents</code> and <code>Actions</code>, and set <b>both</b> to <b>Read and write</b>.</li>
+        <li><b>Generate token</b>, copy it, paste it here.</li>
+      </ol>
+      <div class="token-row">
+        <input id="tokenInput" type="password" placeholder="github_pat_…" autocomplete="off" spellcheck="false">
+        <button class="btn primary" id="tokenSave">Connect</button>
+      </div>
+      <div class="gate-msg" id="gateMsg"></div>
+      <div class="foot">
+        <span>Stored only in this browser. Never on the website.</span>
+        <button class="btn quiet" id="connectClose">Not now</button>
+      </div>
+    </div>
+  </div>
+
   <script src="js/songs-data.js"></script>
   <script src="js/worship-songs.js"></script>
+  <script src="js/sheet.js?v=12"></script>
   <script>
   (function () {
     'use strict';
-
     var REPO = 'legacybiblechurch/legacy-bible-church';
-    var SONGS_PATH   = 'js/songs-data.js';
-    var SETLIST_PATH = 'js/worship-songs.js';
-    var TOKEN_KEY    = 'lbc-gh-token';
+    var SONGS_PATH = 'js/songs-data.js', SETLIST_PATH = 'js/worship-songs.js', WORKFLOW = 'worship-prep.yml';
+    var TOKEN_KEY = 'lbc-gh-token', FIND_KEY = 'lbc-studio-finding', ORDER_KEY = 'lbc-studio-order';
+    var S = LBCSheet;
 
-    var NEEDS_WRITE = 'This token can read the site but not write to it. Open ' +
-      'github.com/settings/personal-access-tokens, click your token, and under ' +
-      'Repository permissions set Contents to "Read and write", then Update token. ' +
-      'No need to re-paste it here.';
+    var LIB = S.library();
+    var published = S.setlist();            // what Sunday currently is (on the site)
+    var order = published.slice();          // what this person is arranging
+    var draft = {};                         // slug -> {title, youtube, lyrics}
+    var dirty = {};                         // slug -> true (unsaved words)
+    var finding = {};                       // slug -> {title, startedAt, video}
+    var found = {};                         // slug -> draft json (candidates) awaiting a choice
+    var current = null;
+    var connected = false;
 
-    // songs-data.js declares LEGACY_SONGS with const, so it is not on window
-    var LIB = (typeof LEGACY_SONGS !== 'undefined') ? LEGACY_SONGS : {};
-    var SETLIST = Array.isArray(window.WORSHIP_SETLIST) ? window.WORSHIP_SETLIST.slice() : [];
+    try { var o = JSON.parse(localStorage.getItem(ORDER_KEY) || 'null'); if (Array.isArray(o) && o.length) order = o; } catch (e) {}
+    try { finding = JSON.parse(localStorage.getItem(FIND_KEY) || '{}') || {}; } catch (e) {}
 
-    // working copy: slug -> {title, youtube, lyrics}. Edits live here until saved.
-    var draft = {};
-    var dirty = {};        // slug -> true
-    var current = null;    // selected slug
-
-    // ─────────────────────────────────────────── token + GitHub API
-
+    // ───────────────────────────── GitHub
     function token() { try { return localStorage.getItem(TOKEN_KEY) || ''; } catch (e) { return ''; } }
     function setToken(t) { try { t ? localStorage.setItem(TOKEN_KEY, t) : localStorage.removeItem(TOKEN_KEY); } catch (e) {} }
+    var NEEDS_WRITE = 'This computer can see the site but not save to it. On github.com/settings/personal-access-tokens open the token and set Contents and Actions to "Read and write".';
+    var NEEDS_ACTIONS = 'Finding new songs needs one more permission: on github.com/settings/personal-access-tokens open the token and set Actions to "Read and write".';
 
     function gh(path, opts) {
       opts = opts || {};
       return fetch('https://api.github.com' + path, {
         method: opts.method || 'GET',
-        headers: {
-          'Accept': 'application/vnd.github+json',
-          'Authorization': 'Bearer ' + token(),
-          'X-GitHub-Api-Version': '2022-11-28'
-        },
+        headers: { 'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + token(), 'X-GitHub-Api-Version': '2022-11-28' },
         body: opts.body
       }).then(function (r) {
         return r.text().then(function (t) {
-          var j = null;
-          try { j = JSON.parse(t); } catch (e) {}
+          var j = null; try { j = JSON.parse(t); } catch (e) {}
           if (!r.ok) {
             var msg = (j && j.message) || ('HTTP ' + r.status);
-            if (r.status === 401) msg = 'That token was rejected. It may be wrong or deleted.';
-            if (r.status === 403) msg = NEEDS_WRITE;
-            if (r.status === 404) msg = 'Token cannot see this repository. Check it was given access to legacy-bible-church.';
-            if (r.status === 409) msg = 'Someone else changed the file just now. Reload and redo this edit.';
+            if (r.status === 401) msg = 'The saved connection was rejected. Connect this computer again.';
+            if (r.status === 403) msg = opts.actions ? NEEDS_ACTIONS : NEEDS_WRITE;
+            if (r.status === 404 && !opts.allow404) msg = 'The website could not be reached. Check the internet connection and try again.';
+            if (r.status === 409) msg = 'Someone else just saved this. Reload the page and try again.';
             var e = new Error(msg); e.status = r.status; throw e;
           }
           return j;
         });
       });
     }
-
-    // base64 <-> utf8 that survives a 200KB file (no arg-spreading)
     function b64encode(str) {
       var bytes = new TextEncoder().encode(str), out = '', CH = 0x8000;
-      for (var i = 0; i < bytes.length; i += CH) {
-        out += String.fromCharCode.apply(null, bytes.subarray(i, i + CH));
-      }
+      for (var i = 0; i < bytes.length; i += CH) out += String.fromCharCode.apply(null, bytes.subarray(i, i + CH));
       return btoa(out);
     }
     function b64decode(b64) {
-      var bin = atob(String(b64).replace(/\s/g, ''));
-      var bytes = new Uint8Array(bin.length);
+      var bin = atob(String(b64).replace(/\s/g, '')), bytes = new Uint8Array(bin.length);
       for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
       return new TextDecoder().decode(bytes);
     }
-
-    // Confirms the token can actually WRITE, which the repo endpoint cannot tell us:
-    // for fine-grained tokens its `permissions` block reflects the person's own access
-    // to the repo, not what the token was scoped to. So a read-only token sails
-    // through that check and only fails later, on save.
-    //
-    // Asking to create a ref that already exists is a real write call with no effect:
-    // 403 = the token has no write permission, 422 "already exists" = it does.
-    function checkAccess() {
-      return gh('/repos/' + REPO).then(function () {
-        return fetch('https://api.github.com/repos/' + REPO + '/git/refs', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/vnd.github+json',
-            'Authorization': 'Bearer ' + token(),
-            'X-GitHub-Api-Version': '2022-11-28'
-          },
-          body: JSON.stringify({ ref: 'refs/heads/main', sha: '0'.repeat(40) })
-        });
-      }).then(function (r) {
-        if (r.status === 403 || r.status === 401) throw new Error(NEEDS_WRITE);
-        return true;   // 422 (exists / bad sha) means the write path is open to us
-      });
-    }
-
-    function getFile(path) {
-      return gh('/repos/' + REPO + '/contents/' + path + '?ref=main&cb=' + Date.now())
+    function getFile(path, allow404) {
+      return gh('/repos/' + REPO + '/contents/' + path + '?ref=main&cb=' + Date.now(), { allow404: allow404 })
         .then(function (j) { return { text: b64decode(j.content), sha: j.sha }; });
     }
     function putFile(path, text, sha, message) {
-      return gh('/repos/' + REPO + '/contents/' + path, {
-        method: 'PUT',
-        body: JSON.stringify({ message: message, content: b64encode(text), sha: sha, branch: 'main' })
-      });
+      return gh('/repos/' + REPO + '/contents/' + path, { method: 'PUT',
+        body: JSON.stringify({ message: message, content: b64encode(text), sha: sha, branch: 'main' }) });
+    }
+    // a real write call with no effect: 403 = no write permission, 422 = we're good
+    function checkAccess() {
+      return gh('/repos/' + REPO).then(function () {
+        return fetch('https://api.github.com/repos/' + REPO + '/git/refs', { method: 'POST',
+          headers: { 'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + token(), 'X-GitHub-Api-Version': '2022-11-28' },
+          body: JSON.stringify({ ref: 'refs/heads/main', sha: '0'.repeat(40) }) });
+      }).then(function (r) { if (r.status === 403 || r.status === 401) throw new Error(NEEDS_WRITE); return true; });
     }
 
-    // ─────────────────────────────────────────── songs-data.js serializer
-    // Mirrors scripts/prep/lib_songs.py _emit_song exactly, so a song written from
-    // this page is byte-identical to one written by the Action. Verified by that
-    // module's `--check` round-trip.
-
-    function emitStr(s) {
-      return '"' + String(s == null ? '' : s).replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
-    }
+    // ───────────────────────────── songs-data.js (mirrors lib_songs.py exactly)
+    function emitStr(s) { return '"' + String(s == null ? '' : s).replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"'; }
     function emitSong(slug, song) {
       var blocks = (song.lyrics || []).map(function (b) {
-        return '    { label: ' + emitStr(b.label || '') +
-               ', lines: [' + (b.lines || []).map(emitStr).join(', ') + '] }';
+        return '    { label: ' + emitStr(b.label || '') + ', lines: [' + (b.lines || []).map(emitStr).join(', ') + '] }';
       }).join(',\n');
-      return '  ' + emitStr(slug) + ': {\n' +
-             '    title: ' + emitStr(song.title) + ',\n' +
-             '    youtube: ' + emitStr(song.youtube || '') + ',\n' +
-             '    lyrics: [\n' + blocks + '\n  ]\n  }';
+      return '  ' + emitStr(slug) + ': {\n    title: ' + emitStr(song.title) + ',\n    youtube: ' + emitStr(song.youtube || '') +
+             ',\n    lyrics: [\n' + blocks + '\n  ]\n  }';
     }
-
-    // Surgical: replace only this song's block, leaving the other 128 untouched.
-    // Song keys are the only thing in the file that start a line with two spaces
-    // and a quote, so that anchor is unambiguous.
     function spliceSong(fileText, slug, song) {
       var objEnd = fileText.indexOf('\n};');
-      if (objEnd === -1) throw new Error('songs-data.js: could not find end of LEGACY_SONGS');
-      var start = fileText.indexOf('\n  ' + emitStr(slug) + ': {');
-      var emitted = emitSong(slug, song);
-      if (start === -1 || start > objEnd) {           // new song -> append
-        return fileText.slice(0, objEnd) + ',\n' + emitted + fileText.slice(objEnd);
-      }
+      if (objEnd === -1) throw new Error('The song library file looks damaged. Nothing was changed.');
+      var start = fileText.indexOf('\n  ' + emitStr(slug) + ': {'), emitted = emitSong(slug, song);
+      if (start === -1 || start > objEnd) return fileText.slice(0, objEnd) + ',\n' + emitted + fileText.slice(objEnd);
       var next = fileText.indexOf('\n  "', start + 1);
       if (next === -1 || next > objEnd) next = objEnd;
       return fileText.slice(0, start) + '\n' + emitted + ',' + fileText.slice(next);
     }
-
-    // Never commit a file we cannot parse back. Runs the candidate text and checks
-    // the library is intact and the edit actually landed.
+    function parseLib(text) { return new Function(text + '\n;return LEGACY_SONGS;')(); }
     function verify(fileText, slug, song, expectCount) {
       var obj;
-      try {
-        obj = new Function(fileText + '\n;return LEGACY_SONGS;')();
-      } catch (e) {
-        throw new Error('Refusing to save: the rebuilt file would not parse (' + e.message + ')');
-      }
-      var n = Object.keys(obj).length;
-      if (n !== expectCount) {
-        throw new Error('Refusing to save: song count changed ' + expectCount + ' -> ' + n);
-      }
-      if (JSON.stringify(obj[slug]) !== JSON.stringify(song)) {
-        throw new Error('Refusing to save: the edit did not round-trip cleanly');
-      }
-      return true;
+      try { obj = parseLib(fileText); } catch (e) { throw new Error('Refusing to save: the rebuilt library would not load. Nothing was changed.'); }
+      if (Object.keys(obj).length !== expectCount) throw new Error('Refusing to save: the song count changed unexpectedly. Nothing was changed.');
+      if (JSON.stringify(obj[slug]) !== JSON.stringify(song)) throw new Error('Refusing to save: the edit did not come back intact. Nothing was changed.');
     }
 
-    // ─────────────────────────────────────────── lyrics text <-> blocks
-    // Plain text is the editor. A blank line starts a new slide. A line in
-    // [brackets] on its own names the slide (Control only; never shown on the TV).
-
-    function blocksToText(lyrics) {
-      return (lyrics || []).map(function (b) {
-        var head = b.label ? '[' + b.label + ']\n' : '';
-        return head + (b.lines || []).join('\n');
-      }).join('\n\n');
-    }
-    function textToBlocks(text) {
-      return String(text).replace(/\r/g, '').split(/\n\s*\n/)
-        .map(function (chunk) {
-          var lines = chunk.split('\n').map(function (l) { return l.trim(); }).filter(Boolean);
-          if (!lines.length) return null;
-          var label = '';
-          var m = lines[0].match(/^\[(.*)\]$/);
-          if (m) { label = m[1].trim(); lines = lines.slice(1); }
-          if (!lines.length) return null;
-          return { label: label, lines: lines };
-        })
-        .filter(Boolean);
-    }
-
-    function videoId(url) {
-      var m = String(url || '').match(/(?:v=|\/shorts\/|youtu\.be\/|\/embed\/|\/live\/)([A-Za-z0-9_-]{11})/);
-      if (m) return m[1];
-      return /^[A-Za-z0-9_-]{11}$/.test(String(url || '').trim()) ? String(url).trim() : '';
-    }
-    function slugify(s) {
-      return String(s).toLowerCase().normalize('NFKD')
-        .replace(/['’]/g, '').replace(/&/g, 'and')
-        .replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
-    }
-
-    // ─────────────────────────────────────────── UI
-
-    function toast(msg, kind) {
-      var el = document.getElementById('toast');
-      el.textContent = msg;
-      el.className = 'show' + (kind ? ' ' + kind : '');
-      clearTimeout(toast._t);
-      toast._t = setTimeout(function () { el.className = ''; }, kind === 'err' ? 7000 : 3200);
-    }
-
+    // ───────────────────────────── state helpers
     function songOf(slug) {
       if (!draft[slug]) {
-        var src = LIB[slug] || { title: slug, youtube: '', lyrics: [] };
-        draft[slug] = {
-          title: src.title || slug,
-          youtube: src.youtube || '',
-          lyrics: JSON.parse(JSON.stringify(src.lyrics || []))
-        };
+        var src = LIB[slug] || { title: (finding[slug] && finding[slug].title) || slug, youtube: '', lyrics: [] };
+        draft[slug] = { title: S.decodeEntities(src.title || slug), youtube: src.youtube || '', lyrics: JSON.parse(JSON.stringify(src.lyrics || [])) };
       }
       return draft[slug];
     }
+    function isReady(slug) { var s = songOf(slug); return !!(s.lyrics && s.lyrics.length); }
+    function anyDirty() { return Object.keys(dirty).some(function (k) { return dirty[k]; }); }
+    function sameList(a, b) { return a.length === b.length && a.every(function (x, i) { return x === b[i]; }); }
+    function persistOrder() { try { localStorage.setItem(ORDER_KEY, JSON.stringify(order)); } catch (e) {} }
+    function persistFinding() { try { localStorage.setItem(FIND_KEY, JSON.stringify(finding)); } catch (e) {} }
 
-    function allSlugs() {
-      var seen = {}, out = [];
-      SETLIST.concat(Object.keys(draft)).forEach(function (s) {
-        if (!seen[s]) { seen[s] = 1; out.push(s); }
-      });
-      return out;
+    function toast(msg, kind, sticky) {
+      var el = document.getElementById('toast');
+      el.textContent = msg; el.className = 'show' + (kind ? ' ' + kind : '');
+      clearTimeout(toast._t);
+      if (!sticky) toast._t = setTimeout(function () { el.className = ''; }, kind === 'err' ? 8000 : 3000);
     }
 
+    // ───────────────────────────── rail
     function renderRail() {
       var rail = document.getElementById('rail');
       rail.innerHTML = '';
-
-      var lbl = document.createElement('div');
-      lbl.className = 'rail-label';
-      lbl.textContent = "This Sunday";
+      var lbl = el('div', 'rail-label', 'This Sunday');
+      if (!sameList(order, published)) lbl.appendChild(el('span', 'sub', 'not published yet'));
       rail.appendChild(lbl);
 
-      var slugs = allSlugs();
-      if (!slugs.length) {
-        var none = document.createElement('div');
-        none.style.cssText = 'font-size:13px;color:var(--ink-faint);padding:4px 10px';
-        none.textContent = 'No songs yet.';
+      if (!order.length) {
+        var none = el('div', '', 'No songs yet. Add the first one below.');
+        none.style.cssText = 'font-size:13px;color:var(--ink-faint);padding:6px 10px 10px';
         rail.appendChild(none);
       }
-      slugs.forEach(function (slug) {
-        var s = songOf(slug);
-        var b = document.createElement('button');
-        b.className = 'song-btn' + (slug === current ? ' active' : '');
-        b.innerHTML = '<span class="dot' + (SETLIST.indexOf(slug) === -1 ? ' off' : '') + '"></span>' +
-                      '<span class="nm"></span>' +
-                      (dirty[slug] ? '<span class="unsaved" title="unsaved">&bull;</span>' : '');
-        b.querySelector('.nm').textContent = s.title;
-        b.onclick = function () { select(slug); };
-        rail.appendChild(b);
+      order.forEach(function (slug, i) {
+        var s = songOf(slug), row = el('div', 'song-row' + (slug === current ? ' active' : ''));
+        var st = finding[slug] ? 'busy' : isReady(slug) ? '' : 'warn';
+        row.appendChild(el('span', 'dot ' + st));
+        var nm = el('span', 'nm', s.title);
+        if (finding[slug]) nm.appendChild(el('small', '', 'finding the words…'));
+        else if (found[slug]) nm.appendChild(el('small', '', 'pick a video'));
+        else if (!isReady(slug)) nm.appendChild(el('small', '', 'no words yet'));
+        row.appendChild(nm);
+        if (dirty[slug]) row.appendChild(el('span', 'unsaved', '•'));
+        var ctl = el('span', 'ctl');
+        ctl.appendChild(icoBtn('▲', i === 0, function () { move(i, -1); }));
+        ctl.appendChild(icoBtn('▼', i === order.length - 1, function () { move(i, 1); }));
+        var x = icoBtn('✕', false, function () { remove(slug); }); x.classList.add('x');
+        ctl.appendChild(x);
+        row.appendChild(ctl);
+        row.onclick = function () { select(slug); };
+        rail.appendChild(row);
       });
 
-      var lbl2 = document.createElement('div');
-      lbl2.className = 'rail-label';
-      lbl2.textContent = 'Add a song';
-      rail.appendChild(lbl2);
+      rail.appendChild(el('div', 'rail-label', 'Add a song'));
+      var wrap = el('div', 'add-wrap');
+      var inp = document.createElement('input');
+      inp.id = 'addName'; inp.placeholder = 'Type a song name'; inp.autocomplete = 'off';
+      var sugg = el('div', 'sugg'); sugg.id = 'sugg';
+      wrap.appendChild(inp); wrap.appendChild(sugg);
+      rail.appendChild(wrap);
+      wireAdd(inp, sugg);
 
-      var box = document.createElement('div');
-      box.className = 'add-box';
-      box.innerHTML = '<input id="addName" placeholder="Song name" autocomplete="off">';
-      var addBtn = document.createElement('button');
-      addBtn.className = 'btn';
-      addBtn.textContent = 'Add';
-      box.appendChild(addBtn);
-      rail.appendChild(box);
-
-      function doAdd() {
-        var name = box.querySelector('#addName').value.trim();
-        if (!name) return;
-        addSong(name);
-        box.querySelector('#addName').value = '';
-      }
-      addBtn.onclick = doAdd;
-      box.querySelector('#addName').onkeydown = function (e) { if (e.key === 'Enter') doAdd(); };
+      var foot = el('div', 'rail-foot');
+      var readyBtn = document.createElement('button');
+      readyBtn.className = 'btn big ' + (sameList(order, published) && order.length ? 'good' : 'primary');
+      readyBtn.id = 'readyBtn';
+      readyBtn.textContent = sameList(order, published) && order.length ? '✓ Ready for Sunday' : 'Ready for Sunday';
+      readyBtn.onclick = publish;
+      foot.appendChild(readyBtn);
+      foot.appendChild(el('div', 'ready-note', '')); foot.lastChild.id = 'readyNote';
+      rail.appendChild(foot);
+      paintReadyNote();
+    }
+    function el(tag, cls, text) { var d = document.createElement(tag); if (cls) d.className = cls; if (text != null) d.textContent = text; return d; }
+    function icoBtn(ch, disabled, fn) {
+      var b = document.createElement('button'); b.className = 'ico'; b.textContent = ch; b.disabled = !!disabled;
+      b.onclick = function (e) { e.stopPropagation(); fn(); }; return b;
+    }
+    function paintReadyNote() {
+      var n = document.getElementById('readyNote'); if (!n) return;
+      var problems = order.filter(function (s) { return !isReady(s) && !finding[s]; });
+      var busy = order.filter(function (s) { return finding[s]; });
+      if (!order.length) { n.textContent = ''; n.className = 'ready-note'; return; }
+      if (busy.length) { n.textContent = 'Still finding ' + busy.length + (busy.length === 1 ? ' song' : ' songs') + '…'; n.className = 'ready-note'; return; }
+      if (problems.length) { n.textContent = problems.length + (problems.length === 1 ? ' song has' : ' songs have') + ' no words yet'; n.className = 'ready-note warn'; return; }
+      if (anyDirty()) { n.textContent = 'Unsaved edits — save first'; n.className = 'ready-note warn'; return; }
+      if (sameList(order, published)) { n.textContent = 'Control and Display are showing this set'; n.className = 'ready-note good'; return; }
+      n.textContent = order.length + (order.length === 1 ? ' song' : ' songs') + ' — click when they’re right'; n.className = 'ready-note';
     }
 
-    function addSong(name) {
-      var slug = slugify(name);
-      // already in the library? just open it.
-      if (LIB[slug]) {
-        if (SETLIST.indexOf(slug) === -1) SETLIST.push(slug);
+    function move(i, d) {
+      var j = i + d; if (j < 0 || j >= order.length) return;
+      var t = order[i]; order[i] = order[j]; order[j] = t;
+      persistOrder(); renderRail();
+    }
+    function remove(slug) {
+      var s = songOf(slug);
+      if (dirty[slug] && !confirm('“' + s.title + '” has unsaved edits. Remove it from Sunday anyway?')) return;
+      order = order.filter(function (x) { return x !== slug; });
+      delete dirty[slug]; delete finding[slug]; delete found[slug];
+      persistOrder(); persistFinding();
+      if (current === slug) current = order[0] || null;
+      renderRail(); renderMain();
+    }
+
+    // ───────────────────────────── add a song (autocomplete)
+    function wireAdd(inp, sugg) {
+      var hi = -1, items = [];
+      function paint() {
+        var q = inp.value.trim();
+        items = q ? S.searchLibrary(q, 7) : [];
+        sugg.innerHTML = '';
+        if (!q) { sugg.className = 'sugg'; return; }
+        items.forEach(function (it, i) {
+          var b = document.createElement('button');
+          b.innerHTML = '<span></span><span class="tag">' + (order.indexOf(it.slug) !== -1 ? 'already in' : 'in the library') + '</span>';
+          b.firstChild.textContent = it.title;
+          if (i === hi) b.classList.add('hi');
+          b.onmousedown = function (e) { e.preventDefault(); choose(it.slug, it.title); };
+          sugg.appendChild(b);
+        });
+        var exact = items.length && S.searchLibrary(q, 1)[0] && S.searchLibrary(q, 1)[0].score >= 99;
+        if (!exact) {
+          var f = document.createElement('button');
+          f.innerHTML = '<span class="find"></span><span class="tag">find it</span>';
+          f.firstChild.textContent = 'Find “' + q + '” on YouTube';
+          if (hi === items.length) f.classList.add('hi');
+          f.onmousedown = function (e) { e.preventDefault(); findNew(q); };
+          sugg.appendChild(f);
+        }
+        sugg.className = 'sugg show';
+      }
+      inp.oninput = function () { hi = -1; paint(); };
+      inp.onfocus = paint;
+      inp.onblur = function () { setTimeout(function () { sugg.className = 'sugg'; }, 120); };
+      inp.onkeydown = function (e) {
+        var n = sugg.children.length;
+        if (e.key === 'ArrowDown') { hi = Math.min(hi + 1, n - 1); paint(); e.preventDefault(); }
+        else if (e.key === 'ArrowUp') { hi = Math.max(hi - 1, -1); paint(); e.preventDefault(); }
+        else if (e.key === 'Enter') {
+          e.preventDefault();
+          var q = inp.value.trim(); if (!q) return;
+          if (hi >= 0 && sugg.children[hi]) { sugg.children[hi].onmousedown(e); return; }
+          var top = S.searchLibrary(q, 1)[0];
+          if (top && top.score >= 80) choose(top.slug, top.title); else findNew(q);
+        } else if (e.key === 'Escape') { inp.value = ''; paint(); }
+      };
+      function choose(slug, title) {
+        inp.value = ''; sugg.className = 'sugg';
+        if (order.indexOf(slug) === -1) { order.push(slug); persistOrder(); }
         select(slug);
-        saveSetlist();
-        return;
+        toast('Added “' + title + '” — it already has its words.', 'ok');
       }
-      // otherwise start a blank one the person can paste into
-      draft[slug] = { title: name, youtube: '', lyrics: [] };
-      dirty[slug] = true;
-      if (SETLIST.indexOf(slug) === -1) SETLIST.push(slug);
-      select(slug);
-      toast('Blank song created. Paste the YouTube link and the words, then Save.', 'ok');
     }
 
-    function select(slug) {
-      current = slug;
-      renderRail();
-      renderMain();
+    // ───────────────────────────── find a brand-new song (runs the Action)
+    function findNew(name) {
+      var inp = document.getElementById('addName'); if (inp) inp.value = '';
+      if (!connected) { openConnect('Finding a new song needs this computer connected first.'); return; }
+      var slug = S.slugify(name);
+      if (!slug) return;
+      if (LIB[slug]) { if (order.indexOf(slug) === -1) order.push(slug); persistOrder(); select(slug); return; }
+      if (finding[slug]) { select(slug); return; }
+      finding[slug] = { title: name, startedAt: Date.now() };
+      persistFinding();
+      if (order.indexOf(slug) === -1) order.push(slug);
+      persistOrder();
+      songOf(slug).title = name;
+      select(slug);
+      gh('/repos/' + REPO + '/actions/workflows/' + WORKFLOW + '/dispatches', { method: 'POST', actions: true,
+        body: JSON.stringify({ ref: 'main', inputs: { song: name, video: '' } }) })
+      .then(function () { pollFind(slug); })
+      .catch(function (e) {
+        delete finding[slug]; persistFinding();
+        renderRail(); renderMain();
+        toast(e.message, 'err');
+      });
     }
+    var pollTimers = {};
+    function pollFind(slug) {
+      if (!finding[slug]) return;
+      clearTimeout(pollTimers[slug]);
+      var started = finding[slug].startedAt;
+      getFile('drafts/' + slug + '.json', true).then(function (f) {
+        var d = JSON.parse(f.text);
+        var when = Date.parse(d.generatedAt || 0);
+        if (!(when > started - 60000)) throw new Error('old');     // a stale draft from before
+        delete finding[slug]; persistFinding();
+        found[slug] = d;
+        renderRail();
+        if (current === slug) renderMain();
+        toast(d.error ? 'Couldn’t find that song automatically.' : 'Found “' + (d.title || slug) + '”. Pick the video that sounds right.', d.error ? 'err' : 'ok');
+      }).catch(function () {
+        if (Date.now() - started > 9 * 60000) {
+          delete finding[slug]; persistFinding();
+          found[slug] = { slug: slug, title: songOf(slug).title, candidates: [], error: 'took too long' };
+          renderRail(); if (current === slug) renderMain();
+          return;
+        }
+        pollTimers[slug] = setTimeout(function () { pollFind(slug); }, 6000);
+        if (current === slug) paintElapsed(slug);
+      });
+    }
+    function paintElapsed(slug) {
+      var e = document.getElementById('elapsed'); if (!e || !finding[slug]) return;
+      var sec = Math.round((Date.now() - finding[slug].startedAt) / 1000);
+      e.textContent = sec < 60 ? sec + 's' : Math.floor(sec / 60) + 'm ' + (sec % 60) + 's';
+    }
+    setInterval(function () { if (current && finding[current]) paintElapsed(current); }, 1000);
+
+    function useCandidate(slug, c) {
+      var s = songOf(slug);
+      s.title = S.decodeEntities((found[slug] && found[slug].title) || s.title);
+      s.youtube = c.url || ('https://www.youtube.com/watch?v=' + c.videoId);
+      s.lyrics = JSON.parse(JSON.stringify(c.lyrics || []));
+      delete found[slug];
+      dirty[slug] = true;
+      renderRail(); renderMain();
+      saveSong(slug);      // automation: choosing the video IS the confirmation
+    }
+    function useBlank(slug) {
+      delete found[slug]; dirty[slug] = true;
+      renderRail(); renderMain();
+      toast('Paste the YouTube link and the words, then Save.', 'ok');
+    }
+
+    // ───────────────────────────── main
+    function select(slug) { current = slug; renderRail(); renderMain(); }
 
     function renderMain() {
       var main = document.getElementById('main');
       if (!current) {
-        main.innerHTML = '<div class="empty-main">Pick a song on the left, or add one.</div>';
+        main.innerHTML = '<div class="center"><h2>' + (order.length ? 'Pick a song on the left' : 'Add the first song') + '</h2>' +
+          '<p>' + (order.length ? '' : 'Type its name on the left. Songs we’ve sung before are added instantly. New ones get found automatically.') + '</p></div>';
         return;
       }
-      var s = songOf(current);
-      var vid = videoId(s.youtube);
-      var inSet = SETLIST.indexOf(current) !== -1;
+      if (finding[current]) {
+        main.innerHTML = '<div class="main-head"><span class="main-title"></span></div>' +
+          '<div class="center"><div class="spinner"></div><h2>Finding the words</h2>' +
+          '<p>Searching YouTube and listening to the recording so the words match it. Usually 1–3 minutes. You can add other songs while you wait.</p>' +
+          '<p style="color:var(--ink-faint);font-size:12px" id="elapsed"></p></div>';
+        main.querySelector('.main-title').textContent = songOf(current).title;
+        paintElapsed(current);
+        return;
+      }
+      if (found[current]) { renderCandidates(current); return; }
+      renderEditor(current);
+    }
 
+    function renderCandidates(slug) {
+      var main = document.getElementById('main'), d = found[slug];
+      var cands = (d.candidates || []).filter(function (c) { return c.lyrics && c.lyrics.length; });
+      var html = '<div class="main-head"><span class="main-title"></span><div class="main-actions">' +
+                 '<button class="btn quiet" id="skipBtn">I’ll paste the words myself</button></div></div>';
+      if (!cands.length) {
+        html += '<div class="center"><h2>Couldn’t find good words for this one</h2>' +
+                '<p>' + (d.error === 'took too long' ? 'It took longer than usual and gave up.' : 'That title didn’t turn up a recording with usable words.') +
+                ' You can paste the YouTube link and the words in yourself — it’s saved for good after that.</p>' +
+                '<button class="btn primary" id="blankBtn">Paste them in</button></div>';
+      } else {
+        html += '<div class="cands">' + cands.map(function (c, i) {
+          var conf = c.confidence || 0;
+          return '<div class="cand' + (i === 0 ? ' best' : '') + '">' +
+            '<a href="' + esc(c.url) + '" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/' + esc(c.videoId) + '/mqdefault.jpg" alt=""></a>' +
+            '<div><div class="t"></div><div class="f">' + esc(S.decodeEntities(c.channel || '')) + (c.duration ? ' · ' + esc(c.duration) : '') +
+            ' · <b class="' + (conf >= 80 ? '' : 'mid') + '">' + conf + '% match</b>' + (i === 0 ? ' · best guess' : '') + '</div></div>' +
+            '<div class="acts"><button class="btn primary" data-i="' + i + '">Use this one</button>' +
+            '<a class="btn" href="' + esc(c.url) + '" target="_blank" rel="noopener">Listen &nearr;</a></div></div>';
+        }).join('') + '</div>';
+      }
+      main.innerHTML = html;
+      main.querySelector('.main-title').textContent = S.decodeEntities(d.title || songOf(slug).title);
+      var ts = main.querySelectorAll('.cand .t');
+      cands.forEach(function (c, i) { ts[i].textContent = S.decodeEntities(c.title || ''); });
+      main.querySelectorAll('.cand .acts .primary').forEach(function (b) {
+        b.onclick = function () { useCandidate(slug, cands[+b.dataset.i]); };
+      });
+      var sk = document.getElementById('skipBtn'); if (sk) sk.onclick = function () { useBlank(slug); };
+      var bl = document.getElementById('blankBtn'); if (bl) bl.onclick = function () { useBlank(slug); };
+    }
+
+    function renderEditor(slug) {
+      var main = document.getElementById('main'), s = songOf(slug), vid = S.videoId(s.youtube);
       main.innerHTML =
-        '<div class="main-head">' +
-          '<span class="main-title"></span>' +
-          '<div class="main-actions">' +
-            '<span class="save-state" id="saveState"></span>' +
-            '<button class="btn" id="setToggle"></button>' +
-            '<button class="btn primary" id="saveBtn">Save</button>' +
-          '</div>' +
-        '</div>' +
+        '<div class="main-head"><span class="main-title"></span><div class="main-actions">' +
+          '<span class="save-state" id="saveState"></span>' +
+          '<button class="btn primary" id="saveBtn">Save</button></div></div>' +
         '<div class="panes">' +
           '<div class="pane">' +
             '<div class="video-strip">' +
-              (vid ? '<iframe src="https://www.youtube.com/embed/' + vid + '" allow="encrypted-media" referrerpolicy="origin-when-cross-origin"></iframe>' : '') +
-              '<div class="vid-row">' +
-                '<input id="vidInput" placeholder="Paste the YouTube link" spellcheck="false">' +
-              '</div>' +
-            '</div>' +
-            '<div class="pane-head">Words' +
-              '<span class="hint">blank line = new slide &nbsp;&middot;&nbsp; [Chorus] names a slide</span>' +
-            '</div>' +
-            '<textarea id="lyricBox" spellcheck="true"></textarea>' +
+              (vid ? '<iframe src="https://www.youtube.com/embed/' + vid + '" allow="encrypted-media"></iframe>' : '<div class="novid">No video yet — paste a YouTube link below</div>') +
+              '<input id="vidInput" placeholder="YouTube link" spellcheck="false"></div>' +
+            '<div class="pane-head">Words<span class="hint">blank line = new slide &nbsp;·&nbsp; [Chorus] names a slide</span></div>' +
+            '<textarea id="lyricBox" spellcheck="true" placeholder="Paste or type the words here."></textarea>' +
           '</div>' +
-          '<div class="pane">' +
-            '<div class="pane-head">On the screen<span class="pv-count" id="pvCount"></span></div>' +
-            '<div class="preview" id="preview"></div>' +
-          '</div>' +
+          '<div class="pane"><div class="pane-head">On the screen<span class="right" id="pvCount"></span></div><div class="preview" id="preview"></div></div>' +
         '</div>';
-
       main.querySelector('.main-title').textContent = s.title;
-      var setBtn = document.getElementById('setToggle');
-      setBtn.textContent = inSet ? 'In Sunday’s set' : 'Not in the set';
-      setBtn.onclick = function () {
-        var i = SETLIST.indexOf(current);
-        if (i === -1) SETLIST.push(current); else SETLIST.splice(i, 1);
-        renderRail(); renderMain();
-        saveSetlist();
-      };
-
       var vidIn = document.getElementById('vidInput');
       vidIn.value = s.youtube || '';
-      vidIn.onchange = function () {
-        s.youtube = vidIn.value.trim();
-        dirty[current] = true;
-        renderRail(); renderMain();
-      };
-
+      vidIn.onchange = function () { s.youtube = vidIn.value.trim(); dirty[slug] = true; renderRail(); renderEditor(slug); };
       var box = document.getElementById('lyricBox');
-      box.value = blocksToText(s.lyrics);
+      box.value = S.blocksToText(s.lyrics);
       box.oninput = function () {
-        s.lyrics = textToBlocks(box.value);
-        dirty[current] = true;
-        paintPreview(s);
-        paintSaveState();
-        // cheap rail refresh only when the unsaved marker needs to appear
-        if (!document.querySelector('.song-btn.active .unsaved')) renderRail();
+        s.lyrics = S.textToBlocks(box.value); dirty[slug] = true;
+        paintPreview(s); paintSaveState();
+        var active = document.querySelector('.song-row.active');
+        if (active && !active.querySelector('.unsaved')) renderRail();
       };
-
-      document.getElementById('saveBtn').onclick = function () { saveSong(current); };
-      paintPreview(s);
-      paintSaveState();
-    }
-
-    // mirrors worship-display.html's slide builder so the preview is truthful
-    function perSlide(lines) {
-      var avg = lines.join(' ').length / Math.max(lines.length, 1);
-      return avg > 38 ? 2 : 4;
-    }
-    function buildSlides(lyrics) {
-      var out = [];
-      (lyrics || []).forEach(function (b) {
-        var lines = b.lines || [], n = perSlide(lines);
-        for (var i = 0; i < lines.length; i += n) out.push({ label: b.label || '', lines: lines.slice(i, i + n) });
-      });
-      return out;
+      document.getElementById('saveBtn').onclick = function () { saveSong(slug); };
+      paintPreview(s); paintSaveState();
     }
     function paintPreview(s) {
-      var slides = buildSlides(s.lyrics);
-      var pv = document.getElementById('preview');
+      var slides = S.buildSlides(s.lyrics), pv = document.getElementById('preview');
       pv.innerHTML = '';
       slides.forEach(function (sl) {
-        var d = document.createElement('div');
-        d.className = 'pv-slide';
-        if (sl.label) {
-          var l = document.createElement('div');
-          l.className = 'pv-label'; l.textContent = sl.label;
-          d.appendChild(l);
-        }
-        sl.lines.forEach(function (line) {
-          var p = document.createElement('div');
-          p.className = 'pv-line'; p.textContent = line;
-          d.appendChild(p);
-        });
+        var d = el('div', 'pv');
+        if (sl.label) d.appendChild(el('div', 'pv-label', sl.label));
+        sl.lines.forEach(function (line) { d.appendChild(el('div', 'pv-line', line)); });
         pv.appendChild(d);
       });
-      document.getElementById('pvCount').textContent =
-        slides.length + (slides.length === 1 ? ' slide' : ' slides');
+      document.getElementById('pvCount').textContent = slides.length ? slides.length + (slides.length === 1 ? ' slide' : ' slides') : '';
     }
     function paintSaveState() {
-      var el = document.getElementById('saveState');
-      if (!el) return;
-      if (dirty[current]) { el.textContent = 'Unsaved'; el.className = 'save-state dirty'; }
-      else { el.textContent = ''; el.className = 'save-state'; }
+      var e = document.getElementById('saveState'); if (!e) return;
+      e.textContent = dirty[current] ? 'Unsaved' : ''; e.className = 'save-state' + (dirty[current] ? ' dirty' : '');
+      paintReadyNote();
     }
+    function esc(t) { return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 
-    // ─────────────────────────────────────────── saving
-
+    // ───────────────────────────── saving
     var saving = false;
     function saveSong(slug) {
       if (saving) return;
       var s = songOf(slug);
-      if (!s.lyrics.length) { toast('Nothing to save yet — add some words first.', 'err'); return; }
+      if (!s.lyrics.length) { toast('Nothing to save yet — add the words first.', 'err'); return; }
+      if (!connected) { openConnect('Saving needs this computer connected first.'); return; }
       saving = true;
-      var btn = document.getElementById('saveBtn');
-      if (btn) { btn.disabled = true; btn.textContent = 'Saving…'; }
-
+      var btn = document.getElementById('saveBtn'); if (btn) { btn.disabled = true; btn.textContent = 'Saving…'; }
       getFile(SONGS_PATH).then(function (f) {
-        var before = new Function(f.text + '\n;return LEGACY_SONGS;')();
-        var count = Object.keys(before).length + (before[slug] ? 0 : 1);
+        var before = parseLib(f.text), count = Object.keys(before).length + (before[slug] ? 0 : 1);
         var next = spliceSong(f.text, slug, s);
         verify(next, slug, s, count);
-        return putFile(SONGS_PATH, next, f.sha,
-          'worship studio: update lyrics for ' + s.title + '\n\nEdited in Worship Studio by hand.');
+        return putFile(SONGS_PATH, next, f.sha, 'worship studio: ' + (before[slug] ? 'update' : 'add') + ' ' + s.title);
       }).then(function () {
-        dirty[slug] = false;
-        LIB[slug] = JSON.parse(JSON.stringify(s));
-        toast('Saved. It goes live in about a minute.', 'ok');
+        dirty[slug] = false; LIB[slug] = JSON.parse(JSON.stringify(s));
+        toast('Saved “' + s.title + '”.', 'ok');
         renderRail(); paintSaveState();
-      }).catch(function (e) {
-        toast(e.message, 'err');
+      }).catch(function (e) { toast(e.message, 'err', true); })
+        .then(function () { saving = false; var b = document.getElementById('saveBtn'); if (b) { b.disabled = false; b.textContent = 'Save'; } });
+    }
+
+    // "Ready for Sunday" = validate, then publish the set to Control/Display
+    var publishing = false;
+    function publish() {
+      if (publishing) return;
+      if (!order.length) { toast('Add at least one song first.', 'err'); return; }
+      var busy = order.filter(function (s) { return finding[s]; });
+      if (busy.length) { toast('Still finding “' + songOf(busy[0]).title + '” — give it a minute.', 'err'); return; }
+      var missing = order.filter(function (s) { return !isReady(s); });
+      if (missing.length) { select(missing[0]); toast('“' + songOf(missing[0]).title + '” has no words yet.', 'err'); return; }
+      var un = order.filter(function (s) { return dirty[s]; });
+      if (un.length) { select(un[0]); toast('Save “' + songOf(un[0]).title + '” first (it has unsaved edits).', 'err'); return; }
+      if (!connected) { openConnect('Publishing Sunday needs this computer connected first.'); return; }
+      if (sameList(order, published)) { toast('Sunday is already set. Control and Display are showing these songs.', 'ok'); return; }
+      publishing = true;
+      var b = document.getElementById('readyBtn'); if (b) { b.disabled = true; b.textContent = 'Publishing…'; }
+      var text = '/**\n * LBC Sunday Setlist\n * ──────────────────\n * Set in Worship Studio.\n */\n\nwindow.WORSHIP_SETLIST = [\n' +
+                 order.map(function (s) { return "  '" + s + "',\n"; }).join('') + '];\n';
+      getFile(SETLIST_PATH).then(function (f) {
+        return putFile(SETLIST_PATH, text, f.sha, 'worship studio: set Sunday (' + order.length + ' songs)');
       }).then(function () {
-        saving = false;
-        var b = document.getElementById('saveBtn');
-        if (b) { b.disabled = false; b.textContent = 'Save'; }
-      });
+        published = order.slice();
+        toast('Sunday is set. Control and Display will show these songs within a minute.', 'ok');
+      }).catch(function (e) { toast(e.message, 'err', true); })
+        .then(function () { publishing = false; renderRail(); });
     }
 
-    var setlistTimer = null;
-    function saveSetlist() {
-      clearTimeout(setlistTimer);
-      setlistTimer = setTimeout(function () {
-        var body = SETLIST.map(function (s) { return "  '" + s + "',\n"; }).join('');
-        var text =
-          '/**\n' +
-          ' * LBC Sunday Setlist\n' +
-          ' * ──────────────────\n' +
-          ' * Set in Worship Studio.\n' +
-          ' */\n\n' +
-          'window.WORSHIP_SETLIST = [\n' + body + '];\n';
-        getFile(SETLIST_PATH).then(function (f) {
-          return putFile(SETLIST_PATH, text, f.sha, 'worship studio: update Sunday setlist');
-        }).then(function () {
-          toast('Setlist updated.', 'ok');
-        }).catch(function (e) { toast(e.message, 'err'); });
-      }, 600);
+    // ───────────────────────────── connection
+    function paintConn() {
+      document.getElementById('connPill').className = 'pill ' + (connected ? 'on' : 'off');
+      document.getElementById('connText').textContent = connected ? 'Connected' : 'Not connected — click to set up';
     }
-
-    // ─────────────────────────────────────────── boot
-
-    function showGate(msg, kind) {
-      document.getElementById('gate').style.display = '';
-      document.getElementById('work').style.display = 'none';
-      document.getElementById('signOut').style.display = 'none';
-      if (msg) {
-        var m = document.getElementById('gateMsg');
-        m.textContent = msg; m.className = 'gate-msg ' + (kind || '');
-      }
+    function openConnect(reason) {
+      document.getElementById('connect').className = 'show';
+      var m = document.getElementById('gateMsg'); m.textContent = reason || ''; m.className = 'gate-msg';
+      setTimeout(function () { document.getElementById('tokenInput').focus(); }, 50);
     }
-    function showWork() {
-      document.getElementById('gate').style.display = 'none';
-      document.getElementById('work').style.display = '';
-      document.getElementById('signOut').style.display = '';
-      SETLIST.forEach(songOf);
-      if (!current) current = SETLIST[0] || null;
-      renderRail();
-      renderMain();
-    }
-
+    document.getElementById('connPill').onclick = function () { if (!connected) openConnect(); };
+    document.getElementById('connectClose').onclick = function () { document.getElementById('connect').className = ''; };
     document.getElementById('tokenSave').onclick = function () {
-      // falls back to the stored token, so after fixing permissions on GitHub you can
-      // just press the button again instead of digging the token out a second time
       var t = document.getElementById('tokenInput').value.trim() || token();
       if (!t) return;
       setToken(t);
-      var m = document.getElementById('gateMsg');
-      m.textContent = 'Checking…'; m.className = 'gate-msg';
-      checkAccess().then(showWork).catch(function (e) {
-        showGate(e.message, 'err');
-      });
+      var m = document.getElementById('gateMsg'); m.textContent = 'Checking…'; m.className = 'gate-msg';
+      checkAccess().then(function () {
+        connected = true; paintConn();
+        document.getElementById('connect').className = '';
+        document.getElementById('tokenInput').value = '';
+        toast('Connected. This computer can now save songs.', 'ok');
+        Object.keys(finding).forEach(pollFind);
+      }).catch(function (e) { m.textContent = e.message; m.className = 'gate-msg err'; });
     };
-    document.getElementById('tokenInput').onkeydown = function (e) {
-      if (e.key === 'Enter') document.getElementById('tokenSave').click();
-    };
-    document.getElementById('signOut').onclick = function () {
-      if (Object.keys(dirty).some(function (k) { return dirty[k]; }) &&
-          !confirm('You have unsaved edits. Sign out anyway?')) return;
-      setToken('');
-      location.reload();
-    };
+    document.getElementById('tokenInput').onkeydown = function (e) { if (e.key === 'Enter') document.getElementById('tokenSave').click(); };
 
-    window.addEventListener('beforeunload', function (e) {
-      if (Object.keys(dirty).some(function (k) { return dirty[k]; })) {
-        e.preventDefault(); e.returnValue = '';
-      }
-    });
+    window.addEventListener('beforeunload', function (e) { if (anyDirty()) { e.preventDefault(); e.returnValue = ''; } });
     document.addEventListener('keydown', function (e) {
-      if ((e.metaKey || e.ctrlKey) && e.key === 's') {
-        e.preventDefault();
-        if (current && dirty[current]) saveSong(current);
-      }
+      if ((e.metaKey || e.ctrlKey) && e.key === 's') { e.preventDefault(); if (current && dirty[current]) saveSong(current); }
     });
 
+    // ───────────────────────────── boot
+    order.forEach(songOf);
+    current = order[0] || null;
+    renderRail(); renderMain(); paintConn();
     if (token()) {
-      // keep the token on failure - it is usually a permission that needs widening,
-      // not a bad token, and making them paste it again to retry is pure friction
-      checkAccess().then(showWork).catch(function (e) {
-        showGate(e.message, 'err');
-        var b = document.getElementById('tokenSave');
-        if (b) b.textContent = 'Try again';
-      });
-    } else {
-      showGate();
+      checkAccess().then(function () { connected = true; paintConn(); Object.keys(finding).forEach(pollFind); })
+        .catch(function () { connected = false; paintConn(); });
     }
   })();
   </script>
