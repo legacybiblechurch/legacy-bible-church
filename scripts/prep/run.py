@@ -27,6 +27,7 @@ import sys
 import traceback
 from pathlib import Path
 
+import align
 import lib_songs
 import reconcile as rec
 import sheet as sheet_mod
@@ -198,8 +199,10 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
                     if r2["confidence"] > r["confidence"]:
                         tr, r = tr2, r2
                         c["transcriptSource"] = tr2["source"]
-            c.update(lyrics=r["lyrics"], confidence=r["confidence"],
-                     notes=r["notes"], order=r["order"])
+            # stamp each line with when it is sung, so the prep page can jump
+            # the video to any line instead of making someone scrub for it
+            c.update(lyrics=align.annotate(r["lyrics"], tr.get("cues") or []),
+                     confidence=r["confidence"], notes=r["notes"], order=r["order"])
             drafted += 1
         except Exception as e:  # noqa: BLE001 — one bad video shouldn't kill the run
             c["notes"] = f"Draft failed: {e}"
@@ -315,7 +318,10 @@ def apply_row(row: sheet_mod.Row, songs: dict) -> tuple[str, str]:
             except Exception:  # noqa: BLE001
                 return slug, "approved but no captions and not in the library — add a lyric video or type the words in Fixes"
 
-    lib_songs.upsert_song(slug, title=title, youtube=chosen["url"], lyrics=lyrics)
+    # timestamps are per-recording scratch data for the review page - the library
+    # entry outlives any one video, so it stores the words only
+    lib_songs.upsert_song(slug, title=title, youtube=chosen["url"],
+                          lyrics=align.strip_times(lyrics))
     _record_approval(slug, chosen["url"])
     return slug, f"approved — {chosen['url']}"
 

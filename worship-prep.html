@@ -164,7 +164,22 @@
       font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
       text-transform: uppercase; color: var(--gold); margin-bottom: 4px;
     }
-    .slide-line { font-size: 13.5px; color: var(--ink); }
+    .slide-line { font-size: 13.5px; color: var(--ink); position: relative; padding: 1px 44px 1px 0; border-radius: 4px; }
+    .slide-line .at {
+      position: absolute; right: 4px; top: 1px;
+      font-size: 10.5px; font-variant-numeric: tabular-nums;
+      color: var(--ink-faint); opacity: 0; transition: opacity 0.12s;
+    }
+    .slide-line.seekable { cursor: pointer; }
+    .slide-line.seekable:hover { background: var(--panel-2); }
+    .slide-line.seekable:hover .at { opacity: 1; }
+    .slide-line.playing { background: rgba(201,168,76,0.12); }
+    .slide-line.playing .at { opacity: 1; color: var(--gold); }
+    /* words the aligner never found in this recording - the lines worth checking */
+    .slide-line.unheard { color: var(--warn); }
+    .slide-line.unheard .at { opacity: 1; color: var(--warn); }
+    .seek-hint { margin-top: 8px; font-size: 12px; color: var(--ink-faint); }
+    .seek-hint b { color: var(--warn); font-weight: 600; }
     .no-lyrics { font-size: 13px; color: var(--ink-faint); font-style: italic; padding: 8px 0; }
 
     .loading, .empty { color: var(--ink-dim); font-size: 14px; padding: 40px 0; text-align: center; }
@@ -236,11 +251,30 @@
     function buildSlides(lyrics) {
       var slides = [];
       (lyrics || []).forEach(function (block) {
-        var lines = block.lines || [], lbl = block.label || '';
-        if (lines.length <= MAX_LINES) { slides.push({ label: lbl, lines: lines }); }
-        else { for (var i = 0; i < lines.length; i += MAX_LINES) slides.push({ label: lbl, lines: lines.slice(i, i + MAX_LINES) }); }
+        var lines = block.lines || [], times = block.times || [], lbl = block.label || '';
+        if (lines.length <= MAX_LINES) { slides.push({ label: lbl, lines: lines, times: times }); }
+        else {
+          for (var i = 0; i < lines.length; i += MAX_LINES) {
+            slides.push({ label: lbl, lines: lines.slice(i, i + MAX_LINES), times: times.slice(i, i + MAX_LINES) });
+          }
+        }
       });
       return slides;
+    }
+    // a draft only has timings if it was built from a real transcript of that video
+    function hasTimings(lyrics) {
+      return (lyrics || []).some(function (b) { return Array.isArray(b.times); });
+    }
+    function countUnheard(lyrics) {
+      var n = 0;
+      (lyrics || []).forEach(function (b) {
+        (b.times || []).forEach(function (t) { if (t === null || t === undefined) n++; });
+      });
+      return n;
+    }
+    function fmtTime(t) {
+      t = Math.max(0, Math.floor(t || 0));
+      return Math.floor(t / 60) + ':' + ('0' + (t % 60)).slice(-2);
     }
     function esc(t) { return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
     function decode(t) { var d = document.createElement('textarea'); d.innerHTML = t || ''; return d.value; }
@@ -254,6 +288,8 @@
       var cap = c.transcriptSource || 'none';
       var hasLy = c.lyrics && c.lyrics.length;
       var slides = hasLy ? buildSlides(c.lyrics) : [];
+      var timed = hasLy && hasTimings(c.lyrics);
+      var unheard = timed ? countUnheard(c.lyrics) : 0;
       var isChosen = chosenId && c.videoId === chosenId;
       return '' +
       '<div class="cand' + (isChosen ? ' chosen' : '') + '" data-vid="' + c.videoId + '">' +
@@ -280,10 +316,25 @@
           '</div>' +
           '<div class="lyrics">' +
             (hasLy
-              ? '<div class="notes">' + (c.order ? '<span class="order">' + esc(c.order) + '</span><br>' : '') + esc(c.notes || '') + '</div>' +
+              ? '<div class="notes">' + (c.order ? '<span class="order">' + esc(c.order) + '</span><br>' : '') + esc(c.notes || '') +
+                  (timed ? '<div class="seek-hint">Click any line to jump the video to it.' +
+                    (unheard ? ' <b>' + unheard + ' line' + (unheard === 1 ? '' : 's') + '</b> ' +
+                      (unheard === 1 ? 'wasn\'t heard in this recording — that\'s the one to check.'
+                                     : 'weren\'t heard in this recording — those are the ones to check.') : '') +
+                    '</div>' : '') + '</div>' +
                 slides.map(function (s) {
                   return '<div class="slide">' + (s.label ? '<div class="slide-label">' + esc(s.label) + '</div>' : '') +
-                    s.lines.map(function (l) { return '<div class="slide-line">' + esc(l) + '</div>'; }).join('') + '</div>';
+                    s.lines.map(function (l, li) {
+                      var t = timed ? s.times[li] : undefined;
+                      var seekable = (t !== null && t !== undefined);
+                      if (!timed) return '<div class="slide-line">' + esc(l) + '</div>';
+                      return '<div class="slide-line ' + (seekable ? 'seekable' : 'unheard') + '"' +
+                        (seekable
+                          ? ' onclick="seekTo(this,' + t + ')" title="Jump to ' + fmtTime(t) + '"'
+                          : ' title="Not heard in this recording — check this line"') +
+                        '>' + esc(l) +
+                        '<span class="at">' + (seekable ? fmtTime(t) : '?') + '</span></div>';
+                    }).join('') + '</div>';
                 }).join('')
               : '<div class="no-lyrics">' + esc(c.notes || 'No lyrics drafted for this video.') + '</div>') +
           '</div>' +
@@ -294,11 +345,34 @@
     function toggleCand(row) {
       row.parentNode.classList.toggle('open');
     }
-    function playThumb(el) {
+    function playThumb(el, startAt) {
       var f = document.createElement('iframe');
       f.allow = 'autoplay; encrypted-media';
-      f.src = 'https://www.youtube.com/embed/' + el.dataset.vid + '?autoplay=1';
+      f.src = 'https://www.youtube.com/embed/' + el.dataset.vid + '?autoplay=1&enablejsapi=1' +
+              (startAt ? '&start=' + Math.max(0, Math.floor(startAt)) : '');
       el.replaceWith(f);
+    }
+    // click a lyric line -> the video jumps to where that line is sung. If the
+    // player hasn't been opened yet, open it starting at that moment instead.
+    function seekTo(el, t) {
+      if (t === null || t === undefined) return;
+      var body = el.closest('.cand-body');
+      var frame = body && body.querySelector('iframe');
+      if (frame && frame.contentWindow) {
+        try {
+          ['seekTo', 'playVideo'].forEach(function (fn) {
+            frame.contentWindow.postMessage(JSON.stringify({
+              event: 'command', func: fn, args: fn === 'seekTo' ? [t, true] : []
+            }), 'https://www.youtube.com');
+          });
+        } catch (e) { /* cross-origin hiccup — nothing useful to do */ }
+      } else {
+        var thumb = body && body.querySelector('.thumb');
+        if (thumb) playThumb(thumb, t);
+      }
+      var prev = body.querySelector('.slide-line.playing');
+      if (prev) prev.classList.remove('playing');
+      el.classList.add('playing');
     }
     function copyUrl(btn, url) {
       navigator.clipboard && navigator.clipboard.writeText(url);
