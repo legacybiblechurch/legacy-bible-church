@@ -422,8 +422,33 @@ def draft_one(name: str, video: str = "") -> None:
     slug, title, _ = resolve(name)
     try:
         d = draft_row(row, songs)
+        # The Exact Lyrics Engine decides the words, from evidence only. Here (on
+        # GitHub's servers) it can use captions and the song's verified library
+        # words; the recording itself gets listened to by the church Mac, which
+        # picks up any draft still marked needsAudio.
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "engine"))
+        import engine as eng
+        known = None if d.get("isNew") else d["slug"]
+        settled = False
+        for c in d["candidates"][:3]:
+            try:
+                res = eng.analyze(c["url"], known, None)
+            except Exception as e:  # noqa: BLE001
+                c["engine"] = {"verdict": "unverified", "report": {"note": f"engine error: {str(e)[:120]}"}}
+                continue
+            c["engine"] = {k: res[k] for k in ("verdict", "lines", "checks", "report")}
+            if res["lyrics"]:
+                c["lyrics"] = res["lyrics"]; c["transcriptSource"] = "engine"
+                c["confidence"] = int(100 * res["report"].get("verified", 0) / max(1, res["report"].get("lines", 1)))
+            elif c.get("transcriptSource") == "fromtitle":
+                # never present words the model merely remembered as if they were heard
+                c["lyrics"] = None; c["confidence"] = 0; c["transcriptSource"] = "none"
+                c["notes"] = "Waiting to listen to the recording."
+            settled = settled or res["verdict"] == "verified"
+        d["needsAudio"] = not settled
+        _draft_path(d["slug"]).write_text(json.dumps(d, indent=2, ensure_ascii=False))
         print(json.dumps({"slug": d["slug"], "candidates": len(d["candidates"]),
-                          "confidence": _best_conf(d)}))
+                          "needsAudio": d["needsAudio"]}))
     except Exception as e:  # noqa: BLE001
         traceback.print_exc()
         DRAFTS.mkdir(exist_ok=True)

@@ -1,5 +1,1 @@
-node_modules/
-.DS_Store
-.claude/settings.local.json
-*.tmp
 __studio_test.html
