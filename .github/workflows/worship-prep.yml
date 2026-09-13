@@ -11,14 +11,20 @@ on:
         description: "draft | apply | both"
         default: "both"
         required: false
-  schedule:
-    # every 5 min, every day (GitHub's fastest supported interval) - so typing a
-    # song name shows up on the prep dashboard in minutes, any day someone is
-    # testing or planning, not just the weekend before a Sunday. Safe to run this
-    # often: rows with nothing changed skip straight through (no search, no LLM
-    # call - see run.py's cache checks), so idle songs cost nothing extra.
-    # GitHub may still delay a scheduled run by a few minutes under load.
-    - cron: "*/5 * * * *"
+  # PAUSED ON PURPOSE while the prep workflow is being reworked.
+  #
+  # This job rebuilds js/worship-songs.js from the APPROVED rows of the planner
+  # sheet. With no approved rows it writes an empty setlist, which would wipe the
+  # hand-set one-song setlist currently in that file. Leave this commented out
+  # until the new flow is in place.
+  #
+  # It can still be run on demand from the Actions tab (workflow_dispatch above).
+  #
+  # schedule:
+  #   # every 5 min, every day (GitHub's fastest supported interval). Safe to run
+  #   # this often: rows with nothing changed skip straight through (no search, no
+  #   # LLM call - see run.py's cache checks), so idle songs cost nothing extra.
+  #   - cron: "*/5 * * * *"
 
 concurrency:
   group: worship-prep
