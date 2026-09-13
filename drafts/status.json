@@ -1,33 +1,33 @@
 {
-  "updatedAt": "2026-09-11T00:03:53+00:00",
+  "updatedAt": "2026-09-13T16:45:09+00:00",
   "sunday": "2026-09-13",
   "songs": [
     {
-      "input": "My Soul Longs for the Lord",
-      "review": "Approve",
-      "chosenVideo": "https://www.youtube.com/watch?v=avFBQh0iWMI&list=RDavFBQh0iWMI&start_radio=1",
-      "status": "approved",
-      "confidence": null,
-      "message": "approved — https://www.youtube.com/watch?v=avFBQh0iWMI",
-      "slug": "my-soul-longs-for-the-lord"
+      "input": "Crown Him with Many Crowns",
+      "review": "",
+      "chosenVideo": "",
+      "status": "draft",
+      "confidence": 100,
+      "message": "1 candidate(s)",
+      "slug": "crown-him-with-many-crowns"
     },
     {
-      "input": "How Long, O Lord, How Long?",
-      "review": "Approve",
-      "chosenVideo": "https://www.youtube.com/watch?v=tT4RFGzheN0",
-      "status": "approved",
-      "confidence": null,
-      "message": "approved — https://www.youtube.com/watch?v=tT4RFGzheN0",
-      "slug": "how-long-o-lord-how-long-psalm-13"
+      "input": "By Faith",
+      "review": "",
+      "chosenVideo": "",
+      "status": "draft",
+      "confidence": 100,
+      "message": "1 candidate(s)",
+      "slug": "by-faith"
     },
     {
-      "input": "As The Deer",
-      "review": "Approve",
-      "chosenVideo": "https://www.youtube.com/watch?v=ju9nbjIONzE",
-      "status": "approved",
-      "confidence": null,
-      "message": "approved — https://www.youtube.com/watch?v=ju9nbjIONzE",
-      "slug": "as-the-deer"
+      "input": "My Worth Is Not in What I Own",
+      "review": "",
+      "chosenVideo": "",
+      "status": "draft",
+      "confidence": 100,
+      "message": "1 candidate(s)",
+      "slug": "my-worth-is-not-in-what-i-own"
     }
   ]
 }
