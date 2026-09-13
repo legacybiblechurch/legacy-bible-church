@@ -38,10 +38,10 @@ Saving needs permission to write to the website. The Studio walks through it (cl
 On the Mac that will do the listening: `bash scripts/helper/setup.sh` — installs a private Python (no admin needed) and a launchd job; put the Groq key in `~/.lbc/engine.env`. Log: `~/.lbc/helper.log`. If that Mac is off, finds wait; nothing breaks.
 
 ### Secrets (GitHub → Settings → Secrets → Actions)
-`YOUTUBE_API_KEY` (search; keyless yt-dlp search is the fallback) · `SUPADATA_API_KEY` (captions — the important one) · `GROQ_API_KEY` / `ANTHROPIC_API_KEY` / `GEMINI_API_KEY` (the LLM that matches words to the recording; first one present wins).
+`YOUTUBE_API_KEY` (search; keyless yt-dlp search is the fallback) · `SUPADATA_API_KEY` (captions — one witness among several; its free tier has a monthly limit, after which the engine simply runs without captions) · `GROQ_API_KEY` (the Whisper listens — the important one; also needed in `~/.lbc/engine.env` on the listener Mac).
 
-### When "find" comes back with low-confidence words
-The draft note on the video card says why. The usual cause is the caption service's monthly limit (`supadata: monthly plan limit reached`). Until it resets or the plan is upgraded, new songs get words from memory (marked "check every line") — the person listens and fixes them in the Words box. Songs already in the library are unaffected.
+### When a song comes back "Unclear" or with many checks
+The candidate card says why in plain words. Usual causes: the listener Mac is off (the draft waits, marked "listening"), the recording is a live/echoey one, or the video is a different arrangement from the library. Pick the other candidate video, answer the checks by ear, or open the Words box and fix a line — every fix is remembered for that exact recording.
 
 ### Old pieces, kept for compatibility
 `worship-prep.html` redirects to the Studio. The Google-Sheet-driven schedule in `worship-prep.yml` is commented out; `scripts/prep/sheet.py` remains only because `run.py` reuses its `Row` type.
