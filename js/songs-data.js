@@ -292,7 +292,7 @@ const LEGACY_SONGS = {
     { label: "", lines: ["We will stand as children of the promise", "We will fix our eyes on Him our soul's reward", "Till the race is finished", "And the work is done"] },
     { label: "", lines: ["We'll walk by faith and not by sight"] },
     { label: "", lines: ["By faith this mountain shall be moved", "And the power of the gospel shall prevail", "For we know in Christ all things are possible", "For all who call upon His name"] },
-    { label: "", lines: ["We will stand as children of the promise", "We will fix our eyes on Him our soul's reward", "Till the race is finished", "And the work is done", "We'll walk by faith and not by sight", "We'll walk by faith and not by sight"] },
+    { label: "", lines: ["We will stand as children of the promise", "We will fix our eyes on Him our soul's reward", "Till the race is finished", "And the work is done", "We'll walk by faith and not by sight"] },
     { label: "", lines: ["We will stand as children of the promise", "We will fix our eyes on Him our soul's reward", "Till the race is finished and the work is done", "We'll walk by faith and not by sight"] },
     { label: "", lines: ["We'll walk by faith and not by sight"] }
   ]
