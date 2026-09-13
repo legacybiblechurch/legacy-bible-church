@@ -100,6 +100,23 @@
     var L = (typeof global.LEGACY_SONGS !== 'undefined') ? global.LEGACY_SONGS : {};
     var approved = Array.isArray(global.WORSHIP_SETLIST) ? global.WORSHIP_SETLIST : [];
 
+    // Once anything is approved, THAT is Sunday. Show exactly the approved set and
+    // ignore the planner - otherwise whatever someone is mid-way through typing
+    // into the sheet would appear on the TV during a service.
+    // Nothing approved yet (prep in progress) -> fall back to the planner below,
+    // so drafts are still reviewable on Control.
+    if (approved.length) {
+      resolve(approved.map(function (s) {
+        return {
+          slug: s,
+          title: (L[s] && L[s].title) || s,
+          lyrics: (L[s] && L[s].lyrics) || null,
+          approved: true
+        };
+      }));
+      return;
+    }
+
     fetch(SHEET_CSV).then(function (r) { return r.text(); }).then(function (t) {
       var slugs = slugsFromCsv(t);
       if (!slugs.length) { resolve([]); return; }
