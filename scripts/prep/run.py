@@ -138,16 +138,33 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
 
     # candidate videos (wider net — the highest-view "official" upload often has no
     # captions, so we need enough options to find ones that do)
+    prev = _load_draft(slug)
+    title_key = title.strip().lower()
+
+    # a YouTube search costs 100 quota units (10,000/day free = 100 searches) — with
+    # the pipeline now running every few minutes, re-searching every cycle for a song
+    # nobody has touched would burn that in under an hour. Reuse the last search's
+    # results as long as the title text hasn't changed, it's not a "redo", and the
+    # cache isn't stale (a lingering row still gets a fresh look periodically).
+    cache_fresh = False
+    if prev and prev.get("titleKey") == title_key and prev.get("searchCandidates"):
+        try:
+            age = dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(prev["generatedAt"])
+            cache_fresh = age < dt.timedelta(hours=12)
+        except Exception:
+            cache_fresh = False
+
     candidates: list[dict] = []
     if forced:
         d = yt.details(forced)
         if d:
             candidates.append(d)
-    for c in yt.search(title, max_results=MAX_CANDIDATES):
+    search_pool = (prev["searchCandidates"] if (cache_fresh and not row.redo)
+                   else yt.search(title, max_results=MAX_CANDIDATES))
+    for c in search_pool:
         if c["videoId"] not in {x["videoId"] for x in candidates}:
-            candidates.append(c)
+            candidates.append(dict(c))
 
-    prev = _load_draft(slug)
     signature = _sig([c["videoId"] for c in candidates], reference, row.fixes)
     if prev and prev.get("signature") == signature and not row.redo:
         prev["input"] = row.song
@@ -239,6 +256,8 @@ def draft_row(row: sheet_mod.Row, songs: dict) -> dict:
         "forced": forced,
         "signature": signature,
         "generatedAt": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+        "titleKey": title_key,
+        "searchCandidates": search_pool,
         "candidates": candidates,
     }
     DRAFTS.mkdir(exist_ok=True)

@@ -12,9 +12,13 @@ on:
         default: "both"
         required: false
   schedule:
-    # every 20 min Sat & Sun (UTC) - covers Saturday-night prep and Sunday-morning
-    # tweaks. GitHub may delay scheduled runs by a few minutes. Idle runs make no commit.
-    - cron: "*/20 * * * 5,6,0"
+    # every 5 min, every day (GitHub's fastest supported interval) - so typing a
+    # song name shows up on the prep dashboard in minutes, any day someone is
+    # testing or planning, not just the weekend before a Sunday. Safe to run this
+    # often: rows with nothing changed skip straight through (no search, no LLM
+    # call - see run.py's cache checks), so idle songs cost nothing extra.
+    # GitHub may still delay a scheduled run by a few minutes under load.
+    - cron: "*/5 * * * *"
 
 concurrency:
   group: worship-prep
