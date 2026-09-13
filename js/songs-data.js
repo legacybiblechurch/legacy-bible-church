@@ -1312,7 +1312,6 @@ const LEGACY_SONGS = {
     { label: "Verse 9", lines: ["My soul longs for the day", "I will see Your face", "Hear Your shout of jubilation", "No more tears, death or pain!"] },
     { label: "Verse 10", lines: ["Every word at last accomplished", "Heaven sings and earth replies", "To our God be the glory!", "Let all creation cry"] },
     { label: "Refrain", lines: ["Praise and honor to Christ", "Word of God, Word of Life"] },
-    { label: "Refrain", lines: ["Praise and honor to Christ", "Word of God, Word of Life"] },
     { label: "Final", lines: ["To our God be the glory", "Let all creation cry", "Praise and honor to Christ", "Word of God, Word of Life"] }
   ]
   },
