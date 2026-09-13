@@ -105,11 +105,17 @@ def _looks_manual(text: str) -> bool:
     return bool(re.search(r"[.,!?]", sample)) and sample != sample.lower()
 
 
+_SUPADATA_BLOCKED = [""]   # set to the reason once the plan limit is hit this run
+
+
 def _supadata_captions(url: str) -> dict | None:
     key = os.environ.get("SUPADATA_API_KEY")
     if not key:
         return None
     global LAST_ERROR
+    if _SUPADATA_BLOCKED[0]:
+        LAST_ERROR = _SUPADATA_BLOCKED[0]
+        return None
     try:
         from http_util import request_json
         from urllib.parse import quote
@@ -120,7 +126,14 @@ def _supadata_captions(url: str) -> dict | None:
             timeout=60,
         )
     except Exception as e:  # noqa: BLE001
-        LAST_ERROR = f"supadata: {str(e)[:160]}"
+        msg = str(e)
+        if "429" in msg or "limit-exceeded" in msg:
+            # the plan's monthly allowance is gone: every further call this run
+            # would fail the same way, so stop asking (and stop burning time)
+            _SUPADATA_BLOCKED[0] = "supadata: monthly plan limit reached - captions unavailable until it resets or the plan is upgraded"
+            LAST_ERROR = _SUPADATA_BLOCKED[0]
+        else:
+            LAST_ERROR = f"supadata: {msg[:160]}"
         return None
 
     segs = res.get("content") or []

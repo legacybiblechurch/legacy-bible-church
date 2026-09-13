@@ -25,7 +25,7 @@
     header { border-bottom: 1px solid var(--line); padding: 12px 20px; display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
     .brand { font-family: 'Priestacy', var(--font); font-size: 27px; }
     .hdr-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
-    .pill { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--ink-dim); padding: 5px 10px; border: 1px solid var(--line); border-radius: 100px; cursor: pointer; background: none; }
+    .pill { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--ink-dim); padding: 5px 10px; border: 1px solid var(--line); border-radius: 100px; cursor: pointer; background: none; white-space: nowrap; }
     .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warn); }
     .pill.on .dot { background: var(--good); }
     .pill.on { cursor: default; }
@@ -333,7 +333,7 @@
         var s = songOf(slug), row = el('div', 'song-row' + (slug === current ? ' active' : ''));
         var st = finding[slug] ? 'busy' : isReady(slug) ? '' : 'warn';
         row.appendChild(el('span', 'dot ' + st));
-        var nm = el('span', 'nm', s.title);
+        var nm = el('span', 'nm', S.decodeEntities((found[slug] && found[slug].title) || (finding[slug] && finding[slug].title) || s.title));
         if (finding[slug]) nm.appendChild(el('small', '', 'finding the words…'));
         else if (found[slug]) nm.appendChild(el('small', '', 'pick a video'));
         else if (!isReady(slug)) nm.appendChild(el('small', '', 'no words yet'));
@@ -681,7 +681,7 @@
     // ───────────────────────────── connection
     function paintConn() {
       document.getElementById('connPill').className = 'pill ' + (connected ? 'on' : 'off');
-      document.getElementById('connText').textContent = connected ? 'Connected' : 'Not connected — click to set up';
+      document.getElementById('connText').textContent = connected ? 'Connected' : 'Connect this computer';
     }
     function openConnect(reason) {
       document.getElementById('connect').className = 'show';

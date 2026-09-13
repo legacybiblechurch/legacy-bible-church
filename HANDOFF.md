@@ -1,98 +1,41 @@
-# LBC Worship System — Handoff
+# LBC Worship — Handoff
 
-Everything that makes the Sunday worship lyrics work. If you're the person now
-looking after this, read this once.
+Everything for Sunday-morning lyrics lives on the church website. Nothing to install.
 
-## What it is
+Start here: **https://legacybiblechurch.github.io/legacy-bible-church/worship.html**
 
-A set of static web pages hosted on GitHub Pages, plus a scheduled GitHub Action
-that prepares the songs. No servers to run, no apps to install.
+## The two things a person does
 
-Live site: https://legacybiblechurch.github.io/legacy-bible-church/
+**Before Sunday — Prepare the songs** (`worship-studio.html`)
+1. Type a song name in the box on the left.
+   - A song we've sung before appears in the list as you type. Pick it — done, it already has its words.
+   - A new song: choose **Find "…" on YouTube**. The site searches, listens to the recording, and drafts the words (1–3 min). It then shows the videos it found; click **Use this one** on the one that sounds right. That saves the song for good.
+2. Put the songs in order with ▲ ▼. ✕ removes one.
+3. Fix any wording by typing in the **Words** box. Blank line = new slide. `[Chorus]` on its own line names a slide (Control only — never shown to the congregation). The right pane shows exactly what the TV will show. **Save.**
+4. Click **Ready for Sunday**. It checks every song has words and nothing is unsaved, then publishes the set.
 
-| Page | What it's for |
-|---|---|
-| `worship.html` | **The home page.** Give this link to whoever runs Sunday. Plain-language steps + live status. |
-| `worship-prep.html` | Review the auto-drafted songs, see candidate videos, check lyrics. |
-| `worship-control.html` | The presenter panel — drives slides during the service. |
-| `worship-display.html` | The TV screen. Opened in a second window, dragged to the TV. Follows Control via `BroadcastChannel`. |
-| `setlist.html` | **Song Videos** — public list of this Sunday's songs, one Play button per song (opens the approved YouTube video). |
+**Sunday morning — Run the service** (`worship-control.html`)
+- Open Control on the laptop. Click **Open display** and drag that window to the TV. Control shows a green **Display connected** when the TV window is open.
+- ← → or the big buttons move slides. **B** blanks the TV (shows the church logo). **Play on YouTube** opens the song's audio.
+- If either window is closed or refreshed by accident, reopen it — it picks up on the same slide.
 
-## The weekly workflow (what the operator does)
+## One-time setup on each computer that will *prepare* songs
 
-1. Open the **planner** (the Google Sheet). In column **A**, replace last week's songs with
-   this week's — one per row. Clear columns B, C, D.
-2. Wait ~20 minutes. The GitHub Action runs, finds candidate videos, and drafts lyrics.
-3. Open **worship-prep.html**. For each song:
-   - "no review needed" → just set column **C** (Review) to `Approve` in the sheet.
-   - otherwise → pick the video that sounds right, put its URL in column **B** (Video),
-     set column **C** to `Approve`. Wrong words → describe the fix in column **D** (Fixes).
-4. Wait ~20 min. Every song should show **Approved**, and appear in the "This Sunday"
-   box on `worship.html`.
+Saving needs permission to write to the website. The Studio walks through it (click **Connect this computer**): create a GitHub token on the church account with **Contents** and **Actions** set to *Read and write* for the `legacy-bible-church` repository, paste it in. Stored only in that browser. Running the service on Sunday needs no setup at all.
 
-Sunday morning: open Control on the laptop, Display in a second window on the TV,
-Song Videos for the play buttons. `←` `→` move slides, `B` blanks the screen.
+## How it works (for whoever maintains it)
 
-## How the automation works
+- **Song library:** `js/songs-data.js` — every song ever prepared: title, YouTube link, words in labelled blocks. The permanent memory; the Studio writes to it directly through the GitHub API.
+- **This Sunday:** `js/worship-songs.js` — the ordered list of song ids. Written by **Ready for Sunday**. Control and Display read only this.
+- **Shared logic:** `js/sheet.js` (`LBCSheet`) — the one slide builder used by the Studio preview, Control and Display, plus search and the editor's text format. Sunday depends on nothing outside the site.
+- **Finding a new song:** the Studio triggers the GitHub Action `worship-prep.yml` with the song name → `scripts/prep/run.py --song` searches YouTube, fetches captions (Supadata, then yt-dlp, then Whisper if audio is reachable), drafts words matched to the recording with an LLM, and commits `drafts/<slug>.json`. The Studio polls for that file.
+- **Control ↔ Display:** `BroadcastChannel('lbc-worship')` in the same browser, state mirrored in `localStorage` so a refresh resumes.
 
-`.github/workflows/worship-prep.yml` runs `scripts/prep/run.py` every 20 minutes
-on Fri/Sat/Sun (and on a manual "Run workflow" button in the repo's Actions tab).
+### Secrets (GitHub → Settings → Secrets → Actions)
+`YOUTUBE_API_KEY` (search; keyless yt-dlp search is the fallback) · `SUPADATA_API_KEY` (captions — the important one) · `GROQ_API_KEY` / `ANTHROPIC_API_KEY` / `GEMINI_API_KEY` (the LLM that matches words to the recording; first one present wins).
 
-**Pass A (draft)** — for each song in the sheet that isn't approved yet:
-- resolve the typed name to a library slug (`scripts/prep/resolve.py`)
-- if the song is already in `js/songs-data.js` with a real video → mark it
-  "ready, no review needed", skip everything else
-- otherwise: search YouTube (`videos.py`), fetch each candidate's captions
-  (`transcript.py` — Supadata first, then yt-dlp, then the video's description),
-  and have an LLM reconcile the transcript against the library lyrics into
-  slide-ordered lyrics with a confidence score (`reconcile.py`)
-- write `drafts/<slug>.json` and `drafts/status.json`, commit
+### When "find" comes back with low-confidence words
+The draft note on the video card says why. The usual cause is the caption service's monthly limit (`supadata: monthly plan limit reached`). Until it resets or the plan is upgraded, new songs get words from memory (marked "check every line") — the person listens and fixes them in the Words box. Songs already in the library are unaffected.
 
-**Pass B (apply)** — for each sheet row with Review = `Approve`:
-- take the chosen video, apply any Fixes, write the final entry into
-  `js/songs-data.js`, and rebuild `js/worship-songs.js` (the live setlist)
-- record the approval in `drafts/approvals.json`
-
-`js/songs-data.js` is the permanent song library. Once a song is approved its
-video + lyrics are frozen there; re-using it later is instant and needs no review
-(type `redo` in the Review column to force a rebuild).
-
-## Accounts and secrets
-
-The repo is owned by the **`legacybiblechurch`** GitHub account.
-
-GitHub → repo **Settings → Secrets and variables → Actions**:
-
-| Secret | Service | Notes |
-|---|---|---|
-| `SUPADATA_API_KEY` | supadata.ai | Fetches YouTube captions (works from GitHub's servers, which YouTube blocks from yt-dlp). Free tier ~100/month. |
-| `YOUTUBE_API_KEY` | Google Cloud → YouTube Data API v3 | Video search. Free tier. |
-| `GROQ_API_KEY` | console.groq.com | The lyric-reconciliation LLM + Whisper fallback. Free tier. |
-| `ANTHROPIC_API_KEY` | *(optional)* console.anthropic.com | If set, Claude is used for the lyric step instead of Groq — better quality, a few cents/song. |
-
-The code auto-picks the LLM: Anthropic → Gemini → Groq, whichever key exists.
-Also needed once: **Settings → Actions → General → Workflow permissions → Read and write**
-(so the Action can commit its results).
-
-## Common changes
-
-- **The planner's edit link** — paste it into `js/sheet.js` at the line marked
-  `EDIT ME`, so the "Open the planner" buttons open the editable sheet.
-- **A song's lyrics are wrong after approval** — put the song back in the sheet, type
-  `redo` in Review, or fix the lyric text directly in `js/songs-data.js` (find the slug).
-- **The schedule** — the `cron` line in `.github/workflows/worship-prep.yml` (UTC).
-- **Run the pipeline by hand** — repo → Actions tab → "Worship prep" → Run workflow.
-- **Test locally** — `cd scripts/prep && SUPADATA_API_KEY=… YOUTUBE_API_KEY=… GROQ_API_KEY=… python3 dryrun.py <slug> <slug>`
-
-## Troubleshooting
-
-- **Control/Display shows the wrong songs or "Not found"** — the Action hasn't run
-  since the sheet changed (wait, or trigger it manually), or a slug in the sheet
-  isn't in the library.
-- **A song won't draft ("no transcript")** — none of the found videos have readable
-  captions. Find a lyric video yourself and paste its URL into column B; the Action
-  will build against it.
-- **Supadata quota hit** — free tier is ~100 fetches/month; the pipeline uses ~6 per
-  prep session. Upgrade the plan or wait for the monthly reset.
-- **Action fails on commit/push** — check Settings → Actions → Workflow permissions
-  is set to "Read and write".
+### Old pieces, kept for compatibility
+`worship-prep.html` redirects to the Studio. The Google-Sheet-driven schedule in `worship-prep.yml` is commented out; `scripts/prep/sheet.py` remains only because `run.py` reuses its `Row` type.
