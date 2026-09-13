@@ -170,6 +170,21 @@
     .loading, .empty { color: var(--ink-dim); font-size: 14px; padding: 40px 0; text-align: center; }
     .stale { font-size: 12px; color: var(--warn); margin-top: 6px; }
 
+    /* ── per-song notes + planner shortcut ─────────────────────── */
+    .fixnote { margin: 10px 0 16px; }
+    .fix-input {
+      width: 100%; min-height: 44px; resize: vertical;
+      font: inherit; font-size: 13px; color: var(--ink);
+      background: var(--panel); border: 1px solid var(--line-soft); border-radius: 6px;
+      padding: 8px 10px;
+    }
+    .fix-input::placeholder { color: var(--ink-faint); }
+    .fixnote-actions { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+    .live-dot {
+      display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--good); margin-right: 6px; vertical-align: 1px;
+    }
+
     /* ── mobile ─────────────────────────────── */
     @media (max-width: 600px) {
       header { padding: 18px 16px 14px; gap: 6px 14px; }
@@ -194,6 +209,7 @@
   <header>
     <span class="brand">Worship Prep</span>
     <span class="sub" id="sunday-line"></span>
+    <span class="sub" id="live-line"><span class="live-dot"></span>live</span>
     <span class="header-links">
       <a href="worship.html">Home</a>
       <a href="worship-control.html">Control &rarr;</a>
@@ -204,9 +220,11 @@
   <main>
     <div class="hint">
       Pick the video that <b>sounds right</b> and whose lyrics below match it.
-      To lock it in: open the planner, put that video's URL in the <b>Video</b>
-      column, set <b>Review</b> to <code>Approve</code>. Nothing reaches the screen until you do.
-      Type any wording fixes in the <b>Fixes</b> column.
+      This page updates itself — no need to keep hitting reload.
+      While you listen, jot any corrections in a song's notes box, then click
+      <b>Open this row in the planner</b> to paste them straight into <b>Fixes</b>.
+      To lock a song in: put that video's URL in the planner's <b>Video</b> column
+      and set <b>Review</b> to <code>Approve</code>. Nothing reaches the screen until you do.
     </div>
     <div id="songs"><div class="loading">Loading this week's drafts&hellip;</div></div>
   </main>
@@ -288,6 +306,16 @@
       setTimeout(function () { btn.textContent = 'Copy video URL'; btn.classList.remove('copied'); }, 1800);
     }
 
+    function noteKey(slug) { return 'lbc-prep-notes-' + slug; }
+    function loadNote(slug) { try { return localStorage.getItem(noteKey(slug)) || ''; } catch (e) { return ''; } }
+    function saveNote(ta) { try { localStorage.setItem(noteKey(ta.dataset.slug), ta.value); } catch (e) {} }
+    function copyNote(btn) {
+      var ta = btn.closest('.fixnote').querySelector('.fix-input');
+      navigator.clipboard && navigator.clipboard.writeText(ta.value);
+      btn.textContent = 'Copied ✓'; btn.classList.add('copied');
+      setTimeout(function () { btn.textContent = 'Copy notes'; btn.classList.remove('copied'); }, 1800);
+    }
+
     function songHTML(entry, draft, idx, live) {
       var approved = entry.status === 'approved';
       var libReady = draft && draft.libraryReady;
@@ -302,6 +330,9 @@
       else if (draft && draft.generatedAt) meta.push('drafted ' + draft.generatedAt.replace('T', ' ').replace('+00:00', ' UTC'));
       if (live && live.review) meta.push('sheet: Review = ' + live.review);
 
+      var slug = (draft && draft.slug) || entry.slug || (entry.input || '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      var rowLink = LBCSheet.SHEET_LINK.replace(/#.*$/, '') + (live && live.row ? '#gid=0&range=A' + live.row : '#gid=0');
+
       return '' +
       '<div class="song">' +
         '<div class="song-head">' +
@@ -310,11 +341,20 @@
           '<span class="pill ' + pill + '">' + pillText + '</span>' +
         '</div>' +
         '<div class="song-meta">' + esc(meta.join('  ·  ')) + '</div>' +
+        '<div class="fixnote">' +
+          '<textarea class="fix-input" data-slug="' + esc(slug) + '" oninput="saveNote(this)" ' +
+            'placeholder="Notes while you listen — e.g. \'line 3 should say ...\'. Paste into Fixes when ready.">' +
+            esc(loadNote(slug)) + '</textarea>' +
+          '<div class="fixnote-actions">' +
+            '<button class="btn" onclick="copyNote(this)">Copy notes</button>' +
+            '<a class="btn" href="' + rowLink + '" target="_blank" rel="noopener">Open this row in the planner &#8599;</a>' +
+          '</div>' +
+        '</div>' +
         (entry.status === 'error'
           ? '<div class="no-lyrics">' + esc(entry.message || 'Something went wrong drafting this song.') + '</div>'
           : cands.length
             ? '<div class="cands">' + cands.map(function (c, i) { return candidateHTML(c, i, chosenId); }).join('') + '</div>'
-            : '<div class="no-lyrics">No candidate videos yet &mdash; check back after the next run.</div>') +
+            : '<div class="no-lyrics">No candidate videos yet &mdash; check back in a few minutes.</div>') +
       '</div>';
     }
 
@@ -328,16 +368,21 @@
       var iV = head.indexOf('video');  if (iV < 0) iV = iS + 1;
       var iR = head.indexOf('review'); if (iR < 0) iR = iS + 2;
       var out = {};
-      rows.slice(1).forEach(function (r) {
+      rows.slice(1).forEach(function (r, i) {
         var song = (r[iS] || '').trim();
         if (song) out[song.toLowerCase()] = {
           video: (r[iV] || '').trim(),
-          review: (r[iR] || '').trim()
+          review: (r[iR] || '').trim(),
+          row: i + 2   // +1 for the header row, +1 to make it 1-indexed like the Sheet
         };
       });
       return out;
     }
 
+    // Refreshes automatically so nobody has to keep hitting reload — but never while
+    // a candidate video is open, so it can't yank the player or notes box out from
+    // under someone mid-listen. It just tries again next tick.
+    var REFRESH_MS = 20000;
     function load() {
       var bust = '?t=' + Date.now();
       Promise.all([
@@ -346,7 +391,7 @@
       ]).then(function (res) {
         var status = res[0], live = res[1];
         if (!status || !status.songs || !status.songs.length) {
-          document.getElementById('songs').innerHTML = '<div class="empty">No drafts yet. Add songs to the planner &mdash; drafts appear here within ~10 minutes.</div>';
+          document.getElementById('songs').innerHTML = '<div class="empty">No drafts yet. Add songs to the planner &mdash; drafts appear here in a few minutes.</div>';
           return;
         }
         if (status.sunday) document.getElementById('sunday-line').textContent = 'for Sunday ' + status.sunday;
@@ -360,7 +405,12 @@
         });
       });
     }
+    function tick() {
+      if (!document.querySelector('.cand.open')) load();
+      setTimeout(tick, REFRESH_MS);
+    }
     load();
+    setTimeout(tick, REFRESH_MS);
   </script>
 </body>
 </html>
