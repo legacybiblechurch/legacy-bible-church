@@ -50,9 +50,17 @@
   function normTitle(s) {
     return String(s).toLowerCase().replace(/&[a-z]+;/g, ' ').replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim();
   }
+  // songs-data.js declares LEGACY_SONGS with `const`, so it is NOT a property of
+  // window - `global.LEGACY_SONGS` is always undefined. Every reader has to fall
+  // back to the bare identifier, so it lives in one place.
+  function library() {
+    if (typeof global.LEGACY_SONGS !== 'undefined') return global.LEGACY_SONGS;
+    if (typeof LEGACY_SONGS !== 'undefined') return LEGACY_SONGS;
+    return null;
+  }
+
   function resolveSlug(text) {
-    var L = (typeof global.LEGACY_SONGS !== 'undefined') ? global.LEGACY_SONGS
-          : (typeof LEGACY_SONGS !== 'undefined') ? LEGACY_SONGS : null;
+    var L = library();
     var guess = slugify(text);
     if (!L) return guess;
     if (L[guess]) return guess;
@@ -97,7 +105,7 @@
   //   pending song   -> its current draft          (approved: false)
   // resolve([{ slug, title, lyrics:[{label,lines}], approved }])
   function loadSongs(resolve) {
-    var L = (typeof global.LEGACY_SONGS !== 'undefined') ? global.LEGACY_SONGS : {};
+    var L = library() || {};
     var approved = Array.isArray(global.WORSHIP_SETLIST) ? global.WORSHIP_SETLIST : [];
 
     // Once anything is approved, THAT is Sunday. Show exactly the approved set and
