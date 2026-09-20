@@ -959,7 +959,7 @@ const LEGACY_SONGS = {
   },
   "immortal-invisible": {
     title: "Immortal, Invisible",
-    youtube: "https://www.youtube.com/results?search_query=Immortal+Invisible+hymn+official+worship",
+    youtube: "https://www.youtube.com/watch?v=YvOfVGZo9j4",
     lyrics: [
     { label: "", lines: ["Immortal, You are not like a man", "That You change Your mind", "Or change Your plan", "Invisible, our human eyes can't see", "The depths of Your majesty"] },
     { label: "", lines: ["You're the God of forever and ever, amen", "The Alpha, Omega, Beginning and End", "We sing \"Hallelujah!\"", "We worship in awe", "Immortal, invisible God"] },
