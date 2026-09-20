@@ -491,7 +491,8 @@ const LEGACY_SONGS = {
     { label: "", lines: ["Are you hopeless, are you guilty?", "Caught in shame for all your sin?", "He pursues you to forgive you", "Rest in Him"] },
     { label: "", lines: ["He has paid for every failure", "Mercy flows in endless streams", "Come and follow, freedom calls you", "Rest in Him"] },
     { label: "", lines: ["How sure His compassion for us", "Oh, how deep is His love!", "So come, come to Jesus", "And rest in Him", "Are you waiting in your sorrows", "For this broken world to heal?", "He is coming, soon returning", "Rest in Him"] },
-    { label: "", lines: ["We will see Him, we will know Him", "Oh, what heights of grace revealed!", "From His kindness", "Every promise then fulfilled", "Trust in Jesus", "He will keep us to the end"] },
+    { label: "", lines: ["We will see Him, we will know Him", "Oh, what heights of grace revealed!", "From His kindness", "Every promise then fulfilled"] },
+    { label: "", lines: ["Trust in Jesus", "He will keep us to the end"] },
     { label: "", lines: ["How sure His compassion for us", "Oh, how deep is His love!", "So come, come to Jesus and rest"] },
     { label: "", lines: ["How sure His compassion for us", "Oh, how deep is His love!", "So come, come to Jesus", "And rest in Him"] },
     { label: "", lines: ["Come to Jesus and rest in Him"] }
