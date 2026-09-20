@@ -5,7 +5,7 @@
  */
 
 window.WORSHIP_SETLIST = [
-  'my-soul-longs-for-the-lord',
-  'by-faith',
-  'my-worth-is-not-in-what-i-own',
+  'christ-the-sure-and-steady-anchor',
+  'immortal-invisible',
+  'come-to-jesus-rest-in-him',
 ];
