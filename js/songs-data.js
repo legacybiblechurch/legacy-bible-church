@@ -483,7 +483,7 @@ const LEGACY_SONGS = {
   },
   "come-to-jesus-rest-in-him": {
     title: "Come to Jesus (Rest in Him)",
-    youtube: "https://www.youtube.com/results?search_query=Come+to+Jesus+Rest+in+Him+worship+official",
+    youtube: "https://www.youtube.com/watch?v=NhmHYpfjguU",
     lyrics: [
     { label: "", lines: ["Are you weary, heavy laden?", "Come and lay your burdens down", "Jesus calls you, Jesus draws you", "Rest in Him"] },
     { label: "", lines: ["He is gentle, He is lowly", "He delights to bring us peace", "Tender Shepherd, mighty Savior", "Rest in Him"] },
