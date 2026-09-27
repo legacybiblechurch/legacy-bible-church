@@ -76,6 +76,14 @@
     .disp-pill.off #disp-pill-text { color: var(--warn); }
     .empty-service { padding: 60px 24px; text-align: center; color: var(--ink-dim); font-size: 15px; line-height: 1.7; }
     .empty-service a { color: var(--ink); }
+    .remote-pill { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--gold); margin-right: 6px; }
+    .remote-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+    #phone-panel { position: fixed; top: calc(var(--header-h) + 8px); right: 16px; width: 320px; z-index: 120; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: none; font-size: 13px; color: var(--ink-dim); line-height: 1.55; }
+    #phone-panel.on { display: block; }
+    #phone-panel .code { font-size: 30px; font-weight: 700; letter-spacing: 0.18em; color: var(--ink); margin: 8px 0 6px; font-variant-numeric: tabular-nums; }
+    #phone-panel .url { font-size: 12.5px; color: var(--ink); word-break: break-all; }
+    #phone-panel b { color: var(--ink); }
+    body.remote #deck .vids, body.remote #deck .bar, body.remote #deck input[type=range] { display: none; }
 
     /* ── layout ─────────────────────────────── */
     #layout {
@@ -264,6 +272,8 @@
     <a href="worship.html" class="display-link" style="font-weight:500;color:var(--ink-dim)">&larr; Home</a>
     <span class="wordmark">Worship Control</span>
     <span class="header-spacer"></span>
+    <span class="remote-pill" id="remote-pill" style="display:none"><span class="dot"></span>Phone remote</span>
+    <button class="display-link" id="phone-btn" style="font-weight:500;color:var(--ink-dim)">Phone remote</button>
     <span class="disp-pill off" id="disp-pill" title="Is the congregation screen open?"><span class="dot"></span><span id="disp-pill-text">Display not open</span></span>
     <span class="kbd-hint"><span class="kbd">&larr;</span><span class="kbd">&rarr;</span> move &nbsp;<span class="kbd">B</span> blank &nbsp;<span class="kbd">F</span> fade out &nbsp;<span class="kbd">N</span> fade to next</span>
     <a href="worship-display.html" target="_blank" class="display-link">Open display &nearr;</a>
@@ -282,6 +292,15 @@
       </div>
       <div id="slide-grid"></div>
     </main>
+  </div>
+
+  <div id="phone-panel">
+    <b>Run the slides from a phone</b><br>
+    On the phone, open<br>
+    <span class="url">legacybiblechurch.github.io/legacy-bible-church/remote</span><br>
+    and enter this code:
+    <div class="code" id="phone-code"></div>
+    The phone then moves the slides on this computer's Display, and its Play / Fade buttons drive the audio playing here. Leave this window open.
   </div>
 
   <div id="deck">
@@ -328,6 +347,7 @@
       var state = { songIndex: songIdx, slideIndex: slideIdx, blank: isBlank };
       localStorage.setItem('lbc-worship-state', JSON.stringify(state));
       channel.postMessage(state);
+      if (!applyingRemote) Net.send({ type: 'state', songIndex: songIdx, slideIndex: slideIdx, blank: isBlank });
     }
 
     var displaySeen = 0;
@@ -449,9 +469,81 @@
       if (slideIdx >= (songs[songIdx] ? songs[songIdx].slides.length : 1)) slideIdx = 0;
       render();
       if (songs.length) broadcast();
+      if (Net.isRemote) Net.last(function (d) { goTo(Math.min(d.songIndex || 0, songs.length - 1), d.slideIndex || 0); });
     }
 
     LBCSheet.loadSongs(init);
+
+    // ── Net: the same slides from any device ─────────────────────────────
+    // BroadcastChannel only reaches windows in one browser. For a phone across
+    // the room we relay through ntfy.sh (a free public pub/sub: a topic is just
+    // a long random name, so the code on this screen is the only key). The
+    // laptop remains the one that plays audio; a phone sends it commands.
+    var Net = (function () {
+      var qs = new URLSearchParams(location.search);
+      var isRemote = qs.has('remote');
+      var code = (qs.get('remote') || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+      if (!code) { try { code = localStorage.getItem('lbc-room') || ''; } catch (e) {} }
+      if (!code) { code = Array.from({ length: 6 }, function () { return 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'[Math.floor(Math.random() * 31)]; }).join(''); }
+      try { localStorage.setItem('lbc-room', code); } catch (e) {}
+      var topic = 'lbc-worship-' + code.toLowerCase() + '-7f3a';
+      var me = Math.random().toString(36).slice(2), es = null, onMsg = null;
+      function send(obj) {
+        obj.from = me;
+        fetch('https://ntfy.sh/' + topic, { method: 'POST', body: JSON.stringify(obj) }).catch(function () {});
+      }
+      function connect() {
+        if (es) es.close();
+        es = new EventSource('https://ntfy.sh/' + topic + '/sse');
+        es.onmessage = function (e) {
+          try { var d = JSON.parse(JSON.parse(e.data).message); if (d.from !== me && onMsg) onMsg(d); } catch (x) {}
+        };
+        es.onerror = function () { setTimeout(connect, 3000); };
+      }
+      function listen(fn) { onMsg = fn; connect(); }
+      function last(fn) {
+        fetch('https://ntfy.sh/' + topic + '/json?poll=1&since=12h').then(function (r) { return r.text(); }).then(function (t) {
+          var lines = t.trim().split('\n').filter(Boolean);
+          for (var i = lines.length - 1; i >= 0; i--) {
+            try { var d = JSON.parse(JSON.parse(lines[i]).message); if (d.type === 'state') { fn(d); return; } } catch (x) {}
+          }
+        }).catch(function () {});
+      }
+      return { code: code, send: send, listen: listen, last: last, isRemote: isRemote };
+    })();
+    if (Net.isRemote) {
+      document.body.classList.add('remote');
+      document.getElementById('remote-pill').style.display = '';
+      document.getElementById('disp-pill').style.display = 'none';
+      document.getElementById('phone-btn').style.display = 'none';
+    }
+    document.getElementById('phone-code').textContent = Net.code;
+    document.getElementById('phone-btn').onclick = function () { document.getElementById('phone-panel').classList.toggle('on'); };
+    document.addEventListener('click', function (e) {
+      var p = document.getElementById('phone-panel');
+      if (p.classList.contains('on') && !p.contains(e.target) && e.target.id !== 'phone-btn') p.classList.remove('on');
+    });
+
+    var applyingRemote = false;
+    Net.listen(function (d) {
+      if (d.type === 'state' && d.songIndex != null) {
+        if (!songs.length) return;
+        applyingRemote = true;
+        songIdx = Math.min(d.songIndex, songs.length - 1); slideIdx = d.slideIndex || 0; isBlank = !!d.blank;
+        var b = document.getElementById('btn-blank');
+        b.classList.toggle('blanked', isBlank); b.textContent = isBlank ? 'Show' : 'Blank';
+        render();
+        // pass it on to a Display in THIS browser, without echoing back to the relay
+        var st = { songIndex: songIdx, slideIndex: slideIdx, blank: isBlank };
+        localStorage.setItem('lbc-worship-state', JSON.stringify(st)); channel.postMessage(st);
+        applyingRemote = false;
+      } else if (d.type === 'cmd' && !Net.isRemote) {
+        if (d.action === 'play') Deck.playSong(d.song != null ? d.song : songIdx);
+        if (d.action === 'toggle') Deck.toggle();
+        if (d.action === 'fadeOut') Deck.fadeOut();
+        if (d.action === 'fadeNext') Deck.fadeNext();
+      }
+    });
 
     // ── Audio deck ───────────────────────────────────────────────────────
     // Two YouTube players. Pressing Play on a song (or stepping into a new song
@@ -583,10 +675,18 @@
           if (ready && !fadeTimer && playingIdx >= 0) players[active].setVolume(volume);
         };
       });
-      var tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      document.head.appendChild(tag);
+      if (!Net.isRemote) {
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(tag);
+      }
 
+      if (Net.isRemote) {
+        var cmd = function (action) { return function (song) { Net.send({ type: 'cmd', action: action, song: typeof song === 'number' ? song : undefined }); el('deck').className = 'on'; el('deck-now').textContent = 'Sent to the computer'; }; };
+        return { playSong: cmd('play'), fadeOut: cmd('fadeOut'), fadeNext: cmd('fadeNext'), toggle: cmd('toggle'),
+                 isPlaying: function () { return false; },
+                 paintButton: function () { var nx = el('deck-next'); if (nx) nx.disabled = songIdx + 1 >= songs.length; } };
+      }
       return { playSong: playSong, fadeOut: fadeOut, fadeNext: fadeNext, toggle: toggle, isPlaying: isPlaying, paintButton: paint };
     })();
   </script>
