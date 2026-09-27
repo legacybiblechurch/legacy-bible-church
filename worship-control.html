@@ -157,6 +157,8 @@
     #deck .row { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
     #deck .row button { font: inherit; font-size: 11.5px; padding: 4px 8px; border-radius: 4px; cursor: pointer; background: var(--panel-2); color: var(--ink); border: 1px solid var(--line); }
     #deck .row button:hover { border-color: var(--ink-faint); }
+    #deck .row button.gold { background: var(--gold); color: var(--bg); border-color: var(--gold); font-weight: 600; flex: 1; }
+    #deck .row button:disabled { opacity: 0.35; cursor: default; }
     #deck input[type=range] { flex: 1; accent-color: var(--gold); }
     #deck .bar { height: 3px; background: var(--line); border-radius: 2px; margin-top: 6px; overflow: hidden; }
     #deck .bar i { display: block; height: 100%; width: 0; background: var(--gold); }
@@ -263,7 +265,7 @@
     <span class="wordmark">Worship Control</span>
     <span class="header-spacer"></span>
     <span class="disp-pill off" id="disp-pill" title="Is the congregation screen open?"><span class="dot"></span><span id="disp-pill-text">Display not open</span></span>
-    <span class="kbd-hint"><span class="kbd">&larr;</span><span class="kbd">&rarr;</span> move &nbsp;<span class="kbd">B</span> blank</span>
+    <span class="kbd-hint"><span class="kbd">&larr;</span><span class="kbd">&rarr;</span> move &nbsp;<span class="kbd">B</span> blank &nbsp;<span class="kbd">F</span> fade out &nbsp;<span class="kbd">N</span> fade to next</span>
     <a href="worship-display.html" target="_blank" class="display-link">Open display &nearr;</a>
   </div>
 
@@ -288,8 +290,11 @@
     <div class="now" id="deck-now"></div>
     <div class="row">
       <button id="deck-pause" title="P">Pause</button>
-      <button id="deck-fade" title="F">Fade out</button>
       <input type="range" id="deck-vol" min="0" max="100" value="100" title="Volume">
+    </div>
+    <div class="row">
+      <button id="deck-fade" title="F — end the song, silence after">Fade out</button>
+      <button id="deck-next" title="N — fade into the next song" class="gold">Fade into next &rarr;</button>
     </div>
   </div>
 
@@ -420,6 +425,7 @@
       if (e.key === 'b' || e.key === 'B') toggleBlank();
       if (e.key === 'p' || e.key === 'P') Deck.toggle();
       if (e.key === 'f' || e.key === 'F') Deck.fadeOut();
+      if (e.key === 'n' || e.key === 'N') Deck.fadeNext();
     });
     document.getElementById('btn-next').addEventListener('click', next);
     document.getElementById('btn-prev').addEventListener('click', prev);
@@ -526,6 +532,13 @@
           if (k >= 1) { clearInterval(fadeTimer); fadeTimer = null; p.stopVideo(); playingIdx = -1; paint(); }
         }, TICK);
       }
+      // fade into the NEXT song in the set (and move the slides there too)
+      function fadeNext() {
+        var from = playingIdx >= 0 ? playingIdx : songIdx;
+        if (from + 1 >= songs.length) return;
+        goTo(from + 1, 0);                 // goTo crossfades when audio is playing
+        if (!isPlaying()) playSong(from + 1);
+      }
       function toggle() {
         if (!ready) return;
         var p = players[active];
@@ -545,6 +558,9 @@
         if (playingIdx >= 0 && songs[playingIdx]) now.innerHTML = (isPlaying() ? 'Playing ' : 'Paused ') + '<b></b>', now.querySelector('b').textContent = songs[playingIdx].title;
         else now.textContent = 'Nothing playing';
         el('deck-pause').textContent = isPlaying() ? 'Pause' : 'Play';
+        var nx = el('deck-next'), from = playingIdx >= 0 ? playingIdx : songIdx;
+        nx.disabled = from + 1 >= songs.length;
+        nx.innerHTML = nx.disabled ? 'Last song' : 'Fade into next &rarr;';
       }
       setInterval(function () {
         if (!ready || playingIdx < 0) return;
@@ -557,6 +573,7 @@
       document.addEventListener('DOMContentLoaded', function () {
         el('deck-pause').onclick = toggle;
         el('deck-fade').onclick = fadeOut;
+        el('deck-next').onclick = fadeNext;
         el('deck-vol').oninput = function () {
           volume = +this.value;
           if (ready && !fadeTimer && playingIdx >= 0) players[active].setVolume(volume);
@@ -566,7 +583,7 @@
       tag.src = 'https://www.youtube.com/iframe_api';
       document.head.appendChild(tag);
 
-      return { playSong: playSong, fadeOut: fadeOut, toggle: toggle, isPlaying: isPlaying, paintButton: paint };
+      return { playSong: playSong, fadeOut: fadeOut, fadeNext: fadeNext, toggle: toggle, isPlaying: isPlaying, paintButton: paint };
     })();
   </script>
 </body>
