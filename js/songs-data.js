@@ -1821,7 +1821,11 @@ const LEGACY_SONGS = {
     { label: "Verse 3", lines: ["No fate I dread; I know I am forgiven", "The future sure; The price, it has been paid", "For Jesus bled and suffered for my pardon", "And He was raised to overthrow the grave"] },
     { label: "Chorus 3", lines: ["To this I hold, my sin has been defeated", "Jesus, now and ever, is my plea", "Oh, the chains are released", "I can sing, \"I am free!\"", "Yet not I, but through Christ in me"] },
     { label: "Verse 4", lines: ["With every breath I long to follow Jesus", "For He has said that He will bring me home", "And, day by day, I know He will renew me", "Until I stand with joy before the throne"] },
-    { label: "Chorus 4", lines: ["To this I hold, my hope is only Jesus", "All the glory evermore to Him", "When the race is complete", "Still my lips shall repeat", "Yet not I, but through Christ in me"] }
+    { label: "Chorus 4", lines: ["To this I hold, my hope is only Jesus", "All the glory evermore to Him", "When the race is complete", "Still my lips shall repeat", "Yet not I, but through Christ in me"] },
+    { label: "", lines: ["To this I hold, my hope is only Jesus", "All the glory evermore to Him"] },
+    { label: "", lines: ["When the race is complete", "Still my lips shall repeat", "Yet not I, but through Christ in me"] },
+    { label: "", lines: ["When the race is complete", "Still my lips shall repeat", "Yet not I, but through Christ in me"] },
+    { label: "", lines: ["Yet not I, but through Christ in me", "Yet not I, but through Christ in me"] }
   ]
   },
   "as-the-deer": {
