@@ -5,7 +5,7 @@
  */
 
 window.WORSHIP_SETLIST = [
-  'christ-the-sure-and-steady-anchor',
-  'immortal-invisible',
-  'come-to-jesus-rest-in-him',
+  'christ-our-hope-in-life-and-death',
+  'ancient-of-days',
+  'yet-not-i-but-through-christ-in-me',
 ];
