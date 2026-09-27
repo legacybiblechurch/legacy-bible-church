@@ -387,7 +387,9 @@ const LEGACY_SONGS = {
     { label: "Verse 2", lines: ["What truth can calm the troubled soul?", "\"God is good, God is good\"", "Where is His grace and goodness known?", "In our great Redeemer's blood", "Who holds our faith when fears arise?", "Who stands above the stormy trial?", "Who sends the waves that bring us nigh", "Unto the shore, the rock of Christ?"] },
     { label: "Chorus", lines: ["O sing \"Hallelujah!\"", "Our hope springs eternal", "O sing \"Hallelujah!\"", "Now and ever we confess", "Christ, our hope in life and death"] },
     { label: "Verse 3", lines: ["Unto the grave, what will we sing?", "\"Christ, He lives; Christ, He lives!\"", "And what reward will heaven bring?", "Everlasting life with Him", "There we will rise to meet the Lord", "Then sin and death will be destroyed", "And we will feast in endless joy", "When Christ is ours forevermore"] },
-    { label: "Chorus", lines: ["O sing \"Hallelujah!\"", "Our hope springs eternal", "O sing \"Hallelujah!\"", "Now and ever we confess", "Christ, our hope in life and death"] }
+    { label: "Chorus", lines: ["O sing \"Hallelujah!\"", "Our hope springs eternal", "O sing \"Hallelujah!\"", "Now and ever we confess", "Christ, our hope in life and death"] },
+    { label: "", lines: ["O sing \"Hallelujah!\"", "Our hope springs eternal", "O sing \"Hallelujah!\"", "Now and ever we confess", "Christ, our hope in life and death"] },
+    { label: "", lines: ["Now and ever we confess", "Christ, our hope in life and death"] }
   ]
   },
   "christ-the-sure-and-steady-anchor": {
