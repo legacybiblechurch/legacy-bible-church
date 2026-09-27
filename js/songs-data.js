@@ -123,7 +123,7 @@ const LEGACY_SONGS = {
   },
   "ancient-of-days": {
     title: "Ancient of Days",
-    youtube: "https://www.youtube.com/watch?v=V4dR_zuB3qk",
+    youtube: "https://www.youtube.com/watch?v=cJUtAw21qAM",
     lyrics: [
     { label: "", lines: ["Though the nations rage", "Kingdoms rise and fall", "There is still one King", "Reigning over all"] },
     { label: "", lines: ["So I will not fear", "For this truth remains", "That my God is the Ancient of Days"] },
