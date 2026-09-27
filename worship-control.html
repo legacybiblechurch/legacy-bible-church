@@ -666,10 +666,12 @@
         } catch (x) {}
       }, 500);
 
+      // the buttons call whichever API this device gets (laptop: real, phone: commands)
+      var api;
       document.addEventListener('DOMContentLoaded', function () {
-        el('deck-pause').onclick = toggle;
-        el('deck-fade').onclick = fadeOut;
-        el('deck-next').onclick = fadeNext;
+        el('deck-pause').onclick = function () { api.toggle(); };
+        el('deck-fade').onclick = function () { api.fadeOut(); };
+        el('deck-next').onclick = function () { api.fadeNext(); };
         el('deck-vol').oninput = function () {
           volume = +this.value;
           if (ready && !fadeTimer && playingIdx >= 0) players[active].setVolume(volume);
@@ -683,11 +685,13 @@
 
       if (Net.isRemote) {
         var cmd = function (action) { return function (song) { Net.send({ type: 'cmd', action: action, song: typeof song === 'number' ? song : undefined }); el('deck').className = 'on'; el('deck-now').textContent = 'Sent to the computer'; }; };
-        return { playSong: cmd('play'), fadeOut: cmd('fadeOut'), fadeNext: cmd('fadeNext'), toggle: cmd('toggle'),
-                 isPlaying: function () { return false; },
-                 paintButton: function () { var nx = el('deck-next'); if (nx) nx.disabled = songIdx + 1 >= songs.length; } };
+        api = { playSong: cmd('play'), fadeOut: cmd('fadeOut'), fadeNext: cmd('fadeNext'), toggle: cmd('toggle'),
+                isPlaying: function () { return false; },
+                paintButton: function () { var nx = el('deck-next'); if (nx) nx.disabled = songIdx + 1 >= songs.length; } };
+      } else {
+        api = { playSong: playSong, fadeOut: fadeOut, fadeNext: fadeNext, toggle: toggle, isPlaying: isPlaying, paintButton: paint };
       }
-      return { playSong: playSong, fadeOut: fadeOut, fadeNext: fadeNext, toggle: toggle, isPlaying: isPlaying, paintButton: paint };
+      return api;
     })();
   </script>
 </body>
