@@ -133,6 +133,34 @@
     }
     .yt-link:hover { color: var(--ink); border-color: var(--ink-faint); }
     .yt-link.missing { display: none; }
+    .play-btn {
+      font: inherit; font-size: 12px; font-weight: 600; cursor: pointer;
+      color: var(--bg); background: var(--gold); border: 1px solid var(--gold);
+      padding: 4px 12px; border-radius: 5px; white-space: nowrap;
+    }
+    .play-btn.playing { background: transparent; color: var(--gold); }
+    .play-btn:disabled { opacity: 0.35; cursor: default; }
+
+    /* ── audio deck: the two YouTube players live here; one is always fading ── */
+    #deck {
+      position: fixed; right: 16px; bottom: calc(var(--footer-h) + 12px);
+      width: 236px; z-index: 90;
+      background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+      padding: 8px; display: none;
+    }
+    #deck.on { display: block; }
+    #deck .vids { position: relative; width: 220px; height: 124px; border-radius: 5px; overflow: hidden; background: #000; }
+    #deck .vids iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    #deck .vids iframe.back { opacity: 0; pointer-events: none; }
+    #deck .now { font-size: 11.5px; color: var(--ink-dim); margin-top: 7px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #deck .now b { color: var(--ink); font-weight: 500; }
+    #deck .row { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
+    #deck .row button { font: inherit; font-size: 11.5px; padding: 4px 8px; border-radius: 4px; cursor: pointer; background: var(--panel-2); color: var(--ink); border: 1px solid var(--line); }
+    #deck .row button:hover { border-color: var(--ink-faint); }
+    #deck input[type=range] { flex: 1; accent-color: var(--gold); }
+    #deck .bar { height: 3px; background: var(--line); border-radius: 2px; margin-top: 6px; overflow: hidden; }
+    #deck .bar i { display: block; height: 100%; width: 0; background: var(--gold); }
+    #deck .fading { color: var(--warn); }
     #slide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(196px, 1fr)); gap: 10px; }
 
     .slide-thumb {
@@ -247,10 +275,22 @@
     <main id="main">
       <div class="song-bar">
         <div class="main-song-title" id="main-song-title"></div>
-        <a class="yt-link missing" id="yt-link" target="_blank" rel="noopener">&#9654;&nbsp; Play on YouTube</a>
+        <button class="play-btn" id="play-btn" disabled>&#9654;&nbsp; Play</button>
+        <a class="yt-link missing" id="yt-link" target="_blank" rel="noopener" style="font-size:11px;padding:3px 8px">open on YouTube &nearr;</a>
       </div>
       <div id="slide-grid"></div>
     </main>
+  </div>
+
+  <div id="deck">
+    <div class="vids"><div id="pA"></div><div id="pB"></div></div>
+    <div class="bar"><i id="deck-bar"></i></div>
+    <div class="now" id="deck-now"></div>
+    <div class="row">
+      <button id="deck-pause" title="P">Pause</button>
+      <button id="deck-fade" title="F">Fade out</button>
+      <input type="range" id="deck-vol" min="0" max="100" value="100" title="Volume">
+    </div>
   </div>
 
   <div id="footer">
@@ -299,7 +339,9 @@
       if (!songs.length) return;
       if (si < 0 || si >= songs.length) return;
       if (li < 0 || li >= songs[si].slides.length) return;
+      var songChanged = si !== songIdx;
       songIdx = si; slideIdx = li; render(); broadcast();
+      if (songChanged && Deck.isPlaying()) Deck.playSong(si);
     }
     function next() {
       if (!songs.length) return;
@@ -347,6 +389,10 @@
       var yt = document.getElementById('yt-link');
       yt.href = song.youtube || '#';
       yt.className = 'yt-link' + (song.youtube ? '' : ' missing');
+      var pb = document.getElementById('play-btn');
+      pb.disabled = !song.youtube;
+      pb.onclick = function () { Deck.playSong(songIdx); };
+      Deck.paintButton();
 
       var grid = document.getElementById('slide-grid');
       grid.innerHTML = song.slides.map(function (slide, i) {
@@ -372,6 +418,8 @@
       if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
       if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
       if (e.key === 'b' || e.key === 'B') toggleBlank();
+      if (e.key === 'p' || e.key === 'P') Deck.toggle();
+      if (e.key === 'f' || e.key === 'F') Deck.fadeOut();
     });
     document.getElementById('btn-next').addEventListener('click', next);
     document.getElementById('btn-prev').addEventListener('click', prev);
@@ -398,6 +446,128 @@
     }
 
     LBCSheet.loadSongs(init);
+
+    // ── Audio deck ───────────────────────────────────────────────────────
+    // Two YouTube players. Pressing Play on a song (or stepping into a new song
+    // while one is playing) fades the current one out over a few seconds while
+    // the next fades in - no tab-switching, no hand on the volume.
+    var Deck = (function () {
+      var FADE_MS = 3500, TICK = 80;
+      var players = {}, ready = false, active = null, other = null;
+      var volume = 100, fadeTimer = null, playingIdx = -1, pendingIdx = -1;
+      var el = function (id) { return document.getElementById(id); };
+
+      function vid(url) {
+        var m = String(url || '').match(/(?:v=|youtu\.be\/|\/embed\/|\/shorts\/)([A-Za-z0-9_-]{11})/);
+        return m ? m[1] : '';
+      }
+      function make(id) {
+        return new YT.Player(id, {
+          width: 220, height: 124, playerVars: { controls: 0, rel: 0, modestbranding: 1, playsinline: 1, iv_load_policy: 3 },
+          events: { onStateChange: onState }
+        });
+      }
+      window.onYouTubeIframeAPIReady = function () {
+        players.A = make('pA'); players.B = make('pB');
+        active = 'A'; other = 'B';
+        var check = setInterval(function () {
+          if (players.A.getIframe && players.B.getIframe && players.A.setVolume && players.B.setVolume) {
+            clearInterval(check); ready = true; layout();
+            if (pendingIdx >= 0) { var i = pendingIdx; pendingIdx = -1; playSong(i); }
+          }
+        }, 150);
+      };
+      function layout() {
+        var a = players[active].getIframe(), b = players[other].getIframe();
+        a.className = ''; b.className = 'back';
+      }
+      function onState(e) {
+        if (e.target !== players[active]) return;
+        if (e.data === YT.PlayerState.ENDED) { playingIdx = -1; paint(); }
+        else paint();
+      }
+      function isPlaying() {
+        try { return ready && players[active].getPlayerState() === YT.PlayerState.PLAYING; } catch (x) { return false; }
+      }
+      function playSong(i) {
+        var song = songs[i], v = song && vid(song.youtube);
+        if (!v) return;
+        if (!ready) { pendingIdx = i; el('deck').className = 'on'; el('deck-now').textContent = 'Loading player…'; return; }
+        el('deck').className = 'on';
+        if (playingIdx === i && isPlaying()) return;          // already on it
+        var was = isPlaying() ? players[active] : null;
+        // the incoming song starts silent on the other player, then fades up
+        var t = active; active = other; other = t;
+        var inc = players[active];
+        inc.setVolume(0); inc.loadVideoById(v); inc.playVideo();
+        layout();
+        playingIdx = i; paint();
+        crossfade(was, inc);
+      }
+      function crossfade(outP, inP) {
+        clearInterval(fadeTimer);
+        var t0 = Date.now();
+        fadeTimer = setInterval(function () {
+          var k = Math.min(1, (Date.now() - t0) / FADE_MS);
+          var ease = k * k * (3 - 2 * k);
+          if (outP) outP.setVolume(Math.round(volume * (1 - ease)));
+          inP.setVolume(Math.round(volume * ease));
+          el('deck-now').className = 'now' + (k < 1 && outP ? ' fading' : '');
+          if (k >= 1) { clearInterval(fadeTimer); fadeTimer = null; if (outP) outP.stopVideo(); paint(); }
+        }, TICK);
+      }
+      function fadeOut() {
+        if (!isPlaying()) return;
+        clearInterval(fadeTimer);
+        var p = players[active], t0 = Date.now();
+        fadeTimer = setInterval(function () {
+          var k = Math.min(1, (Date.now() - t0) / FADE_MS);
+          p.setVolume(Math.round(volume * (1 - k)));
+          if (k >= 1) { clearInterval(fadeTimer); fadeTimer = null; p.stopVideo(); playingIdx = -1; paint(); }
+        }, TICK);
+      }
+      function toggle() {
+        if (!ready) return;
+        var p = players[active];
+        if (isPlaying()) p.pauseVideo();
+        else if (playingIdx >= 0) { p.setVolume(volume); p.playVideo(); }
+        else playSong(songIdx);
+        setTimeout(paint, 200);
+      }
+      function paint() {
+        var pb = el('play-btn');
+        if (pb) {
+          var here = playingIdx === songIdx && isPlaying();
+          pb.className = 'play-btn' + (here ? ' playing' : '');
+          pb.innerHTML = here ? '&#9646;&#9646;&nbsp; Playing' : (playingIdx >= 0 && isPlaying() ? '&#9654;&nbsp; Switch to this' : '&#9654;&nbsp; Play');
+        }
+        var now = el('deck-now');
+        if (playingIdx >= 0 && songs[playingIdx]) now.innerHTML = (isPlaying() ? 'Playing ' : 'Paused ') + '<b></b>', now.querySelector('b').textContent = songs[playingIdx].title;
+        else now.textContent = 'Nothing playing';
+        el('deck-pause').textContent = isPlaying() ? 'Pause' : 'Play';
+      }
+      setInterval(function () {
+        if (!ready || playingIdx < 0) return;
+        try {
+          var p = players[active], d = p.getDuration() || 0, c = p.getCurrentTime() || 0;
+          el('deck-bar').style.width = d ? (100 * c / d) + '%' : '0';
+        } catch (x) {}
+      }, 500);
+
+      document.addEventListener('DOMContentLoaded', function () {
+        el('deck-pause').onclick = toggle;
+        el('deck-fade').onclick = fadeOut;
+        el('deck-vol').oninput = function () {
+          volume = +this.value;
+          if (ready && !fadeTimer && playingIdx >= 0) players[active].setVolume(volume);
+        };
+      });
+      var tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+
+      return { playSong: playSong, fadeOut: fadeOut, toggle: toggle, isPlaying: isPlaying, paintButton: paint };
+    })();
   </script>
 </body>
 </html>
