@@ -536,8 +536,12 @@
       function fadeNext() {
         var from = playingIdx >= 0 ? playingIdx : songIdx;
         if (from + 1 >= songs.length) return;
-        goTo(from + 1, 0);                 // goTo crossfades when audio is playing
-        if (!isPlaying()) playSong(from + 1);
+        // decide BEFORE moving: goTo itself crossfades when audio is playing, and
+        // right after a swap the incoming player is still buffering (not "playing"),
+        // so asking again here would start a second, hard-cut swap
+        var wasPlaying = isPlaying();
+        goTo(from + 1, 0);
+        if (!wasPlaying) playSong(from + 1);
       }
       function toggle() {
         if (!ready) return;
