@@ -43,6 +43,9 @@
     '#lbc-box h3{color:#ececed;font-size:19px;margin:0 0 8px}#lbc-box b{color:#ececed}#lbc-box ol{margin:10px 0 14px 20px}#lbc-box li{margin-bottom:7px}' +
     '#lbc-box code{background:#232327;border:1px solid #2a2a2e;padding:1px 6px;border-radius:4px;font-size:12.5px}' +
     '#lbc-box a{color:#C9A84C}' +
+    '#lbc-box ol{list-style:decimal outside!important;padding-left:4px}#lbc-box ol li{list-style:decimal outside!important;display:list-item!important}' +
+    '#lbc-box a.lbc-open{display:inline-block;margin-top:7px;background:#C9A84C;color:#16130a!important;font-weight:600;text-decoration:none;padding:9px 14px;border-radius:8px}' +
+    '#lbc-box a.lbc-open:hover{filter:brightness(1.08)}' +
     '#lbc-box input{width:100%;font:13px ui-monospace,Menlo,monospace;background:#0d0d0f;color:#ececed;border:1px solid #2a2a2e;border-radius:7px;padding:10px 11px;margin-top:4px}' +
     '#lbc-box .row{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}' +
     '#lbc-box button{font:600 14px -apple-system,sans-serif;border-radius:8px;padding:10px 16px;cursor:pointer;border:1px solid #3a3a3e;background:#232327;color:#ececed}' +
@@ -228,7 +231,8 @@
     var o = overlay(
       '<h3>Connect this computer</h3>' +
       'Publishing needs permission to save to the church website. One-time setup on this computer.' +
-      '<ol><li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener"><b>this GitHub page</b></a>, signed in as the church account.</li>' +
+      '<ol><li>Click this button (sign in as the church account if it asks):<br>' +
+        '<a class="lbc-open" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Open GitHub \u2192 New token \u2197</a></li>' +
       '<li>Name it <code>site editor</code>. Expiration: <b>No expiration</b>.</li>' +
       '<li><b>Repository access</b> → <b>Only select repositories</b> → <code>legacy-bible-church</code>.</li>' +
       '<li><b>Repository permissions</b> → <b>Add permissions</b> → <code>Contents</code> → <b>Read and write</b>.</li>' +
