@@ -1,0 +1,30 @@
+name: Tag editable text
+
+# New headings/paragraphs added to the site by hand get a permanent data-e id,
+# so the page editor (?edit) can change them. Existing ids never change.
+
+on:
+  push:
+    branches: [main]
+    paths: ["*.html"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python scripts/tag_editable.py
+      - name: Commit new ids
+        run: |
+          git config user.name "lbc-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add -A "*.html"
+          git diff --cached --quiet && exit 0
+          git commit -m "tag new editable text [skip ci]"
+          git push

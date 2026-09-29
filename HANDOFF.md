@@ -48,3 +48,13 @@ The candidate card says why in plain words. Usual causes: the listener Mac is of
 
 ### Old pieces, kept for compatibility
 `worship-prep.html` redirects to the Studio. The Google-Sheet-driven schedule in `worship-prep.yml` is commented out; `scripts/prep/sheet.py` remains only because `run.py` reuses its `Row` type.
+
+
+## Editing the church website (the page editor)
+
+Add `?edit` to any page's address, e.g. `…/about.html?edit`. Click outlined text, type, press **Publish**. Changes commit to this repo and are live in about a minute. Drafts are kept in the browser, across pages, until published.
+
+- One-time per computer: the editor asks to **Connect this computer** — a GitHub token for the church account with **Contents: Read and write** on `legacy-bible-church`.
+- Every editable element has a permanent id in the source (`data-e="about-12"`). Publish replaces only what is inside that element, then re-parses the page and refuses to save if any other part changed.
+- After adding new sections or pages by hand, run `python3 scripts/tag_editable.py` so the new text becomes editable (it never changes existing ids). The `Tag editable text` workflow does this automatically on every push.
+- Text only. Images, the menu, the footer and forms are not editable here.
