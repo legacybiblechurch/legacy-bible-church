@@ -22,7 +22,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = ["index", "about", "leadership", "connect", "give", "watch", "sermons",
-         "ministries", "events", "contact", "resources", "testimonies"]
+         "resources", "testimonies"]
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
 SKIP_INSIDE = {"nav", "footer", "form", "script", "style", "head", "svg", "select", "noscript"}
 MEDIA = {"img", "svg", "canvas", "video", "audio", "iframe", "input", "textarea", "select"}

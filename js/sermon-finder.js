@@ -70,7 +70,7 @@
   /* ── the bar ────────────────────────────────────────────────── */
   var css = document.createElement('style');
   css.textContent =
-    '.sf{margin:0}.sf-section{padding-top:34px!important;padding-bottom:10px!important}' +
+    '.sf{margin:0 0 18px}.sf [hidden]{display:none!important}' +
     '.sf-results{max-width:100%}' +
     '.sf-search{position:relative}' +
     '.sf-search input{width:100%;font:inherit;font-size:16px;color:var(--text,#fff);background:var(--surface,#161618);border:1px solid var(--border,#2a2a2e);border-radius:10px;padding:14px 16px 14px 44px;outline:none}' +
@@ -106,20 +106,14 @@
     '<div class="sf-row">' +
       '<select id="sf-book" aria-label="Book of the Bible">' + options(byBook, function (a, b) { return ORDER[a] - ORDER[b]; }, 'Any book') + '</select>' +
       '<select id="sf-year" aria-label="Year">' + options(byYear, function (a, b) { return b - a; }, 'Any year') + '</select>' +
-      '<select id="sf-who" aria-label="Preacher">' + options(bySpeaker, function (a, b) { return a.localeCompare(b); }, 'Any preacher') + '</select>' +
+      // only offered when the page actually says who preached (data-speaker on a row)
+      (Object.keys(bySpeaker).length ? '<select id="sf-who" aria-label="Preacher">' + options(bySpeaker, function (a, b) { return a.localeCompare(b); }, 'Any preacher') + '</select>' : '<select id="sf-who" hidden><option value=""></option></select>') +
       '<select id="sf-sort" class="sf-sort" aria-label="Sort"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="title">Title A–Z</option><option value="bible">Bible order</option></select>' +
     '</div>' +
     '<div class="sf-meta" id="sf-meta" hidden><span id="sf-count"></span><button class="sf-clear" id="sf-clear">Clear</button></div>' +
     '<ul class="sf-results" id="sf-results" hidden></ul>';
-  // the finder goes at the top of the page, right under the header, so it is
-  // the first thing someone sees; the year-by-year archive stays where it was
-  var firstSection = document.querySelector('.page-header ~ section, main section, section.section');
-  var wrap = document.createElement('section');
-  wrap.className = 'section sf-section';
-  wrap.innerHTML = '<div class="container"></div>';
-  wrap.firstChild.appendChild(bar);
-  if (firstSection) firstSection.parentNode.insertBefore(wrap, firstSection);
-  else host.parentNode.insertBefore(bar, host);
+  // under the "All Sermons" heading, directly above the list it searches
+  host.parentNode.insertBefore(bar, host);
 
   var q = bar.querySelector('#sf-q'), selBook = bar.querySelector('#sf-book'), selYear = bar.querySelector('#sf-year'),
       selWho = bar.querySelector('#sf-who'), selSort = bar.querySelector('#sf-sort'),
@@ -144,7 +138,7 @@
     var active = words.length || want || selBook.value || selYear.value || selWho.value || selSort.value !== 'new';
     [selBook, selYear, selWho].forEach(function (s) { s.classList.toggle('on', !!s.value); });
     selSort.classList.toggle('on', selSort.value !== 'new');
-    out.hidden = !active; meta.hidden = !active;
+    host.hidden = !!active; out.hidden = !active; meta.hidden = !active;
     if (!active) { out.innerHTML = ''; return; }
 
     var hits = rows.filter(function (r) {
@@ -170,7 +164,7 @@
       if (btn) { btn.classList.remove('playing'); btn.innerHTML = '&#9654;'; }
       var t = li.querySelector('.sermon-title');
       if (r.p && t) { var chip = document.createElement('span'); chip.className = 'sf-ref'; chip.textContent = r.p.ref; t.parentNode.insertBefore(chip, t.nextSibling); }
-      if (r.speaker && Object.keys(bySpeaker).length > 1 && t) { var by = document.createElement('span'); by.className = 'sf-by'; by.textContent = r.speaker; t.parentNode.insertBefore(by, t.nextSibling); }
+      if (r.speaker && t) { var by = document.createElement('span'); by.className = 'sf-by'; by.textContent = r.speaker; t.parentNode.insertBefore(by, t.nextSibling); }
       out.appendChild(li);
     });
     if (hits.length > shown) {
