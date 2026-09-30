@@ -29,5 +29,5 @@ window.LBCLive = {
   AUTO_EMBED: false,
 
   // ── Service time shown on the page ──────────────────────
-  SERVICE_TIME: "Sundays at 10:00 AM Pacific",
+  SERVICE_TIME: "Sundays at 10:30 AM Pacific",
 };
