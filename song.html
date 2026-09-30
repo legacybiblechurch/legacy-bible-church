@@ -303,7 +303,7 @@
       const lyricsEl  = document.getElementById('lyrics-body');
 
       if (!song) {
-        document.title = 'Song Not Found — Legacy Bible Church';
+        document.title = 'Song Not Found | Legacy Bible Church';
         titleEl.textContent = 'Song not found';
         lyricsEl.innerHTML  = '<p class="lyrics-empty">This song isn\'t in our hymnal yet. <a href="hymnal.html" style="color:var(--accent-bright)">Return to the hymnal →</a></p>';
         return;
@@ -311,8 +311,8 @@
 
       // Page title & heading
       const cleanTitle = song.title.replace(/&rsquo;/g,"'").replace(/&mdash;/g,"—").replace(/&amp;/g,"&").replace(/&lsquo;/g,"'");
-      document.title = cleanTitle + ' — Legacy Bible Church';
-      document.getElementById('page-title').textContent = cleanTitle + ' — Legacy Bible Church';
+      document.title = cleanTitle + ' | Legacy Bible Church';
+      document.getElementById('page-title').textContent = cleanTitle + ' | Legacy Bible Church';
       titleEl.textContent = cleanTitle;
 
       // Action buttons
