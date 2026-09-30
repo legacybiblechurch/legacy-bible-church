@@ -17,9 +17,9 @@
       <itunes:category text="Christianity"/>
     </itunes:category>
     <itunes:explicit>false</itunes:explicit>
-    <itunes:image href="https://legacybiblechurch.vercel.app/images/podcast-cover.jpg"/>
+    <itunes:image href="https://legacybiblechurch.github.io/legacy-bible-church/images/podcast-cover.jpg"/>
     <image>
-      <url>https://legacybiblechurch.vercel.app/images/podcast-cover.jpg</url>
+      <url>https://legacybiblechurch.github.io/legacy-bible-church/images/podcast-cover.jpg</url>
       <title>Legacy Bible Church — Sermons</title>
       <link>https://legacybiblechurch.com/sermons.html</link>
     </image>
