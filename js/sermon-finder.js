@@ -102,7 +102,7 @@
   bar.setAttribute('data-no-edit', '');
   bar.innerHTML =
     '<div class="sf-search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>' +
-    '<input id="sf-q" type="search" placeholder="Search by title, passage, or topic — try “John 17”" autocomplete="off"></div>' +
+    '<input id="sf-q" type="search" placeholder="Search by title, passage or topic. Try “John 17”" autocomplete="off"></div>' +
     '<div class="sf-row">' +
       '<select id="sf-book" aria-label="Book of the Bible">' + options(byBook, function (a, b) { return ORDER[a] - ORDER[b]; }, 'Any book') + '</select>' +
       '<select id="sf-year" aria-label="Year">' + options(byYear, function (a, b) { return b - a; }, 'Any year') + '</select>' +
@@ -155,7 +155,7 @@
 
     bar.querySelector('#sf-count').textContent = hits.length + (hits.length === 1 ? ' sermon' : ' sermons');
     out.innerHTML = '';
-    if (!hits.length) { out.innerHTML = '<li class="sf-empty">No sermons match. Try fewer words, or clear a filter.</li>'; return; }
+    if (!hits.length) { out.innerHTML = '<li class="sf-empty">No sermons match. Try fewer words or clear a filter.</li>'; return; }
     hits.slice(0, shown).forEach(function (r) {
       var li = r.li.cloneNode(true);
       // copies must not carry edit ids (the originals in the archive do)
