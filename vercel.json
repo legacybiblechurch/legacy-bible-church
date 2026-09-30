@@ -2,9 +2,33 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "routes": [
-    { "src": "/about", "dest": "/about.html" },
-    { "src": "/sermons", "dest": "/sermons.html" },
-    { "src": "/connect", "dest": "/connect.html" },
-    { "src": "/give", "dest": "/give.html" }
+    {
+      "src": "/about",
+      "dest": "/about.html"
+    },
+    {
+      "src": "/sermons",
+      "dest": "/sermons.html"
+    },
+    {
+      "src": "/connect",
+      "dest": "/connect.html"
+    },
+    {
+      "src": "/give",
+      "dest": "/give.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/feed.xml",
+      "destination": "https://legacybiblechurch.github.io/legacy-bible-church/feed.xml",
+      "permanent": true
+    },
+    {
+      "source": "/images/podcast-cover.jpg",
+      "destination": "https://legacybiblechurch.github.io/legacy-bible-church/images/podcast-cover.jpg",
+      "permanent": true
+    }
   ]
 }
