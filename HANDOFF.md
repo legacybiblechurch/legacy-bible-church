@@ -58,3 +58,12 @@ Add `?edit` to any page's address, e.g. `…/about.html?edit`. Click outlined te
 - Every editable element has a permanent id in the source (`data-e="about-12"`). Publish replaces only what is inside that element, then re-parses the page and refuses to save if any other part changed.
 - After adding new sections or pages by hand, run `python3 scripts/tag_editable.py` so the new text becomes editable (it never changes existing ids). The `Tag editable text` workflow does this automatically on every push.
 - Text only. Images, the menu, the footer and forms are not editable here.
+
+## The sermon finder (sermons.html)
+
+`js/sermon-finder.js` builds the search bar at the top of the sermons page from the rows already in the page — there is no separate database. It reads each row's date, title and description, and works out the Bible passage from the title ("…, John 17.6-19", "2 Peter 3.18 …").
+
+- Search understands passages: "John 17", "1 Peter 3:7", "psalm 139" match the sermon's passage, not any sermon that happens to contain a 17.
+- Filters: book (Bible order, with counts), year, preacher. Sort: newest, oldest, title, Bible order.
+- A row can state what its title does not: `<li class="sermon-item" data-speaker="Guest Name" data-passage="Romans 8:28">`. The default preacher is the `data-speaker` on `.archive-accordion`.
+- To add a sermon: copy a row in the right year block, change the date, title, description and `data-url`.

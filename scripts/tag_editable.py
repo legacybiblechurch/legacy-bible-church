@@ -26,6 +26,10 @@ PAGES = ["index", "about", "leadership", "connect", "give", "watch", "sermons",
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
 SKIP_INSIDE = {"nav", "footer", "form", "script", "style", "head", "svg", "select", "noscript"}
 MEDIA = {"img", "svg", "canvas", "video", "audio", "iframe", "input", "textarea", "select"}
+# An element is only editable as a whole if everything inside it is plain
+# formatting. Anything else (a play button, a span the page's scripts or styles
+# rely on) would be flattened by the editor, so we tag the pieces inside instead.
+PLAIN = {"a", "strong", "em", "b", "i", "u", "br", "p", "ul", "ol", "li", "h3", "h4", "blockquote", "cite", "sup", "sub"}
 
 
 class Node:
@@ -96,10 +100,14 @@ def wanted(n: Node) -> bool:
         return False
     if any(d.tag in MEDIA for d in n.descendants()):
         return False
+    if any(d.tag not in PLAIN for d in n.descendants()):
+        return False
     cls = n.classes()
     anc_cls = set().union(*[a.classes() for a in anc]) if anc else set()
     in_section = "section" in anc_tags or bool({"hero", "page-header"} & anc_cls) or "main" in anc_tags or "article" in anc_tags
     if "data-editable" in n.attrs or "data-e" in n.attrs:
+        return True
+    if n.tag == "span" and in_section and n.text.strip() and not n.children:
         return True
     if cls & {"prose", "card__body", "sermon-card__date", "sermon-card__desc", "series-card__label", "zelle-email"}:
         return True
@@ -136,6 +144,13 @@ def tag_page(path: Path, check: bool) -> tuple[int, int]:
     for line in src.splitlines(keepends=True):
         starts.append(starts[-1] + len(line))
     edits = []
+    chosen_ids = {id(n) for n in chosen}
+    removals = []
+    for n in t.nodes:
+        if "data-e" in n.attrs and id(n) not in chosen_ids:
+            off = starts[n.pos[0] - 1] + n.pos[1]
+            m = re.search(r' data-e="[^"]*"', n.raw)
+            removals.append((off + m.start(), off + m.end()))
     for n in chosen:
         if "data-e" in n.attrs:
             continue
@@ -144,9 +159,10 @@ def tag_page(path: Path, check: bool) -> tuple[int, int]:
         # insert right after the tag name
         at = off + 1 + len(n.tag)
         edits.append((at, f' data-e="{page}-{nxt}"')); nxt += 1
-    if not check and edits:
-        for at, ins in sorted(edits, reverse=True):
-            src = src[:at] + ins + src[at:]
+    if not check and (edits or removals):
+        ops = [(at, at, ins) for at, ins in edits] + [(a, b, "") for a, b in removals]
+        for a, b, ins in sorted(ops, reverse=True):
+            src = src[:a] + ins + src[b:]
         path.write_text(src, encoding="utf-8")
     return len(chosen), len(edits)
 

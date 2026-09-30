@@ -115,8 +115,16 @@
   var draft = load(DRAFT_KEY), live = load(LIVE_KEY), now = Date.now();
   Object.keys(live).forEach(function (k) { if (now - live[k].at > 20 * 60000) delete live[k]; });
 
+  function plainOnly(el) {
+    var all = el.querySelectorAll('*');
+    for (var i = 0; i < all.length; i++) if (!KEEP[all[i].tagName]) return false;
+    return true;
+  }
   document.querySelectorAll('[data-e]').forEach(function (el) {
     var id = el.getAttribute('data-e'), key = PAGE + '|' + id;
+    // something inside this is more than words (a button, a styled span):
+    // editing it as text would flatten it, so leave it alone
+    if (!plainOnly(el)) { el.removeAttribute('data-e'); return; }
     originals[id] = clean(el, true);
 
     if (live[key]) {
@@ -209,6 +217,9 @@
     edits.forEach(function (e) {
       var sp = spanOf(src, e.id);
       if (!sp) { results.push({ e: e, ok: false, why: 'that part of the page no longer exists' }); return; }
+      if (/<(?!\/?(?:a|strong|em|b|i|u|br|p|ul|ol|li|h3|h4|blockquote|cite|sup|sub)\b)[a-zA-Z]/.test(src.slice(sp.from, sp.to))) {
+        results.push({ e: e, ok: false, why: 'that part of the page has more than text in it' }); return;
+      }
       var next = src.slice(0, sp.from) + e.html + src.slice(sp.to);
       // prove it: the page must still parse, keep every editable id, and show the new words
       var doc = new DOMParser().parseFromString(next, 'text/html');
