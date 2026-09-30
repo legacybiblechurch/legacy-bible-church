@@ -4,7 +4,7 @@
   xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Legacy Bible Church — Sermons</title>
-    <link>https://legacybiblechurch.com/sermons.html</link>
+    <link>https://legacybiblechurch.github.io/legacy-bible-church/sermons.html</link>
     <language>en-us</language>
     <itunes:author>Legacy Bible Church</itunes:author>
     <itunes:owner>
@@ -21,7 +21,7 @@
     <image>
       <url>https://legacybiblechurch.github.io/legacy-bible-church/images/podcast-cover.jpg</url>
       <title>Legacy Bible Church — Sermons</title>
-      <link>https://legacybiblechurch.com/sermons.html</link>
+      <link>https://legacybiblechurch.github.io/legacy-bible-church/sermons.html</link>
     </image>
 
     <item>
@@ -106,10 +106,10 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.10.16%20Experiencing%20Full%20Joy%2C%20Pt%203%2C%201%20John%201.1-10.mp3</guid>
     </item>
     <item>
-      <title>V2</title>
-      <itunes:title>V2</itunes:title>
-      <description>V2</description>
-      <itunes:summary>V2</itunes:summary>
+      <title>Untitled sermon</title>
+      <itunes:title>Untitled sermon</itunes:title>
+      <description>Untitled sermon</description>
+      <itunes:summary>Untitled sermon</itunes:summary>
       <pubDate>Sun, 07 Aug 2022 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.08.07%20V2.mp3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.08.07%20V2.mp3</guid>
@@ -124,10 +124,10 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.06.05%20God%27s%20Treasure%2C%20Satan%27s%20Trap%2C%20Pt%202%2C%20Proverbs%205.1-23.mp3</guid>
     </item>
     <item>
-      <title>V2</title>
-      <itunes:title>V2</itunes:title>
-      <description>V2</description>
-      <itunes:summary>V2</itunes:summary>
+      <title>Untitled sermon</title>
+      <itunes:title>Untitled sermon</itunes:title>
+      <description>Untitled sermon</description>
+      <itunes:summary>Untitled sermon</itunes:summary>
       <pubDate>Sun, 15 May 2022 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.05.15%20V2.mp3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.05.15%20V2.mp3</guid>
@@ -187,8 +187,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.02.20%20Jesus%20Sends%20the%20Helper%2C%20John%2015.26-27.mp3</guid>
     </item>
     <item>
-      <title>Jesus's Enemies Harass His Friends, Pt 3 John 15.20-25</title>
-      <itunes:title>Jesus's Enemies Harass His Friends, Pt 3 John 15.20-25</itunes:title>
+      <title>Jesus's Enemies Harass His Friends, Pt 3, John 15.20-25</title>
+      <itunes:title>Jesus's Enemies Harass His Friends, Pt 3, John 15.20-25</itunes:title>
       <description>In this passage we see that unbelievers harass Jesus and His disciples, so that we would be humble, like Jesus</description>
       <itunes:summary>In this passage we see that unbelievers harass Jesus and His disciples, so that we would be humble, like Jesus</itunes:summary>
       <pubDate>Sun, 06 Feb 2022 10:00:00 +0000</pubDate>
@@ -223,8 +223,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.01.16%201%20Corinthians%206.9-11%2C%20Cleansed.mp3</guid>
     </item>
     <item>
-      <title>Colossians 1.9-12 Jesus, Worthy of Your Walk, Pt 3,</title>
-      <itunes:title>Colossians 1.9-12 Jesus, Worthy of Your Walk, Pt 3,</itunes:title>
+      <title>Colossians 1.9-12 Jesus, Worthy of Your Walk, Pt 3</title>
+      <itunes:title>Colossians 1.9-12 Jesus, Worthy of Your Walk, Pt 3</itunes:title>
       <description>In this passage we see that Jesus is of great worth, so that you will walk with Him every day, for His glory</description>
       <itunes:summary>In this passage we see that Jesus is of great worth, so that you will walk with Him every day, for His glory</itunes:summary>
       <pubDate>Sun, 09 Jan 2022 10:00:00 +0000</pubDate>
@@ -241,8 +241,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2022.01.02%20Colossians%201.9-12%20Jesus%2C%20Worthy%20of%20Your%20Walk%2C%20Pt%202.mp3</guid>
     </item>
     <item>
-      <title>A Plan for Growing in Godliness in 2020- Pt 2</title>
-      <itunes:title>A Plan for Growing in Godliness in 2020- Pt 2</itunes:title>
+      <title>A Plan for Growing in Godliness in 2020, Pt 2</title>
+      <itunes:title>A Plan for Growing in Godliness in 2020, Pt 2</itunes:title>
       <description>A Plan for Growing in Godliness in 2020- Pt 2</description>
       <itunes:summary>A Plan for Growing in Godliness in 2020- Pt 2</itunes:summary>
       <pubDate>Sun, 29 Dec 2019 10:00:00 +0000</pubDate>
@@ -250,8 +250,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.12.29%20A%20Plan%20for%20Growing%20in%20Godliness%20in%202020-%20Pt%202.mp3</guid>
     </item>
     <item>
-      <title>Train Yourself for Godliness- Pt 1</title>
-      <itunes:title>Train Yourself for Godliness- Pt 1</itunes:title>
+      <title>Train Yourself for Godliness, Pt 1</title>
+      <itunes:title>Train Yourself for Godliness, Pt 1</itunes:title>
       <description>Train Yourself for Godliness- Pt 1</description>
       <itunes:summary>Train Yourself for Godliness- Pt 1</itunes:summary>
       <pubDate>Sun, 22 Dec 2019 10:00:00 +0000</pubDate>
@@ -259,8 +259,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.12.22%20Train%20Yourself%20for%20Godliness-%20Pt%201.mp3</guid>
     </item>
     <item>
-      <title>Receiving and Understanding God’s Word- Pt 14</title>
-      <itunes:title>Receiving and Understanding God’s Word- Pt 14</itunes:title>
+      <title>Receiving and Understanding God’s Word, Pt 14</title>
+      <itunes:title>Receiving and Understanding God’s Word, Pt 14</itunes:title>
       <description>Receiving and Understanding God’s Word- Pt 14</description>
       <itunes:summary>Receiving and Understanding God’s Word- Pt 14</itunes:summary>
       <pubDate>Sun, 15 Dec 2019 10:00:00 +0000</pubDate>
@@ -268,8 +268,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.12.15%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%2014.mp3</guid>
     </item>
     <item>
-      <title>Receiving and Understanding God’s Word- Pt 13</title>
-      <itunes:title>Receiving and Understanding God’s Word- Pt 13</itunes:title>
+      <title>Receiving and Understanding God’s Word, Pt 13</title>
+      <itunes:title>Receiving and Understanding God’s Word, Pt 13</itunes:title>
       <description>Receiving and Understanding God’s Word- Pt 13</description>
       <itunes:summary>Receiving and Understanding God’s Word- Pt 13</itunes:summary>
       <pubDate>Sun, 08 Dec 2019 10:00:00 +0000</pubDate>
@@ -277,8 +277,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.12.08%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%2013.mp3</guid>
     </item>
     <item>
-      <title>Receiving and Understanding God’s Word- Pt 12</title>
-      <itunes:title>Receiving and Understanding God’s Word- Pt 12</itunes:title>
+      <title>Receiving and Understanding God’s Word, Pt 12</title>
+      <itunes:title>Receiving and Understanding God’s Word, Pt 12</itunes:title>
       <description>Receiving and Understanding God’s Word- Pt 12</description>
       <itunes:summary>Receiving and Understanding God’s Word- Pt 12</itunes:summary>
       <pubDate>Sun, 01 Dec 2019 10:00:00 +0000</pubDate>
@@ -286,8 +286,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.12.01%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%2012.mp3</guid>
     </item>
     <item>
-      <title>Receiving and Understanding God’s Word- Pt 11</title>
-      <itunes:title>Receiving and Understanding God’s Word- Pt 11</itunes:title>
+      <title>Receiving and Understanding God’s Word, Pt 11</title>
+      <itunes:title>Receiving and Understanding God’s Word, Pt 11</itunes:title>
       <description>Receiving and Understanding God’s Word- Pt 11</description>
       <itunes:summary>Receiving and Understanding God’s Word- Pt 11</itunes:summary>
       <pubDate>Sun, 24 Nov 2019 10:00:00 +0000</pubDate>
@@ -295,8 +295,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.11.24%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%2011.mp3</guid>
     </item>
     <item>
-      <title>Receiving and Understanding God’s Word- Pt 10</title>
-      <itunes:title>Receiving and Understanding God’s Word- Pt 10</itunes:title>
+      <title>Receiving and Understanding God’s Word, Pt 10</title>
+      <itunes:title>Receiving and Understanding God’s Word, Pt 10</itunes:title>
       <description>Receiving and Understanding God’s Word- Pt 10</description>
       <itunes:summary>Receiving and Understanding God’s Word- Pt 10</itunes:summary>
       <pubDate>Sun, 17 Nov 2019 10:00:00 +0000</pubDate>
@@ -304,8 +304,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.11.17%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%2010.mp3</guid>
     </item>
     <item>
-      <title>Receiving and Understanding God’s Word- Pt 9</title>
-      <itunes:title>Receiving and Understanding God’s Word- Pt 9</itunes:title>
+      <title>Receiving and Understanding God’s Word, Pt 9</title>
+      <itunes:title>Receiving and Understanding God’s Word, Pt 9</itunes:title>
       <description>Receiving and Understanding God’s Word- Pt 9</description>
       <itunes:summary>Receiving and Understanding God’s Word- Pt 9</itunes:summary>
       <pubDate>Sun, 10 Nov 2019 10:00:00 +0000</pubDate>
@@ -313,8 +313,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.11.10%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%209.mp3</guid>
     </item>
     <item>
-      <title>Receiving and Understanding God’s Word- Pt 8</title>
-      <itunes:title>Receiving and Understanding God’s Word- Pt 8</itunes:title>
+      <title>Receiving and Understanding God’s Word, Pt 8</title>
+      <itunes:title>Receiving and Understanding God’s Word, Pt 8</itunes:title>
       <description>Receiving and Understanding God’s Word- Pt 8</description>
       <itunes:summary>Receiving and Understanding God’s Word- Pt 8</itunes:summary>
       <pubDate>Sun, 03 Nov 2019 10:00:00 +0000</pubDate>
@@ -322,8 +322,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.11.03%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%208.mp3</guid>
     </item>
     <item>
-      <title>Receiving and Understanding God’s Word- Pt 7</title>
-      <itunes:title>Receiving and Understanding God’s Word- Pt 7</itunes:title>
+      <title>Receiving and Understanding God’s Word, Pt 7</title>
+      <itunes:title>Receiving and Understanding God’s Word, Pt 7</itunes:title>
       <description>Receiving and Understanding God’s Word- Pt 7</description>
       <itunes:summary>Receiving and Understanding God’s Word- Pt 7</itunes:summary>
       <pubDate>Sun, 20 Oct 2019 10:00:00 +0000</pubDate>
@@ -331,8 +331,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.10.20%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%207.mp3</guid>
     </item>
     <item>
-      <title>Receiving and Understanding God’s Word- Pt 6</title>
-      <itunes:title>Receiving and Understanding God’s Word- Pt 6</itunes:title>
+      <title>Receiving and Understanding God’s Word, Pt 6</title>
+      <itunes:title>Receiving and Understanding God’s Word, Pt 6</itunes:title>
       <description>Receiving and Understanding God’s Word- Pt 6</description>
       <itunes:summary>Receiving and Understanding God’s Word- Pt 6</itunes:summary>
       <pubDate>Sun, 13 Oct 2019 10:00:00 +0000</pubDate>
@@ -340,8 +340,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.10.13%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%206.mp3</guid>
     </item>
     <item>
-      <title>Receiving and Understanding God’s Word- Pt 5</title>
-      <itunes:title>Receiving and Understanding God’s Word- Pt 5</itunes:title>
+      <title>Receiving and Understanding God’s Word, Pt 5</title>
+      <itunes:title>Receiving and Understanding God’s Word, Pt 5</itunes:title>
       <description>Receiving and Understanding God’s Word- Pt 5</description>
       <itunes:summary>Receiving and Understanding God’s Word- Pt 5</itunes:summary>
       <pubDate>Sun, 06 Oct 2019 10:00:00 +0000</pubDate>
@@ -349,8 +349,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.10.06%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%205.mp3</guid>
     </item>
     <item>
-      <title>Receiving and Understanding God’s Word- Pt 4</title>
-      <itunes:title>Receiving and Understanding God’s Word- Pt 4</itunes:title>
+      <title>Receiving and Understanding God’s Word, Pt 4</title>
+      <itunes:title>Receiving and Understanding God’s Word, Pt 4</itunes:title>
       <description>Receiving and Understanding God’s Word- Pt 4</description>
       <itunes:summary>Receiving and Understanding God’s Word- Pt 4</itunes:summary>
       <pubDate>Sun, 29 Sep 2019 10:00:00 +0000</pubDate>
@@ -358,8 +358,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.09.29%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%204.mp3</guid>
     </item>
     <item>
-      <title>Receiving and Understanding God’s Word- Pt 3</title>
-      <itunes:title>Receiving and Understanding God’s Word- Pt 3</itunes:title>
+      <title>Receiving and Understanding God’s Word, Pt 3</title>
+      <itunes:title>Receiving and Understanding God’s Word, Pt 3</itunes:title>
       <description>Receiving and Understanding God’s Word- Pt 3</description>
       <itunes:summary>Receiving and Understanding God’s Word- Pt 3</itunes:summary>
       <pubDate>Sun, 15 Sep 2019 10:00:00 +0000</pubDate>
@@ -367,8 +367,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.09.15%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%203.mp3</guid>
     </item>
     <item>
-      <title>Receiving and Understanding God’s Word- Pt 2</title>
-      <itunes:title>Receiving and Understanding God’s Word- Pt 2</itunes:title>
+      <title>Receiving and Understanding God’s Word, Pt 2</title>
+      <itunes:title>Receiving and Understanding God’s Word, Pt 2</itunes:title>
       <description>Receiving and Understanding God’s Word- Pt 2</description>
       <itunes:summary>Receiving and Understanding God’s Word- Pt 2</itunes:summary>
       <pubDate>Sun, 08 Sep 2019 10:00:00 +0000</pubDate>
@@ -376,8 +376,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.09.08%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%202.mp3</guid>
     </item>
     <item>
-      <title>Receiving and Understanding God’s Word- Pt 1</title>
-      <itunes:title>Receiving and Understanding God’s Word- Pt 1</itunes:title>
+      <title>Receiving and Understanding God’s Word, Pt 1</title>
+      <itunes:title>Receiving and Understanding God’s Word, Pt 1</itunes:title>
       <description>Receiving and Understanding God’s Word- Pt 1</description>
       <itunes:summary>Receiving and Understanding God’s Word- Pt 1</itunes:summary>
       <pubDate>Sun, 01 Sep 2019 10:00:00 +0000</pubDate>
@@ -385,8 +385,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.09.01%20Receiving%20and%20Understanding%20God-ap0ss%20Word-%20Pt%201.mp3</guid>
     </item>
     <item>
-      <title>The Lord Restores the Redeemed who Return to Him- Pt 2</title>
-      <itunes:title>The Lord Restores the Redeemed who Return to Him- Pt 2</itunes:title>
+      <title>The Lord Restores the Redeemed who Return to Him, Pt 2</title>
+      <itunes:title>The Lord Restores the Redeemed who Return to Him, Pt 2</itunes:title>
       <description>The Lord Restores the Redeemed who Return to Him- Pt 2</description>
       <itunes:summary>The Lord Restores the Redeemed who Return to Him- Pt 2</itunes:summary>
       <pubDate>Sun, 25 Aug 2019 10:00:00 +0000</pubDate>
@@ -394,8 +394,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.08.25%20The%20Lord%20Restores%20the%20Redeemed%20who%20Return%20to%20Him-%20Pt%202.mp3</guid>
     </item>
     <item>
-      <title>Isaiah 44_6-22 The Lord Restores the Redeemed who Return to Him- Pt 1</title>
-      <itunes:title>Isaiah 44_6-22 The Lord Restores the Redeemed who Return to Him- Pt 1</itunes:title>
+      <title>Isaiah 44.6-22 The Lord Restores the Redeemed who Return to Him, Pt 1</title>
+      <itunes:title>Isaiah 44.6-22 The Lord Restores the Redeemed who Return to Him, Pt 1</itunes:title>
       <description>A sermon on Isaiah 44.</description>
       <itunes:summary>A sermon on Isaiah 44.</itunes:summary>
       <pubDate>Sun, 18 Aug 2019 10:00:00 +0000</pubDate>
@@ -403,8 +403,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.08.18%20Isaiah%2044_6-22%20The%20Lord%20Restores%20the%20Redeemed%20who%20Return%20to%20Him-%20Pt%201.mp3</guid>
     </item>
     <item>
-      <title>1 John 5_13-21 Trusting God in Prayer and Practice- Pt 2</title>
-      <itunes:title>1 John 5_13-21 Trusting God in Prayer and Practice- Pt 2</itunes:title>
+      <title>1 John 5.13-21 Trusting God in Prayer and Practice, Pt 2</title>
+      <itunes:title>1 John 5.13-21 Trusting God in Prayer and Practice, Pt 2</itunes:title>
       <description>A sermon on 1 John 5.</description>
       <itunes:summary>A sermon on 1 John 5.</itunes:summary>
       <pubDate>Sun, 04 Aug 2019 10:00:00 +0000</pubDate>
@@ -412,8 +412,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.08.04%201%20John%205_13-21%20Trusting%20God%20in%20Prayer%20and%20Practice-%20Pt%202.mp3</guid>
     </item>
     <item>
-      <title>1 John 5_13-21 Trusting God in Prayer -and- Practice- Pt 1</title>
-      <itunes:title>1 John 5_13-21 Trusting God in Prayer -and- Practice- Pt 1</itunes:title>
+      <title>1 John 5.13-21 Trusting God in Prayer and Practice, Pt 1</title>
+      <itunes:title>1 John 5.13-21 Trusting God in Prayer and Practice, Pt 1</itunes:title>
       <description>A sermon on 1 John 5.</description>
       <itunes:summary>A sermon on 1 John 5.</itunes:summary>
       <pubDate>Sun, 28 Jul 2019 10:00:00 +0000</pubDate>
@@ -430,8 +430,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.06.30%20Proverbs%201%20Becoming%20Wise%20and%20Secure.mp3</guid>
     </item>
     <item>
-      <title>Proverbs 1 Becoming Wise -and- Secure- Pt 1</title>
-      <itunes:title>Proverbs 1 Becoming Wise -and- Secure- Pt 1</itunes:title>
+      <title>Proverbs 1 Becoming Wise and Secure, Pt 1</title>
+      <itunes:title>Proverbs 1 Becoming Wise and Secure, Pt 1</itunes:title>
       <description>A sermon on Proverbs 1.</description>
       <itunes:summary>A sermon on Proverbs 1.</itunes:summary>
       <pubDate>Sun, 23 Jun 2019 10:00:00 +0000</pubDate>
@@ -439,8 +439,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.06.23%20Proverbs%201%20Becoming%20Wise%20-and-%20Secure-%20Pt%201.mp3</guid>
     </item>
     <item>
-      <title>John 10_29-42 Jesus and the Father Keep Their Sheep Forever- Pt 2</title>
-      <itunes:title>John 10_29-42 Jesus and the Father Keep Their Sheep Forever- Pt 2</itunes:title>
+      <title>John 10.29-42 Jesus and the Father Keep Their Sheep Forever, Pt 2</title>
+      <itunes:title>John 10.29-42 Jesus and the Father Keep Their Sheep Forever, Pt 2</itunes:title>
       <description>A sermon on John 10.</description>
       <itunes:summary>A sermon on John 10.</itunes:summary>
       <pubDate>Sun, 09 Jun 2019 10:00:00 +0000</pubDate>
@@ -448,8 +448,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.06.09%20John%2010_29-42%20Jesus%20and%20the%20Father%20Keep%20Their%20Sheep%20Forever-%20Pt%202.MP3</guid>
     </item>
     <item>
-      <title>John 10_29-42 Jesus and the Father Keep Their Sheep Forever- Pt 1</title>
-      <itunes:title>John 10_29-42 Jesus and the Father Keep Their Sheep Forever- Pt 1</itunes:title>
+      <title>John 10.29-42 Jesus and the Father Keep Their Sheep Forever, Pt 1</title>
+      <itunes:title>John 10.29-42 Jesus and the Father Keep Their Sheep Forever, Pt 1</itunes:title>
       <description>A sermon on John 10.</description>
       <itunes:summary>A sermon on John 10.</itunes:summary>
       <pubDate>Sun, 02 Jun 2019 10:00:00 +0000</pubDate>
@@ -457,8 +457,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.06.02%20John%2010_29-42%20Jesus%20and%20the%20Father%20Keep%20Their%20Sheep%20Forever-%20Pt%201.MP3</guid>
     </item>
     <item>
-      <title>John 10_22-28 Jesus Keeps His Sheep Forever</title>
-      <itunes:title>John 10_22-28 Jesus Keeps His Sheep Forever</itunes:title>
+      <title>John 10.22-28 Jesus Keeps His Sheep Forever</title>
+      <itunes:title>John 10.22-28 Jesus Keeps His Sheep Forever</itunes:title>
       <description>A sermon on John 10.</description>
       <itunes:summary>A sermon on John 10.</itunes:summary>
       <pubDate>Sun, 26 May 2019 10:00:00 +0000</pubDate>
@@ -475,8 +475,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.05.12%20Spiritual%20Motherhood.MP3</guid>
     </item>
     <item>
-      <title>John 10_16-21 Pt 2</title>
-      <itunes:title>John 10_16-21 Pt 2</itunes:title>
+      <title>John 10.16-21 Pt 2</title>
+      <itunes:title>John 10.16-21 Pt 2</itunes:title>
       <description>A sermon on John 10.</description>
       <itunes:summary>A sermon on John 10.</itunes:summary>
       <pubDate>Sun, 28 Apr 2019 10:00:00 +0000</pubDate>
@@ -484,8 +484,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.04.28%20John%2010_16-21%20Pt%202.MP3</guid>
     </item>
     <item>
-      <title>John 10_16-21 Pt 1</title>
-      <itunes:title>John 10_16-21 Pt 1</itunes:title>
+      <title>John 10.16-21 Pt 1</title>
+      <itunes:title>John 10.16-21 Pt 1</itunes:title>
       <description>A sermon on John 10.</description>
       <itunes:summary>A sermon on John 10.</itunes:summary>
       <pubDate>Sun, 21 Apr 2019 10:00:00 +0000</pubDate>
@@ -493,8 +493,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.04.21%20John%2010_16-21%20Pt%201.MP3</guid>
     </item>
     <item>
-      <title>John 10_11-15 Jesus- the Good Shepherd Who Dies</title>
-      <itunes:title>John 10_11-15 Jesus- the Good Shepherd Who Dies</itunes:title>
+      <title>John 10.11-15 Jesus, the Good Shepherd Who Dies</title>
+      <itunes:title>John 10.11-15 Jesus, the Good Shepherd Who Dies</itunes:title>
       <description>A sermon on John 10.</description>
       <itunes:summary>A sermon on John 10.</itunes:summary>
       <pubDate>Sun, 14 Apr 2019 10:00:00 +0000</pubDate>
@@ -502,8 +502,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.04.14%20John%2010_11-15%20Jesus-%20the%20Good%20Shepherd%20Who%20Dies.MP3</guid>
     </item>
     <item>
-      <title>John 10_1-10 Jesus- the Door to His Sheep</title>
-      <itunes:title>John 10_1-10 Jesus- the Door to His Sheep</itunes:title>
+      <title>John 10.1-10 Jesus, the Door to His Sheep</title>
+      <itunes:title>John 10.1-10 Jesus, the Door to His Sheep</itunes:title>
       <description>A sermon on John 10.</description>
       <itunes:summary>A sermon on John 10.</itunes:summary>
       <pubDate>Sun, 07 Apr 2019 10:00:00 +0000</pubDate>
@@ -511,8 +511,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.04.07%20John%2010_1-10%20Jesus-%20the%20Door%20to%20His%20Sheep.MP3</guid>
     </item>
     <item>
-      <title>John 9_35-41 Jesus- Seeker of the Outcast</title>
-      <itunes:title>John 9_35-41 Jesus- Seeker of the Outcast</itunes:title>
+      <title>John 9.35-41 Jesus, Seeker of the Outcast</title>
+      <itunes:title>John 9.35-41 Jesus, Seeker of the Outcast</itunes:title>
       <description>A sermon on John 9.</description>
       <itunes:summary>A sermon on John 9.</itunes:summary>
       <pubDate>Sun, 31 Mar 2019 10:00:00 +0000</pubDate>
@@ -520,8 +520,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.03.31%20John%209_35-41%20Jesus-%20Seeker%20of%20the%20Outcast.MP3</guid>
     </item>
     <item>
-      <title>Proverbs 3_9-10 Give Your Best First to the LORD</title>
-      <itunes:title>Proverbs 3_9-10 Give Your Best First to the LORD</itunes:title>
+      <title>Proverbs 3.9-10 Give Your Best First to the LORD</title>
+      <itunes:title>Proverbs 3.9-10 Give Your Best First to the LORD</itunes:title>
       <description>A sermon on Proverbs 3.</description>
       <itunes:summary>A sermon on Proverbs 3.</itunes:summary>
       <pubDate>Sun, 24 Mar 2019 10:00:00 +0000</pubDate>
@@ -529,8 +529,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.03.24%20Proverbs%203_9-10%20Give%20Your%20Best%20First%20to%20the%20LORD.mp3</guid>
     </item>
     <item>
-      <title>John 9_8-34 Jesus- Creator of Division</title>
-      <itunes:title>John 9_8-34 Jesus- Creator of Division</itunes:title>
+      <title>John 9.8-34 Jesus, Creator of Division</title>
+      <itunes:title>John 9.8-34 Jesus, Creator of Division</itunes:title>
       <description>A sermon on John 9.</description>
       <itunes:summary>A sermon on John 9.</itunes:summary>
       <pubDate>Sun, 17 Mar 2019 10:00:00 +0000</pubDate>
@@ -538,8 +538,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.03.17%20John%209_8-34%20Jesus-%20Creator%20of%20Division.MP3</guid>
     </item>
     <item>
-      <title>John 9_1-7 Jesus Heals a Man Born Blind- Pt 2</title>
-      <itunes:title>John 9_1-7 Jesus Heals a Man Born Blind- Pt 2</itunes:title>
+      <title>John 9.1-7 Jesus Heals a Man Born Blind, Pt 2</title>
+      <itunes:title>John 9.1-7 Jesus Heals a Man Born Blind, Pt 2</itunes:title>
       <description>A sermon on John 9.</description>
       <itunes:summary>A sermon on John 9.</itunes:summary>
       <pubDate>Sun, 10 Mar 2019 10:00:00 +0000</pubDate>
@@ -547,8 +547,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.03.10%20John%209_1-7%20Jesus%20Heals%20a%20Man%20Born%20Blind-%20Pt%202.MP3</guid>
     </item>
     <item>
-      <title>John 9_1-7 Jesus Heals a Man Born Blind- Pt 1</title>
-      <itunes:title>John 9_1-7 Jesus Heals a Man Born Blind- Pt 1</itunes:title>
+      <title>John 9.1-7 Jesus Heals a Man Born Blind, Pt 1</title>
+      <itunes:title>John 9.1-7 Jesus Heals a Man Born Blind, Pt 1</itunes:title>
       <description>A sermon on John 9.</description>
       <itunes:summary>A sermon on John 9.</itunes:summary>
       <pubDate>Sun, 03 Mar 2019 10:00:00 +0000</pubDate>
@@ -565,8 +565,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.02.24%20Jesus%20in%20John%201-8%20Review.MP3</guid>
     </item>
     <item>
-      <title>Matthew 18_21-35 Pt 2</title>
-      <itunes:title>Matthew 18_21-35 Pt 2</itunes:title>
+      <title>Matthew 18.21-35 Pt 2</title>
+      <itunes:title>Matthew 18.21-35 Pt 2</itunes:title>
       <description>A sermon on Matthew 18.</description>
       <itunes:summary>A sermon on Matthew 18.</itunes:summary>
       <pubDate>Sun, 17 Feb 2019 10:00:00 +0000</pubDate>
@@ -574,8 +574,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.02.17%20Matthew%2018_21-35%20Pt%202.MP3</guid>
     </item>
     <item>
-      <title>Matthew 18_21-22 Sin-counting- Restoration-ap0s-s Greatest Enemy</title>
-      <itunes:title>Matthew 18_21-22 Sin-counting- Restoration-ap0s-s Greatest Enemy</itunes:title>
+      <title>Matthew 18.21-22 Sin-counting, Restoration’s Greatest Enemy</title>
+      <itunes:title>Matthew 18.21-22 Sin-counting, Restoration’s Greatest Enemy</itunes:title>
       <description>A sermon on Matthew 18.</description>
       <itunes:summary>A sermon on Matthew 18.</itunes:summary>
       <pubDate>Sun, 03 Feb 2019 10:00:00 +0000</pubDate>
@@ -583,8 +583,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.02.03%20Matthew%2018_21-22%20Sin-counting-%20Restoration-ap0s-s%20Greatest%20Enemy.MP3</guid>
     </item>
     <item>
-      <title>Matthew 18_1-20 Rescuing and Restoring Spiritual Runaways</title>
-      <itunes:title>Matthew 18_1-20 Rescuing and Restoring Spiritual Runaways</itunes:title>
+      <title>Matthew 18.1-20 Rescuing and Restoring Spiritual Runaways</title>
+      <itunes:title>Matthew 18.1-20 Rescuing and Restoring Spiritual Runaways</itunes:title>
       <description>A sermon on Matthew 18.</description>
       <itunes:summary>A sermon on Matthew 18.</itunes:summary>
       <pubDate>Sun, 27 Jan 2019 10:00:00 +0000</pubDate>
@@ -592,8 +592,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.01.27%20Matthew%2018_1-20%20Rescuing%20and%20Restoring%20Spiritual%20Runaways.mp3</guid>
     </item>
     <item>
-      <title>Galatians 6_6-10 Earthly Restoration and Eternal Reward</title>
-      <itunes:title>Galatians 6_6-10 Earthly Restoration and Eternal Reward</itunes:title>
+      <title>Galatians 6.6-10 Earthly Restoration and Eternal Reward</title>
+      <itunes:title>Galatians 6.6-10 Earthly Restoration and Eternal Reward</itunes:title>
       <description>A sermon on Galatians 6.</description>
       <itunes:summary>A sermon on Galatians 6.</itunes:summary>
       <pubDate>Sun, 20 Jan 2019 10:00:00 +0000</pubDate>
@@ -610,8 +610,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2019.01.13%20Spiritual%20Restoration.mp3</guid>
     </item>
     <item>
-      <title>Spiritual Time Management- Pt 2</title>
-      <itunes:title>Spiritual Time Management- Pt 2</itunes:title>
+      <title>Spiritual Time Management, Pt 2</title>
+      <itunes:title>Spiritual Time Management, Pt 2</itunes:title>
       <description>Spiritual Time Management- Pt 2</description>
       <itunes:summary>Spiritual Time Management- Pt 2</itunes:summary>
       <pubDate>Sun, 06 Jan 2019 10:00:00 +0000</pubDate>
@@ -934,15 +934,6 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.02.12%20Matthew%2016.24-28%20Dying%20to%20Live%2C%20Pt%202.MP3</guid>
     </item>
     <item>
-      <title>Matthew 6.9-24 Eternal Treasure</title>
-      <itunes:title>Matthew 6.9-24 Eternal Treasure</itunes:title>
-      <description>A sermon on Matthew 6:9–24.</description>
-      <itunes:summary>A sermon on Matthew 6:9–24.</itunes:summary>
-      <pubDate>Sun, 22 Jan 2017 10:00:00 +0000</pubDate>
-      <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.01.22%20Matthew%206.9-24%20Eternal%20Treasure.MP3" type="audio/mpeg" length="0"/>
-      <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.01.22%20Matthew%206.9-24%20Eternal%20Treasure.MP3</guid>
-    </item>
-    <item>
       <title>Becoming a Mature Teaching Christian, Pt 2</title>
       <itunes:title>Becoming a Mature Teaching Christian, Pt 2</itunes:title>
       <description>Becoming a Mature Teaching Christian, Pt 2</description>
@@ -950,15 +941,6 @@
       <pubDate>Sun, 15 Jan 2017 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.01.15%20Becoming%20a%20Mature%20Teaching%20Christian%2C%20Pt%202.MP3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.01.15%20Becoming%20a%20Mature%20Teaching%20Christian%2C%20Pt%202.MP3</guid>
-    </item>
-    <item>
-      <title>Hebrews 5.11-14 Becoming a Teaching Christian, Pt 1</title>
-      <itunes:title>Hebrews 5.11-14 Becoming a Teaching Christian, Pt 1</itunes:title>
-      <description>A sermon on Hebrews 5:11–14.</description>
-      <itunes:summary>A sermon on Hebrews 5:11–14.</itunes:summary>
-      <pubDate>Sun, 08 Jan 2017 10:00:00 +0000</pubDate>
-      <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.01.08%20Hebrews%205.11-14%20Becoming%20a%20Teaching%20Christian%2C%20Pt%201.MP3" type="audio/mpeg" length="0"/>
-      <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2017.01.08%20Hebrews%205.11-14%20Becoming%20a%20Teaching%20Christian%2C%20Pt%201.MP3</guid>
     </item>
     <item>
       <title>Ephesians 2.8-10 Do Good Works by Grace through Faith</title>
@@ -986,24 +968,6 @@
       <pubDate>Sun, 18 Dec 2016 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.12.18%202%20Timothy%203.16-17%20The%20Pastor%20who%20is%20Equipped.MP3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.12.18%202%20Timothy%203.16-17%20The%20Pastor%20who%20is%20Equipped.MP3</guid>
-    </item>
-    <item>
-      <title>Romans 15.1-7 Humility, Hope, and Harmony</title>
-      <itunes:title>Romans 15.1-7 Humility, Hope, and Harmony</itunes:title>
-      <description>A sermon on Romans 15:1–7.</description>
-      <itunes:summary>A sermon on Romans 15:1–7.</itunes:summary>
-      <pubDate>Sun, 11 Dec 2016 10:00:00 +0000</pubDate>
-      <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.12.11%20Romans%2015.1-7%20Humility%2C%20Hope%2C%20and%20Harmony.mp3" type="audio/mpeg" length="0"/>
-      <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.12.11%20Romans%2015.1-7%20Humility%2C%20Hope%2C%20and%20Harmony.mp3</guid>
-    </item>
-    <item>
-      <title>2 Timothy 1.13-2.2 Faithful Men Training Faithful Men</title>
-      <itunes:title>2 Timothy 1.13-2.2 Faithful Men Training Faithful Men</itunes:title>
-      <description>A sermon on 2 Timothy 1:13–2:2.</description>
-      <itunes:summary>A sermon on 2 Timothy 1:13–2:2.</itunes:summary>
-      <pubDate>Sun, 04 Dec 2016 10:00:00 +0000</pubDate>
-      <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.12.04%202%20Timothy%201.13-2.2%20Faithful%20Men%20Training%20Faithful%20Men.mp3" type="audio/mpeg" length="0"/>
-      <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.12.04%202%20Timothy%201.13-2.2%20Faithful%20Men%20Training%20Faithful%20Men.mp3</guid>
     </item>
     <item>
       <title>Philippians 4.1-9 Overcoming Anxiety</title>
@@ -1159,8 +1123,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.06.12%202%20Peter%203.11-13%20Christ%27s%20Return%20and%20Godly%20Living.MP3</guid>
     </item>
     <item>
-      <title>Christ's Return and the Inceration of the World, Pt 3</title>
-      <itunes:title>Christ's Return and the Inceration of the World, Pt 3</itunes:title>
+      <title>Christ's Return and the Incineration of the World, Pt 3</title>
+      <itunes:title>Christ's Return and the Incineration of the World, Pt 3</itunes:title>
       <description>Christ's Return and the Inceration of the World, Pt 3</description>
       <itunes:summary>Christ's Return and the Inceration of the World, Pt 3</itunes:summary>
       <pubDate>Sun, 05 Jun 2016 10:00:00 +0000</pubDate>
@@ -1213,8 +1177,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2016.02.14%20Ephesians%205.22-33%20Christian%20Marriage.MP3</guid>
     </item>
     <item>
-      <title>2 Peter 3.1-7 Christ’s Return and the Incineration of the World- Pt 1</title>
-      <itunes:title>2 Peter 3.1-7 Christ’s Return and the Incineration of the World- Pt 1</itunes:title>
+      <title>2 Peter 3.1-7 Christ’s Return and the Incineration of the World, Pt 1</title>
+      <itunes:title>2 Peter 3.1-7 Christ’s Return and the Incineration of the World, Pt 1</itunes:title>
       <description>A sermon on 2 Peter 3:1–7.</description>
       <itunes:summary>A sermon on 2 Peter 3:1–7.</itunes:summary>
       <pubDate>Sun, 31 Jan 2016 10:00:00 +0000</pubDate>
@@ -1303,8 +1267,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.11.29%202%20Peter%202.1-3a%20The%20Deception%20of%20False%20Teachers%2C%20Pt%202.MP3</guid>
     </item>
     <item>
-      <title>2 peter 2.1-3a the deception of false teachers, pt 1</title>
-      <itunes:title>2 peter 2.1-3a the deception of false teachers, pt 1</itunes:title>
+      <title>2 Peter 2.1-3a the Deception of False Teachers, Pt 1</title>
+      <itunes:title>2 Peter 2.1-3a the Deception of False Teachers, Pt 1</itunes:title>
       <description>A sermon on 2 Peter 2:1–3.</description>
       <itunes:summary>A sermon on 2 Peter 2:1–3.</itunes:summary>
       <pubDate>Sun, 15 Nov 2015 10:00:00 +0000</pubDate>
@@ -1357,8 +1321,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.09.20%202%20Peter%201.12-15.MP3</guid>
     </item>
     <item>
-      <title>2 Peter 1.3-4 Knowing God- Growing in Godliness</title>
-      <itunes:title>2 Peter 1.3-4 Knowing God- Growing in Godliness</itunes:title>
+      <title>2 Peter 1.3-4 Knowing God, Growing in Godliness</title>
+      <itunes:title>2 Peter 1.3-4 Knowing God, Growing in Godliness</itunes:title>
       <description>A sermon on 2 Peter 1:3–4.</description>
       <itunes:summary>A sermon on 2 Peter 1:3–4.</itunes:summary>
       <pubDate>Sun, 06 Sep 2015 10:00:00 +0000</pubDate>
@@ -1375,8 +1339,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.08.30%202%20Peter%201.1-2%20Knowing%20God%2C%20Growing%20in%20Grace%20and%20Peace.MP3</guid>
     </item>
     <item>
-      <title>2 Peter Intro Knowing God- Growing in Grace</title>
-      <itunes:title>2 Peter Intro Knowing God- Growing in Grace</itunes:title>
+      <title>2 Peter Intro Knowing God, Growing in Grace</title>
+      <itunes:title>2 Peter Intro Knowing God, Growing in Grace</itunes:title>
       <description>2 Peter Intro Knowing God- Growing in Grace</description>
       <itunes:summary>2 Peter Intro Knowing God- Growing in Grace</itunes:summary>
       <pubDate>Sun, 23 Aug 2015 10:00:00 +0000</pubDate>
@@ -1474,8 +1438,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.05.31%20Romans%206%20Freed%20from%20Sin-ap0ss%20Prison%2C%20Pt%201.MP3</guid>
     </item>
     <item>
-      <title>1 Peter Summary.Stand Firm in Grace</title>
-      <itunes:title>1 Peter Summary.Stand Firm in Grace</itunes:title>
+      <title>1 Peter Summary, Stand Firm in Grace</title>
+      <itunes:title>1 Peter Summary, Stand Firm in Grace</itunes:title>
       <description>1 Peter Summary.Stand Firm in Grace</description>
       <itunes:summary>1 Peter Summary.Stand Firm in Grace</itunes:summary>
       <pubDate>Sun, 24 May 2015 10:00:00 +0000</pubDate>
@@ -1501,10 +1465,10 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.05.03%20The%20Usefulness%20of%20a%20Faithful%20Brother.MP3</guid>
     </item>
     <item>
-      <title>edited</title>
-      <itunes:title>edited</itunes:title>
-      <description>edited</description>
-      <itunes:summary>edited</itunes:summary>
+      <title>Untitled sermon</title>
+      <itunes:title>Untitled sermon</itunes:title>
+      <description>Untitled sermon</description>
+      <itunes:summary>Untitled sermon</itunes:summary>
       <pubDate>Sun, 26 Apr 2015 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.04.26%20edited.mp3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.04.26%20edited.mp3</guid>
@@ -1519,82 +1483,82 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.04.19%20Making%20Disciples%20who%20Obey%20Jesus%20Christ.MP3</guid>
     </item>
     <item>
-      <title>edited</title>
-      <itunes:title>edited</itunes:title>
-      <description>edited</description>
-      <itunes:summary>edited</itunes:summary>
+      <title>Untitled sermon</title>
+      <itunes:title>Untitled sermon</itunes:title>
+      <description>Untitled sermon</description>
+      <itunes:summary>Untitled sermon</itunes:summary>
       <pubDate>Sun, 12 Apr 2015 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.04.12%20edited.mp3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.04.12%20edited.mp3</guid>
     </item>
     <item>
-      <title>edited</title>
-      <itunes:title>edited</itunes:title>
-      <description>edited</description>
-      <itunes:summary>edited</itunes:summary>
+      <title>Untitled sermon</title>
+      <itunes:title>Untitled sermon</itunes:title>
+      <description>Untitled sermon</description>
+      <itunes:summary>Untitled sermon</itunes:summary>
       <pubDate>Sun, 05 Apr 2015 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.04.05%20edited.mp3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.04.05%20edited.mp3</guid>
     </item>
     <item>
-      <title>edited</title>
-      <itunes:title>edited</itunes:title>
-      <description>edited</description>
-      <itunes:summary>edited</itunes:summary>
+      <title>Untitled sermon</title>
+      <itunes:title>Untitled sermon</itunes:title>
+      <description>Untitled sermon</description>
+      <itunes:summary>Untitled sermon</itunes:summary>
       <pubDate>Sun, 29 Mar 2015 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.03.29%20edited.mp3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.03.29%20edited.mp3</guid>
     </item>
     <item>
-      <title>edited</title>
-      <itunes:title>edited</itunes:title>
-      <description>edited</description>
-      <itunes:summary>edited</itunes:summary>
+      <title>Untitled sermon</title>
+      <itunes:title>Untitled sermon</itunes:title>
+      <description>Untitled sermon</description>
+      <itunes:summary>Untitled sermon</itunes:summary>
       <pubDate>Sun, 22 Mar 2015 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.03.22%20edited.mp3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.03.22%20edited.mp3</guid>
     </item>
     <item>
-      <title>edited</title>
-      <itunes:title>edited</itunes:title>
-      <description>edited</description>
-      <itunes:summary>edited</itunes:summary>
+      <title>Untitled sermon</title>
+      <itunes:title>Untitled sermon</itunes:title>
+      <description>Untitled sermon</description>
+      <itunes:summary>Untitled sermon</itunes:summary>
       <pubDate>Sun, 15 Mar 2015 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.03.15%20edited.mp3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.03.15%20edited.mp3</guid>
     </item>
     <item>
-      <title>edited</title>
-      <itunes:title>edited</itunes:title>
-      <description>edited</description>
-      <itunes:summary>edited</itunes:summary>
+      <title>Untitled sermon</title>
+      <itunes:title>Untitled sermon</itunes:title>
+      <description>Untitled sermon</description>
+      <itunes:summary>Untitled sermon</itunes:summary>
       <pubDate>Sun, 22 Feb 2015 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.02.22%20edited.mp3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.02.22%20edited.mp3</guid>
     </item>
     <item>
-      <title>edited</title>
-      <itunes:title>edited</itunes:title>
-      <description>edited</description>
-      <itunes:summary>edited</itunes:summary>
+      <title>Untitled sermon</title>
+      <itunes:title>Untitled sermon</itunes:title>
+      <description>Untitled sermon</description>
+      <itunes:summary>Untitled sermon</itunes:summary>
       <pubDate>Sun, 01 Feb 2015 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.02.01%20edited.mp3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.02.01%20edited.mp3</guid>
     </item>
     <item>
-      <title>edited</title>
-      <itunes:title>edited</itunes:title>
-      <description>edited</description>
-      <itunes:summary>edited</itunes:summary>
+      <title>Untitled sermon</title>
+      <itunes:title>Untitled sermon</itunes:title>
+      <description>Untitled sermon</description>
+      <itunes:summary>Untitled sermon</itunes:summary>
       <pubDate>Sun, 25 Jan 2015 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.01.25%20edited.mp3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.01.25%20edited.mp3</guid>
     </item>
     <item>
-      <title>edited</title>
-      <itunes:title>edited</itunes:title>
-      <description>edited</description>
-      <itunes:summary>edited</itunes:summary>
+      <title>Untitled sermon</title>
+      <itunes:title>Untitled sermon</itunes:title>
+      <description>Untitled sermon</description>
+      <itunes:summary>Untitled sermon</itunes:summary>
       <pubDate>Sun, 18 Jan 2015 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.01.18%20edited.mp3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2015.01.18%20edited.mp3</guid>
@@ -2095,8 +2059,8 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2013.06.16%201%20Corinthians%2012.12-27%2C%20The%20Body%20Needs%20You%3B%20You%20Need%20the%20Body%2C%20Pt%202.MP3</guid>
     </item>
     <item>
-      <title>1 Corinthinans 12.12-27 The Body Needs You; You Need the Body, Pt 1</title>
-      <itunes:title>1 Corinthinans 12.12-27 The Body Needs You; You Need the Body, Pt 1</itunes:title>
+      <title>1 Corinthians 12.12-27 The Body Needs You; You Need the Body, Pt 1</title>
+      <itunes:title>1 Corinthians 12.12-27 The Body Needs You; You Need the Body, Pt 1</itunes:title>
       <description>1 Corinthinans 12.12-27 The Body Needs You; You Need the Body, Pt 1</description>
       <itunes:summary>1 Corinthinans 12.12-27 The Body Needs You; You Need the Body, Pt 1</itunes:summary>
       <pubDate>Sun, 09 Jun 2013 10:00:00 +0000</pubDate>
@@ -2248,10 +2212,10 @@
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.07.29%20Galatians%202.6-10%20Approved%20Men%20Approving%20Men%20for%20Ministry.mp3</guid>
     </item>
     <item>
-      <title>-sermon2</title>
-      <itunes:title>-sermon2</itunes:title>
-      <description>-sermon2</description>
-      <itunes:summary>-sermon2</itunes:summary>
+      <title>Untitled sermon</title>
+      <itunes:title>Untitled sermon</itunes:title>
+      <description>Untitled sermon</description>
+      <itunes:summary>Untitled sermon</itunes:summary>
       <pubDate>Sun, 08 Jul 2012 10:00:00 +0000</pubDate>
       <enclosure url="https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.07.08-sermon2.MP3" type="audio/mpeg" length="0"/>
       <guid isPermaLink="false">https://archive.org/download/legacy-bible-church-sermons-todd-barnett/2012.07.08-sermon2.MP3</guid>

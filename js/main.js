@@ -95,10 +95,10 @@
     });
 
     // Accessibility
-    hamburger.setAttribute('aria-label', 'Toggle navigation menu');
-    hamburger.setAttribute('aria-controls', 'mobile-menu');
-    hamburger.setAttribute('aria-expanded', 'false');
     if (!mobileMenu.id) mobileMenu.id = 'mobile-menu';
+    hamburger.setAttribute('aria-label', 'Toggle navigation menu');
+    hamburger.setAttribute('aria-controls', mobileMenu.id || 'mobile-menu');
+    hamburger.setAttribute('aria-expanded', 'false');
   }
 
   /* ============================================================
@@ -121,8 +121,9 @@
     // Desktop nav links
     $$('.nav-link').forEach(function (link) {
       var linkPath = normalizePath(new URL(link.href, window.location.origin).pathname);
-      var isActive = linkPath === normalCurrent ||
-                     (linkPath !== '' && linkPath !== '/' && normalCurrent.startsWith(linkPath));
+      // exact page match only: a prefix test marks "Home" active on every page
+      // whenever the site is served from a sub-folder
+      var isActive = linkPath === normalCurrent;
       link.classList.toggle('active', isActive);
       if (isActive) link.setAttribute('aria-current', 'page');
     });
@@ -130,8 +131,7 @@
     // Mobile menu links
     $$('.mobile-menu-link').forEach(function (link) {
       var linkPath = normalizePath(new URL(link.href, window.location.origin).pathname);
-      var isActive = linkPath === normalCurrent ||
-                     (linkPath !== '' && linkPath !== '/' && normalCurrent.startsWith(linkPath));
+      var isActive = linkPath === normalCurrent;
       link.classList.toggle('active', isActive);
       if (isActive) link.setAttribute('aria-current', 'page');
     });
