@@ -5,6 +5,13 @@
  */
 (function () {
   var L = (typeof LEGACY_SONGS !== 'undefined') ? LEGACY_SONGS : {};
+  // only songs the church has actually sung on a Sunday (the worship library
+  // also holds songs found ahead of time that have never been used)
+  if (typeof SUNG_SONGS !== 'undefined' && SUNG_SONGS.length) {
+    var only = {};
+    SUNG_SONGS.forEach(function (slug) { if (L[slug]) only[slug] = L[slug]; });
+    L = only;
+  }
   var listEl = document.getElementById('hymnalList');
   var navEl = document.getElementById('azNav');
   if (!listEl) return;
