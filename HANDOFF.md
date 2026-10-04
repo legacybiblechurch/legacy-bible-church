@@ -25,7 +25,7 @@ Saving needs permission to write to the website. The Studio walks through it (cl
 
 ## How it works (for whoever maintains it)
 
-- **Song library:** `js/songs-data.js` — every song ever prepared: title, YouTube link, words in labelled blocks. The permanent memory; the Studio writes to it directly through the GitHub API.
+- **Song library:** lives in the `worship` repository (`js/songs-data.js` there), loaded by this site over the web. Do not add songs here. Every song ever prepared: title, YouTube link, words in labelled blocks. The permanent memory; the Studio writes to it directly through the GitHub API.
 - **This Sunday:** `js/worship-songs.js` — the ordered list of song ids. Written by **Ready for Sunday**. Control and Display read only this.
 - **Shared logic:** `js/sheet.js` (`LBCSheet`) — the one slide builder used by the Studio preview, Control and Display, plus search and the editor's text format. Sunday depends on nothing outside the site.
 - **Finding a new song:** the Studio triggers the GitHub Action `worship-prep.yml` with the song name → `scripts/prep/run.py --song` searches YouTube, fetches the top two candidates' audio **through the residential proxy** (`YT_PROXY` secret — YouTube refuses GitHub's own addresses), and runs the **Exact Lyrics Engine** with three independent listens plus captions and the song's verified library words. Everything happens on GitHub; no church computer is involved. About 1–2 minutes per song.
