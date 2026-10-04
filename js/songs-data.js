@@ -190,6 +190,19 @@ const LEGACY_SONGS = {
     { label: "", lines: ["My God is reconciled", "His pard'ning voice I hear", "He owns me for His child", "I can no longer fear"] },
     { label: "", lines: ["With confidence I now draw nigh", "With confidence I now draw nigh", "And \"Father, Abba Father\" cry", "Arise, my soul, arise!"] },
     { label: "", lines: ["And \"Father, Abba Father\" cry", "Arise, my soul, arise"] }
+  ]  
+  },
+ "be-a-lamp": {
+  title: "Be a Lamp",
+  youtube: "https://youtu.be/rG5S8CR-nVk?feature=shared",
+  lyrics: [
+    { label: "Verse 1", lines: ["Be a lamp for all my days, Lord", "Bear a torch that I might see", "Through the fog of bitter pain", "And know Your purpose lies beneath"] },
+    { label: "Chorus", lines: ["O to taste and see the gospel", "As I never have before", "Be a lamp for all my days", "And I shall walk in endless joy"] },
+    { label: "Verse 2", lines: ["As I sojourn 'cross this desert", "Through the plains of doubtful night", "Speak the words that guide my footsteps", "Let them shine as stars so bright"] },
+    { label: "Verse 2", lines: ["Point me northward to Thy country", "Where my soul will find its home", "Be a lamp for all my days", "And I shall walk in endless joy"] },
+    { label: "Verse 3", lines: ["You're the lamp, the light of heaven", "Dawn of mercy for all men", "Through Your death and resurrection", "Sons of night are born again"] },
+    { label: "Verse 3", lines: ["What a gift so free and moving", "Sets ablaze my fainting soul", "Be a lamp for all my days", "And I shall walk in endless joy"] },
+    { label: "Outro", lines: ["O to taste and see the gospel", "As I never have before", "Be a lamp for all my days", "And I shall walk in endless joy"] }
   ]
   },
   "be-still-my-soul": {
@@ -1769,6 +1782,20 @@ const LEGACY_SONGS = {
     { label: "", lines: ["'Tis here, whene'er my comforts droop", "And sin and sorrow rise", "Thy love with cheering beams of hope", "My fainting heart's supplied", "My fainting heart's supplied", "But ah! Too soon the pleasing scene", "Is clouded o'er with pain", "My gloomy fears rise dark between", "And I, again, complain", "Oh and I, again, complain"] },
     { label: "", lines: ["Jesus, my Lord, my life, my light", "Oh come with blissful ray", "Break radiant through the shades of night", "And chase my fears away", "Won't You chase my fears away"] },
     { label: "", lines: ["Then shall my soul with rapture trace", "The wonders of Thy love", "But the full glories of Thy face", "Are only known above", "They are only known above"] }
+  ]
+  },
+  "tis-so-sweet": {
+  title: "'Tis So Sweet",
+  youtube: "https://youtu.be/h-j7jQnVZSM?feature=shared",
+  lyrics: [
+    { label: "Verse 1", lines: ["'Tis so sweet to trust in Jesus", "Just to take Him at His word", "Just to rest upon His promise", "Just to know, \"Thus saith the Lord\""] },
+    { label: "Chorus", lines: ["Jesus, Jesus, how I trust Him", "How I've proved Him o'er and o'er", "Jesus, Jesus, precious Jesus", "O for grace to trust Him more"] },
+    { label: "Verse 2", lines: ["O how sweet to trust in Jesus", "Just to trust His cleansing blood", "And in simple faith to plunge me", "'Neath the healing, cleansing flood"] },
+    { label: "Chorus", lines: ["Jesus, Jesus, how I trust Him", "How I've proved Him o'er and o'er", "Jesus, Jesus, precious Jesus", "O for grace to trust Him more"] },
+    { label: "Chorus", lines: ["Jesus, Jesus, how I trust Him", "How I've proved Him o'er and o'er", "Jesus, Jesus, precious Jesus", "O for grace to trust Him more"] },
+    { label: "Tag", lines: ["To trust Him more"] },
+    { label: "Verse 3", lines: ["I'm so glad I learned to trust Him", "Precious Jesus, Savior, Friend", "And I know that Thou art with me", "Wilt be with me 'til the end"] },
+    { label: "Outro", lines: ["You are with me, Lord", "'Til the end", "'Til the end"] }
   ]
   },
   "turn-your-eyes": {
