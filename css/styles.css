@@ -3448,3 +3448,55 @@ section[id] {
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* --- First Sunday page ----------------------------------------*/
+.visit-steps {
+  max-width: 600px;
+  margin: 0 auto;
+  list-style: none;
+  counter-reset: step;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.visit-steps li {
+  counter-increment: step;
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  font-size: 1.125rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+.visit-steps li::before {
+  content: counter(step);
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-light);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: var(--accent-dim);
+  transform: translateY(-2px);
+}
+.visit-qa {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.visit-qa__item h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+.visit-qa__item p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}

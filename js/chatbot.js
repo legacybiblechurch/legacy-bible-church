@@ -4,15 +4,15 @@
   const KB = [
     {
       keys: ['service', 'sunday', 'time', 'when', 'start', 'worship', 'meet', 'meeting', 'gather'],
-      answer: 'We meet every Sunday at <strong>10:00 AM</strong> at 225 Fremont Street, Redlands, CA 92373. Come as you are!'
+      answer: 'We meet every Sunday at <strong>10:30 AM</strong> in Redlands, California. Come as you are!'
     },
     {
       keys: ['location', 'address', 'where', 'directions', 'find', 'drive', 'map'],
-      answer: 'We\'re located at <strong>225 Fremont Street, Redlands, CA 92373</strong>. You can search "Legacy Bible Church Redlands" on Google Maps for directions.'
+      answer: 'We\'re in <strong>Redlands, California</strong>. Text Pastor Todd at (661) 733-5757 for directions.'
     },
     {
       keys: ['park', 'parking'],
-      answer: 'Street parking is available on Fremont Street and nearby side streets. We\'ll have greeters outside to point you in the right direction!'
+      answer: 'Text Pastor Todd at (661) 733-5757 and he will tell you where to park.'
     },
     {
       keys: ['first', 'visit', 'new', 'guest', 'expect', 'visitor', 'newcomer', 'come for the first'],
