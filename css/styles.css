@@ -3517,10 +3517,17 @@ body::after {
           mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 20%, transparent 75%);
   opacity: 0.7;
 }
+/* One black background everywhere. Grey is kept for cards only. */
 .section--alt,
-.footer { background: rgba(20,20,20,0.55); }
-.section--dark-cta { background: rgba(28,28,28,0.6); }
-.page-header { background: linear-gradient(to bottom, rgba(20,20,20,0.7) 0%, rgba(14,14,14,0) 100%); }
+.section--dark-cta,
+.footer,
+.page-header { background: transparent; }
+
+/* Page titles sit clear of the fixed nav. */
+.page-header { padding: calc(var(--nav-height) + 72px) 0 64px; }
+@media (max-width: 768px) {
+  .page-header { padding: calc(var(--nav-height) + 48px) 0 40px; }
+}
 body::after {
   filter: brightness(1.8) blur(0.3px);
   opacity: 1;
