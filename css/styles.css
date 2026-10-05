@@ -3509,6 +3509,17 @@ body::before {
   background: url('../images/gold-streaks.svg') center / cover no-repeat;
   opacity: 0.8;
   animation: streak-drift 40s ease-in-out infinite alternate;
+  /* bright in the side margins, faint where the words are */
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 6%, rgba(0,0,0,0.1) 19%, rgba(0,0,0,0.1) 81%, #000 94%, #000 100%);
+          mask-image: linear-gradient(to right, #000 0%, #000 6%, rgba(0,0,0,0.1) 19%, rgba(0,0,0,0.1) 81%, #000 94%, #000 100%);
+}
+/* A dark halo around text so any line that does pass under the
+   words fades out before it touches the letters. */
+main, section, footer {
+  text-shadow: 0 0 14px var(--bg-primary), 0 0 6px var(--bg-primary), 0 0 2px var(--bg-primary);
+}
+.btn, .card, .subscribe-btn, .hero, input, textarea, select, button {
+  text-shadow: none;
 }
 @keyframes streak-drift {
   from { transform: scale(1.05) translate(-1.5%, 1%); }
