@@ -3498,24 +3498,24 @@ section[id] {
 }
 
 /* --- Gold streaks behind the page -----------------------------
-   A fixed layer of thin diagonal gold lines with a slow sheen that
-   travels along them. It sits behind everything, so the banded
-   sections below are see-through and cards cover the lines. */
-body::before,
-body::after {
+   Slow flowing gold curves with light travelling along them, drawn
+   in images/gold-streaks.svg. Fixed behind everything; cards cover them. */
+body::before {
   content: '';
   position: fixed;
-  inset: -10%;
+  inset: 0;
   pointer-events: none;
   z-index: -1;
-  background:
-    linear-gradient(118deg, transparent 22.6%, rgba(201,168,76,0.10) 22.9%, rgba(222,188,92,0.9) 23%, rgba(201,168,76,0.10) 23.1%, transparent 23.4%),
-    linear-gradient(118deg, transparent 27.2%, rgba(201,168,76,0.4) 27.3%, transparent 27.4%),
-    linear-gradient(118deg, transparent 71.5%, rgba(201,168,76,0.08) 71.8%, rgba(222,188,92,0.8) 71.9%, rgba(201,168,76,0.08) 72%, transparent 72.3%),
-    linear-gradient(118deg, transparent 76.4%, rgba(201,168,76,0.3) 76.5%, transparent 76.6%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 20%, transparent 75%);
-          mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 20%, transparent 75%);
-  opacity: 0.7;
+  background: url('../images/gold-streaks.svg') center / cover no-repeat;
+  opacity: 0.8;
+  animation: streak-drift 40s ease-in-out infinite alternate;
+}
+@keyframes streak-drift {
+  from { transform: scale(1.05) translate(-1.5%, 1%); }
+  to   { transform: scale(1.12) translate(1.5%, -1.5%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
 }
 /* One black background everywhere. Grey is kept for cards only. */
 .section--alt,
@@ -3527,23 +3527,6 @@ body::after {
 .page-header { padding: calc(var(--nav-height) + 72px) 0 64px; }
 @media (max-width: 768px) {
   .page-header { padding: calc(var(--nav-height) + 48px) 0 40px; }
-}
-body::after {
-  filter: brightness(1.8) blur(0.3px);
-  opacity: 1;
-  -webkit-mask-image: linear-gradient(28deg, transparent 40%, #000 50%, transparent 60%);
-          mask-image: linear-gradient(28deg, transparent 40%, #000 50%, transparent 60%);
-  -webkit-mask-size: 300% 300%;
-          mask-size: 300% 300%;
-  animation: gold-sheen 9s ease-in-out infinite;
-}
-@keyframes gold-sheen {
-  0%   { -webkit-mask-position: 100% 100%; mask-position: 100% 100%; }
-  60%  { -webkit-mask-position: 0% 0%;     mask-position: 0% 0%; }
-  100% { -webkit-mask-position: 0% 0%;     mask-position: 0% 0%; }
-}
-@media (prefers-reduced-motion: reduce) {
-  body::after { animation: none; display: none; }
 }
 
 /* --- Nav dropdowns: hover a main item to see what is inside -----*/
