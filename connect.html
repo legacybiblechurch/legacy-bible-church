@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="css/styles.css?v=15">
+  <link rel="stylesheet" href="css/styles.css?v=16">
 </head>
 <body>
 
@@ -55,9 +55,9 @@
   </section>
 
   <!-- THE BASICS -->
-  <section class="section" id="visit">
+  <section class="section" id="visit" style="padding-top: 0;">
     <div class="container">
-      <div class="card-grid card-grid--2">
+      <div class="card-grid card-grid--3">
 
         <div class="card">
           <h3 data-e="connect-15" class="card__title">When</h3>
@@ -69,42 +69,31 @@
           <p data-e="connect-18" class="card__body">Redlands, California</p>
         </div>
 
+        <div class="card">
+          <h3 data-e="connect-22" class="card__title">Order of Service</h3>
+          <ol class="visit-steps">
+            <li data-e="connect-23">Singing</li>
+            <li data-e="connect-24">Scripture Reading</li>
+            <li data-e="connect-25">Sermon</li>
+            <li data-e="connect-26">Communion</li>
+            <li data-e="connect-27">Fellowship</li>
+          </ol>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ORDER OF SERVICE -->
-  <section class="section section--alt" id="what-happens">
+  <!-- QUESTIONS -->
+  <section class="section section--alt" id="text-pastor">
     <div class="container">
-      <div class="section-header">
-        <h2 data-e="connect-22" class="section-title">Order of Service</h2>
-      </div>
-      <ol class="visit-steps">
-        <li data-e="connect-23">Singing</li>
-        <li data-e="connect-24">Scripture Reading</li>
-        <li data-e="connect-25">Sermon</li>
-        <li data-e="connect-26">Communion</li>
-        <li data-e="connect-27">Fellowship</li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- TEXT THE PASTOR -->
-  <section class="section" id="text-pastor">
-    <div class="container text-center">
-      <h2 data-e="connect-39" class="section-title">Questions?</h2>
-      <p data-e="connect-40" class="section-subtitle" style="max-width: 520px; margin: 1rem auto 0;">You can text Pastor Todd here</p>
-      <div style="margin-top: 2rem;">
-        <a data-e="connect-41" href="sms:+16617335757" class="btn btn-primary">Text (661) 733-5757</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT FORM -->
-  <section class="section section--alt">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-e="connect-11" class="section-title">Or Send Us a Message</h2>
+      <div class="text-center">
+        <h2 data-e="connect-39" class="section-title">Questions?</h2>
+        <p data-e="connect-40" class="section-subtitle" style="max-width: 520px; margin: 1rem auto 0;">You can text Pastor Todd here</p>
+        <div style="margin-top: 2rem;">
+          <a data-e="connect-41" href="sms:+16617335757" class="btn btn-primary">Text (661) 733-5757</a>
+        </div>
+        <p data-e="connect-11" class="visit-or">or send a message</p>
       </div>
       <form class="contact-form" id="contactForm"
             action="https://api.web3forms.com/submit"
@@ -192,13 +181,6 @@
           });
         })();
       </script>
-    </div>
-  </section>
-
-  <!-- ALTERNATIVELY -->
-  <section class="section section--dark-cta" id="connect-cta">
-    <div class="container text-center">
-      <p data-e="connect-12" class="section-subtitle" style="font-size: 1.125rem;">You can also come without contacting us. We meet Sundays at 10:30 AM in Redlands, California.</p>
     </div>
   </section>
 
