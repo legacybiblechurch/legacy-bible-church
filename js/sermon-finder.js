@@ -104,8 +104,8 @@
     '<div class="sf-search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>' +
     '<input id="sf-q" type="search" placeholder="Search by title, passage or topic. Try “John 17”" autocomplete="off"></div>' +
     '<div class="sf-row">' +
-      '<select id="sf-book" aria-label="Book of the Bible">' + options(byBook, function (a, b) { return ORDER[a] - ORDER[b]; }, 'Any book') + '</select>' +
-      '<select id="sf-year" aria-label="Year">' + options(byYear, function (a, b) { return b - a; }, 'Any year') + '</select>' +
+      '<select id="sf-book" aria-label="Book of the Bible">' + options(byBook, function (a, b) { return ORDER[a] - ORDER[b]; }, 'Bible book') + '</select>' +
+      '<select id="sf-year" aria-label="Year">' + options(byYear, function (a, b) { return b - a; }, 'Year') + '</select>' +
       // only offered when the page actually says who preached (data-speaker on a row)
       (Object.keys(bySpeaker).length ? '<select id="sf-who" aria-label="Preacher">' + options(bySpeaker, function (a, b) { return a.localeCompare(b); }, 'Any preacher') + '</select>' : '<select id="sf-who" hidden><option value=""></option></select>') +
       '<select id="sf-sort" class="sf-sort" aria-label="Sort"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="title">Title A–Z</option><option value="bible">Bible order</option></select>' +
