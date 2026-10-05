@@ -14,8 +14,7 @@
   <link rel="stylesheet" href="css/styles.css?v=24">
   <style>
     /* ---- Transparent nav over the hero photo (home only) ---- */
-    .nav,
-    .nav.scrolled {
+    .nav:not(.past-hero) {
       background: transparent;
       background-image: linear-gradient(to bottom, rgba(0,0,0,0.42), rgba(0,0,0,0));
       backdrop-filter: none;
@@ -268,7 +267,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=2"></script>
+  <script src="js/main.js?v=3"></script>
   <script src="js/edit-mode.js?v=4"></script>
 </body>
 </html>

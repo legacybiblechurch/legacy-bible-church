@@ -190,8 +190,15 @@
     var threshold = 50;
     var ticking   = false;
 
+    // Home: the nav stays clear over the photo, then turns solid once the
+    // photo has scrolled away so the logo never sits on top of the words
+    var photoHero = $('.hero--photo');
+
     function updateNav() {
       nav.classList.toggle('scrolled', window.scrollY > threshold);
+      if (photoHero) {
+        nav.classList.toggle('past-hero', window.scrollY > photoHero.offsetHeight - nav.offsetHeight);
+      }
       ticking = false;
     }
 
