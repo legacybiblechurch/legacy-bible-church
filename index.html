@@ -11,7 +11,7 @@
        so a brief render block is fine and it guarantees Great Vibes is ready
        before the handwriting animation begins. -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="css/styles.css?v=18">
+  <link rel="stylesheet" href="css/styles.css?v=19">
   <style>
     /* ---- Transparent nav over the hero photo (home only) ---- */
     .nav,
@@ -156,11 +156,28 @@
       </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-        <li><a href="leadership.html" class="nav-link">Leadership</a></li>
-        <li><a href="sermons.html" class="nav-link">Sermons</a></li>
-        <li><a href="watch.html" class="nav-link">Watch Live</a></li>
-        <li><a href="resources.html" class="nav-link">Resources</a></li>
+        <li class="nav-item has-menu">
+          <a href="about.html" class="nav-link">About <svg class="nav-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <ul class="nav-menu">
+            <li><a href="about.html" class="nav-menu-link">Our Church</a></li>
+            <li><a href="leadership.html" class="nav-menu-link">Leadership</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-menu">
+          <a href="sermons.html" class="nav-link">Sermons <svg class="nav-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <ul class="nav-menu">
+            <li><a href="sermons.html" class="nav-menu-link">All Sermons</a></li>
+            <li><a href="watch.html" class="nav-menu-link">Watch Live</a></li>
+            <li><a href="https://open.spotify.com/show/033K5dfU6CrJm3UDrpqfog" class="nav-menu-link" target="_blank" rel="noopener">Podcast on Spotify</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-menu">
+          <a href="resources.html" class="nav-link">Resources <svg class="nav-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <ul class="nav-menu">
+            <li><a href="testimonies.html" class="nav-menu-link">Testimonies</a></li>
+            <li><a href="hymnal.html" class="nav-menu-link">Song Book</a></li>
+          </ul>
+        </li>
         <li><a href="connect.html" class="nav-link">Connect</a></li>
         <li><a href="give.html" class="nav-link">Give</a></li>
       </ul>
@@ -173,10 +190,13 @@
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="leadership.html">Leadership</a></li>
+      <li class="mobile-sub"><a href="leadership.html">Leadership</a></li>
       <li><a href="sermons.html">Sermons</a></li>
-      <li><a href="watch.html">Watch Live</a></li>
+      <li class="mobile-sub"><a href="watch.html">Watch Live</a></li>
+      <li class="mobile-sub"><a href="https://open.spotify.com/show/033K5dfU6CrJm3UDrpqfog" target="_blank" rel="noopener">Podcast on Spotify</a></li>
       <li><a href="resources.html">Resources</a></li>
+      <li class="mobile-sub"><a href="testimonies.html">Testimonies</a></li>
+      <li class="mobile-sub"><a href="hymnal.html">Song Book</a></li>
       <li><a href="connect.html">Connect</a></li>
       <li><a href="give.html">Give</a></li>
     </ul>
@@ -259,7 +279,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=2"></script>
   <script src="js/edit-mode.js?v=4"></script>
 </body>
 </html>

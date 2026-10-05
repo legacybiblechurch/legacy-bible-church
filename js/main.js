@@ -128,6 +128,17 @@
       if (isActive) link.setAttribute('aria-current', 'page');
     });
 
+    // Dropdown links: mark the item itself and its parent in the bar
+    $$('.nav-menu-link').forEach(function (link) {
+      if (link.target === '_blank') return;
+      var linkPath = normalizePath(new URL(link.href, window.location.origin).pathname);
+      if (linkPath !== normalCurrent) return;
+      link.classList.add('active');
+      var parent = link.closest('.has-menu');
+      var top = parent && parent.querySelector('.nav-link');
+      if (top) top.classList.add('active');
+    });
+
     // Mobile menu links
     $$('.mobile-menu-link').forEach(function (link) {
       var linkPath = normalizePath(new URL(link.href, window.location.origin).pathname);
