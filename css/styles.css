@@ -3482,21 +3482,3 @@ section[id] {
   color: var(--accent-dim);
   transform: translateY(-2px);
 }
-.visit-qa {
-  max-width: 640px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-.visit-qa__item h3 {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 6px;
-}
-.visit-qa__item p {
-  font-size: 1rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
