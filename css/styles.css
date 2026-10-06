@@ -3699,6 +3699,7 @@ main, section, footer {
 .page-header--sermons::before { background-image: url('../images/sermons-study.webp'); }
 .page-header--visit::before   { background-image: url('../images/communion.webp'); }
 .page-header--resources::before { background-image: url('../images/resources-hymnal.webp'); }
+.page-header--give::before { background-image: url('../images/give-alabaster.webp'); }
 .page-header--photo .page-header__title {
   text-shadow: 0 2px 24px rgba(0,0,0,0.6);
 }
