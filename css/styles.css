@@ -3518,7 +3518,8 @@ body::before {
 main, section, footer {
   text-shadow: 0 0 14px var(--bg-primary), 0 0 6px var(--bg-primary), 0 0 2px var(--bg-primary);
 }
-.btn, .card, .subscribe-btn, .hero, input, textarea, select, button {
+.btn, .card, .subscribe-btn, .hero, input, textarea, select, button,
+.scripture-block, .faq-item, .sermon-card, .year-group, .nav-menu {
   text-shadow: none;
 }
 @keyframes streak-drift {
@@ -3687,13 +3688,16 @@ main, section, footer {
   pointer-events: none;
 }
 .page-header--photo::before {
-  inset: -24px;
+  inset: -24px -24px 0;
   background: center / cover no-repeat;
   filter: blur(7px) brightness(0.7);
+  /* the photo itself thins out gradually toward the bottom */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 30%, rgba(0,0,0,0.82) 45%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.28) 75%, rgba(0,0,0,0.1) 88%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, #000 30%, rgba(0,0,0,0.82) 45%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.28) 75%, rgba(0,0,0,0.1) 88%, transparent 100%);
 }
 .page-header--photo::after {
   inset: 0;
-  background: linear-gradient(to bottom, rgba(14,14,14,0.55) 0%, rgba(14,14,14,0.25) 45%, rgba(14,14,14,0.75) 80%, #0e0e0e 100%);
+  background: linear-gradient(to bottom, rgba(14,14,14,0.5) 0%, rgba(14,14,14,0.15) 35%, rgba(14,14,14,0) 60%);
 }
 .page-header--about::before   { background-image: url('../images/about-bible.webp'); }
 .page-header--sermons::before { background-image: url('../images/sermons-study.webp'); }
