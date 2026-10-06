@@ -3665,3 +3665,41 @@ main, section, footer {
   .visit-grid { grid-template-columns: 1fr; }
   .visit-grid__order .visit-steps { flex-direction: column; gap: 8px; }
 }
+
+/* --- Page headers with a photo (About, Sermons) ----------------
+   The photo is blurred and darkened so the title stays the focus,
+   and it fades into the black page at the bottom with no seam. */
+.page-header--photo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 56vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 56px;
+}
+.page-header--photo::before,
+.page-header--photo::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.page-header--photo::before {
+  inset: -24px;
+  background: center / cover no-repeat;
+  filter: blur(7px) brightness(0.7);
+}
+.page-header--photo::after {
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(14,14,14,0.55) 0%, rgba(14,14,14,0.25) 45%, rgba(14,14,14,0.75) 80%, #0e0e0e 100%);
+}
+.page-header--about::before   { background-image: url('../images/about-bible.webp'); }
+.page-header--sermons::before { background-image: url('../images/sermons-study.webp'); }
+.page-header--photo .page-header__title {
+  text-shadow: 0 2px 24px rgba(0,0,0,0.6);
+}
+@media (max-width: 768px) {
+  .page-header--photo { min-height: 40vh; padding-bottom: 36px; }
+}
