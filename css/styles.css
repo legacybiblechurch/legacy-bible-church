@@ -3672,8 +3672,6 @@ main, section, footer {
    and it fades into the black page at the bottom with no seam. */
 .page-header--photo {
   position: relative;
-  isolation: isolate;
-  overflow: hidden;
   min-height: 56vh;
   display: flex;
   align-items: flex-end;
@@ -3688,12 +3686,14 @@ main, section, footer {
   pointer-events: none;
 }
 .page-header--photo::before {
-  inset: -24px -24px 0;
+  /* runs on past the header so the photo melts into the page below;
+     z-index -1 keeps it under the content that follows */
+  inset: -24px 0 -45%;
   background: center / cover no-repeat;
   filter: blur(7px) brightness(0.7);
   /* the photo itself thins out gradually toward the bottom */
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 30%, rgba(0,0,0,0.82) 45%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.28) 75%, rgba(0,0,0,0.1) 88%, transparent 100%);
-          mask-image: linear-gradient(to bottom, #000 0%, #000 30%, rgba(0,0,0,0.82) 45%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.28) 75%, rgba(0,0,0,0.1) 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 30%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.6) 52%, rgba(0,0,0,0.38) 64%, rgba(0,0,0,0.2) 76%, rgba(0,0,0,0.08) 88%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, #000 30%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.6) 52%, rgba(0,0,0,0.38) 64%, rgba(0,0,0,0.2) 76%, rgba(0,0,0,0.08) 88%, transparent 100%);
 }
 .page-header--photo::after {
   inset: 0;
