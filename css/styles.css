@@ -3704,3 +3704,13 @@ main, section, footer {
 @media (max-width: 768px) {
   .page-header--photo { min-height: 40vh; padding-bottom: 36px; }
 }
+
+/* --- Nav sits clear over a top photo until the photo scrolls away */
+.nav--over-photo:not(.past-hero) {
+  background: transparent;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.42), rgba(0,0,0,0));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
+}
+.nav--over-photo:not(.past-hero) .nav-link { text-shadow: 0 1px 12px rgba(0,0,0,0.55); }

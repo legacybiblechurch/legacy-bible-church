@@ -192,7 +192,8 @@
 
     // Home: the nav stays clear over the photo, then turns solid once the
     // photo has scrolled away so the logo never sits on top of the words
-    var photoHero = $('.hero--photo');
+    var photoHero = $('.hero--photo') || $('.page-header--photo');
+    if (photoHero) nav.classList.add('nav--over-photo');
 
     function updateNav() {
       nav.classList.toggle('scrolled', window.scrollY > threshold);
