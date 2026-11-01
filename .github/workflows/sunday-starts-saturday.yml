@@ -1,0 +1,61 @@
+name: Sunday Starts Saturday
+
+# Saturday at 6 PM in Redlands, the pamphlet for the next morning goes out:
+# the reading, the songs and the sermon passage, straight from what Worship
+# Studio published. GitHub's clock is UTC and has no idea about daylight time,
+# so this runs at both candidate hours and the script only acts when it is
+# actually 6 PM in Los Angeles.
+#
+# Secrets (Settings -> Secrets -> Actions): SMTP_USER, SMTP_PASS, SUNDAY_LIST.
+# Run it by hand from the Actions tab to send a test to one address or to
+# build the email without sending.
+
+on:
+  schedule:
+    - cron: "0 1 * * 0"   # 6 PM Saturday Pacific Daylight Time
+    - cron: "0 2 * * 0"   # 6 PM Saturday Pacific Standard Time
+  workflow_dispatch:
+    inputs:
+      to:
+        description: "Send a test to this one address instead of the list (leave blank for the list)"
+        default: ""
+        required: false
+      dry_run:
+        description: "Build the email and send nothing"
+        type: boolean
+        default: false
+
+concurrency:
+  group: sunday-starts-saturday
+  cancel-in-progress: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+
+      - name: Build and send
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SUNDAY_LIST: ${{ secrets.SUNDAY_LIST }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            python3 scripts/sunday_mail.py --only-at-pacific-hour 18
+          elif [ "${{ inputs.dry_run }}" = "true" ]; then
+            python3 scripts/sunday_mail.py --dry-run
+          else
+            python3 scripts/sunday_mail.py --to "${{ inputs.to }}"
+          fi
+
+      - name: Keep the built email
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sunday-starts-saturday
+          path: out/
+          if-no-files-found: ignore

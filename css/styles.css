@@ -376,6 +376,7 @@ blockquote {
   height: 66px;
   width: auto;
   display: block;
+  margin-top: 8px;
   filter: drop-shadow(0 1px 4px rgba(0,0,0,0.3));
 }
 
@@ -3704,6 +3705,7 @@ main, section, footer {
 .page-header--visit::before   { background-image: url('../images/communion.webp'); }
 .page-header--resources::before { background-image: url('../images/resources-hymnal.webp'); }
 .page-header--give::before { background-image: url('../images/give-alabaster.webp'); }
+.page-header--prepare::before { background-image: url('../images/about-bible.webp'); }
 .page-header--photo .page-header__title {
   text-shadow: 0 2px 24px rgba(0,0,0,0.6);
 }
@@ -3720,3 +3722,31 @@ main, section, footer {
   border-bottom: 0;
 }
 .nav--over-photo:not(.past-hero) .nav-link { text-shadow: 0 1px 12px rgba(0,0,0,0.55); }
+
+
+/* --- Sunday Starts Saturday (prepare.html) -------------------------- */
+.page-header--prepare .page-header-eyebrow { color: #e3c56e; text-shadow: 0 1px 12px rgba(0,0,0,0.8); }
+.page-header--prepare .page-header-sub { color: #efefef; text-shadow: 0 2px 16px rgba(0,0,0,0.8); }
+.prep { max-width: 720px; }
+.prep-intro { font-size: 1.1rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2.5rem; }
+.prep-stale { font-size: 0.9rem; color: #c9a85c; margin: -1.5rem 0 2rem; }
+.prep-empty { color: var(--text-secondary); font-style: italic; }
+.prep-item { padding: 1.75rem 0; border-top: 1px solid var(--border); }
+.prep-item:last-child { border-bottom: 1px solid var(--border); }
+.prep-item__kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #c9a85c; margin-bottom: 0.5rem; }
+.prep-item__title { font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin: 0 0 0.35rem; }
+.prep-item__sub { color: var(--text-secondary); margin: 0 0 0.5rem; }
+.prep-item__note { color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.75rem; }
+.prep-verses { margin-top: 1rem; }
+.prep-verse { line-height: 1.75; color: var(--text-primary); margin: 0 0 0.6rem; font-size: 1.02rem; }
+.prep-verse__n { font-size: 0.7em; color: #c9a85c; margin-right: 2px; }
+.prep-copyright { font-size: 0.72rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.5; }
+.prep-pray { margin-top: 3rem; padding: 1.75rem 2rem; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+.prep-pray__title { font-size: 1.1rem; margin-bottom: 0.6rem; color: var(--text-primary); }
+.prep-pray p { color: var(--text-secondary); line-height: 1.7; margin: 0; }
+.prep-signup { margin-top: 3rem; }
+.prep-signup__title { font-size: 1.25rem; margin-bottom: 0.4rem; }
+.prep-signup__sub { color: var(--text-secondary); margin-bottom: 1.25rem; }
+@media (max-width: 768px) {
+  .prep-pray { padding: 1.25rem 1.25rem; }
+}
