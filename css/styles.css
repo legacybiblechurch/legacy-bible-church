@@ -521,111 +521,87 @@ blockquote {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Mobile Menu: a full-height sheet under the bar. Big rows you can hit with
-   a thumb. Sub pages sit under their parent, smaller and indented. */
+/* Mobile Menu: one dark surface from the top of the screen down. The bar
+   sits on it, so bar and sheet read as one. Rows fade in one after another.
+   Sub pages sit under their parent, smaller and quieter. Give is the gold
+   pill at the end. */
 .mobile-menu {
   display: none;
   position: fixed;
-  top: var(--nav-height);
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  background: var(--bg-secondary);
-  padding: 8px 20px calc(40px + env(safe-area-inset-bottom));
+  background: var(--bg-primary);
+  padding: calc(var(--nav-height) + 14px) 22px calc(44px + env(safe-area-inset-bottom));
   z-index: 999;
-  transform: translateY(-8px);
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  transition: opacity 0.32s ease;
 }
-.mobile-menu ul { list-style: none; margin: 0; padding: 0; }
-.mobile-menu li { margin: 0; }
-.mobile-menu li > a {
-  display: block;
-  padding: 17px 12px;
-  font-size: 1.25rem;
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--text-primary);
-  text-decoration: none;
-  border-radius: var(--radius);
-}
-.mobile-menu li > a:active { background: var(--surface); }
-.mobile-menu li:not(.mobile-sub):not(:first-child) > a { border-top: 1px solid var(--border); border-radius: 0; }
-.mobile-menu li.mobile-sub > a {
-  padding: 11px 12px 11px 30px;
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--text-secondary);
-  border: 0;
-}
-.mobile-menu li.mobile-sub > a::before {
-  content: '';
-  display: inline-block;
-  width: 8px; height: 1px;
-  background: var(--text-muted);
-  vertical-align: middle;
-  margin: 0 12px 0 -20px;
-}
-.mobile-menu li.mobile-sub + li:not(.mobile-sub) > a { margin-top: 8px; }
-.mobile-menu li:last-child > a {
-  margin-top: 22px;
-  border: 1px solid #C9A84C;
-  border-radius: var(--radius);
-  color: #e2c46a;
-  text-align: center;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-}
-
 .mobile-menu.open {
-  transform: translateY(0);
   opacity: 1;
   pointer-events: all;
 }
-
-.mobile-menu-links {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-bottom: 16px;
+/* while the sheet is open the bar drops its blur and its line, so there is no seam under the logo */
+body:has(.mobile-menu.open) .nav {
+  background: var(--bg-primary);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
 }
-
-.mobile-menu-link {
+.mobile-menu ul { list-style: none; margin: 0; padding: 0; }
+.mobile-menu li {
+  margin: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.mobile-menu.open li { opacity: 1; transform: none; }
+.mobile-menu.open li:nth-child(2)  { transition-delay: 0.03s; }
+.mobile-menu.open li:nth-child(3)  { transition-delay: 0.06s; }
+.mobile-menu.open li:nth-child(4)  { transition-delay: 0.09s; }
+.mobile-menu.open li:nth-child(5)  { transition-delay: 0.12s; }
+.mobile-menu.open li:nth-child(6)  { transition-delay: 0.15s; }
+.mobile-menu.open li:nth-child(7)  { transition-delay: 0.18s; }
+.mobile-menu.open li:nth-child(8)  { transition-delay: 0.21s; }
+.mobile-menu.open li:nth-child(9)  { transition-delay: 0.24s; }
+.mobile-menu.open li:nth-child(10) { transition-delay: 0.27s; }
+.mobile-menu.open li:nth-child(11) { transition-delay: 0.30s; }
+.mobile-menu.open li:nth-child(12) { transition-delay: 0.33s; }
+.mobile-menu li > a {
   display: block;
-  font-size: 1rem;
+  padding: 14px 10px;
+  font-size: 1.4rem;
   font-weight: 500;
-  color: var(--text-secondary);
-  text-decoration: none;
-  padding: 10px 12px;
-  border-radius: var(--radius);
-  transition: color var(--transition), background var(--transition);
-}
-
-.mobile-menu-link:hover,
-.mobile-menu-link.active {
+  line-height: 1.2;
+  letter-spacing: -0.01em;
   color: var(--text-primary);
-  background: var(--surface);
-}
-
-.mobile-menu-cta {
-  display: block;
-  width: 100%;
-  text-align: center;
-  padding: 12px;
-  background: var(--accent);
-  color: var(--bg-primary);
-  font-weight: 600;
-  border-radius: var(--radius);
   text-decoration: none;
-  transition: background var(--transition);
+  border-radius: var(--radius);
 }
-
-.mobile-menu-cta:hover {
-  background: var(--accent-bright);
-  color: var(--bg-primary);
+.mobile-menu li > a:active { background: rgba(255,255,255,0.05); }
+.mobile-menu li:not(.mobile-sub) + li:not(.mobile-sub) > a { margin-top: 6px; }
+.mobile-menu li.mobile-sub > a {
+  padding: 8px 10px 8px 30px;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+.mobile-menu li.mobile-sub + li:not(.mobile-sub) > a { margin-top: 18px; }
+.mobile-menu li:last-child > a {
+  margin-top: 34px;
+  padding: 16px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #0e0e0e;
+  background: linear-gradient(135deg, #e8cf7a, #C9A84C);
+  border-radius: 999px;
+}
+.mobile-menu li:last-child > a:active { filter: brightness(1.06); }
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu, .mobile-menu li { transition: none; }
 }
 
 /* Spacer to push content below fixed nav */
