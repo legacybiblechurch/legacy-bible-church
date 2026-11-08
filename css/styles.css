@@ -521,21 +521,63 @@ blockquote {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Mobile Menu */
+/* Mobile Menu: a full-height sheet under the bar. Big rows you can hit with
+   a thumb. Sub pages sit under their parent, smaller and indented. */
 .mobile-menu {
   display: none;
   position: fixed;
   top: var(--nav-height);
   left: 0;
   right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 24px 24px;
+  padding: 8px 20px calc(40px + env(safe-area-inset-bottom));
   z-index: 999;
   transform: translateY(-8px);
   opacity: 0;
   pointer-events: none;
   transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.mobile-menu ul { list-style: none; margin: 0; padding: 0; }
+.mobile-menu li { margin: 0; }
+.mobile-menu li > a {
+  display: block;
+  padding: 17px 12px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: var(--radius);
+}
+.mobile-menu li > a:active { background: var(--surface); }
+.mobile-menu li:not(.mobile-sub):not(:first-child) > a { border-top: 1px solid var(--border); border-radius: 0; }
+.mobile-menu li.mobile-sub > a {
+  padding: 11px 12px 11px 30px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  border: 0;
+}
+.mobile-menu li.mobile-sub > a::before {
+  content: '';
+  display: inline-block;
+  width: 8px; height: 1px;
+  background: var(--text-muted);
+  vertical-align: middle;
+  margin: 0 12px 0 -20px;
+}
+.mobile-menu li.mobile-sub + li:not(.mobile-sub) > a { margin-top: 8px; }
+.mobile-menu li:last-child > a {
+  margin-top: 22px;
+  border: 1px solid #C9A84C;
+  border-radius: var(--radius);
+  color: #e2c46a;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 .mobile-menu.open {
@@ -3597,7 +3639,6 @@ main, section, footer {
 .nav-menu-link:hover,
 .nav-menu-link.active { color: var(--text-primary); background: rgba(255,255,255,0.04); }
 .nav-menu-link.active { color: #e2c46a; }
-.mobile-menu .mobile-sub a { padding-left: 1.75rem; font-size: 0.9375rem; opacity: 0.75; }
 
 /* --- Gold sliver that traces a card's edge -------------------- */
 @property --trace-angle {

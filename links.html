@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Links | Legacy Bible Church</title>
+  <meta name="description" content="The worship guide and giving and the livestream of Legacy Bible Church in one place.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="css/styles.css?v=36">
+  <style>
+    .links { max-width: 560px; margin: 0 auto; display: grid; gap: 14px; }
+    .links a.card { display: block; text-decoration: none; padding: 22px 24px; }
+    .links a.card:hover { border-color: var(--border-light); }
+    .links .card__title { margin: 0 0 6px; font-size: 1.15rem; }
+    .links .card__body { margin: 0; color: var(--text-secondary); }
+    .links .k { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #C9A84C; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo-dark.png" alt="Legacy Bible Church" class="nav-logo-img">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item has-menu">
+          <a href="about.html" class="nav-link">About <svg class="nav-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <ul class="nav-menu">
+            <li><a href="about.html" class="nav-menu-link">Our Church</a></li>
+            <li><a href="leadership.html" class="nav-menu-link">Leadership</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-menu">
+          <a href="sermons.html" class="nav-link">Sermons <svg class="nav-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <ul class="nav-menu">
+            <li><a href="sermons.html" class="nav-menu-link">All Sermons</a></li>
+            <li><a href="watch.html" class="nav-menu-link">Watch Live</a></li>
+            <li><a href="prepare.html" class="nav-menu-link">Sunday Starts Saturday</a></li>
+            <li><a href="https://open.spotify.com/show/033K5dfU6CrJm3UDrpqfog" class="nav-menu-link" target="_blank" rel="noopener">Podcast on Spotify</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-menu">
+          <a href="resources.html" class="nav-link">Resources <svg class="nav-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <ul class="nav-menu">
+            <li><a href="testimonies.html" class="nav-menu-link">Testimonies</a></li>
+            <li><a href="hymnal.html" class="nav-menu-link">Song Book</a></li>
+          </ul>
+        </li>
+        <li><a href="connect.html" class="nav-link">Visit</a></li>
+        <li><a href="give.html" class="nav-link">Give</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="mobile-sub"><a href="leadership.html">Leadership</a></li>
+      <li><a href="sermons.html">Sermons</a></li>
+      <li class="mobile-sub"><a href="watch.html">Watch Live</a></li>
+      <li class="mobile-sub"><a href="prepare.html">Sunday Starts Saturday</a></li>
+      <li class="mobile-sub"><a href="https://open.spotify.com/show/033K5dfU6CrJm3UDrpqfog" target="_blank" rel="noopener">Podcast on Spotify</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li class="mobile-sub"><a href="testimonies.html">Testimonies</a></li>
+      <li class="mobile-sub"><a href="hymnal.html">Song Book</a></li>
+      <li><a href="connect.html">Visit</a></li>
+      <li><a href="give.html">Give</a></li>
+    </ul>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-header__title">Legacy Bible Church</h1>
+      <p class="section-subtitle" style="margin: 10px auto 0; text-align: center;">Sundays at 10:30 AM in Redlands</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="links">
+        <a class="card" href="prepare.html">
+          <span class="k">This Sunday</span>
+          <h3 class="card__title">The worship guide</h3>
+          <p class="card__body">The reading and the songs and the sermon passage. Posted Saturday evening.</p>
+        </a>
+        <a class="card" href="give.html">
+          <span class="k">Give</span>
+          <h3 class="card__title">Giving</h3>
+          <p class="card__body">By Zelle or by check. No fees.</p>
+        </a>
+        <a class="card" href="watch.html">
+          <span class="k">Live</span>
+          <h3 class="card__title">Watch the service</h3>
+          <p class="card__body">Sundays at 10:30 AM Pacific. Recordings stay up afterward.</p>
+        </a>
+        <a class="card" href="sermons.html">
+          <span class="k">Listen</span>
+          <h3 class="card__title">Sermons</h3>
+          <p class="card__body">Past sermons to watch or listen to.</p>
+        </a>
+        <a class="card" href="https://open.spotify.com/show/033K5dfU6CrJm3UDrpqfog" target="_blank" rel="noopener">
+          <span class="k">Podcast</span>
+          <h3 class="card__title">On Spotify</h3>
+          <p class="card__body">The sermons in your podcast app.</p>
+        </a>
+        <a class="card" href="connect.html">
+          <span class="k">Visit</span>
+          <h3 class="card__title">Come this Sunday</h3>
+          <p class="card__body">Where we meet and what to expect.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Legacy Bible Church</div>
+        <p class="footer-tagline">Make Disciples of All Nations</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="watch.html">Watch Live</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="connect.html">Visit</a></li>
+          <li><a href="give.html">Give</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sundays</h4>
+        <p>10:30 AM<br>Redlands, California</p>
+      </div>
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <p><a href="mailto:info@legacybiblechurch.com">info@legacybiblechurch.com</a></p>
+        <p style="margin-top:6px;"><a href="sms:+16617335757">Text Pastor Todd</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Legacy Bible Church. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=4"></script>
+  <script src="js/edit-mode.js?v=4"></script>
+</body>
+</html>

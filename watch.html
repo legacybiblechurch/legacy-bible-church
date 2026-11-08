@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="css/styles.css?v=35">
+  <link rel="stylesheet" href="css/styles.css?v=36">
   <style>
     .stream-wrap {
       max-width: 900px;
@@ -24,6 +24,14 @@
       border-radius: var(--radius-lg);
       overflow: hidden;
     }
+    .live-now {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-bottom: 14px; padding: 8px 16px; border-radius: 999px;
+      background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.4);
+      color: #e2c46a; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+    }
+    .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #e2c46a; animation: live-pulse 1.6s ease-out infinite; }
+    @keyframes live-pulse { 0% { box-shadow: 0 0 0 0 rgba(226,196,106,0.6); } 100% { box-shadow: 0 0 0 12px rgba(226,196,106,0); } }
     .stream-frame iframe {
       position: absolute;
       inset: 0;
@@ -146,6 +154,7 @@
     <div class="container">
       <div class="stream-wrap">
 
+        <div id="liveNow" class="live-now" style="display:none;"><span class="live-dot"></span>Live now</div>
         <div class="stream-frame" id="streamFrame">
           <div class="stream-placeholder" id="streamPlaceholder">
             <h3 data-e="watch-2">Nothing streaming right now</h3>
@@ -269,16 +278,8 @@
         a.style.display = '';
       }
 
-      // What to embed, if anything
-      var src = '';
-      var vid = videoId(cfg.VIDEO);
-      if (vid) {
-        src = 'https://www.youtube.com/embed/' + vid + '?rel=0&autoplay=1';
-      } else if (cfg.AUTO_EMBED && cfg.CHANNEL_ID) {
-        src = 'https://www.youtube.com/embed/live_stream?channel=' + encodeURIComponent(cfg.CHANNEL_ID) + '&rel=0';
-      }
-
-      if (src) {
+      function embed(src) {
+        if (frame.querySelector('iframe')) return;
         var iframe = document.createElement('iframe');
         iframe.src = src;
         iframe.title = 'Legacy Bible Church livestream';
@@ -286,13 +287,60 @@
         iframe.allowFullscreen = true;
         frame.appendChild(iframe);
         if (placeholder) placeholder.style.display = 'none';
+      }
+      var badge = document.getElementById('liveNow');
+      function liveOn(on) {
+        badge.style.display = on ? '' : 'none';
+        document.title = (on ? 'Live now' : 'Watch Live') + ' | Legacy Bible Church';
+      }
+      // Sunday morning in Redlands: a quarter to ten until half past twelve
+      function sundayMorning() {
+        var o = {};
+        new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', hour12: false, weekday: 'short', hour: 'numeric', minute: 'numeric' })
+          .formatToParts(new Date()).forEach(function (x) { o[x.type] = x.value; });
+        var mins = (+o.hour % 24) * 60 + (+o.minute);
+        return o.weekday === 'Sun' && mins >= 9 * 60 + 45 && mins <= 12 * 60 + 30;
+      }
+      // Ask YouTube whether the channel is live. cb gets the live video id,
+      // '' when it is not live, or null when there was no key to ask with.
+      function askYouTube(cb) {
+        if (!cfg.API_KEY || !cfg.CHANNEL_ID) return cb(null);
+        fetch('https://www.googleapis.com/youtube/v3/search?part=id&channelId=' + encodeURIComponent(cfg.CHANNEL_ID) +
+              '&eventType=live&type=video&maxResults=1&key=' + encodeURIComponent(cfg.API_KEY))
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (j) {
+            if (!j) return cb(null);
+            var it = j.items && j.items[0];
+            cb(it && it.id && it.id.videoId ? it.id.videoId : '');
+          })
+          .catch(function () { cb(null); });
+      }
+
+      var vid = videoId(cfg.VIDEO);
+      if (vid) {
+        // this week's link was pasted in by hand
+        embed('https://www.youtube.com/embed/' + vid + '?rel=0&autoplay=1');
+        liveOn(sundayMorning());
       } else if (!cfg.CHANNEL_ID) {
-        // Not configured yet — add a setup hint for whoever's building this
+        // Not configured yet: a setup hint for whoever is building this
         var text = document.getElementById('streamPlaceholderText');
         if (text) {
           text.innerHTML += '<br><br><em style="color:var(--text-muted);font-size:0.82rem;">' +
             'Setup: add the church YouTube channel ID in <code>js/live.js</code>.</em>';
         }
+      } else {
+        var live = false;
+        function check() {
+          askYouTube(function (id) {
+            if (id) { live = true; embed('https://www.youtube.com/embed/' + id + '?rel=0&autoplay=1'); liveOn(true); return; }
+            if (id === '') { liveOn(false); return; }
+            // no key to ask with: on Sunday morning show the channel's live player and let YouTube say
+            if (sundayMorning() || cfg.AUTO_EMBED) embed('https://www.youtube.com/embed/live_stream?channel=' + encodeURIComponent(cfg.CHANNEL_ID) + '&rel=0&autoplay=1');
+          });
+        }
+        check();
+        // keep asking through Sunday morning until the stream is up
+        setInterval(function () { if (!live && sundayMorning()) check(); }, 3 * 60 * 1000);
       }
     })();
   </script>
