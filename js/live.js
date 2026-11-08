@@ -22,7 +22,7 @@ window.LBCLive = {
   // Then paste the key here.
   // Without a key the page can only show the channel's live player on
   // Sunday mornings and let YouTube say whether anything is on.
-  API_KEY: "",
+  API_KEY: "AIzaSyByfiO92GzWEgKzzOqoYQtGTz70xgdZANk",
 
   // ── Each Sunday: paste this week's stream link ──────────
   // Before the service, put the livestream's watch URL (or the
