@@ -48,7 +48,8 @@
     if (dateLine) dateLine.textContent = sundayLabel();
     host.innerHTML = '';
 
-    var items = SERVICE.filter(function (it) { return it && (it.type === 'song' || it.type === 'scripture' || it.type === 'sermon' || it.type === 'words'); });
+    // the After Prayer Song is only music for when the service ends, not something to prepare for
+    var items = SERVICE.filter(function (it) { return it && !it.after && (it.type === 'song' || it.type === 'scripture' || it.type === 'sermon' || it.type === 'words'); });
     if (!items.length) {
       host.appendChild(el('p', 'prep-empty', 'This Sunday has not been set yet. Check back Saturday evening.'));
       return;

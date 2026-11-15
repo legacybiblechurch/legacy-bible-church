@@ -81,17 +81,13 @@
   <!-- THIS SUNDAY -->
   <section class="section">
     <div class="container prep">
-      <p data-e="prepare-4" class="prep-intro">Here is what we will do together on Sunday morning. Read the passage tonight. Play the songs in the car. Pray for Pastor Todd and for the people who will sit near you. Then come at 10:30 ready to worship.</p>
       <p class="prep-stale" id="prepStale" style="display:none;"></p>
 
       <div id="prepOrder"><p data-e="prepare-5" class="prep-empty">Loading this Sunday&hellip;</p></div>
 
-      <div class="prep-pray">
-        <h3 data-e="prepare-6" class="prep-pray__title">Before you sleep</h3>
-        <p data-e="prepare-7">Read the passage once slowly and ask God to show you one thing in it. Pray for Pastor Todd as he preaches. Pray for someone by name who will be in the room. If you cannot be there in person you can <a href="watch.html" class="inline-link">watch live</a> at 10:30.</p>
-      </div>
-
-      <div class="prep-signup">
+      <!-- Hidden 2026-11-14: the weekly Saturday email is not being sent yet, so the page must not promise it.
+           Take the style off when scripts/sunday_mail.py is live (see the workflow sunday-starts-saturday.yml). -->
+      <div class="prep-signup" style="display:none;">
         <h3 data-e="prepare-8" class="prep-signup__title">Get this every Saturday evening</h3>
         <p data-e="prepare-9" class="prep-signup__sub">One email a week with the reading, the songs and the sermon passage for the next morning.</p>
         <form class="contact-form prep-form" id="prepForm" action="https://api.web3forms.com/submit" method="POST">
@@ -163,6 +159,6 @@
   <script src="js/edit-mode.js?v=4"></script>
   <script src="https://worship.legacybiblechurch.com/js/songs-data.js"></script>
   <script src="https://worship.legacybiblechurch.com/js/worship-service.js"></script>
-  <script src="js/prepare.js?v=1"></script>
+  <script src="js/prepare.js?v=2"></script>
 </body>
 </html>

@@ -97,7 +97,7 @@ def published_at() -> datetime | None:
 
 def items_of(order: list, saved: dict, songs: dict) -> list[dict]:
     """The pamphlet lines, in service order. Each: kind, kicker, title, sub, verses, link, note."""
-    keep = [it for it in order if it.get("type") in ("song", "scripture", "sermon", "words")]
+    keep = [it for it in order if it.get("type") in ("song", "scripture", "sermon", "words") and not it.get("after")]   # not the After Prayer Song
     sermon_at = next((i for i, it in enumerate(keep) if it["type"] == "sermon"), -1)
     out = []
     for i, it in enumerate(keep):
